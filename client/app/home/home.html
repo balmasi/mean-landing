@@ -145,14 +145,17 @@
 
         <!-- Form -->
         <div class="subscribe-form">
-            <form method="POST" action="subscribe.php" id="subscribe-form" class="form">
+            <form method="POST" action="/api/newsletter" id="subscribe-form" class="form">
                 <div class="form-group">
-                    <input type="email" class="form-control email" name="" placeholder="your@email.com" required>
+                    <input type="email" class="form-control email" name="email" placeholder="your@email.com" required>
                     <input type="submit" class="btn btn-default" value="Submit">
+                    <label>
+                        <input type="checkbox" name="business"> I'm a business
+                    </label>
                 </div>
             </form>
 
-            <div id="message-box" class="message-box"></div>
+            <div id="message-box" class="message-box">Subscribed!</div>
         </div>
         <!-- // Form -->
 
@@ -634,23 +637,15 @@ var all = {
 
                 var $this = $(this),
                         $submit = $this.find('input[type="submit"]'),
+                        $business = $this.find('input[type="checkbox"]'),
                         $email = $this.find('.email'),
                         action = $this.attr('action'),
                         emailVal = $email.val();
 
-                $.ajax({
-                    data: 'email='+emailVal,
-                    dataType: 'JSON',
-                    type: 'GET',
-                    url: action,
-                    beforeSend: function() {
-                        $submit.attr('disabled', 'disabled');
-                        loader.show();
-                    },
-                    success: function(response) {
+                $submit.attr('disabled', 'disabled');
+                $.post(action, { email: emailVal, business: $business.is(':checked')})
+                    .done(function(response) {
                         var $messageBox = $('#message-box');
-
-
                         if($messageBox.hasClass('visible')) {
                             $messageBox.removeClass('visible');
                             $messageBox.on(transitionEnd, function() {
@@ -665,12 +660,12 @@ var all = {
                         if(response.type === 'success') {
                             $email.val('');
                         }
-                    },
-                    complete: function() {
+                    })
+                    .always(function() {
                         $submit.removeAttr('disabled');
                         loader.hide();
-                    }
-                });
+                    });
+
             });
         },
         subscribeShow: function(text, type, $box) {

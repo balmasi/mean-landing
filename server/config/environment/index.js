@@ -51,6 +51,11 @@ var all = {
     clientID:     process.env.GOOGLE_ID || 'id',
     clientSecret: process.env.GOOGLE_SECRET || 'secret',
     callbackURL:  (process.env.DOMAIN || '') + '/auth/google/callback'
+  },
+
+  mailchimp: {
+    apiKey: process.env.MAILCHIMP_API_KEY || 'd0a987791548f7f27b4ed9c8f4a1880b-us9',
+    newsletterListId: '8d3f84ea4c'
   }
 };
 
@@ -58,4 +63,4 @@ var all = {
 // ==============================================
 module.exports = _.merge(
   all,
-  require('./' + process.env.NODE_ENV + '.js') || {});
+    require('./' + process.env.NODE_ENV + '.js') || {});
