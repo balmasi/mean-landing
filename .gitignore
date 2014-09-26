@@ -1,6 +1,7 @@
 node_modules
 public
 .tmp
+npm-debug.log
 .sass-cache
 .idea
 client/bower_components

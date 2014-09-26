@@ -21,7 +21,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="#home">Home</a></li>
                 <li><a href="#features">Features</a></li>
-                <!--<li><a href="#portfolio">Portfolio</a></li>-->
                 <li><a href="#prices">Prices</a></li>
                 <li><a href="#video">History</a></li>
                 <li><a href="#contact-form">Contact Us</a></li>
@@ -458,21 +457,7 @@ var all = {
             });
         });
 
-        $('#portfolio').find('.row').appear(function() {
-            var $article = $(this).find('article');
 
-            if(ie!== false && ie <= 9) {
-                $article.css('opacity', 1);
-            }
-
-            $(this).find('article').each(function(i) {
-                var $this = $(this);
-
-                setTimeout(function() {
-                    $this.addClass('animated fadeIn');
-                }, i*200);
-            });
-        });
 
         $('#subscribe').find('.form-group').appear(function() {
             var $this = $(this),
@@ -588,42 +573,6 @@ var all = {
             if(viewportWidth() > p.screen.md) {
                 $inf.iheight();
             }
-        }
-    },
-
-    portfolio: {
-        // Isotope Filtering
-        isotope: function() {
-            var $container = $('#isotope');
-            $container.isotope({
-                itemSelector: '.portfolio-item',
-            });
-            $('#portfolio-filter').find('a').on('click', function() {
-                var selector = $(this).attr('data-filter-by');
-                $('#portfolio-filter a').removeClass('active');
-                $(this).addClass('active');
-                $container.isotope({ filter: selector });
-
-                return false;
-            });
-        },
-        // Images Gallery
-        fancybox: function() {
-            var $body = $('body');
-            $('.fancybox').fancybox({
-                padding: 0,
-                helpers: {
-                    overlay: {
-                        locked: false
-                    }
-                },
-                beforeLoad: function() {
-                    $body.css('overflow', 'hidden');
-                },
-                afterClose: function() {
-                    $body.css('overflow', '');
-                }
-            });
         }
     },
 
@@ -769,11 +718,8 @@ var init = {
     ready: function() {
         all.preloader.init();
         all.scrollToGlobal();
+
         all.onePageNav();
-
-        all.portfolio.isotope();
-        all.portfolio.fancybox();
-
         all.appear();
 
         all.iheightInit.features();
