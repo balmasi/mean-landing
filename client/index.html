@@ -80,16 +80,15 @@
     <script src="bower_components/superslides/dist/jquery.superslides.min.js"></script>
     <script src="bower_components/owlcarousel/owl-carousel/owl.carousel.min.js"></script>
     <!-- endbower -->
-    <!-- vendor -->
-    <script src="vendor/jquery.parallax.js"></script>
+    <!-- injectorNonBowerVendor:js -->
     <script src="vendor/jquery.appear.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
-    <!-- endvendor -->
+    <script src="vendor/jquery.parallax.js"></script>
+    <!-- endInjectorNonBowerVendor -->
 <!-- endbuild -->
 
 <!-- build:js({.tmp,client}) app/app.js -->
 <script src="app/app.js"></script>
-<!-- injector:js -->
+<!-- injectorApp:js -->
 <script src="app/account/account.js"></script>
 <script src="app/account/login/login.js"></script>
 <script src="app/account/settings/settings.js"></script>
@@ -101,7 +100,9 @@
 <script src="components/auth/user.js"></script>
 <script src="components/mongoose-error/mongoose-error.js"></script>
 <script src="components/navbar/navbar.js"></script>
-<!-- endinjector -->
+<!-- endinjectorApp -->
 <!-- endbuild -->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
+
 </body>
 </html>

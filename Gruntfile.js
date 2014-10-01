@@ -61,7 +61,7 @@ module.exports = function (grunt) {
           '!<%= yeoman.client %>/{app,components}/**/*.spec.js',
           '!<%= yeoman.client %>/{app,components}/**/*.mock.js',
           '!<%= yeoman.client %>/app/app.js'],
-        tasks: ['injector:scripts']
+        tasks: ['injector:appScripts']
       },
       injectCss: {
         files: [
@@ -83,7 +83,7 @@ module.exports = function (grunt) {
       injectSass: {
         files: [
           '<%= yeoman.client %>/{app,components}/**/*.{scss,sass}'],
-        tasks: ['injector:sass']
+        tasks: ['injector:app:sass']
       },
       sass: {
         files: [
@@ -95,7 +95,7 @@ module.exports = function (grunt) {
           '<%= yeoman.client %>/{app,components}/**/*.{coffee,litcoffee,coffee.md}',
           '!<%= yeoman.client %>/{app,components}/**/*.spec.{coffee,litcoffee,coffee.md}'
         ],
-        tasks: ['newer:coffee', 'injector:scripts']
+        tasks: ['newer:coffee', 'injector:appScripts']
       },
       coffeeTest: {
         files: [
@@ -517,27 +517,39 @@ module.exports = function (grunt) {
     },
 
     injector: {
-      options: {
-
-      },
       // Inject application script files into index.html (doesn't include bower)
-      scripts: {
+      appScripts: {
+        options: {
+          transform: function (filePath) {
+            filePath = filePath.replace('/client/', '');
+            filePath = filePath.replace('/.tmp/', '');
+            return '<script src="' + filePath + '"></script>';
+          },
+          starttag: '<!-- injectorApp:js -->',
+          endtag: '<!-- endinjectorApp -->'
+        },
+        files: {
+          '<%= yeoman.client %>/index.html': [
+            ['{.tmp,<%= yeoman.client %>}/{app,components}/**/*.js',
+              '!{.tmp,<%= yeoman.client %>}/app/app.js',
+              '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.spec.js',
+              '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js']
+          ]
+        }
+      },
+
+      nonBowerVendorScripts: {
         options: {
           transform: function(filePath) {
             filePath = filePath.replace('/client/', '');
             filePath = filePath.replace('/.tmp/', '');
             return '<script src="' + filePath + '"></script>';
           },
-          starttag: '<!-- injector:js -->',
-          endtag: '<!-- endinjector -->'
+          starttag: '<!-- injectorNonBowerVendor:js -->',
+          endtag: '<!-- endInjectorNonBowerVendor -->'
         },
         files: {
-          '<%= yeoman.client %>/index.html': [
-              ['{.tmp,<%= yeoman.client %>}/{app,components}/**/*.js',
-               '!{.tmp,<%= yeoman.client %>}/app/app.js',
-               '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.spec.js',
-               '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js']
-            ]
+          '<%= yeoman.client %>/index.html': ['{.tmp,<%= yeoman.client %>}/vendor/**/*.js']
         }
       },
 
@@ -577,7 +589,7 @@ module.exports = function (grunt) {
           ]
         }
       }
-    },
+    }
   });
 
   // Used for delaying livereload until after server has restarted
@@ -605,7 +617,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:sass', 
+        'injector::sass',
         'concurrent:server',
         'injector',
         'wiredep',
@@ -617,7 +629,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'env:all',
-      'injector:sass', 
+      'injector::sass',
       'concurrent:server',
       'injector',
       'wiredep',
@@ -647,7 +659,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:sass', 
+        'injector::sass',
         'concurrent:test',
         'injector',
         'autoprefixer',
@@ -660,7 +672,7 @@ module.exports = function (grunt) {
         'clean:server',
         'env:all',
         'env:test',
-        'injector:sass', 
+        'injector::sass',
         'concurrent:test',
         'injector',
         'wiredep',
@@ -678,7 +690,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'injector:sass', 
+    'injector::sass',
     'concurrent:dist',
     'injector',
     'wiredep',
