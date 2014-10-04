@@ -1347,6 +1347,7 @@ address {
     margin-left: 0%;
   }
 }
+
 fieldset {
   padding: 0;
   margin: 0;
@@ -6736,13 +6737,14 @@ h3 {
   padding-bottom: 40px;
 }
 .feature-item {
-  margin: 0 0 40px;
   opacity: 0;
   position: relative;
+  margin-bottom:40px;
 
   &.feature-item-right {
     .content {
-      margin: 0 80px 0 0;
+      padding: 0 80px 0 0;
+      text-align: right;
     }
 
     .icon-block {
@@ -6759,13 +6761,13 @@ h3 {
   line-height: 60px;
   position: absolute;
   left: 15px;
-  top: 10px;
+  top: 40px;
   text-align: center;
   width: 60px;
   height: 60px;
 }
 .feature-item .content {
-  margin: 0 0 0 80px;
+  padding: 0 0 0 80px;
 }
 #facts {
   background: #141720 url('/assets/images/bg-facts.jpg') center top;
@@ -6895,7 +6897,8 @@ h3 {
 }
 .subscribe-form .form-group .form-control,
 .subscribe-form .form-group .btn {
-  display: inline-block;
+  display: block;
+  margin: 20px auto;
   font-weight: 100;
   height: 55px;
   vertical-align: top;
@@ -6903,7 +6906,6 @@ h3 {
 .subscribe-form .form-group .form-control {
   color: #fff;
   font-size: 18px;
-  margin: 0 0 20px;
   opacity: 0;
   text-align: center;
   width: 100%;
@@ -6925,6 +6927,20 @@ h3 {
 .subscribe-form .message-box.visible {
   opacity: 1;
 }
+
+#type-customer, #type-business {
+  &:checked {
+    + label .type-choice-btn {
+      background: #58aaea;
+      border-color: #58aaea !important;
+    }
+  }
+}
+
+.business-field {
+  display: none;
+}
+
 .price-item {
   margin-bottom: 40px;
 }
@@ -7321,7 +7337,6 @@ h3 {
     display: table-cell;
   }
   .subscribe-form .form-group .form-control {
-    margin: 0 3px 0 0;
     width: 350px;
   }
   #map {

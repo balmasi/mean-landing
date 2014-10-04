@@ -2,8 +2,6 @@
 
 angular.module 'taskyApp'
 .controller 'HomeCtrl', ($scope) ->
-  $scope.message = 'Hello'
-
   # This function return viewport width
   viewportWidth = ->
     $body = $("body")
@@ -187,7 +185,7 @@ angular.module 'taskyApp'
 
   # Scroll to anchor, when link using .scrollTo class
     scrollToGlobal: ->
-      $(".scrollTo").on "click", ->
+      $(".scrollTo").on 'click', ->
         all.scrollTo $(this).attr("href")
         false
 
@@ -234,11 +232,22 @@ angular.module 'taskyApp'
 
     # Subscribe
       subscribe: ->
+        $businessField = $('.business-field').hide()
+        $('.business-field').addClass('animated')
+        $('.show-business-field').on 'click', ->
+          $businessField.show().removeClass('fadeOutLeft').addClass("fadeInLeft")
+
+        $('.hide-business-field').on 'click', ->
+          $businessField.removeClass('fadeInLeft').addClass("fadeOutLeft")
+          $businessField.one animationEnd, ->
+            $businessField.hide('slow')
+            $businessField.unbind animationEnd
+
         $("#subscribe-form").on "submit", (e) ->
           e.preventDefault()
           $this = $(this)
           $submit = $this.find("input[type=\"submit\"]")
-          $business = $this.find("input[type=\"checkbox\"]")
+          $business = $('#type-business')
           $email = $this.find(".email")
           action = $this.attr("action")
           emailVal = $email.val()
@@ -246,6 +255,7 @@ angular.module 'taskyApp'
           $.post(action,
             email: emailVal
             business: $business.is(":checked")
+            businessDetails: $('#business-field').val()
           ).done((response) ->
             $messageBox = $("#message-box")
             if $messageBox.hasClass("visible")
