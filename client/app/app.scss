@@ -1,8 +1,10 @@
 $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
 $fa-font-path: "/bower_components/font-awesome/fonts";
 
+@import '1-variables.scss';
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 @import 'font-awesome/scss/font-awesome';
+@import 'animate.min.css';
 
 /**
  * App-wide Styles
@@ -42,6 +44,9 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 }
 // Component styles are injected through grunt
 // injector
+@import '1-variables.scss';
+@import '2-mixins.scss';
+@import '4-responsive.scss';
 @import 'account/login/login.scss';
 @import 'admin/admin.scss';
 @import 'home/home.scss';

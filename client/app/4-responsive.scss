@@ -1,0 +1,41 @@
+$path: "bootstrap";
+
+@import "1-variables";
+
+
+@mixin screen-xs-max {
+  @media (max-width: $screen-xs-max) {
+    @content;
+  }
+}
+
+@mixin screen-sm-max {
+  @media (max-width: $screen-sm-max) {
+    @content;
+  }
+}
+
+@mixin screen-md-max {
+  @media (max-width: $screen-md-max) {
+    @content;
+  }
+}
+
+/* Screen mins - try not to use (IE8) */
+@mixin screen-sm-min {
+  @media (min-width: $screen-sm-min) {
+    @content;
+  }
+}
+
+@mixin screen-md-min {
+  @media (min-width: $screen-md-min) {
+    @content;
+  }
+}
+
+@mixin screen-lg-min {
+  @media (min-width: $screen-lg-min) {
+    @content;
+  }
+}

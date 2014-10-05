@@ -93,16 +93,15 @@ angular.module 'taskyApp'
 
   # Parallax
     parallax: ->
-      $(".home-section").parallax "50%", 0.7
-      $("#subscribe").parallax "50%", -0.3
-      $("#facts").parallax "50%", -0.6
-      $(".shape").parallax "50%", -0.6
+      skrollr.init
+        forceHeight: false
+        smoothScrolling: false
       return
 
 
   # Show elements, when they are in viewport
     appear: ->
-      $("#features").find(".row").appear ->
+      $("#features").find(".row").appear().on 'appear', ->
         $feature = $(this).find(".feature-item")
         $feature.css "opacity", 1  if ie isnt false and ie <= 9
         $feature.each (i) ->
@@ -115,7 +114,7 @@ angular.module 'taskyApp'
 
         return
 
-      $("#facts").find(".row").appear ->
+      $("#facts").find(".row").appear().on 'appear', ->
         $fact = $(this).find(".fact-item")
         $fact.css "opacity", 1  if ie isnt false and ie <= 9
         $fact.each (i) ->
@@ -133,42 +132,32 @@ angular.module 'taskyApp'
 
         return
 
-      $("#subscribe").find(".form-group").appear ->
+      $("#subscribe").find(".form-group").appear().on 'appear', ->
         $this = $(this)
         $formControl = $this.find(".form-control")
-        $btn = $this.find(".btn")
+        $typeButtons = $(".type-choice-btn")
+        $customerRadio = $typeButtons.eq(0)
+        $businessRadio = $typeButtons.eq(1)
+        $submit = $this.find("[type='submit']")
         if ie isnt false and ie <= 9
           $formControl.css "opacity", 1
-          $btn.css "opacity", 1
-        $formControl.addClass "animated fadeInLeft"
-        $btn.addClass "animated fadeInRight"
+          $submit.css "opacity", 1
+          $customerRadio.css "opacity", 1
+          $businessRadio.css "opacity", 1
+        $customerRadio.addClass "animated fadeInLeft"
+        $businessRadio.addClass "animated fadeInRight"
+        $formControl.addClass "animated fadeInUp"
+        $submit.addClass "animated fadeInUp"
         return
 
-      $("#prices").find(".row").appear ->
-        $this = $(this)
-        $price = $this.find(".price-block")
-        $price.css "opacity", 1  if ie isnt false and ie <= 9
-        $price.eq(1).addClass "animated fadeInDown"
-        setTimeout (->
-          $price.eq(0).addClass "animated fadeInLeft"
-          $price.eq(2).addClass "animated fadeInRight"
-          return
-        ), 400
-        return
 
-      $("#video").find(".video-container").appear ->
+      $("#contact-form").appear().on 'appear', ->
         $this = $(this)
         $this.css "opacity", 1  if ie isnt false and ie <= 9
         $this.addClass "animated fadeInDown"
         return
 
-      $("#c-form").appear ->
-        $this = $(this)
-        $this.css "opacity", 1  if ie isnt false and ie <= 9
-        $this.addClass "animated fadeInDown"
-        return
-
-      $("#map").find(".contact-block").appear ->
+      $("#map").find(".contact-block").appear().on 'appear', ->
         $this = $(this)
         $this.css "opacity", 1  if ie isnt false and ie <= 9
         $this.addClass "animated flipInY"
