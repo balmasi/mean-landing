@@ -311,36 +311,6 @@ angular.module 'taskyApp'
 
         return
 
-
-  # Slider
-    slider: ->
-      $("#slides").superslides
-        animation: "fade"
-
-      #            animation_speed: 1000,
-        play: 5000
-
-      return
-
-
-  # Carousel
-    carousel: ->
-      $(".owl-carousel").owlCarousel
-        items: 1
-        dots: true
-        margin: 20
-        responsive:
-          480:
-            items: 2
-
-          768:
-            items: 3
-
-          1200:
-            items: 4
-
-      return
-
   maps = init: ->
     myLatlng = new google.maps.LatLng(43.818372, -79.417238)
     mapOptions =
@@ -370,8 +340,6 @@ angular.module 'taskyApp'
       all.iheightInit.prices()
       all.ajaxForms.subscribe()
       all.ajaxForms.contact()
-      all.slider()
-      all.carousel()
       all.parallax()
       maps.init()
       return

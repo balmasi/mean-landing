@@ -471,10 +471,12 @@ h3 {
     line-height: 60px;
     position: absolute;
     left: 15px;
-    top: 40px;
     text-align: center;
     width: 60px;
     height: 60px;
+    // Center
+    top: 50%;
+    margin-top: -30px;
   }
 
   &.feature-item-right {

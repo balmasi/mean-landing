@@ -39,3 +39,12 @@ $path: "bootstrap";
     @content;
   }
 }
+
+@mixin screen-retina {
+  @media only screen and (min--moz-device-pixel-ratio: 1.5),
+  (-o-min-device-pixel-ratio: 3/2),
+  (-webkit-min-device-pixel-ratio: 1.5),
+  (min-device-pixel-ratio: 1.5) {
+    @content;
+  }
+}
