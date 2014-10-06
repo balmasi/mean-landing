@@ -93,9 +93,16 @@ angular.module 'taskyApp'
 
   # Parallax
     parallax: ->
+      $('[data-emit-events]').each ->
+        if  $(this).data('bottom-top') is undefined
+          $(this).attr 'data-bottom-top', ''
+          return
+
       skrollr.init
         forceHeight: false
         smoothScrolling: false
+        keyframe: (element) ->
+          $(element).trigger('appear')
       return
 
 
@@ -114,23 +121,6 @@ angular.module 'taskyApp'
 
         return
 
-      $("#facts").find(".row").appear().on 'appear', ->
-        $fact = $(this).find(".fact-item")
-        $fact.css "opacity", 1  if ie isnt false and ie <= 9
-        $fact.each (i) ->
-          $this = $(this)
-          $counter = $this.find(".counter")
-          setTimeout (->
-            $this.addClass "animated fadeInDown"
-            $counter.countTo
-              refreshInterval: 50
-              speed: 2000
-
-            return
-          ), i * 400
-          return
-
-        return
 
       $("#subscribe").find(".form-group").appear().on 'appear', ->
         $this = $(this)

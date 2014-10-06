@@ -10,8 +10,6 @@
 </div>
 <!-- // Loader -->
 
-<div id="skrollr-body"></div>
-
 <!-- NAVBAR -->
 <nav id="header" class="navbar navbar-inverse navbar-static-top" role="navigation">
     <div class="container">
@@ -39,7 +37,7 @@
             <div class="container">
                 <header>
                     <h1>tasky</h1>
-                    <div class="home-sub-title">The simplest to match your service needs to local businesses</div>
+                    <div class="home-sub-title">The simplest way to match your service needs to local businesses!</div>
                 </header>
 
                 <a href="#contact-form" class="btn btn-default btn-lg scrollTo">Contact Us</a>
@@ -55,7 +53,7 @@
         <header class="section-header">
             <h2>How does it work?</h2>
         </header>
-        <div class="row">
+        <div class="row" data-emit-events>
             <!-- Feature -->
             <div class="row feature-item feature-item-right">
                 <div class="col-sm-4 hidden-xs col-img">
@@ -166,7 +164,7 @@
         <!-- Form -->
         <div class="subscribe-form">
             <form method="POST" action="/api/newsletter" id="subscribe-form" class="form">
-                <div class="account-type-choice form-group">
+                <div class="account-type-choice form-group" data-emit-events>
                     <input id="type-customer" type="radio" name="account-type" checked="checked" class="sr-only"/>
                     <label class="hide-business-field" for="type-customer"><div class="btn btn-default type-choice-btn">I am a customer</div></label>
                     <input id="type-business" type="radio" name="account-type" class="sr-only"/>
@@ -270,7 +268,7 @@
 <!-- // VIDEO -->
 
 <!-- CONTACT FORM -->
-<div id="contact-form" class="section">
+<div id="contact-form" class="section" data-emit-events>
     <div class="container">
         <header class="section-header">
             <h2>Contact Us</h2>
