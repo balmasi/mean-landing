@@ -12,8 +12,11 @@
 var _ = require('lodash');
 var config = require('../../config/environment');
 
-var Newsletter = require('./newsletter.model.js');
+// Contact us form
+var Email = require('email').Email;
 
+// Mailchimp Stuff
+var Newsletter = require('./newsletter.model.js');
 var MCapi = require('mailchimp').MailChimpAPI;
 var mcConfig = config.mailchimp
 var apiKey = mcConfig.apiKey;
@@ -33,14 +36,25 @@ exports.create = function(req, res) {
     }
     // No errors
     var isBusiness = req.body.business === 'true';
+    var merge = {
+      'ATYPE': isBusiness ? 'business' : 'customer',
+      'SERVICE': isBusiness? req.body.service || 'unknown' : 'N/A'
+    };
+
+    if (req.body.fname && req.body.lname) {
+      merge = _.merge({
+        'FNAME': req.body.fname,
+        'LNAME': req.body.lname
+      },
+      merge);
+    }
+
     api.call('lists','subscribe', {
       id: mcConfig.newsletterListId,
       email: {
         email:req.body.email
       },
-      merge_vars: {
-        'ATYPE': isBusiness ? 'business' : 'customer'
-      }
+      merge_vars: merge
     }, function(error, data) {
       if (error) {
         return handleError(res, error);
@@ -48,6 +62,43 @@ exports.create = function(req, res) {
     });
     return res.json(201, nl);
   });
+};
+
+// Sends an email to EMAIL_TO for use in contact us section
+exports.contact = function (req, res, next) {
+  var v = require('validator'), errors = [];
+  var
+    from = req.body.from,
+    subject = req.body.subject,
+    message = req.body.message;
+
+
+  if (!v.isEmail(from)) {
+    errors.push('"From" email address must be valid.');
+  }
+  if (v.isNull(message)) {
+    errors.push("Message cannot be blank");
+  }
+
+  if (errors !== []) {
+    return handleError(res, errors);
+  }
+
+  var EMAIL_TO = 'borna+tasky@borna-almasi.com';
+  var myMsg = new Email(
+    { from: req.body.from || 'unprovided@sample.net'
+      , to:   EMAIL_TO
+      , subject: req.body.subject || 'Email from Landing Page'
+      , body: req.body.message || 'Empty Body'
+    });
+
+  myMsg.send(function (err){
+    if (err !== null) {
+      return handleError(res, err);
+    }
+  });
+
+  return res.json(201, myMsg);
 };
 
 

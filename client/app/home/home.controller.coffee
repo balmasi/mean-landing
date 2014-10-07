@@ -147,14 +147,7 @@ angular.module 'taskyApp'
         $this.addClass "animated fadeInDown"
         return
 
-      $("#map").find(".contact-block").appear().on 'appear', ->
-        $this = $(this)
-        $this.css "opacity", 1  if ie isnt false and ie <= 9
-        $this.addClass "animated flipInY"
-        return
-
       return
-
 
   # Scroll to anchor
     scrollTo: (anchor) ->
@@ -234,7 +227,9 @@ angular.module 'taskyApp'
           $.post(action,
             email: emailVal
             business: $business.is(":checked")
-            businessDetails: $('#business-field').val()
+#            fname: $this.find('[name="fname"]').val()
+#            lname: $this.find('[name="lname"]').val()
+            service: $this.find('[name="service"]').val()
           ).done((response) ->
             $messageBox = $("#message-box")
             if $messageBox.hasClass("visible")
@@ -302,20 +297,15 @@ angular.module 'taskyApp'
         return
 
   maps = init: ->
-    myLatlng = new google.maps.LatLng(43.818372, -79.417238)
+    myLatlng = new google.maps.LatLng(43.653226,-79.38318438)
     mapOptions =
-      zoom: 16
+      zoom: 12
       center: myLatlng
       mapTypeId: google.maps.MapTypeId.ROADMAP
       disableDefaultUI: true
       scrollwheel: false
 
     map = new google.maps.Map(document.getElementById("google-map"), mapOptions)
-    marker = new google.maps.Marker(
-      position: myLatlng
-      map: map
-      title: "tasky"
-    )
     return
 
 
@@ -345,4 +335,4 @@ angular.module 'taskyApp'
 
   $(document).ready init.ready
   $(window).scroll init.scroll
-  $(window).resize init.resize
+#  $(window).resize init.resize

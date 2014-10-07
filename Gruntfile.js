@@ -538,21 +538,6 @@ module.exports = function (grunt) {
         }
       },
 
-      nonBowerVendorScripts: {
-        options: {
-          transform: function(filePath) {
-            filePath = filePath.replace('/client/', '');
-            filePath = filePath.replace('/.tmp/', '');
-            return '<script src="' + filePath + '"></script>';
-          },
-          starttag: '<!-- injectorNonBowerVendor:js -->',
-          endtag: '<!-- endInjectorNonBowerVendor -->'
-        },
-        files: {
-          '<%= yeoman.client %>/index.html': ['{.tmp,<%= yeoman.client %>}/vendor/**/*.js']
-        }
-      },
-
       // Inject component scss into app.scss
       sass: {
         options: {

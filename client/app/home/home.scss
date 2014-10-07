@@ -576,6 +576,7 @@ h3 {
 #map {
   position: relative;
   padding: 50px 0;
+  height: 300px;
 
   .container {
     padding-left: 15px;
@@ -585,7 +586,6 @@ h3 {
   }
 
   #google-map {
-//    display: none;
     position: absolute;
     left: 0;
     top: 0;
