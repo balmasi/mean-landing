@@ -5,10 +5,10 @@ var mongoose = require('mongoose'),
 
 var NewsletterSchema = new Schema({
     email: String,
-    accountType: {
-        type: String,
-        default: 'customer'
-    }
+    fname: String,
+    lname: String,
+    service: String,
+    isBusiness: Boolean
 });
 
 module.exports = mongoose.model('Newsletter', NewsletterSchema);

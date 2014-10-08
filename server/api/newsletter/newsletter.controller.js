@@ -35,7 +35,7 @@ exports.create = function(req, res) {
         return handleError(res, err);
     }
     // No errors
-    var isBusiness = req.body.business === 'true';
+    var isBusiness = req.body.isBusiness === 'true';
     var merge = {
       'ATYPE': isBusiness ? 'business' : 'customer',
       'SERVICE': isBusiness? req.body.service || 'unknown' : 'N/A'
@@ -86,10 +86,10 @@ exports.contact = function (req, res, next) {
 
   var EMAIL_TO = 'borna+tasky@borna-almasi.com';
   var myMsg = new Email(
-    { from: req.body.from || 'unprovided@sample.net'
+    { from: from || 'unprovided@sample.net'
       , to:   EMAIL_TO
-      , subject: req.body.subject || 'Email from Landing Page'
-      , body: req.body.message || 'Empty Body'
+      , subject: subject || 'Email from Landing Page'
+      , body: message || 'Empty Body'
     });
 
   myMsg.send(function (err){

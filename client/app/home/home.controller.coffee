@@ -211,7 +211,7 @@ angular.module 'taskyApp'
           $submit.attr "disabled", "disabled"
           $.post(action,
             email: emailVal
-            business: $business.is(":checked")
+            isBusiness: $business.is(":checked")
 #            fname: $this.find('[name="fname"]').val()
 #            lname: $this.find('[name="lname"]').val()
             service: $this.find('[name="service"]').val()
