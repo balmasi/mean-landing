@@ -149,21 +149,6 @@ angular.module 'taskyApp'
 
       return
 
-  # Scroll to anchor
-    scrollTo: (anchor) ->
-      $.scrollTo anchor, p.scrollSpeed
-      return
-
-
-  # Scroll to anchor, when link using .scrollTo class
-    scrollToGlobal: ->
-      $(".scrollTo").on 'click', ->
-        all.scrollTo $(this).attr("href")
-        false
-
-      return
-
-
   # One Page Navigation
     onePageNav: ->
       $("#header").find(".nav").onePageNav
@@ -313,14 +298,11 @@ angular.module 'taskyApp'
   init =
     ready: ->
       all.preloader.init()
-      all.scrollToGlobal()
       all.onePageNav()
       all.appear()
-      all.iheightInit.features()
-      all.iheightInit.prices()
       all.ajaxForms.subscribe()
       all.ajaxForms.contact()
-      all.parallax()
+#      all.parallax()
       maps.init()
       return
 

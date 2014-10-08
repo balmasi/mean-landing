@@ -6,7 +6,6 @@
     "json3": "~3.3.1",
     "es5-shim": "~4.0.3",
     "jquery": "~2.1.1",
-    "jquery.scrollTo": "~1.4.1",
     "jquery.nav": "git://github.com/davist11/jQuery-One-Page-Nav",
     "bootstrap-sass-official": "~3.2.0",
     "angular-resource": ">=1.2.*",
@@ -15,9 +14,6 @@
     "font-awesome": ">=4.1.0",
     "lodash": "~2.4.1",
     "angular-ui-router": "~0.2.10",
-    "countto": "*",
-    "fancybox": "~2.1.5",
-    "iheight": "git://github.com/inferusvv/iHeight",
     "appear": "~0.3.3",
     "skrollr": "~0.6.27"
   },
@@ -29,21 +25,8 @@
     "appear": {
       "main": "jquery.appear.js"
     },
-
-    "iheight": {
-      "main": "jquery.iheight.js"
-    },
     "jquery.nav": {
       "main": "jquery.nav.js"
-    },
-    "countto": {
-      "main": "jquery.countTo.js"
-    },
-    "fancybox": {
-      "main": [
-        "source/jquery.fancybox.pack.js",
-        "source/jquery.fancybox.css"
-      ]
     }
   }
 }
