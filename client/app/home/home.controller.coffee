@@ -90,6 +90,19 @@ angular.module 'taskyApp'
 
         return
 
+  # Scroll to anchor
+    scrollTo: (anchor) ->
+      $.scrollTo anchor, p.scrollSpeed
+      return
+
+
+  # Scroll to anchor, when link using .scrollTo class
+    scrollToGlobal: ->
+      $(".scrollTo").on 'click', ->
+        all.scrollTo $(this).attr("href")
+        false
+
+      return
 
   # Parallax
     parallax: ->
@@ -302,7 +315,8 @@ angular.module 'taskyApp'
       all.appear()
       all.ajaxForms.subscribe()
       all.ajaxForms.contact()
-#      all.parallax()
+      all.parallax()
+      all.scrollToGlobal()
       maps.init()
       return
 
