@@ -8,7 +8,10 @@ var NewsletterSchema = new Schema({
     fname: String,
     lname: String,
     service: String,
-    isBusiness: Boolean
+    accountType: {
+      type: String,
+      default: 'customer'
+    }
 });
 
 module.exports = mongoose.model('Newsletter', NewsletterSchema);

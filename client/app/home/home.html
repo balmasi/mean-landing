@@ -125,20 +125,20 @@
 
         <!-- Form -->
         <div class="subscribe-form">
-            <form method="POST" action="/api/newsletter" id="subscribe-form" class="form">
+            <form id="subscribe-form" name="subscribeForm" class="form" ng-submit="subscribe()">
                 <div class="account-type-choice form-group" data-emit-events>
-                    <input id="type-customer" type="radio" name="account-type" checked="checked" class="sr-only"/>
+                    <input id="type-customer" type="radio" ng-model="subscriber.accountType" checked="checked" value="customer" class="sr-only"/>
                     <label class="hide-business-field" for="type-customer"><div class="btn btn-default type-choice-btn">I am a customer</div></label>
-                    <input id="type-business" type="radio" name="account-type" class="sr-only"/>
+                    <input id="type-business" type="radio" ng-model="subscriber.accountType" value="business" class="sr-only"/>
                     <label class="show-business-field" for="type-business"><div class="btn btn-default type-choice-btn">I am a business</div></label>
                 </div>
 
                 <div class="form-group">
-                    <input type="email" class="form-control email" name="email" placeholder="your@email.com" required>
+                    <input type="email" class="form-control email" ng-model="subscriber.email" name="email" placeholder="your@email.com" required>
                     <!--<input type="text" class="form-control" name="fname" placeholder="First Name" required>-->
                     <!--<input type="text" class="form-control" name="lname" placeholder="Last Name" required>-->
-                    <input type="text" class="form-control business-field" name="service" placeholder="(Optional) service you provide">
-                    <input type="submit" class="btn btn-default" value="Submit">
+                    <input type="text" class="form-control business-field" ng-model="subscriber.service" name="service" placeholder="(Optional) service you provide">
+                    <input type="submit" class="btn btn-default" value="Submit" ng-disabled="subscribeForm.$invalid">
                 </div>
 
             </form>

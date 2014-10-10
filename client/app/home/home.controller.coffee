@@ -1,7 +1,43 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'HomeCtrl', ($scope) ->
+.controller 'HomeCtrl', ($scope, $http) ->
+  $scope.subscriber =
+    accountType: 'customer'
+#    fname: null
+#    lname: null
+#    email: null
+#    service: null
+  $scope.subscibeMessage = ""
+
+  $scope.subscribe = ->
+    endpoint = "/api/newsletter"
+    $messageBox = $("#message-box")
+    loader.show()
+    $http.post(endpoint, $scope.subscriber)
+    .success( (response) ->
+      loader.hide()
+      if $messageBox.hasClass("visible")
+        $messageBox.removeClass "visible"
+        $messageBox.on transitionEnd, ->
+          $messageBox.unbind transitionEnd
+          all.ajaxForms.subscribeShow response.text, response.type, $messageBox
+          return
+
+      else
+        all.ajaxForms.subscribeShow response.text, response.type, $messageBox
+      $scope.subscriber.email = ""  if response.type is "success"
+      return
+    )
+    .error (error) ->
+      all.ajaxForms.subscribeShow error.text, error.type, $messageBox
+      loader.hide()
+      return
+
+    return
+
+
+
   # This function return viewport width
   viewportWidth = ->
     $body = $("body")
@@ -213,42 +249,6 @@ angular.module 'taskyApp'
             $businessField.hide('slow')
             $businessField.unbind animationEnd
 
-        $("#subscribe-form").on "submit", (e) ->
-          e.preventDefault()
-          $this = $(this)
-          $submit = $this.find("input[type=\"submit\"]")
-          $business = $('#type-business')
-          $email = $this.find(".email")
-          action = $this.attr("action")
-          emailVal = $email.val()
-          $submit.attr "disabled", "disabled"
-          $.post(action,
-            email: emailVal
-            isBusiness: $business.is(":checked")
-#            fname: $this.find('[name="fname"]').val()
-#            lname: $this.find('[name="lname"]').val()
-            service: $this.find('[name="service"]').val()
-          ).done((response) ->
-            $messageBox = $("#message-box")
-            if $messageBox.hasClass("visible")
-              $messageBox.removeClass "visible"
-              $messageBox.on transitionEnd, ->
-                $messageBox.unbind transitionEnd
-                all.ajaxForms.subscribeShow response.text, response.type, $messageBox
-                return
-
-            else
-              all.ajaxForms.subscribeShow response.text, response.type, $messageBox
-            $email.val ""  if response.type is "success"
-            return
-          ).always ->
-            $submit.removeAttr "disabled"
-            loader.hide()
-            return
-
-          return
-
-        return
 
       subscribeShow: (text, type, $box) ->
         $box.text text

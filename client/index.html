@@ -32,8 +32,9 @@
     <!-- Add your site or application content here -->
     <div id="skrollr-body" ui-view=""></div>
 
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+
 <script>
+//  Google Analytics TRACKING
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -41,6 +42,15 @@
 
     ga('create', 'UA-55526915-1', 'auto');
     ga('send', 'pageview');
+
+//    MOUSEFLOW TRACKING
+
+    var _mfq = _mfq || [];
+    (function () {
+        var mf = document.createElement("script"); mf.type = "text/javascript"; mf.async = true;
+        mf.src = "//cdn.mouseflow.com/projects/3d7a5c40-7481-4f18-b77b-2fe4cffbfc4e.js";
+        document.getElementsByTagName("head")[0].appendChild(mf);
+    })();
 </script>
 
 <!--[if lt IE 9]>

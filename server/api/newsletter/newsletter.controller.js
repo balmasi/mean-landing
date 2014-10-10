@@ -35,9 +35,9 @@ exports.create = function(req, res) {
         return handleError(res, err);
     }
     // No errors
-    var isBusiness = req.body.isBusiness === 'true';
+    var isBusiness = req.body.accountType === 'business';
     var merge = {
-      'ATYPE': isBusiness ? 'business' : 'customer',
+      'ATYPE': req.body.accountType,
       'SERVICE': isBusiness? req.body.service || 'unknown' : 'N/A'
     };
 
@@ -59,8 +59,10 @@ exports.create = function(req, res) {
       if (error) {
         return handleError(res, error);
       }
+      else {
+        return res.json(201, {type: "Success", text: "Email successfully added to mailing list."});
+      }
     });
-    return res.json(201, nl);
   });
 };
 
@@ -96,12 +98,20 @@ exports.contact = function (req, res, next) {
     if (err !== null) {
       return handleError(res, err);
     }
+    return res.json(201, myMsg);
   });
 
-  return res.json(201, myMsg);
 };
 
 
 function handleError(res, err) {
-  return res.send(500, err);
+  var error = {
+    type: "error",
+    text: "There was a problem subscribing. Make sure your email is valid."
+  };
+
+  if (err.code == -100) {
+    error.text = err.message;
+  }
+  return res.send(500, error);
 }
