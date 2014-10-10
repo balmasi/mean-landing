@@ -17,6 +17,7 @@ angular.module 'taskyApp'
     $http.post(endpoint, $scope.subscriber)
     .success( (response) ->
       loader.hide()
+      $scope.analytics.subscribe()
       if $messageBox.hasClass("visible")
         $messageBox.removeClass "visible"
         $messageBox.on transitionEnd, ->
@@ -37,6 +38,9 @@ angular.module 'taskyApp'
     return
 
 
+  $scope.analytics =
+    subscribe: ->
+      ga 'send', 'event', 'subsribe', 'submit', $scope.subscriber.accountType
 
   # This function return viewport width
   viewportWidth = ->
@@ -218,21 +222,6 @@ angular.module 'taskyApp'
       return
 
 
-  # Equate heights of similar blocks
-    iheightInit:
-      features: ->
-        $feature = $("#features").find(".feature-item")
-        $feature.height "auto"
-        $feature.iheight()  if viewportWidth() > p.screen.sm
-        return
-
-      prices: ->
-        $inf = $("#prices").find(".inf")
-        $inf.height "auto"
-        $inf.iheight()  if viewportWidth() > p.screen.md
-        return
-
-
   # AJAX requests
     ajaxForms:
 
@@ -324,11 +313,5 @@ angular.module 'taskyApp'
       all.navbarSelect()
       return
 
-    resize: ->
-      all.iheightInit.features()
-      all.iheightInit.prices()
-      return
-
   $(document).ready init.ready
   $(window).scroll init.scroll
-#  $(window).resize init.resize
