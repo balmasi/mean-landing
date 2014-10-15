@@ -30,7 +30,9 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div id="skrollr-body" ui-view=""></div>
+    <div ng-controller="AppCtrl" class="{{pageVariables.pageClass}}">
+        <ui-view id="skrollr-body"></ui-view>
+    </div>
 
 
 <script>

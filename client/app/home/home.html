@@ -10,28 +10,11 @@
 </div>
 <!-- // Loader -->
 
-<!-- NAVBAR -->
-<nav id="header" class="navbar navbar-inverse navbar-static-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">tasky</a>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="#home">Home</a></li>
-                <li><a href="#features">How does it work</a></li>
-                <li><a href="#contact-form">Contact Us</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!-- // NAVBAR -->
-
+<div ng-include="'components/navbar/navbar.html'" onload="navLoaded()"></div>
 
 <!-- HOME -->
 <div id="home" class="home-section home-default dark overlay home-bg2"
-     data-top-top="background-position:0 0px;" data-top-bottom="background-position:0 300px;">
+     data-top-top="background-position:0 0px;" data-800="background-position:0 250px;">
     <div class="home-table">
         <div class="home-inner">
             <div class="container">
@@ -74,7 +57,7 @@
                         <div class="icon-block"><i class="fa fa-globe"></i></div>
                         <h4>Instant Notification</h4>
                         <p>Local businesses able to fulfill the task get notified of the possible business opportunity
-                           instantly and can provide an offer to the customer.</p>
+                            instantly and can provide an offer to the customer.</p>
                     </div>
                 </div>
                 <div class="col-sm-4 hidden-xs col-img">
@@ -114,7 +97,7 @@
 
 
 <!-- SUBSCRIBE -->
-<div id="subscribe" class="section dark overlay" data-bottom-top="background-position:0px -200px;" data-top-bottom="background-position:0px 200px;" >
+<div id="subscribe" class="section dark overlay" data-1150="background-position:0px -200px;" data-2200="background-position:0px 100px;" >
     <div class="container">
         <header class="section-header">
             <h3>Subscribe for <span class="text-primary">Updates</span></h3>

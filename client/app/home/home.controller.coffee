@@ -2,6 +2,7 @@
 
 angular.module 'taskyApp'
 .controller 'HomeCtrl', ($scope, $http) ->
+  $scope.pageVariables.pageClass = 'page-home'
   $scope.subscriber =
     accountType: 'customer'
 #    fname: null
@@ -41,6 +42,16 @@ angular.module 'taskyApp'
   $scope.analytics =
     subscribe: ->
       ga 'send', 'event', 'subsribe', 'submit', $scope.subscriber.accountType
+
+  $scope.navLoaded = ->
+    # One Page Navigation
+    $("#header").find(".nav").onePageNav
+      currentClass: "active"
+      scrollSpeed: p.scrollSpeed
+      scrollOffset: p.scrollOffset
+
+    return
+
 
   # This function return viewport width
   viewportWidth = ->
@@ -202,19 +213,10 @@ angular.module 'taskyApp'
 
       return
 
-  # One Page Navigation
-    onePageNav: ->
-      $("#header").find(".nav").onePageNav
-        currentClass: "active"
-        scrollSpeed: p.scrollSpeed
-        scrollOffset: p.scrollOffset
-
-      return
-
-
   # Add background to top navigation on scroll
     navbarSelect: ->
-      $navbar = $("#header")
+      $navbar = $(".page-home #header")
+      $navbar.removeClass "selected"
       if $(window).scrollTop() > p.navbarScrollTop
         $navbar.addClass "selected"
       else
@@ -300,7 +302,6 @@ angular.module 'taskyApp'
   init =
     ready: ->
       all.preloader.init()
-      all.onePageNav()
       all.appear()
       all.ajaxForms.subscribe()
       all.ajaxForms.contact()

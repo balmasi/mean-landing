@@ -2,10 +2,6 @@
 
 angular.module 'taskyApp'
 .controller 'NavbarCtrl', ($scope, $location, Auth) ->
-  $scope.menu = [
-    title: 'Home'
-    link: '/'
-  ]
   $scope.isCollapsed = true
   $scope.isLoggedIn = Auth.isLoggedIn
   $scope.isAdmin = Auth.isAdmin
@@ -17,3 +13,6 @@ angular.module 'taskyApp'
 
   $scope.isActive = (route) ->
     route is $location.path()
+
+  $scope.isHome = ->
+    $location.path() is '/'
