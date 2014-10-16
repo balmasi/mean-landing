@@ -11,7 +11,16 @@
                 <li ng-show="isHome()" ng-class="{ active: isHome()}"><a href="#home">Home</a></li>
                 <li ng-show="isHome()"><a href="#features">How does it work</a></li>
                 <li ng-hide="true"><a href="#contact-form">Contact Us</a></li>
-                <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
+                <li ng-hide="isLoggedIn()" class="submenu" ng-class="{active: isActive('/signup'), pressed: signupActive }">
+                    <a ng-click="signupActive = !signupActive" href="#">Sign up
+                        <i ng-hide="signupActive" class="fa fa-chevron-down"></i>
+                        <i ng-show="signupActive" class="fa fa-chevron-up"></i>
+                    </a>
+                    <ul class="dropdown" ng-class="{ flipInX: signupActive }">
+                        <li><a href="/signup/business">BUSINESS</a></li>
+                        <li><a href="/signup/customer">CUSTOMER</a></li>
+                    </ul>
+                </li>
                 <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
                 <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}"><a href="/settings"><span class="fa fa-cog "></span></a></li>
                 <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>

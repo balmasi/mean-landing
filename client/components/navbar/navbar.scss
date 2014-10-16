@@ -21,7 +21,7 @@
     height: $navbar-height-mobile;
     line-height: $navbar-height-mobile;
     padding: 0;
-
+    opacity: 1;
     transition: opacity .2s ease;
   }
   .navbar-nav {
@@ -65,6 +65,40 @@
   }
 
 
+  /* Dropdown menus */
+
+  &.selected .submenu .dropdown {
+    border: none;
+    background: lighten($brand-primary, 5);
+  }
+
+  .pressed .dropdown {
+    height: 8.2rem;
+    border: 2px solid white;
+  }
+
+  .dropdown {
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    height: 0;
+    transition: all 1s ease;
+
+    > li {
+      padding: 1rem 0;
+      border-top: $brand-primary;
+
+      > a {
+        &, &:hover {
+          color: white;
+          text-decoration: none;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+
   @include screen-sm-min {
     height: $navbar-height;
 
@@ -91,6 +125,10 @@
       background: transparent;
       margin-right: 0;
       margin-left: 0;
+    }
+
+    .dropdown {
+      margin-top: 1.8rem;
     }
   }
 

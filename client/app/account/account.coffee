@@ -8,9 +8,14 @@ angular.module 'taskyApp'
     templateUrl: 'app/account/login/login.html'
     controller: 'LoginCtrl'
 
-  .state 'signup',
-    url: '/signup'
-    templateUrl: 'app/account/signup/signup.html'
+  .state 'business-signup',
+    url: '/signup/business'
+    templateUrl: 'app/account/signup/business/signup.html'
+    controller: 'SignupCtrl'
+
+  .state 'customer-signup',
+    url: '/signup/customer'
+    templateUrl: 'app/account/signup/customer/signup.html'
     controller: 'SignupCtrl'
 
   .state 'settings',

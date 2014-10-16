@@ -6,6 +6,7 @@ angular.module 'taskyApp'
   $scope.isLoggedIn = Auth.isLoggedIn
   $scope.isAdmin = Auth.isAdmin
   $scope.getCurrentUser = Auth.getCurrentUser
+  $scope.signupActive = false
 
   $scope.logout = ->
     Auth.logout()

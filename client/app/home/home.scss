@@ -265,19 +265,19 @@
     left: 0;
     top: 0;
 
-    .navbar-brand {
-      opacity: 0;
+    &.selected .navbar-brand {
+      opacity: 1;
     }
 
     @include screen-sm-min {
       background: transparent;
 
+      .navbar-brand {
+        opacity: 0;
+      }
+
       &.selected {
         background: $brand-primary;
-
-        .navbar-brand {
-          opacity: 1;
-        }
       }
     }
   }
