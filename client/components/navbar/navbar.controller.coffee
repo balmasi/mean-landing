@@ -34,6 +34,6 @@ angular.module 'taskyApp'
           currentClass: "active"
           scrollSpeed: p.scrollSpeed
           scrollOffset: p.scrollOffset
-          filter: ':not(.submenu > a)'
+          filter: ':not(.navigateAway a)'
         return
   }
