@@ -98,6 +98,10 @@
     }
   }
 
+  .submenu > a {
+    cursor: pointer;
+  }
+
 
   @include screen-sm-min {
     height: $navbar-height;

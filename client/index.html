@@ -31,6 +31,7 @@
 
     <!-- Add your site or application content here -->
     <div ng-controller="AppCtrl" class="{{pageVariables.pageClass}}">
+        <div ng-include="'components/navbar/navbar.html'" ></div>
         <ui-view id="skrollr-body"></ui-view>
     </div>
 

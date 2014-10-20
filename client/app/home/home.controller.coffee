@@ -43,15 +43,6 @@ angular.module 'taskyApp'
     subscribe: ->
       ga 'send', 'event', 'subsribe', 'submit', $scope.subscriber.accountType
 
-  $scope.navLoaded = ->
-    # One Page Navigation
-    $("#header").find(".nav").onePageNav
-      currentClass: "active"
-      scrollSpeed: p.scrollSpeed
-      scrollOffset: p.scrollOffset
-
-    return
-
 
   # This function return viewport width
   viewportWidth = ->

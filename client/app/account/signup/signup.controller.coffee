@@ -2,6 +2,7 @@
 
 angular.module 'taskyApp'
 .controller 'SignupCtrl', ($scope, Auth, $location, $window) ->
+  $scope.pageVariables.pageClass = 'page-signup'
   $scope.user = {}
   $scope.errors = {}
   $scope.register = (form) ->

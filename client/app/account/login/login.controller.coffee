@@ -2,6 +2,7 @@
 
 angular.module 'taskyApp'
 .controller 'LoginCtrl', ($scope, Auth, $location, $window) ->
+  $scope.pageVariables.pageClass = 'page-login'
   $scope.user = {}
   $scope.errors = {}
   $scope.login = (form) ->

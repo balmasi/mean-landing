@@ -1,6 +1,6 @@
 <!-- NAVBAR -->
-<nav id="header" class="navbar navbar-inverse navbar-static-top" role="navigation" ng-controller="NavbarCtrl">
-    <div class="container">
+<nav id="header" class="navbar navbar-inverse navbar-static-top" ng-class=" { selected: !isHome() }" role="navigation" ng-controller="NavbarCtrl">
+    <div class="container" one-page-nav>
         <div class="navbar-header">
             <a class="navbar-brand" href="#">tasky</a>
             <button type="button" ng-click="isCollapsed = !isCollapsed" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
@@ -12,7 +12,7 @@
                 <li ng-show="isHome()"><a href="#features">How does it work</a></li>
                 <li ng-hide="true"><a href="#contact-form">Contact Us</a></li>
                 <li ng-hide="isLoggedIn()" class="submenu" ng-class="{active: isActive('/signup'), pressed: signupActive }">
-                    <a ng-click="signupActive = !signupActive" href="#">Sign up
+                    <a ng-click="signupActive = !signupActive">Sign up
                         <i ng-hide="signupActive" class="fa fa-chevron-down"></i>
                         <i ng-show="signupActive" class="fa fa-chevron-up"></i>
                     </a>
@@ -21,7 +21,7 @@
                         <li><a href="/signup/customer">CUSTOMER</a></li>
                     </ul>
                 </li>
-                <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
+                <li ng-hide="isLoggedIn()" class="navigateAway" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
                 <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}"><a href="/settings"><span class="fa fa-cog "></span></a></li>
                 <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>
             </ul>
