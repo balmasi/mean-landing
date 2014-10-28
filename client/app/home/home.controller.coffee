@@ -40,7 +40,7 @@ angular.module 'taskyApp'
 
   $scope.analytics =
     subscribe: ->
-      ga 'send', 'event', 'subsribe', 'submit', $scope.subscriber.accountType
+      ga 'send', 'event', 'subscribe', 'submit', $scope.subscriber.accountType
 
   # This function return viewport width
   viewportWidth = ->
