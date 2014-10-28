@@ -146,16 +146,20 @@ angular.module 'taskyApp'
 
   # Parallax
     parallax: ->
-      $('[data-emit-events]').each ->
-        if  $(this).data('bottom-top') is undefined
-          $(this).attr 'data-bottom-top', ''
-          return
-
-      skrollr.init
+      s = skrollr.init
         forceHeight: false
         smoothScrolling: false
         keyframe: (element) ->
           $(element).trigger('appear')
+
+      if $('html').hasClass('skrollr-desktop')
+        $('[data-emit-events]').each ->
+          if  $(this).data('bottom-top') is undefined
+            $(this).attr 'data-bottom-top', ''
+            return
+      else
+        s.destroy()
+
       return
 
 

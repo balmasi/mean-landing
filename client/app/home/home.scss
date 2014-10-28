@@ -608,9 +608,7 @@ h3 {
   }
 
   @include screen-xs-max {
-    #google-map {
-      display: none;
-    }
+    display: none;
   }
 
 }
