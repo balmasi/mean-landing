@@ -88,10 +88,10 @@ exports.contact = function (req, res, next) {
 
   var EMAIL_TO = 'borna+tasky@borna-almasi.com';
   var myMsg = new Email(
-    { from: from || 'unprovided@sample.net'
-      , to:   EMAIL_TO
-      , subject: subject || 'Email from Landing Page'
-      , body: message || 'Empty Body'
+    { from: from || 'unprovided@sample.net',
+      to:   EMAIL_TO,
+      subject: subject || 'Email from Landing Page',
+      body: message || 'Empty Body'
     });
 
   myMsg.send(function (err){
@@ -110,7 +110,7 @@ function handleError(res, err) {
     text: "There was a problem subscribing. Make sure your email is valid."
   };
 
-  if (err.code == -100) {
+  if (err.code === -100) {
     error.text = err.message;
   }
   return res.send(500, error);
