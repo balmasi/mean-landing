@@ -1,0 +1,10 @@
+// VERTICAL ALIGN MIDDLE
+.vam-parent {
+  display: table;
+  height:100%;
+
+  .vam-child {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
