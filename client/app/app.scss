@@ -17,31 +17,6 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     padding: 0.2em 0;
 }
 
-
-
-.col-img img {
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-  margin: 0 auto;
-}
-
-.feature-item {
-  min-height: 150px;
-
-  .vam-parent {
-    height:100%;
-  }
-}
-
-.vam-parent {
-  display: table;
-
-  .vam-child {
-    display: table-cell;
-    vertical-align: middle;
-  }
-}
 // Component styles are injected through grunt
 // injector
 @import '1-variables.scss';
