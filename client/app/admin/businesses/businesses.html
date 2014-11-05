@@ -1,0 +1,12 @@
+<div class="container section">
+    <button class="btn btn-default">Add Business</button>
+    <hr/>
+    <p class="alert alert-warning">The delete business and business index api routes are restricted to users with the 'admin' role.</p>
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="biz in businesses">
+            <strong>{{biz.name}}</strong><br>
+            <span class="text-muted">{{biz.email}}</span>
+            <a ng-click="delete(biz)" class="trash"><span class="fa fa-trash pull-right"></span></a>
+        </li>
+    </ul>
+</div>

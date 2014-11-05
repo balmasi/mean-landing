@@ -7,6 +7,8 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Business = require('../api/business/business.model');
+
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -46,4 +48,14 @@ User.find({}).remove(function() {
       console.log('finished populating users');
     }
   );
+});
+
+Business.find({}).remove(function(){
+  Business.create({
+    name: 'Speedy Glass',
+    email: 'speedy@speed.com',
+    phone: '416-222-2144'
+  }, function() {
+    console.log('finished populating businesses');
+  });
 });
