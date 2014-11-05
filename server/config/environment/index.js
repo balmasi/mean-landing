@@ -26,7 +26,7 @@ var all = {
 
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
-    session: 'tasky-secret'
+    session: process.env.TASKY_SECRET || 'taskyismysecret'
   },
 
   // List of user roles
@@ -42,8 +42,8 @@ var all = {
   },
 
   facebook: {
-    clientID:     process.env.FACEBOOK_ID || 'id',
-    clientSecret: process.env.FACEBOOK_SECRET || 'secret',
+    clientID:     process.env.FACEBOOK_ID || '399188436896788',
+    clientSecret: process.env.FACEBOOK_SECRET || '76dabdbf8fae49a7721863c595a206f3',
     callbackURL:  (process.env.DOMAIN || '') + '/auth/facebook/callback'
   },
 
