@@ -19,6 +19,9 @@ angular.module 'taskyApp'
   $scope.isHome = ->
     $location.path() is '/'
 
+  $scope.isSignUp = ->
+    /signup/.test $location.path()
+
 
 .directive 'onePageNav', () ->
   p =

@@ -30,7 +30,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-controller="AppCtrl" class="{{pageVariables.pageClass}}">
+    <div ng-controller="AppCtrl" class="main-body {{pageVariables.pageClass}}">
         <div ng-include="'components/navbar/navbar.html'" ></div>
         <ui-view></ui-view>
     </div>
@@ -84,6 +84,7 @@
     <script src="bower_components/appear/jquery.appear.js"></script>
     <script src="bower_components/skrollr/src/skrollr.js"></script>
     <script src="bower_components/jquery.scrollTo/jquery.scrollTo.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
     <!-- endbower -->
 <!-- endbuild -->
 
@@ -93,6 +94,7 @@
 <script src="app/account/account.js"></script>
 <script src="app/account/login/login.js"></script>
 <script src="app/account/settings/settings.js"></script>
+<script src="app/account/signup/business/business-signup.js"></script>
 <script src="app/account/signup/signup.js"></script>
 <script src="app/admin/admin.js"></script>
 <script src="app/admin/businesses/business.js"></script>

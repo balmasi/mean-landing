@@ -4,6 +4,7 @@ angular.module 'taskyApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngAnimate',
   'ui.router'
 ]
 .config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) ->

@@ -1,0 +1,26 @@
+<div class="dark hook-wrap container">
+    <h2 class="text-left">Get New Customers
+        <div class="subtitle">
+            We will send requests from customers right to your inbox. You can then decide
+            who to respond to and send a quote.
+        </div>
+    </h2>
+    <div class="row">
+        <div class="form-group col-sm-8" ng-class="{ 'has-success': form.category.$valid && submitted,
+                                            'has-error': form.name.$invalid && submitted }">
+
+            <label>What type of work do you do?</label>
+            <select name="category" class="form-control" ng-model="business.category" required>
+                <option>Cleaning</option>
+                <option>Cooking</option>
+            </select>
+            <p class="help-block" ng-show="form.name.$error.required && submitted">
+                A name is required
+            </p>
+        </div>
+        <br/>
+        <button class="btn btn-inverse btn-lg btn-blue btn-get-started" ng-click="" type="submit">
+            Get Started
+        </button>
+    </div>
+</div>
