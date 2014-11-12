@@ -6,39 +6,39 @@
     <div class="panel-body">
         <div class="row">
             <div class="form-group col-sm-6">
-                <label class="" for="exampleInputEmail2">First Name</label>
-                <input  type="text" class="form-control" id="exampleInputEmail2" >
+                <label>First Name</label>
+                <input ng-model="business.account.first" type="text" class="form-control">
             </div>
             <div class="form-group col-sm-6">
                 <div class="input-group">
-                    <label class="" for="exampleInputEmail2">Last Name</label>
-                    <input  class="form-control" type="text">
+                    <label>Last Name</label>
+                    <input ng-model="business.account.last" class="form-control" type="text">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
-                <label class="" for="exampleInputEmail2">Email</label>
-                <input  type="text" class="form-control" id="exampleInputEmail2" >
+                <label>Email</label>
+                <input ng-model="business.account.email" type="email" class="form-control">
             </div>
             <div class="form-group col-sm-6">
                 <div class="input-group">
-                    <label class="" for="exampleInputEmail2">Phone Number</label>
-                    <input  class="form-control" type="text" placeholder="--- --- ----">
+                    <label>Phone Number</label>
+                    <input ng-model="business.account.phone" class="form-control" type="text" placeholder="--- --- ----">
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
                 <div class="input-group">
-                    <label class="" for="exampleInputEmail2">Password</label>
-                    <input  class="form-control" type="password">
+                    <label>Password</label>
+                    <unmask ng-model="business.account.password"></unmask>
                 </div>
             </div>
         </div>
     </div>
     <div class="panel-footer clearfix">
         <a class="btn pull-left" ng-click="prev()"><i class="fa fa-arrow-left"></i> Back</a>
-        <a class="btn btn-blue pull-right" ng-click="next()">Finish!</a>
+        <a class="btn btn-blue pull-right" ng-click="register()">Finish!</a>
     </div>
 </div>

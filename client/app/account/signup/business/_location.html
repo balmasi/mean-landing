@@ -1,4 +1,4 @@
-<div class="panel panel-default col-centered">
+<div class="panel panel-default col-centered wizard-location">
     <div class="panel-header">
         <h1 class="text-left">Where is your business located?</h1>
         <p>Use your home address if you do not have a business address.</p>
@@ -26,7 +26,7 @@
                 <input ng-model="business.address.province" type="text" class="form-control" id="exampleInputPassword2">
             </div>
             <div class="form-group col-sm-3">
-                <label class="" for="exampleInputPassword2">Postal Code</label>
+                <label>Postal Code</label>
                 <input ng-model="business.address.postal" type="text" class="form-control" id="exampleInputPassword2">
             </div>
         </div>
@@ -36,21 +36,24 @@
                 <input type="checkbox"> Share only my city with potential customers.
             </label>
         </div>
-
-        <hr/>
-        <strong>Travel Preferences</strong>
-        <ul class="list-group">
-            <li class="list-group-item checkbox">
-                <label><input ng-click="initMap()" ng-model="business.travel.outgoing" type="checkbox">I can travel to my customers.</label>
-            </li>
-            <li class="list-group-item checkbox">
-                <label><input type="checkbox" ng-model="business.travel.incoming">My customers travel to me.</label>
-            </li>
-            <li class="list-group-item checkbox">
-                <label><input type="checkbox" ng-model="business.travel.online">I work remotely via phone or the internet.</label>
-            </li>
-        </ul>
-        <div id="google-map" ng-show="business.travel.outgoing">
+        <div ng-show="business.address.isValid()">
+            <hr/>
+            <strong>Travel Preferences</strong>
+            <ul class="list-group">
+                <li class="list-group-item checkbox">
+                    <label><input ng-model="business.travel.outgoing" ng-click="map.init()"  type="checkbox">I can travel to my customers for up to
+                        <select ng-model="business.travel.distance" ng-options="distance + ' km' for distance in travelOptions"></select>
+                    </label>
+                </li>
+                <li class="list-group-item checkbox">
+                    <label><input type="checkbox" ng-model="business.travel.incoming">My customers travel to me.</label>
+                </li>
+                <li class="list-group-item checkbox">
+                    <label><input type="checkbox" ng-model="business.travel.online">I work remotely via phone or the internet.</label>
+                </li>
+            </ul>
+            <div id="google-map" ng-show="business.travel.outgoing && business.address.isValid()">
+            </div>
         </div>
     </div>
     <div class="panel-footer clearfix">

@@ -7,19 +7,19 @@
     </h2>
     <div class="row">
         <div class="form-group col-sm-8" ng-class="{ 'has-success': form.category.$valid && submitted,
-                                            'has-error': form.name.$invalid && submitted }">
+                                            'has-error': form.category.$invalid && submitted }">
 
             <label>What type of work do you do?</label>
-            <select name="category" class="form-control" ng-model="business.category" required>
-                <option>Cleaning</option>
-                <option>Cooking</option>
+            <select name="category" class="form-control"
+                    ng-model="business.category"
+                    ng-options="cat.id as cat.label for cat in categories"
+                    required>
+                <option value="">Please Select an Option</option>
             </select>
-            <p class="help-block" ng-show="form.name.$error.required && submitted">
-                A name is required
-            </p>
+
         </div>
         <br/>
-        <button class="btn btn-inverse btn-lg btn-blue btn-get-started" ng-click="" type="submit">
+        <button class="btn btn-inverse btn-lg btn-blue btn-get-started" ng-click="next()">
             Get Started
         </button>
     </div>

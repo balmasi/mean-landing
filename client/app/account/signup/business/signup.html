@@ -1,10 +1,30 @@
 <div class="business-signup">
-    <div id="status-buttons" class="text-center">
-        <a ui-sref-active="active" ui-sref=".category"><span>1</span>Category</a>
-        <a ui-sref-active="active" ui-sref=".services"><span>3</span>Services</a>
-        <a ui-sref-active="active" ui-sref=".location"><span>2</span>Location</a>
-        <a ui-sref-active="active" ui-sref=".description"><span>2</span>Description</a>
-        <a ui-sref-active="active" ui-sref=".account"><span>2</span>Account</a>
+    <div id="status-buttons" class="text-center dark">
+        <div class="step" ng-class="{ active: isActive('.category')}">
+            <span class="step-number">1</span>
+            <div class="step-label">Category</div>
+        </div>
+
+        <div class="step" ng-class="{ active: isActive('.services')}">
+            <span class="step-number">2</span>
+            <div class="step-label">Services</div>
+        </div>
+
+        <div class="step" ng-class="{ active: isActive('.location')}">
+            <span class="step-number">3</span>
+            <div class="step-label">Location</div>
+        </div>
+
+        <div class="step" ng-class="{ active: isActive('.description')}">
+            <span class="step-number">4</span>
+            <div class="step-label">Description</div>
+        </div>
+
+        <div class="step" ng-class="{ active: isActive('.account')}">
+            <span class="step-number">5</span>
+            <div class="step-label">Account</div>
+        </div>
+
     </div>
 
     <form class="form" name="form" role="form" ng-submit="register(form)" novalidate>

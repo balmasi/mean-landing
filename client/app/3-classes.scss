@@ -285,6 +285,25 @@ h3 {
   }
 }
 
+unmask {
+  .fa-eye-slash {
+    top: 50%;
+    margin-top: -7px;
+    right: 1rem;
+    z-index: 3;
+    position: absolute;
+    color: #333333;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  > div {
+    @extend .clearfix;
+  }
+}
+
 @keyframes halfspin {
   to {
     -webkit-transform: rotate(180deg);

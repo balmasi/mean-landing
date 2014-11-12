@@ -5,20 +5,13 @@
     </div>
     <div class="panel-body">
         <ul class="list-group">
-            <li class="list-group-item checkbox">
-                <label><input type="checkbox"> Dapibus ac facilisis in</label>
-            </li>
-            <li class="list-group-item checkbox">
-                <label><input type="checkbox"> Dapibus ac facilisis in</label>
-            </li>
-            <li class="list-group-item checkbox">
-                <label><input type="checkbox"> Dapibus ac facilisis in</label>
-            </li>
-            <li class="list-group-item checkbox">
-                <label><input type="checkbox"> Dapibus ac facilisis in</label>
+            <li ng-repeat="service in services[business.category]" class="list-group-item checkbox">
+                <label><input type="checkbox"
+                              ng-model="business.services[service]">{{service}}</label>
             </li>
             <li class="list-group-item input-group checkbox">
-                <label><input type="checkbox"><input class="plain-input" type="text" placeholder="Other">
+                <label><input type="checkbox" ng-model="business.services['other']">
+                    <input class="plain-input" type="text" ng-model="business.services['otherText']" placeholder="Other">
                 </label>
             </li>
         </ul>

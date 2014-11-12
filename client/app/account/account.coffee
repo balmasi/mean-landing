@@ -14,7 +14,7 @@ angular.module 'taskyApp'
     controller: 'BusinessSignupCtrl'
 
   .state 'business-signup.category',
-    url: '/categories'
+    url: '/category'
     templateUrl: 'app/account/signup/business/_category.html'
 
 
