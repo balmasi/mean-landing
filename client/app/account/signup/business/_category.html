@@ -1,26 +1,30 @@
-<div class="dark hook-wrap container">
-    <h2 class="text-left">Get New Customers
-        <div class="subtitle">
-            We will send requests from customers right to your inbox. You can then decide
-            who to respond to and send a quote.
-        </div>
-    </h2>
-    <div class="row">
-        <div class="form-group col-sm-8" ng-class="{ 'has-success': form.category.$valid && submitted,
+<form class="form" name="form" role="form" novalidate>
+    <div class="dark hook-wrap container">
+        <h2 class="text-left">Get New Customers
+            <div class="subtitle">
+                We will send requests from customers right to your inbox. You can then decide
+                who to respond to and send a quote.
+            </div>
+        </h2>
+        <div class="row">
+            <div class="form-group col-sm-8" ng-class="{ 'has-success': form.category.$valid && submitted,
                                             'has-error': form.category.$invalid && submitted }">
 
-            <label>What type of work do you do?</label>
-            <select name="category" class="form-control"
-                    ng-model="business.category"
-                    ng-options="cat.id as cat.label for cat in categories"
-                    required>
-                <option value="">Please Select an Option</option>
-            </select>
+                <label>What type of work do you do?</label>
+                <select required name="category" class="form-control"
+                        ng-model="business.category"
+                        ng-options="cat.id as cat.label for cat in categories"
+                        required>
+                    <option value="">Please Select an Option</option>
+                </select>
 
+            </div>
+            <br/>
+            <button class="btn btn-inverse btn-lg btn-blue btn-get-started"
+                    ng-click="next()"
+                    ng-class="{ disabled: form.category.$invalid }">
+                Get Started
+            </button>
         </div>
-        <br/>
-        <button class="btn btn-inverse btn-lg btn-blue btn-get-started" ng-click="next()">
-            Get Started
-        </button>
     </div>
-</div>
+</form>

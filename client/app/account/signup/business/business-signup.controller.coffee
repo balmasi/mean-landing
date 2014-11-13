@@ -118,6 +118,9 @@ angular.module 'taskyApp'
       $scope.map.makeCircle newVal if newVal? and $scope.map._map?
 
   # --------- Validation and Errors  ---------
+  $scope.someServicesSelected = ->
+    _.some($scope.business.services)
+
   $scope.errors = {}
 
   # --------- Pagination Logic ---------
@@ -125,6 +128,7 @@ angular.module 'taskyApp'
     $state.includes('business-signup' + state)
 
   pageStates = ['category', 'services', 'location', 'description', 'account']
+  $scope.nextClicked = false
   $scope.next = ->
     currentState = $state.current.name.split('.')[1]
     currentIndex = pageStates.indexOf(currentState)

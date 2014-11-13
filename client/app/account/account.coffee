@@ -23,7 +23,7 @@ angular.module 'taskyApp'
     templateUrl: 'app/account/signup/business/_services.html'
 
   .state 'business-signup.location',
-    url: '/travel'
+    url: '/location'
     templateUrl: 'app/account/signup/business/_location.html'
 
   .state 'business-signup.description', #BName, Website, Description
