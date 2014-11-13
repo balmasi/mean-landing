@@ -1,27 +1,12 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'BusinessSignupCtrl', ($scope, Auth, $location, $window, $q, $state) ->
+.controller 'BusinessSignupCtrl', ($scope, Auth, $location, $window, $q, $state, Category) ->
   # Class for ui-view for this controller
   $scope.pageVariables.pageClass = 'page-signup'
 
   # --------- Loaded Options ---------
-  $scope.categories = [
-    { id: 1, label: 'Cleaning' },
-    { id: 2, label: 'Moving'   }
-  ]
-
-  $scope.services =
-    1: [
-      'House Cleaning',
-      'Carpet Cleaning',
-      'Gutter Cleaning',
-      'Office Cleaning'
-    ]
-    2: [
-      'Moving Within The City',
-      'Moving Between Cities'
-    ]
+  $scope.categories = Category.getCategories()
 
   $scope.travelOptions = [5, 10, 25, 50]
   # --------- Business Data Structure ---------
@@ -134,9 +119,10 @@ angular.module 'taskyApp'
     currentIndex = pageStates.indexOf(currentState)
 
     # Build the selected services model for services page
-    if not $scope.business.services? and currentState == 'category'
+    if currentState == 'category'
       $scope.business.services = {}
-      for service in $scope.services[$scope.business.category]
+      $scope.services = Category.getServices($scope.business.category)
+      for service in $scope.services
         $scope.business.services[service] = false
       $scope.business.services['other'] = false
 
