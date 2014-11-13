@@ -10,6 +10,7 @@ angular.module 'taskyApp'
 
   .state 'business-signup',
     url: '/signup/business'
+    abstract: true
     templateUrl: 'app/account/signup/business/signup.html'
     controller: 'BusinessSignupCtrl'
 
@@ -37,7 +38,7 @@ angular.module 'taskyApp'
   .state 'customer-signup',
     url: '/signup/customer'
     templateUrl: 'app/account/signup/customer/signup.html'
-    controller: 'SignupCtrl'
+    controller: 'CustomerSignupCtrl'
 
   .state 'settings',
     url: '/settings'

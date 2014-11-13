@@ -6,7 +6,8 @@ var crypto = require('crypto');
 var authTypes = ['facebook', 'google'];
 
 var UserSchema = new Schema({
-  name: String,
+  firstName: String,
+  lastName: String,
   email: { type: String, lowercase: true },
   role: {
     type: String,
@@ -39,9 +40,20 @@ UserSchema
   .virtual('profile')
   .get(function() {
     return {
-      'name': this.name,
+      'name': this.firstName + this.lastName,
       'role': this.role
     };
+  });
+
+UserSchema
+  .virtual('name')
+  .get(function() {
+    return this.firstName + this.lastName
+  })
+  .set(function(name) {
+    var names = name.split(" ");
+    this.firstName =  names[0];
+    this.lastName = names[1];
   });
 
 // Non-sensitive info we'll be putting in the token

@@ -9,18 +9,35 @@ angular.module 'taskyApp'
 
   {
     restrict: 'AE',
+    require: '?ngModel',
     template: '''
       <div class="clearfix" style="position: relative">
-        <input class="form-control" type="{{textType}}" ng-model="password" />
+        <input class="form-control" type="{{textType}}"/>
         <i
           class="fa fa-eye-slash"
           ng-click="toggleMask()"
         ></i>
       </div>
     ''',
-    link: (scope, elem, attrs, ngModelCtrl) ->
+    link: (scope, elem, attrs, ngModel) ->
+      # if ng-model isn't set
+      if not ngModel?
+        return undefined
+
+      $input = elem.find 'input'
+
       scope.textType = 'password'
       scope.toggleMask = () ->
         scope.textType =  if (scope.textType == 'password') then 'text' else 'password'
         return
+
+      ngModel.$render = ->
+        console.log 'render'
+        $input.val ngModel.$viewValue
+
+      $input.on 'keydown', (e) ->
+        scope.$apply ->
+          ngModel.$setViewValue $input.val()
+
+
   }

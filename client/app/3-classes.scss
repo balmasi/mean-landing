@@ -290,21 +290,39 @@ h3 {
 }
 
 unmask {
+  $eye-color: #333333;
   .fa-eye-slash {
+
     top: 50%;
     margin-top: -7px;
     right: 1rem;
     z-index: 3;
     position: absolute;
-    color: #333333;
+    color: $eye-color;
 
     &:hover {
       cursor: pointer;
+      color: lighten($eye-color, 20);
     }
   }
 
   > div {
     @extend .clearfix;
+  }
+}
+
+.hr-text {
+  width: 90%;
+  text-align: center;
+  border-top: 1px solid #D0D0D0;
+  border-bottom: 1px solid #F2F1F1;
+  line-height: 0.1rem;
+  margin: 2.5rem auto;
+
+  span {
+    background:#fff;
+    padding:0 1rem;
+    color: #aaa
   }
 }
 

@@ -1,0 +1,39 @@
+.signup {
+  background: #222 url('#{$img}/bg-shapes.png') center top;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+
+
+  .panel {
+    max-width: 85rem;
+    width: 90%;
+    margin: 5rem auto;
+    border-radius: 0.5rem;
+    border: none;
+    overflow: hidden;
+    padding: 0;
+
+    .panel-header, .panel-body, .panel-footer {
+      padding: 1.5rem 4rem;
+    }
+
+    .panel-header {
+      padding-top: 2.5rem;
+      padding-bottom: 0;
+
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  .disclaimer {
+    @include make-xs-column(10);
+    @include make-sm-column(8);
+    @extend .col-centered;
+    @extend .text-center;
+    margin: 0 auto 1.5rem;
+  }
+}

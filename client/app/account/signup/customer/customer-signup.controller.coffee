@@ -1,19 +1,18 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'SignupCtrl', ($scope, Auth, $location, $window) ->
+.controller 'CustomerSignupCtrl', ($scope, Auth, $location, $window) ->
   $scope.pageVariables.pageClass = 'page-signup'
-  $scope.user = {}
+  $scope.user = {
+    _type: 'customer'
+  }
   $scope.errors = {}
   $scope.register = (form) ->
     $scope.submitted = true
 
     if form.$valid
       # Account created, redirect to home
-      Auth.createUser
-        name: $scope.user.name
-        email: $scope.user.email
-        password: $scope.user.password
+      Auth.createUser $scope.user
 
       .then ->
         $location.path '/'
