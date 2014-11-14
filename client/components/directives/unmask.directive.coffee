@@ -12,7 +12,7 @@ angular.module 'taskyApp'
     require: '?ngModel',
     template: '''
       <div class="clearfix" style="position: relative">
-        <input class="form-control" type="{{textType}}"/>
+        <input name="password" class="form-control" type="{{textType}}"/>
         <i
           class="fa fa-eye-slash"
           ng-click="toggleMask()"
@@ -31,11 +31,7 @@ angular.module 'taskyApp'
         scope.textType =  if (scope.textType == 'password') then 'text' else 'password'
         return
 
-      ngModel.$render = ->
-        console.log 'render'
-        $input.val ngModel.$viewValue
-
-      $input.on 'keydown', (e) ->
+      $input.on 'keyup', (e) ->
         scope.$apply ->
           ngModel.$setViewValue $input.val()
 

@@ -662,6 +662,7 @@ module.exports = function (grunt) {
         'injector',
         'wiredep',
         'autoprefixer',
+        'ngTemplates',
         'express:dev',
         'protractor'
       ]);

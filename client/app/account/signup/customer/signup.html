@@ -11,26 +11,45 @@
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <label>First Name</label>
-                        <input ng-model="user.firstName" type="text" class="form-control">
+                        <input name="firstName" required ng-model="user.firstName" type="text" class="form-control">
+                        <div ng-messages="form.firstName.$error" class="form-error" role="alert"
+                             ng-if="form.firstName.$dirty"
+                             ng-messages-include="components/errors/standard-field.html">
+                        </div>
                     </div>
                     <div class="form-group col-sm-6">
                         <label>Last Name</label>
-                        <input ng-model="user.lastName" class="form-control" type="text">
+                        <input name="lastName" required ng-model="user.lastName" class="form-control" type="text">
+                        <div ng-messages="form.lastName.$error" class="form-error" role="alert"
+                             ng-if="form.lastName.$dirty"
+                             ng-messages-include="components/errors/standard-field.html">
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-6">
                         <label>Email</label>
-                        <input ng-model="user.email" type="email" class="form-control">
+                        <input mongoose-error ng-model="user.email" name="email" type="email" class="form-control" required>
+                        <div ng-messages="form.email.$error" class="form-error" role="alert"
+                             ng-if="form.email.$dirty"
+                             ng-messages-include="components/errors/standard-field.html">
+                            <div ng-message="mongoose">This email is already registered!</div>
+                        </div>
                     </div>
                     <div class="form-group col-sm-6">
                         <label>Password</label>
-                        <unmask ng-model="user.password"></unmask>
+                        <unmask required minlength="5" name="password" ng-model="user.password"></unmask>
+                        <div ng-messages="form.password.$error" class="form-error" role="alert"
+                             ng-if="form.password.$dirty"
+                             ng-messages-include="components/errors/standard-field.html">
+                        </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <a class="btn btn-blue btn-signup" ng-click="register(form)">Sign Up!</a>
+                    <a class="btn btn-blue btn-signup"
+                       ng-class="{ disabled: form.$invalid }"
+                       ng-click="register(form)">Sign Up!</a>
                     <p class="disclaimer">
                         By signing up, you indicated that you have read and agree to our
                         <a href="#terms">terms of use</a> and
