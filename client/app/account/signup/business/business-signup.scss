@@ -3,6 +3,7 @@
   padding: 2rem;
 }
 
+
 .step {
   display: inline-block;
   margin-right: 1.5rem;
@@ -88,15 +89,15 @@
   /* ANIMATION STYLINGS
   ============================================================================= */
   div[ui-view].ng-enter {
-    animation: fadeInDown 0.55s;
+    animation: fadeInDown 1s;
   }
 
   .wizard-location{
     .ng-hide-add {
-      animation: fadeOutUp 0.25s;
+      animation: fadeOutUp 0.35s;
     }
     .ng-hide-remove {
-      animation: fadeInDown 0.25s;
+      animation: fadeInDown 0.35s;
     }
   }
 
