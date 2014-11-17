@@ -21,7 +21,7 @@ module.exports = function(app) {
     hostname: 'http://tasky.me',
     cacheTime: 600000,        // 600 sec - cache purge period
     urls: [
-      { url: '/',  changefreq: 'monthly', priority: 1.0 }
+      { url: '/',  changefreq: 'daily', priority: 1.0 }
     ]
   });
 
