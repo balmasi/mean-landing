@@ -39,6 +39,7 @@
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-55526915-1', 'auto');
+    ga('require', 'displayfeatures');
     ga('send', 'pageview');
 
     //    MOUSEFLOW TRACKING
@@ -50,31 +51,6 @@
         document.getElementsByTagName("head")[0].appendChild(mf);
     })();
 </script>
-
-<!-- Quantcast Tracking  -->
-<script type="text/javascript">
-    var _qevents = _qevents || [];
-
-    (function() {
-        var elem = document.createElement('script');
-        elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
-        elem.async = true;
-        elem.type = "text/javascript";
-        var scpt = document.getElementsByTagName('script')[0];
-        scpt.parentNode.insertBefore(elem, scpt);
-    })();
-
-    _qevents.push({
-        qacct:"p-HYtyrNkHnU428"
-    });
-</script>
-
-<noscript>
-    <div style="display:none;">
-        <img src="//pixel.quantserve.com/pixel/p-HYtyrNkHnU428.gif" border="0" height="1" width="1" alt="Quantcast"/>
-    </div>
-</noscript>
-<!-- End Quantcast tag -->
 
 <!--[if lt IE 9]>
 <script src="bower_components/es5-shim/es5-shim.js"></script>
