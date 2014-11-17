@@ -1,0 +1,51 @@
+<h3 class="heading">Let us help you find the best professional for you</h3>
+<div class="panel">
+    <div class="panel-header">
+        <h1 class="text-left">Tell us more about your needs.</h1>
+    </div>
+    <div class="panel-body">
+        <div ng-repeat="q in questions" ng-switch="q.type">
+            <div class="form-group" ng-switch-when="text">
+                <label for="{{q.name}}">{{q.question}}</label>
+                <input class="form-control" type="text" name="{{q.name}}" id="{{q.name}}"/>
+            </div>
+
+
+            <div class="form-group" ng-switch-when="select">
+                <label for="{{q.name}}">{{q.question}}</label>
+                <select ng-model="select" ng-options="choice.label for choice in q.choices"
+                        name="{{q.name}}"
+                        class="form-control">
+                </select>
+            </div>
+
+            <div ng-switch-when="checklist">
+                <label>{{q.question}}</label>
+                <ul class="list-group">
+                    <li ng-repeat="choice in q.choices" class="list-group-item checkbox">
+                        <label>
+                            <input type="checkbox">{{choice.label}}
+                        </label>
+                    </li>
+                    <li ng-if="q.other" class="list-group-item input-group checkbox">
+                        <label><input type="checkbox">
+                            <input class="plain-input" type="text" placeholder="Other">
+                        </label>
+                    </li>
+                </ul>
+            </div>
+
+            <div ng-switch-when="date" class="form-group">
+                <label>When?</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input type="date" class="form-control" placeholder="Choose a Date">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="panel-footer">
+        <a class="btn btn-blue" href="#">Send Request</a>
+    </div>
+</div>
