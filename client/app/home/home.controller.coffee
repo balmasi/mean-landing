@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'HomeCtrl', ($scope, $http) ->
+.controller 'HomeCtrl', ($scope, $http, $rootScope) ->
   $scope.subscriber =
     accountType: 'customer'
 #    fname: null
@@ -311,11 +311,15 @@ angular.module 'taskyApp'
       all.parallax()
       all.scrollToGlobal()
       maps.init()
+      $rootScope.readyStatus = 'ready'
       return
 
     scroll: ->
       all.navbarSelect()
       return
 
+
+
   $(document).ready init.ready
   $(window).scroll init.scroll
+

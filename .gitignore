@@ -7,4 +7,5 @@ npm-debug.log
 .DS_Store
 client/bower_components
 dist
+/server/seo/snapshots/*
 /server/config/local.env.js
