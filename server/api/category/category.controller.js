@@ -35,7 +35,7 @@ exports.subcategories = function( req, res ) {
         res.json(subCats);
       },
       function(err) {
-        return handleError(err);
+        return handleError(res, err);
       }
     );
 };

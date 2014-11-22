@@ -54,7 +54,7 @@ Category.remove({}).exec()
     console.log('creating subcategory');
     return Category.create({
         name: 'Intercity Moving (within 100km)',
-        route: 'intercity',
+        route: 'intercity-moving',
         parent: movingParent.id,
         credits: 2,
         questions: [
@@ -63,7 +63,7 @@ Category.remove({}).exec()
             question: 'Is there anything else the mover should know?'
           },
           {
-            field_type: 'select',
+            field_type: 'checklist',
             question: 'What do you want to move?',
             choices: [
               {

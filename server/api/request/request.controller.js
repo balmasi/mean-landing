@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Request = require('./request.model');
+var Category = require('../category/category.model');
 
 // Get list of requests
 exports.index = function(req, res) {
@@ -18,6 +19,24 @@ exports.show = function(req, res) {
     if(!request) { return res.send(404); }
     return res.json(request);
   });
+};
+
+exports.getForm = function( req, res ) {
+  var category = req.params.category_route;
+  if (typeof category === 'undefined') handleError(res, 'Category route not defined in form fetch');
+  Category.find({
+    route: category
+  }, { questions: 1, _id: 0 })
+    .exec()
+    .then(
+    function(results){
+      res.json(results);
+    },
+    function(err) {
+      handleError(res, err);
+    }
+  );
+
 };
 
 // Creates a new request in the DB.
