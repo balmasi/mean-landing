@@ -1,11 +1,13 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./thing.controller');
+var controller = require('./category.controller');
 
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/root', controller.root);
+router.get('/:id/sub', controller.subcategories);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.update);

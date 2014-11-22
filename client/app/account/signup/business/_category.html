@@ -13,7 +13,7 @@
                 <label>What type of work do you do?</label>
                 <select required name="category" class="form-control"
                         ng-model="business.category"
-                        ng-options="cat.id as cat.label for cat in categories"
+                        ng-options="cat._id as cat.name for cat in categories"
                         required>
                     <option value="">Please Select an Option</option>
                 </select>

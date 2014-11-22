@@ -5,46 +5,25 @@
 
 'use strict';
 
-var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var Business = require('../api/business/business.model');
+var Category = require('../api/category/category.model');
 
 
-Thing.find({}).remove(function() {
-  Thing.create({
-    name : 'Development Tools',
-    info : 'Integration with popular tools such as Bower, Grunt, Karma, Mocha, JSHint, Node Inspector, Livereload, Protractor, Jade, Stylus, Sass, CoffeeScript, and Less.'
-  }, {
-    name : 'Server and Client integration',
-    info : 'Built with a powerful and fun stack: MongoDB, Express, AngularJS, and Node.'
-  }, {
-    name : 'Smart Build System',
-    info : 'Build system ignores `spec` files, allowing you to keep tests alongside code. Automatic injection of scripts and styles into your index.html'
-  },  {
-    name : 'Modular Structure',
-    info : 'Best practice client and server structures allow for more code reusability and maximum scalability'
-  },  {
-    name : 'Optimized Build',
-    info : 'Build process packs up your templates as a single JavaScript payload, minifies your scripts/css/images, and rewrites asset names for caching.'
-  },{
-    name : 'Deployment Ready',
-    info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
-  });
-});
 
 User.find({}).remove(function() {
   User.create({
-    provider: 'local',
-    name: 'Test User',
-    email: 'test@test.com',
-    password: 'test'
-  }, {
-    provider: 'local',
-    role: 'admin',
-    name: 'Admin',
-    email: 'admin@admin.com',
-    password: 'admin'
-  }, function() {
+      provider: 'local',
+      name: 'Test User',
+      email: 'test@test.com',
+      password: 'test'
+    }, {
+      provider: 'local',
+      role: 'admin',
+      name: 'Admin',
+      email: 'admin@admin.com',
+      password: 'admin'
+    }, function() {
       console.log('finished populating users');
     }
   );
@@ -59,3 +38,79 @@ Business.find({}).remove(function(){
     console.log('finished populating businesses');
   });
 });
+
+
+
+/* Insert some categories */
+Category.remove({}).exec()
+  .then(function(){
+    return Category.create(
+      {
+        name: 'Moving',
+        parent: null
+      }
+    );
+  }).then(function(movingParent){
+    console.log('creating subcategory');
+    return Category.create({
+        name: 'Intercity Moving (within 100km)',
+        route: 'intercity',
+        parent: movingParent.id,
+        credits: 2,
+        questions: [
+          {
+            field_type: 'text',
+            question: 'Is there anything else the mover should know?'
+          },
+          {
+            field_type: 'select',
+            question: 'What do you want to move?',
+            choices: [
+              {
+                label: 'Just a few things',
+                value: 'Just a few things'
+              },
+              {
+                label: 'Studio or 1-bedroom apartment',
+                value: 'Studio or 1-bedroom apartment'
+              },
+              {
+                label: '2-3 bedroom apartment',
+                value: '2-3 bedroom apartment'
+              },
+              {
+                can_describe: true
+              }
+            ]
+          },
+          {
+            field_type: 'select',
+            question: 'How far will you be moving?',
+            choices: [
+              {
+                label: 'Within the same building',
+                value: 'Within the same building'
+              },
+              {
+                label: 'Under 25km',
+                value: 'Under 25km'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: 'Intracity Moving (more than 100km)',
+        route: 'intracity',
+        parent: movingParent.id,
+        credits: 2
+      }).then(
+      function(subcat){
+        console.log ('finished populating categories');
+      },
+      function(err) {
+        console.error (err);
+      }
+    );
+
+  });

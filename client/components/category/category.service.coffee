@@ -2,21 +2,19 @@
 
 angular.module 'taskyApp'
 .factory 'Category', ($resource) ->
-  categories = [
-    { id: 1, label: 'Cleaning' }, { id: 2, label: 'Moving' }
-  ]
+  $resource '/api/categories/:id/',
+    id: '@_id'
+  ,
+    update:
+      method: 'PUT'
 
-  services =
-    1: ['House Cleaning',
-    'Carpet Cleaning',
-    'Gutter Cleaning',
-    'Office Cleaning']
+    getRootCategories:
+      method: 'GET',
+      url: '/api/categories/root',
+      isArray: true,
+      cache: true
 
-    2: ['Moving Within The City',
-      'Moving Between Cities']
-
-  getCategories: ->
-    categories
-
-  getServices: (categoryId) ->
-    services[categoryId]
+    getSubcategories:
+      method: 'GET'
+      url: '/api/categories/:id/sub'
+      isArray: true

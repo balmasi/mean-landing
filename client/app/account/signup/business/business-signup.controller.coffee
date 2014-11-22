@@ -6,7 +6,7 @@ angular.module 'taskyApp'
   $scope.pageVariables.pageClass = 'page-signup'
 
   # --------- Loaded Options ---------
-  $scope.categories = Category.getCategories()
+  $scope.categories = Category.getRootCategories()
 
   $scope.travelOptions = [5, 10, 25, 50]
   # --------- Business Data Structure ---------
@@ -121,10 +121,12 @@ angular.module 'taskyApp'
     # Build the selected services model for services page
     if currentState == 'category'
       $scope.business.services = {}
-      $scope.services = Category.getServices($scope.business.category)
-      for service in $scope.services
-        $scope.business.services[service] = false
-      $scope.business.services['other'] = false
+      Category.getSubcategories({ id: $scope.business.category })
+        .$promise.then (services) ->
+          $scope.services = services
+          for service in services
+            $scope.business.services[service] = false
+            $scope.business.services['other'] = false
 
     $state.go('business-signup.'+ pageStates[currentIndex + 1])
 
