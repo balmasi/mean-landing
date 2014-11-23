@@ -6,4 +6,11 @@ angular.module 'taskyApp'
     url: '/request/:categoryRoute'
     templateUrl: 'app/request/form.html'
     controller: 'RequestCtrl',
-    nav: false
+    nav: false,
+    resolve:
+      user: (Auth) ->
+        Auth.getCurrentUser()
+      FormData: (Request, $stateParams) ->
+        Request.getForm
+          category_route: $stateParams.categoryRoute
+        .$promise

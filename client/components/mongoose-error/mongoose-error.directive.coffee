@@ -10,3 +10,4 @@ angular.module 'taskyApp'
   link: (scope, element, attrs, ngModel) ->
     element.on 'keydown', ->
       ngModel.$setValidity 'mongoose', true
+      delete scope.errors[attrs['name']]

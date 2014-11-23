@@ -1,18 +1,18 @@
 <h3 class="heading">Let us help you find the best professional for you</h3>
 <div class="panel">
-    <div class="panel-body">
-        <form novalidate name="form">
-
+    <form novalidate name="form">
+        <div class="panel-body">
             <div ng-repeat="q in questions" ng-switch="q.field_type">
                 <div class="form-group" ng-switch-when="text">
                     <label>{{q.question}}</label>
-                    <input class="form-control" name="{{q._id}}" ng-model="q.answer" type="text"/>
+                    <input required class="form-control" name="{{q._id}}" ng-model="q.answer" type="text"/>
                 </div>
 
 
                 <div class="form-group" ng-switch-when="select">
                     <label>{{q.question}}</label>
-                    <select ng-model="q.answer"
+                    <select required
+                            ng-model="q.answer"
                             name="{{q._id}}"
                             ng-options="choice.label for choice in q.choices"
                             class="form-control">
@@ -21,7 +21,7 @@
 
                 <div ng-switch-when="checklist">
                     <label>{{q.question}}</label>
-                    <ul class="list-group">
+                    <ul class="list-group form-list">
                         <li ng-repeat="choice in q.choices"
                             ng-switch="choice.can_describe"
                             class="list-group-item checkbox input-group">
@@ -45,14 +45,48 @@
                     <label>When?</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input name="{{q._id}}" ng-model="q.answer" type="date" class="form-control" placeholder="Choose a Date">
+                        <input required name="{{q._id}}" ng-model="q.answer" type="date" class="form-control" placeholder="Choose a Date">
                     </div>
                 </div>
 
             </div>
-        </form>
-    </div>
-    <div class="panel-footer">
-        <a class="btn btn-blue" ng-click="sendRequest()">Send Request</a>
-    </div>
+            <div class="auth-fields row"
+                 ng-if="!hasAccount()">
+                <h4 class="hr-text"><span>Create your Tasky Account</span></h4>
+                <p class="explanation">As soon as you sign up, based on your answer to the above questions, we will deliver quotes from interested professionals in your area directly to your inbox!</p>
+                <div class="col-xs-12 col-sm-6">
+                    <label>Email Address</label>
+                    <input required
+                           mongoose-error
+                           type="email"
+                           name="email"
+                           ng-model="user.email"
+                           placeholder="you@example.com"
+                           class="form-control"/>
+                    <div ng-messages="form.email.$error" class="form-error" role="alert"
+                         ng-if="form.email.$dirty"
+                         ng-messages-include="components/errors/standard-field.html">
+                        <div ng-message="mongoose">{{errors.email}}</div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <label>Password</label>
+                    <unmask name="password"
+                            mongoose-error
+                            minlength="5"
+                            required
+                            ng-model="user.password"></unmask>
+                    <div ng-messages="form.password.$error"
+                         ng-if="form.password.$dirty"
+                         ng-messages-include="components/errors/standard-field.html">
+                        <div ng-message="mongoose">{{errors.password}}</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel-footer">
+            <a class="btn btn-blue" ng-click="sendRequest(form)">Send Request</a>
+        </div>
+    </form>
 </div>

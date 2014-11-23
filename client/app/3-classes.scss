@@ -141,6 +141,23 @@ h3 {
   color: #fff;
 }
 
+.list-group.form-list {
+  .list-group-item {
+    background: rgb(247,247,247); /* Old browsers */
+    background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(245,245,245,1) 100%); /* W3C */
+
+    &:hover {
+      background: rgb(227,227,227); /* Old browsers */
+      background: linear-gradient(to bottom, rgba(245,245,245,1) 0%,rgba(235,235,235,1) 100%); /* W3C */
+    }
+  }
+
+  label {
+    width: 100%;
+    font-weight: 300;
+  }
+}
+
 .container {
   padding-left: 45px;
   padding-right: 45px;
@@ -311,6 +328,9 @@ unmask {
   }
 }
 
+
+// USAGE: <h4 class="hr-text"><span>OR</span></h4>
+// Creates a line with text in the center
 .hr-text {
   width: 90%;
   text-align: center;

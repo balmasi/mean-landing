@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var Request = require('./request.model');
 var Category = require('../category/category.model');
+var passport = require('passport');
 
 // Get list of requests
 exports.index = function(req, res) {
@@ -41,10 +42,13 @@ exports.getForm = function( req, res ) {
 
 // Creates a new request in the DB.
 exports.create = function(req, res) {
-  Request.create(req.body, function(err, request) {
-    if(err) { return handleError(res, err); }
-    return res.json(201, request);
-  });
+  Request.createAsync(req.body)
+    .then(function(requestObj) {
+      return res.json(201, requestObj);
+    })
+    .catch( function(err) {
+      return handleError(res, err);
+    })
 };
 
 // Updates an existing request in the DB.
