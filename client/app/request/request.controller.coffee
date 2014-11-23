@@ -8,10 +8,9 @@ angular.module 'taskyApp'
   _categoryId = undefined
 
   Request.getForm
-    category_route: 'intercity-moving'
+    category_route: $stateParams.categoryRoute
   .$promise.then (result) ->
     $scope.questions = result.questions
-    debugger
     _categoryId = result._id
 
 

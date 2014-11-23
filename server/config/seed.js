@@ -54,7 +54,7 @@ Category.remove({}).exec()
     console.log('creating subcategory');
     return Category.create({
         name: 'Intercity Moving (within 100km)',
-        route: 'intercity-moving',
+        route: 'local-moving',
         parent: movingParent.id,
         credits: 2,
         questions: [
@@ -101,7 +101,7 @@ Category.remove({}).exec()
       },
       {
         name: 'Intracity Moving (more than 100km)',
-        route: 'intracity',
+        route: 'long-distance-moving',
         parent: movingParent.id,
         credits: 2
       }).then(
