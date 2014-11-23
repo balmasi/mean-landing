@@ -19,7 +19,10 @@ var RequestSchema = new Schema({
     required: true,
     index: true
   },
-  questions: [ Question.schema ],
+  questions: [ {
+    question: String,
+    answer: Schema.Types.Mixed
+  }],
   status: {
     type: String,
     enum: ['active', 'inactive', 'fulfilled'],

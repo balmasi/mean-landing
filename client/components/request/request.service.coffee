@@ -10,5 +10,5 @@ angular.module 'taskyApp'
 
     getForm:
       method: 'GET'
-      isArray: true
       url: '/api/requests/:category_route/form'
+      cache: true

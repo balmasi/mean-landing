@@ -24,13 +24,13 @@ exports.show = function(req, res) {
 exports.getForm = function( req, res ) {
   var category = req.params.category_route;
   if (typeof category === 'undefined') handleError(res, 'Category route not defined in form fetch');
-  Category.find({
+  Category.findOne({
     route: category
-  }, { questions: 1, _id: 0 })
+  }, { questions: 1 })
     .exec()
     .then(
-    function(results){
-      res.json(results);
+    function(result){
+      res.json(result);
     },
     function(err) {
       handleError(res, err);
