@@ -5,10 +5,15 @@ var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['facebook', 'google'];
 
+
 var UserSchema = new Schema({
   firstName: String,
   lastName: String,
   email: { type: String, lowercase: true },
+  _accountType: {
+    type: String,
+    index: true
+  },
   role: {
     type: String,
     default: 'user'
@@ -19,7 +24,12 @@ var UserSchema = new Schema({
   facebook: {},
   google: {},
   github: {}
+},
+{
+  collection : 'users',
+  discriminatorKey : '_accountType'
 });
+
 
 /**
  * Virtuals

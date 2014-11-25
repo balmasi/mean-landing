@@ -5,38 +5,54 @@
 
 'use strict';
 
-var User = require('../api/user/user.model');
-var Business = require('../api/business/business.model');
 var Category = require('../api/category/category.model');
+var User = require('../api/user/user.model');
+var Customer = require('../api/user/customer/customer.model');
+var Pro = require('../api/user/pro/pro.model');
 
 
+Pro.find({}).remove(function(){
+  Pro.create({
+    role: 'user',
+    provider: 'local',
+    name: 'Speedy Glass',
+    email: 'speedy@speed.com',
+    password: 'somepass',
+    phone: '416-222-2144',
+    website: 'http://www.tasky.com'
+  }, function(err) {
+    if (err) console.error(err);
+    console.log('PROS Populated');
+  });
+});
 
-User.find({}).remove(function() {
+User.find({}).remove(function(){
   User.create({
-      provider: 'local',
-      name: 'Test User',
-      email: 'test@test.com',
-      password: 'test'
-    }, {
       provider: 'local',
       role: 'admin',
       name: 'Admin',
       email: 'admin@admin.com',
       password: 'admin'
-    }, function() {
-      console.log('finished populating users');
     }
-  );
+    , function(){
+      console.log('ADMINS created');
+    })
 });
 
-Business.find({}).remove(function(){
-  Business.create({
-    name: 'Speedy Glass',
-    email: 'speedy@speed.com',
-    phone: '416-222-2144'
-  }, function() {
-    console.log('finished populating businesses');
-  });
+
+
+
+Customer.find({}).remove(function() {
+  Customer.create({
+      role: 'user',
+      provider: 'local',
+      name: 'Test User',
+      email: 'test@test.com',
+      password: 'test'
+    }, function() {
+      console.log('CUSTOMERS populated');
+    }
+  );
 });
 
 
