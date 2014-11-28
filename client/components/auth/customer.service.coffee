@@ -2,7 +2,7 @@
 
 angular.module 'taskyApp'
 .factory 'Customer', ($resource) ->
-  $resource '/api/customer/:id/:controller',
+  $resource '/api/customers/:id/:controller',
     id: '@_id'
   ,
 

@@ -29,9 +29,6 @@ exports.subcategories = function( req, res ) {
   Category.getSubcategoriesOf(parentId)
     .then(
       function(subCats){
-        subCats = _.map(subCats, function(obj){
-          return obj.name;
-        });
         res.json(subCats);
       },
       function(err) {

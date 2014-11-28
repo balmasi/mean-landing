@@ -8,6 +8,11 @@ var jwt = require('jsonwebtoken');
 var controller = require('../user.controller');
 
 
+var validationError = function(res, err) {
+  return res.json(422, err);
+};
+
+
 /**
  * Get list of customers
  * restriction: 'admin'

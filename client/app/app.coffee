@@ -8,7 +8,7 @@ angular.module 'taskyApp', [
   'ui.router',
   'ngMessages'
 ]
-.config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) ->
+.config ($urlRouterProvider, $locationProvider, $httpProvider) ->
   $urlRouterProvider
   .otherwise '/'
 

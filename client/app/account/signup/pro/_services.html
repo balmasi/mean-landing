@@ -1,0 +1,32 @@
+<form class="form" name="form" role="form" novalidate>
+    <div class="panel panel-default col-centered">
+        <div class="panel-header">
+            <h1 class="text-left">What type of services do you provide?</h1>
+            <p>Tell us your preferences so we can send you customers who are the best match for your business.</p>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group form-list">
+                <li ng-if="service.id !== 'other'" ng-repeat="service in services" class="list-group-item checkbox">
+                    <label>
+                        <input type="checkbox"
+                                  ng-required="!someServicesSelected()"
+                                  ng-model="services[service.id].selected">{{service.label}}
+                    </label>
+                </li>
+                <li class="list-group-item input-group checkbox">
+                    <label><input type="checkbox" ng-model="services.other.selected">
+                        <input name='otherText' class="plain-input" type="text" placeholder="Other"
+                               ng-model="services.other.value"
+                               ng-required="services.other.selected">
+                    </label>
+                </li>
+            </ul>
+            <span class="form-error" role="alert" ng-show="form.$dirty && !someServicesSelected() && form.$error.required">Please select at least one option.</span>
+            <span class="form-error" role="alert" ng-show="form.$dirty && form.otherText.$error.required">You must provide a value for the text field if choosing 'Other'.</span>
+        </div>
+        <div class="panel-footer clearfix">
+            <a class="btn pull-left" ng-click="prev()"><i class="fa fa-arrow-left"></i> Back</a>
+            <a ng-class="{ disabled: form.$invalid }" class="btn btn-blue pull-right" ng-click="next()">Next</a>
+        </div>
+    </div>
+</form>

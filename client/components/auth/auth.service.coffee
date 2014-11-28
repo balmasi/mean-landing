@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'taskyApp'
-.factory 'Auth', ($location, $rootScope, $http, User, $cookieStore, $q) ->
+.factory 'Auth', ($location, $rootScope, $http, User, Customer, Pro, $cookieStore, $q) ->
   currentUser = if $cookieStore.get 'token' then User.get() else {}
 
   ###
@@ -49,8 +49,13 @@ angular.module 'taskyApp'
   @param  {Function} callback - optional
   @return {Promise}
   ###
-  createUser: (user, callback) ->
-    User.save user,
+  createUser: (type = 'User', user, callback) ->
+    Entity = switch
+      when type == 'Pro' then Pro
+      when type == 'Customer' then Customer
+      else User
+
+    Entity.save user,
       (data) ->
         $cookieStore.put 'token', data.token
         currentUser = User.get()

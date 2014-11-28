@@ -1,39 +1,67 @@
 'use strict'
 
 angular.module 'taskyApp'
-.config ($stateProvider) ->
+.config ($stateProvider, $urlRouterProvider) ->
+  $urlRouterProvider
+  .when /\/signup\/pro.*/, ($state, $match, ProSignupData) ->
+    if !ProSignupData.hasRedirected() && !/.*\/category/.test $match && $state.current.url != '^'
+      ProSignupData.toggleRedirected()
+      # Redirect to step 1 unless on step 1
+      $state.go 'pro-signup.category'
+
   $stateProvider
   .state 'login',
     url: '/login'
     templateUrl: 'app/account/login/login.html'
     controller: 'LoginCtrl'
 
-  .state 'business-signup',
-    url: '/signup/business'
+  .state 'pro-signup',
+    url: '/signup/pro'
     abstract: true
-    templateUrl: 'app/account/signup/business/signup.html'
-    controller: 'BusinessSignupCtrl'
+    templateUrl: 'app/account/signup/pro/signup.html'
+    controller: 'ProSignUp.Ctrl'
 
-  .state 'business-signup.category',
+  .state 'pro-signup.category',
     url: '/category'
-    templateUrl: 'app/account/signup/business/_category.html'
+    templateUrl: 'app/account/signup/pro/_category.html'
+    controller: 'ProSignUp.Category.Ctrl'
+    resolve:
+      categories: (Category) ->
+        Category.getRootCategories()
 
 
-  .state 'business-signup.services',
+  .state 'pro-signup.services',
     url: '/services'
-    templateUrl: 'app/account/signup/business/_services.html'
+    templateUrl: 'app/account/signup/pro/_services.html'
+    controller: 'ProSignUp.Services.Ctrl'
+    resolve:
+      services: (ProSignupData) ->
+        ProSignupData.getServices()
 
-  .state 'business-signup.location',
+
+  .state 'pro-signup.location',
     url: '/location'
-    templateUrl: 'app/account/signup/business/_location.html'
+    controller: 'ProSignUp.Location.Ctrl'
+    templateUrl: 'app/account/signup/pro/_location.html'
+    resolve:
+      locationData: (ProSignupData) ->
+        ProSignupData.getLocationData()
 
-  .state 'business-signup.description', #BName, Website, Description
+  .state 'pro-signup.description', #BName, Website, Description
     url: '/description'
-    templateUrl: 'app/account/signup/business/_description.html'
+    templateUrl: 'app/account/signup/pro/_description.html'
+    controller: 'ProSignUp.Description.Ctrl'
+    resolve:
+      descriptionData: (ProSignupData) ->
+        ProSignupData.getDescriptionData()
 
-  .state 'business-signup.account', #Name, Email, Number(txt) ,PAss?
+  .state 'pro-signup.account', #Name, Email, Number(txt) ,PAss?
     url: '/contact'
-    templateUrl: 'app/account/signup/business/_account.html'
+    templateUrl: 'app/account/signup/pro/_account.html'
+    controller: 'ProSignUp.Account.Ctrl'
+    resolve:
+      accountData: (ProSignupData) ->
+        ProSignupData.getAccountData()
 
   .state 'customer-signup',
     url: '/signup/customer'

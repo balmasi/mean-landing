@@ -50,7 +50,7 @@ CategorySchema.statics.getRootCategories = function() {
 CategorySchema.statics.getSubcategoriesOf = function(id) {
   return this.model('Category').find({
     parent: id
-  }).exec();
+  }, { name: 1 }).exec();
 };
 
 module.exports = mongoose.model('Category', CategorySchema);

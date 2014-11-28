@@ -68,7 +68,8 @@ Category.remove({}).exec()
     );
   }).then(function(movingParent){
     console.log('creating subcategory');
-    return Category.create({
+    return Category.create(
+      {
         name: 'Intercity Moving (within 100km)',
         route: 'local-moving',
         parent: movingParent.id,
