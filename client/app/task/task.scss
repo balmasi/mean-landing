@@ -1,0 +1,54 @@
+.section-title {
+  margin: 3rem auto;
+}
+
+.tasks-wrapper {
+  @include make-row();
+  position: relative;
+  margin-top: 5rem;
+}
+
+.index-task-item {
+  transition: all 0.5s;
+  cursor: pointer;
+  padding-top: 2rem;
+  height: 30rem;
+  background: white;
+  border: #ddd 1px solid;
+  border-radius: 0.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+
+  &:hover {
+    transform: scale(1.02);
+    border-color: #888;
+  }
+}
+
+.task-title {
+  text-transform: uppercase;
+  font-size: 2.4rem;
+}
+
+.plus-one {
+  transition: transform 0.5s;
+  cursor: pointer;
+  background: $brand-primary;
+  width: 6rem;
+  height: 6rem;
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+  right: 1rem;
+  top: -10rem;
+  color: white;
+  font-weight: 100;
+  font-size: $font-size-h2;
+  line-height: 6rem;
+  border-radius: 50%;
+  box-shadow: 0px 15px 25px -10px #000;
+
+  &:hover {
+    transform: scale(1.08);
+  }
+}
