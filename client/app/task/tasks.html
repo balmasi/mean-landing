@@ -1,0 +1,15 @@
+<div class="container">
+    <h3 class="section-title">Tasks</h3>
+    <section class="tasks-wrapper">
+        <div class="plus-one">+</div>
+        <div class="col-xs-12 col-sm-4"
+             ng-repeat="r in requests"
+             ng-click="goToQuotes(r)">
+            <div class="index-task-item col-xs-12">
+                <h4 class="task-title">{{r.category.name}}</h4>
+                <p class="subtle">Created 2 days ago</p>
+                <hr/>
+            </div>
+        </div>
+    </section>
+</div>

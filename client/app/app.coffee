@@ -6,7 +6,8 @@ angular.module 'taskyApp', [
   'ngSanitize',
   'ngAnimate',
   'ui.router',
-  'ngMessages'
+  'ngMessages',
+  'ui.bootstrap'
 ]
 .config ($urlRouterProvider, $locationProvider, $httpProvider) ->
   $urlRouterProvider

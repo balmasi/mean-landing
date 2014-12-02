@@ -1,0 +1,19 @@
+<div class="container">
+    <h3>{{category}}</h3>
+
+    <div class="row">
+        <tabset class="quote-selector">
+            <tab ng-repeat="t in quotes"
+                 select="go(t._id)">
+
+                <tab-heading>
+                    <strong>{{t.name}}</strong>
+                    <img ng-src="{{t.img}}" alt=""/>
+                    <rating ng-model="t.rating" max="5" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating>
+                </tab-heading>
+            </tab>
+        </tabset>
+
+        <div class="quote-content" ui-view></div>
+    </div>
+</div>

@@ -15,11 +15,40 @@ exports.index = function(req, res) {
 
 // Get a single request
 exports.show = function(req, res) {
-  Request.findById(req.params.id, function (err, request) {
-    if(err) { return handleError(res, err); }
-    if(!request) { return res.send(404); }
-    return res.json(request);
-  });
+  Request.findById(req.params.id)
+    .populate(
+    {
+      path: 'category',
+      select: 'name actor'
+    })
+    .exec()
+    .then(
+    function(request) {
+      return res.json(request)
+    },
+    function(err) {
+      return handleError(res, err);
+    });
+};
+
+exports.myRequests = function (req, res) {
+  var user = req.user;
+  if (!user) return res.json(401);
+  Request.find({
+    requested_by: user._id
+  })
+    .populate({
+      path: 'category',
+      select: 'name actor'
+    })
+    .exec()
+    .then( function(requests) {
+      return res.json(requests)
+    },
+    function(err) {
+      return handleError(res, err);
+    });
+
 };
 
 exports.getForm = function( req, res ) {

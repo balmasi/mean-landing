@@ -2,8 +2,30 @@
 
 angular.module 'taskyApp'
 .config ($stateProvider) ->
-  $stateProvider.state 'task',
+  $stateProvider
+
+  .state 'tasks', #State that lists customer's requests
     url: '/tasks'
-    templateUrl: 'app/task/list.html'
+    templateUrl: 'app/task/tasks.html'
     controller: 'TaskCtrl'
-    nav: true
+    authenticate: true
+    resolve:
+    # Gets a list of Customer's requests
+      requests: ($http) ->
+        $http.get '/api/requests/me'
+        .then (response) ->
+          return response.data
+
+  .state 'quotes', # Parent state for customer quotes Tab View
+    url: '/quotes/:requestId'
+    templateUrl: 'app/task/quotes.html'
+    abstract: true
+    controller: 'QuotesCtrl'
+    resolve:
+      request: (Request, $stateParams) ->
+        Request.get({ id: $stateParams.requestId })
+
+  .state 'quotes.offer', #Child State for Customer Quote Tab View
+    url: '/:offerId'
+    templateUrl: 'app/task/offer.html'
+    controller: 'QuoteShowCtrl'

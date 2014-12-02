@@ -52,7 +52,7 @@ angular.module 'taskyApp'
     if form.$valid
       # If user has no account create it, then create request
       if !$scope.hasAccount()
-        Auth.createUser
+        Auth.createUser 'Customer',
           email: $scope.user.email
           password: $scope.user.password
         .then (token) ->
