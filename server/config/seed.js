@@ -9,22 +9,8 @@ var Category = require('../api/category/category.model');
 var User = require('../api/user/user.model');
 var Customer = require('../api/user/customer/customer.model');
 var Pro = require('../api/user/pro/pro.model');
+var Request = require('../api/request/request.model')
 
-
-Pro.find({}).remove(function(){
-  Pro.create({
-    role: 'user',
-    provider: 'local',
-    name: 'Speedy Glass',
-    email: 'speedy@speed.com',
-    password: 'somepass',
-    phone: '416-222-2144',
-    website: 'http://www.tasky.com'
-  }, function(err) {
-    if (err) console.error(err);
-    console.log('PROS Populated');
-  });
-});
 
 User.find({}).remove(function(){
   User.create({
@@ -37,22 +23,6 @@ User.find({}).remove(function(){
     , function(){
       console.log('ADMINS created');
     })
-});
-
-
-
-
-Customer.find({}).remove(function() {
-  Customer.create({
-      role: 'user',
-      provider: 'local',
-      name: 'Test User',
-      email: 'test@test.com',
-      password: 'test'
-    }, function() {
-      console.log('CUSTOMERS populated');
-    }
-  );
 });
 
 
@@ -124,6 +94,50 @@ Category.remove({}).exec()
       }).then(
       function(subcat){
         console.log ('finished populating categories');
+        Pro.find({}).remove(function(){
+          Pro.create({
+            role: 'user',
+            provider: 'local',
+            name: 'Speedy Glass',
+            email: 'speedy@speed.com',
+            password: 'somepass',
+            phone: '416-222-2144',
+            website: 'http://www.tasky.com',
+            services: [ subcat ]
+          }, function(err, professional) {
+            if (err) console.error(err);
+            console.log('PROS Populated');
+          });
+        });
+
+        Customer.find({}).remove(function() {
+          Customer.create({
+            role: 'user',
+            provider: 'local',
+            name: 'Test User',
+            email: 'test@test.com',
+            password: 'test'
+          }).then(function(c) {
+            console.log('CUSTOMERS populated');
+            Request.remove({}, function() {
+              Request.create({
+                category: subcat._id,
+                requested_by: c._id,
+                questions: [
+                  { question: 'Whos your daddy?',
+                    answer: 'Arnold Shwaznenigger'
+                  },
+                  {
+                    question: 'But who really?',
+                    answer: 'ok fine I dunno'
+                  }
+                ]
+              }).then(function(request) {
+                console.log ('Requests Populated')
+              });
+            });
+          });
+        });
       },
       function(err) {
         console.error (err);

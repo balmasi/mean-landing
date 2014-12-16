@@ -26,6 +26,22 @@ controller.index = function(req, res) {
 };
 
 /**
+ * Get a single pro
+ */
+controller.show = function (req, res, next) {
+  var proId = req.params.id;
+
+  Pro.findById(proId, '-salt -hashedPassword')
+    .populate('requests')
+    .exec()
+    .then(function (err, pro) {
+      if (err) return next(err);
+      if (!pro) return res.send(401);
+      res.json(user);
+    });
+};
+
+/**
  * Creates a new pro
  */
 controller.create = function (req, res, next) {

@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'),
 //    extend = require('mongoose-schema-extend'),
   Question = require('../question/question.model'),
-//    Quote = require('../quote/quote.model'),
+  Quote = require('../quote/quote.model'),
   Schema = mongoose.Schema;
 
 var RequestSchema = new Schema({
@@ -27,9 +27,13 @@ var RequestSchema = new Schema({
     type: String,
     enum: ['active', 'inactive', 'fulfilled'],
     default: 'active'
+  },
+  quotes: {
+    type: [
+        Quote.schema
+    ],
+    default: []
   }
-//  quotes: [ Quote ]
 });
-
 
 module.exports = mongoose.model('Request', RequestSchema);

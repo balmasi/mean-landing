@@ -1,0 +1,65 @@
+<div class="container">
+    <h3>Request inbox</h3>
+    <accordion close-others="true">
+        <accordion-group ng-repeat="r in requests" class="{{r.status}}">
+            <accordion-heading >
+                <div class="clearfix">
+                    Request {{$index+1}}
+                    <div class="pull-right">
+                        <a ng-click="openWorkspace(r)"
+                           class="btn btn-green">Workspace <i class="fa fa-chevron-circle-right"></i></a>
+                    </div>
+                </div>
+            </accordion-heading>
+            <div class="question" ng-repeat="q in r.questions">
+                <strong>{{q.question}}</strong>
+                <p>{{q.answer}}</p>
+            </div>
+        </accordion-group>
+    </accordion>
+</div>
+
+
+<script type="text/ng-template" id="workspace-modal.html">
+    <div class="container">
+        <div ng-if="!alreadyQuoted()" class="empty-instruction">
+            <h3>You have not sent a quote yet.</h3>
+            <p class="subtext">If you would like to introduce yourself,
+                send a message with your rate.</p>
+        </div>
+
+        <form novalidate name="quote-form" class="row">
+            <div class="col-xs-6">
+                <div ng-if="!alreadyQuoted()" class="form-group">
+                    <div class="btn-group">
+                        <label class="btn btn-info" ng-model="newQuote.rate.method" btn-radio="'hourly'" uncheckable>Hourly</label>
+                        <label class="btn btn-info" ng-model="newQuote.rate.method" btn-radio="'fixed'" uncheckable>Fixed</label>
+                    </div>
+                </div>
+                <div ng-if="!alreadyQuoted()" class="input-group form-group">
+                    <span class="input-group-addon">$</span>
+                    <input class="form-control" ng-model="newQuote.rate.value" type="number"/>
+                    <span class="input-group-addon" ng-show="newQuote.rate.method == 'hourly'">/ hr</span>
+                </div>
+                <div ng-if="alreadyQuoted()" class="messages">
+                    <div class="message" ng-repeat="m in messages track by $index">
+                        <p ng-class="{ 'mine': isMsgMine(m) }">{{m.message}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" rows="4"
+                              placeholder="{{messagePlaceholder}}"
+                              ng-model="newMessage"></textarea>
+                </div>
+
+                <div ng-if="!alreadyQuoted()" class="form-group">
+                    <button ng-click="sendOffer()" class="btn btn-blue">Send Offer</button>
+                </div>
+                <div ng-if="alreadyQuoted()" class="form-group">
+                    <button ng-click="sendMessage()" class="btn btn-blue">Send Message</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</script>

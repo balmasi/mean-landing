@@ -19,8 +19,8 @@ angular.module 'taskyApp'
 
     .success (data) ->
       $cookieStore.put 'token', data.token
-      currentUser = User.get()
-      deferred.resolve data
+      User.get().$promise.then (currentUser) ->
+        deferred.resolve currentUser
       callback?()
 
     .error (err) =>
@@ -58,7 +58,7 @@ angular.module 'taskyApp'
     Entity.save user,
       (data) ->
         $cookieStore.put 'token', data.token
-        currentUser = User.get()
+        currentUser = Entity.get()
         callback? user
 
       , (err) =>

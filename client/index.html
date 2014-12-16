@@ -15,6 +15,8 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angularjs-toaster/toaster.css" />
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -29,9 +31,8 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
     <div ng-controller="AppCtrl" class="main-body {{pageVariables.pageClass}}">
-        <div ng-include="'components/navbar/navbar.html'" ></div>
+    <div ng-include="'components/navbar/navbar.html'" ></div>
         <ui-view></ui-view>
     </div>
 
@@ -87,6 +88,8 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angularjs-toaster/toaster.js"></script>
+    <script src="bower_components/angular-toastr/dist/angular-toastr.js"></script>
     <!-- endbower -->
 <!-- endbuild -->
 
@@ -102,6 +105,7 @@
 <script src="app/admin/businesses/business.js"></script>
 <script src="app/admin/users/users.js"></script>
 <script src="app/home/home.js"></script>
+<script src="app/pro/pro/pro.js"></script>
 <script src="app/request/request.js"></script>
 <script src="app/task/task.js"></script>
 <script src="components/auth/auth.js"></script>
@@ -115,6 +119,7 @@
 <script src="components/directives/forms/standard-form-errors.js"></script>
 <script src="components/directives/forms/unmask.js"></script>
 <script src="components/navbar/navbar.js"></script>
+<script src="components/quote/quote.js"></script>
 <script src="components/request/request.js"></script>
 <!-- endinjectorApp -->
 <!-- endbuild -->

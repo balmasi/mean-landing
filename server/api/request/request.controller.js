@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var Request = require('./request.model');
 var Category = require('../category/category.model');
+var Pro = require('../user/pro/pro.model');
 var passport = require('passport');
 
 // Get list of requests
@@ -30,6 +31,7 @@ exports.show = function(req, res) {
       return handleError(res, err);
     });
 };
+
 
 exports.myRequests = function (req, res) {
   var user = req.user;
@@ -73,6 +75,23 @@ exports.getForm = function( req, res ) {
 exports.create = function(req, res) {
   Request.createAsync(req.body)
     .then(function(requestObj) {
+      // Find the BOTTOM 20 pros in this category
+      // and add the request to their requests list
+      Pro.find({
+        services: requestObj.category
+      })
+        .limit(20)
+        .sort('requestCount')
+        .exec().then(function(pros) {
+          pros.forEach( function (pro){
+            pro.requestCount++;
+            pro.requests.addToSet(requestObj);
+            pro.save(function(err) {
+              console.error(err);
+            });
+          });
+        });
+
       return res.json(201, requestObj);
     })
     .catch( function(err) {

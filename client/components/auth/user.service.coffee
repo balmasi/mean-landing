@@ -14,4 +14,3 @@ angular.module 'taskyApp'
       method: 'GET'
       params:
         id: 'me'
-

@@ -5,16 +5,23 @@ angular.module 'taskyApp', [
   'ngResource',
   'ngSanitize',
   'ngAnimate',
+  'toastr',
   'ui.router',
   'ngMessages',
   'ui.bootstrap'
 ]
-.config ($urlRouterProvider, $locationProvider, $httpProvider) ->
+.config ($urlRouterProvider, $locationProvider, $httpProvider, toastrConfig) ->
   $urlRouterProvider
   .otherwise '/'
 
   $locationProvider.html5Mode true
   $httpProvider.interceptors.push 'authInterceptor'
+  angular.extend toastrConfig,
+    positionClass: 'toast-bottom-right',
+    tapToDismiss: true,
+    timeOut: 4000,
+    toastClass: 'toastr'
+
 
 .factory 'authInterceptor', ($rootScope, $q, $cookieStore, $location) ->
   # Add authorization token to headers

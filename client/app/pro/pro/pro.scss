@@ -1,0 +1,31 @@
+.page-pro-requests {
+
+  .panel {
+    .panel-heading {
+      border-left: 1rem solid #444444;
+    }
+
+    &.active .panel-heading {
+      border-left: 1rem solid #3ab14f;
+    }
+
+    &.inactive .panel-heading {
+      border-left: 1rem solid #ef5e52;
+    }
+  }
+}
+
+.quote-modal {
+  .empty-instruction {
+    padding: 2rem 0;
+    text-align: center;
+
+    h3 {
+      font-size: $font-size-h3;
+
+      .subtext {
+        color: #7e7e7e;
+      }
+    }
+  }
+}
