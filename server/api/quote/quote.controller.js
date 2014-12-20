@@ -42,7 +42,7 @@ exports.create = function(req, res) {
     if(err) { return handleError(res, err); }
     Request.update(
       { _id: quote.request },
-      { $addToSet: { quotes: quote}}
+      { $addToSet: { quotes: quote._id }}
     , function(err, request) {
         if (err) return handleError(res, err);
         if (!request) return res.send(404, "Request for this quote could not be found");

@@ -4,6 +4,8 @@ var _ = require('lodash');
 var Request = require('./request.model');
 var Category = require('../category/category.model');
 var Pro = require('../user/pro/pro.model');
+var User = require('../user/user.model');
+var Quote = require('../quote/quote.model');
 var passport = require('passport');
 
 // Get list of requests
@@ -19,13 +21,20 @@ exports.show = function(req, res) {
   Request.findById(req.params.id)
     .populate(
     {
-      path: 'category',
-      select: 'name actor'
+      path: 'category quotes'
     })
     .exec()
     .then(
     function(request) {
-      return res.json(request)
+      return Quote.populateAsync(request, {
+        path: 'quotes.from',
+        model: User,
+        select: 'email name phone website'
+      });
+    })
+    .then(
+    function(modReq) {
+      return res.json(modReq);
     },
     function(err) {
       return handleError(res, err);
@@ -39,13 +48,22 @@ exports.myRequests = function (req, res) {
   Request.find({
     requested_by: user._id
   })
-    .populate({
-      path: 'category',
-      select: 'name actor'
+    .populate(
+    {
+      path: 'category quotes'
     })
     .exec()
-    .then( function(requests) {
-      return res.json(requests)
+    .then(
+    function(request) {
+      return Quote.populateAsync(request, {
+        path: 'quotes.from',
+        model: User,
+        select: 'email name phone website'
+      });
+    })
+    .then(
+    function(modReq) {
+      return res.json(modReq);
     },
     function(err) {
       return handleError(res, err);

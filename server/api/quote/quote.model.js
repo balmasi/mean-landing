@@ -29,7 +29,7 @@ var QuoteSchema = new Schema({
   rate: {
     method: {
       type: String,
-      enum: ['hourly','flat','contact'],
+      enum: ['hourly','fixed','contact'],
       default: 'hourly'
     },
     value: Number

@@ -23,9 +23,12 @@ angular.module 'taskyApp'
     controller: 'QuotesCtrl'
     resolve:
       request: (Request, $stateParams) ->
-        Request.get({ id: $stateParams.requestId })
+        Request.get({ id: $stateParams.requestId }).$promise
 
   .state 'quotes.offer', #Child State for Customer Quote Tab View
     url: '/:offerId'
     templateUrl: 'app/task/offer.html'
     controller: 'QuoteShowCtrl'
+    resolve:
+      me: (User) ->
+        User.get().$promise

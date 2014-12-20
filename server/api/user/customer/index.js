@@ -8,7 +8,7 @@ var router = express.Router();
 
 router.get('/', controller.index);
 router.delete('/:id', controller.destroy);
-router.get('/me', controller.me);
+router.get('/me', auth.isAuthenticated, controller.me);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 

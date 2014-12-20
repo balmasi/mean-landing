@@ -32,6 +32,8 @@
       }
     }
   }
+
+
   .pro-image {
     display:inline-block;
     width: 40%;
@@ -39,12 +41,19 @@
 
     img {
       width:100%;
+      padding: 0.5rem;
     }
   }
 
   .pro-tab-info {
     display: inline-block;
     width: 55%;
+
+    .rate {
+      font-weight: bold;
+      font-size: 2rem;
+      padding-top: 1rem;
+    }
   }
 
 
@@ -52,6 +61,66 @@
   .quote-content {
     width: 540px;
     float: left;
+    padding: 2rem;
+    border-left: 1px solid #e3e3e3;
+
+    .message {
+      @include clearfix();
+      padding-bottom: 1rem;
+      padding-top: 1rem;
+      border-bottom: 1px solid #cccccc;
+
+      &.mine {
+        text-align: right;
+        img { @include make-xs-column-push(10);}
+        .message-text { @include make-xs-column-pull(2); }
+      }
+
+      .message-text p {
+        white-space: pre-line;
+      }
+    }
+
+    .actions {
+      @include make-row();
+      padding: 2rem 0;
+
+      i {
+        display: block;
+      }
+
+      .btn {
+        color: #333;
+        background: #f5f5f5;
+        border: 1px solid #eee;
+        width: 100%;
+
+        &.reply .fa {
+          color: #383838;
+        }
+
+        &.hire .fa {
+          color: #109547;
+        }
+
+        &.decline .fa {
+          color: #c62623;
+        }
+      }
+    }
+
+    .reply-action {
+      @include make-row();
+
+      .user-name {
+        padding-left: 100/6 * 1%;
+        font-weight: bold;
+      }
+
+      .btn-send {
+        margin-top: 1rem;
+      }
+    }
   }
 }
 

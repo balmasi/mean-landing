@@ -1,1 +1,47 @@
-<p>{{quote.message}}</p>
+
+<section class="quote-header">
+</section>
+<section class="messages">
+    <div class="message" ng-class="{ 'mine': isMine(m) }" ng-repeat="m in messages">
+        <img class="col-xs-2 img-rounded" src="http://placehold.it/50x50" alt=""/>
+        <div class="message-text col-xs-10">
+            <strong>{{getSender(m)}}</strong>
+            <p>{{m.message}}</p>
+        </div>
+    </div>
+</section>
+<div class="actions">
+    <div class="col-xs-4">
+        <button class="btn reply" ng-click="toggleReply()">
+            <i class="fa fa-reply"></i>
+            Reply
+        </button>
+    </div>
+    <div class="col-xs-4">
+        <button class="btn hire">
+            <i class="fa fa-check"></i>
+            Hire
+        </button>
+    </div>
+    <div class="col-xs-4">
+        <button class="btn decline">
+            <i class="fa fa-times"></i>
+            Decline
+        </button>
+    </div>
+</div>
+<div ng-show="replyClicked" class="reply-action">
+    <div class="clearfix">
+        <p class="user-name">{{me.firstName + " " + me.lastName}}</p>
+        <img class="col-xs-2" src="http://placehold.it/50x50" alt=""/>
+        <div class="col-xs-10 row">
+            <textarea class="col-xs-12" name="reply" rows="5"
+                ng-model="newMessage"
+                placeholder="Enter a message for {{quote.from.name}}"></textarea>
+            <button class="btn btn-blue btn-send col-xs-2"
+                    ng-click="addMessage()">Send</button>
+        </div>
+    </div>
+</div>
+
+

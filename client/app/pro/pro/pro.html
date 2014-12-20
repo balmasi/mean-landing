@@ -6,7 +6,7 @@
                 <div class="clearfix">
                     Request {{$index+1}}
                     <div class="pull-right">
-                        <a ng-click="openWorkspace(r)"
+                        <a ng-click="openWorkspace(r, $event)"
                            class="btn btn-green">Workspace <i class="fa fa-chevron-circle-right"></i></a>
                     </div>
                 </div>
@@ -21,14 +21,24 @@
 
 
 <script type="text/ng-template" id="workspace-modal.html">
-    <div class="container">
+    <div class="clearfix quote-modal">
         <div ng-if="!alreadyQuoted()" class="empty-instruction">
             <h3>You have not sent a quote yet.</h3>
             <p class="subtext">If you would like to introduce yourself,
                 send a message with your rate.</p>
         </div>
 
-        <form novalidate name="quote-form" class="row">
+        <form novalidate name="quote-form">
+            <section ng-if="alreadyQuoted()" class="messages">
+                <div class="message" ng-class="{ 'theirs': isTheirs(m) }" ng-repeat="m in messages">
+                    <img class="col-xs-2 img-rounded" src="http://placehold.it/50x50" alt=""/>
+                    <div class="message-text col-xs-10">
+                        <strong>{{getSender(m)}}</strong>
+                        <p>{{m.message}}</p>
+                    </div>
+                </div>
+            </section>
+
             <div class="col-xs-6">
                 <div ng-if="!alreadyQuoted()" class="form-group">
                     <div class="btn-group">
@@ -40,11 +50,6 @@
                     <span class="input-group-addon">$</span>
                     <input class="form-control" ng-model="newQuote.rate.value" type="number"/>
                     <span class="input-group-addon" ng-show="newQuote.rate.method == 'hourly'">/ hr</span>
-                </div>
-                <div ng-if="alreadyQuoted()" class="messages">
-                    <div class="message" ng-repeat="m in messages track by $index">
-                        <p ng-class="{ 'mine': isMsgMine(m) }">{{m.message}}</p>
-                    </div>
                 </div>
                 <div class="form-group">
                     <textarea class="form-control" rows="4"

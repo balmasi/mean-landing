@@ -16,6 +16,30 @@
 }
 
 .quote-modal {
+  padding: 2rem 1rem;
+
+  .messages {
+    @include make-sm-column(12);
+    margin-bottom: 2rem;
+
+    .message {
+      @include clearfix();
+      padding-bottom: 1rem;
+      padding-top: 1rem;
+      border-bottom: 1px solid #cccccc;
+
+      &.theirs {
+        text-align: right;
+        img { @include make-xs-column-push(10);}
+        .message-text { @include make-xs-column-pull(2); }
+      }
+
+      .message-text p {
+        white-space: pre-line;
+      }
+    }
+
+  }
   .empty-instruction {
     padding: 2rem 0;
     text-align: center;

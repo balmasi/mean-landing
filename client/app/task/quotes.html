@@ -1,19 +1,21 @@
 <div class="container">
     <h3>{{category}}</h3>
-
     <div class="tab-wrapper">
         <tabset class="quote-selector">
-            <tab ng-repeat="t in quotes"
-                 select="go(t._id)"
+            <tab ng-repeat="q in quotes"
+                 select="go(q._id)"
                  class="clearfix">
 
                 <tab-heading>
                     <div class="pro-image">
-                        <img ng-src="{{t.img}}" alt=""/>
+                        <img class="img-rounded" src="http://placehold.it/50x50" alt=""/>
                     </div>
                     <div class="pro-tab-info">
-                        <p><strong class="pro-name">{{t.name}}</strong></p>
-                        <rating class="pro-rating" ng-model="t.rating" max="5" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating>
+                        <strong class="pro-name">{{q.from.name}}</strong>
+                        <rating class="pro-rating" ng-model="rating" max="5" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating>
+                        <p class="rate">
+                            {{q.rate.value | currency:"$":0 }} {{q.rate.method == 'hourly' ? '/hr' : '' }}
+                        </p>
                     </div>
                 </tab-heading>
             </tab>

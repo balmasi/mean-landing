@@ -6,7 +6,8 @@ angular.module 'taskyApp'
   $scope.account = account
   $scope.requests = account.requests
 
-  $scope.openWorkspace = (request) ->
+  $scope.openWorkspace = (request, e) ->
+    e.stopPropagation()
     $modal.open
       templateUrl: 'workspace-modal.html'
       windowClass: 'quote-modal'
@@ -20,9 +21,17 @@ angular.module 'taskyApp'
         $scope.messagePlaceholder = if $scope.alreadyQuoted()
         then "Send a message"
         else "Introduce yourself. Mention what makes you great and why they should hire you!"
-        
-        $scope.isMsgMine = (m) ->
-          m.from == account._id
+
+        $scope.isTheirs = (msg) ->
+          msg.from isnt account._id
+
+        getNameFromAccount = (account) ->
+          account.firstName + ' ' + account.lastName
+
+        $scope.getSender = (msg) ->
+          myName = getNameFromAccount account
+          custName = 'Customer'
+          if msg.from is account._id then myName else custName
 
         $scope.sendMessage = ->
           newMessage =

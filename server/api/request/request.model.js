@@ -30,7 +30,10 @@ var RequestSchema = new Schema({
   },
   quotes: {
     type: [
-        Quote.schema
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Quote'
+      }
     ],
     default: []
   }
