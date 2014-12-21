@@ -68,14 +68,14 @@ exports.update = function(req, res) {
 exports.addMessage = function(req, res) {
   var qId = req.params.id;
   var message = req.body
-  Quote.update(qId, {
+  Quote.findByIdAndUpdate(qId, {
     $push: {
       messages: message
     }
-  }, function(err, q) {
+  }, function(err, quote) {
     if (err) { return handleError(res, err); }
-    if(!q) { return res.send(404); }
-    return res.json(201, q.messages);
+    if(!quote) { return res.send(404); }
+    return res.status(201).json(message);
   })
 };
 

@@ -32,6 +32,25 @@ angular.module 'taskyApp'
   $scope.toggleReply = ->
     $scope.replyClicked = ! $scope.replyClicked
 
+
+  $scope.hire = ->
+    Quote.changeStatus $scope.quote, 'hired'
+    .then (updatedQuote) ->
+      $scope.quote = updatedQuote
+      toastr.success 'Accepted Offer', 'Hired'
+
+  $scope.reject = ->
+    Quote.changeStatus $scope.quote, 'rejected'
+    .then (updatedQuote) ->
+      $scope.quote = updatedQuote
+      toastr.error 'Declined Offer'
+
+  $scope.undoStatus = ->
+    Quote.undoStatus $scope.quote
+    .then (updatedQuote) ->
+      $scope.quote = updatedQuote
+
+
   getNameFromAccount = (account) ->
     account.firstName + ' ' + account.lastName
 

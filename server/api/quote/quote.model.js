@@ -14,8 +14,13 @@ var QuoteSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ['pending', 'accepted' , 'rejected'],
+    enum: ['pending', 'hired' , 'rejected'],
     default: 'pending'
+  },
+  status_changed_on: Date,
+  last_status: {
+    type: String,
+    enum: ['pending', 'hired' , 'rejected']
   },
   messages:[
     {
