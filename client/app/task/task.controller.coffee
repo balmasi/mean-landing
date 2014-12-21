@@ -6,7 +6,11 @@ angular.module 'taskyApp'
   $scope.pageVariables.pageClass = 'page-tasks'
   $scope.requests = requests
 
+  $scope.hasQuotes = (r) ->
+    r.quotes.length > 0
+
   $scope.goToQuotes = (r) ->
+    return if not $scope.hasQuotes(r)
     q = r.quotes[0]
     $state.go 'quotes.offer',
       requestId: r._id
@@ -23,7 +27,7 @@ angular.module 'taskyApp'
     $state.go 'quotes.offer',
       offerId: id
 
-.controller 'QuoteShowCtrl', ($scope, $stateParams, me, Quote, toastr) ->
+.controller 'QuoteShowCtrl', ($scope, $stateParams, me, Quote, Request, toastr) ->
   $scope.quote = _.findWhere $scope.quotes , { _id: $stateParams.offerId }
   $scope.messages = $scope.quote.messages
   $scope.me = me
@@ -37,6 +41,11 @@ angular.module 'taskyApp'
     Quote.changeStatus $scope.quote, 'hired'
     .then (updatedQuote) ->
       $scope.quote = updatedQuote
+      Request.update
+        id: $scope.quote.request
+      ,
+        status: 'fulfilled'
+    .then ->
       toastr.success 'Accepted Offer', 'Hired'
 
   $scope.reject = ->

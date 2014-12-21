@@ -29,7 +29,7 @@ exports.show = function(req, res) {
       return Quote.populateAsync(request, {
         path: 'quotes.from',
         model: User,
-        select: 'email name phone website'
+        select: 'email name phone website firstName lastName'
       });
     })
     .then(
@@ -58,7 +58,7 @@ exports.myRequests = function (req, res) {
       return Quote.populateAsync(request, {
         path: 'quotes.from',
         model: User,
-        select: 'email name phone website'
+        select: 'email name phone website firstName lastName'
       });
     })
     .then(

@@ -38,7 +38,7 @@ angular.module 'taskyApp'
     getServicesAsArray: ->
       selectedServices = _.omit(_data.services, (service) ->
         !service.selected || service.id == 'other')
-      _.values selectedServices
+      _.keys selectedServices
 
     getOtherService: ->
       _data.services?.other?.value if _data.services?.other?.selected

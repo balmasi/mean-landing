@@ -135,16 +135,32 @@
     transition: all 0.5s;
     cursor: pointer;
     padding-top: 2rem;
-    height: 30rem;
+    min-height: 30rem;
     background: white;
     border: #ddd 1px solid;
     border-radius: 0.5rem;
     text-align: center;
     margin-bottom: 2rem;
 
+    &.fulfilled {
+      background: #F0F4F0;
+    }
+
     &:hover {
       transform: scale(1.02);
       border-color: #888;
+    }
+
+    h3 {
+      font-size: 2rem;
+    }
+  }
+
+  .quote-list {
+    @extend .list-simple;
+    text-align: left;
+    img {
+      vertical-align: middle;
     }
   }
 

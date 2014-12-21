@@ -36,6 +36,10 @@ var RequestSchema = new Schema({
       }
     ],
     default: []
+  },
+  date_created: {
+    type: Date,
+    default: Date.now
   }
 });
 

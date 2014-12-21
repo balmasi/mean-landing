@@ -97,6 +97,8 @@ Category.remove({}).exec()
         Pro.find({}).remove(function(){
           Pro.create({
             role: 'user',
+            firstName: 'Hasan',
+            lastName: 'Speedy',
             provider: 'local',
             name: 'Speedy Glass',
             email: 'speedy@speed.com',

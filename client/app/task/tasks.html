@@ -5,10 +5,25 @@
         <div class="col-xs-12 col-sm-4"
              ng-repeat="r in requests"
              ng-click="goToQuotes(r)">
-            <div class="index-task-item col-xs-12">
+            <div class="index-task-item col-xs-12" ng-class="{ 'fulfilled' : r.status == 'fulfilled' }">
                 <h4 class="task-title">{{r.category.name}}</h4>
                 <p class="subtle">Created 2 days ago</p>
                 <hr/>
+                <div ng-hide="hasQuotes(r)" class="text-center">
+                    <h3>No quotes... Yet</h3>
+                    <p>Please allow some time for local professionals to review your
+                        request and send you a quote.</p>
+                </div>
+                <div ng-show="hasQuotes()">
+                    <ul class="quote-list" >
+                        <li ng-repeat="q in r.quotes">
+                            <img src="http://placehold.it/35x35" class="img-circle"/>
+                            <strong>{{q.from.name}}</strong>
+                             {{q.rate.value | currency:'$':0 }} {{q.rate.method == 'hourly' ? '/Hr' : q.rate.method}}
+                        </li>
+
+                    </ul>
+                </div>
             </div>
         </div>
     </section>

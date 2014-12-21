@@ -22,6 +22,11 @@
   }
 }
 
+.list-simple {
+  padding-left: 0;
+  list-style: none;
+}
+
 ::-webkit-scrollbar {
   background: #fff;
   width: 6px;
