@@ -57,7 +57,7 @@ exports.update = function(req, res) {
   Quote.findById(req.params.id, function (err, quote) {
     if (err) { return handleError(res, err); }
     if(!quote) { return res.send(404); }
-    var updated = _.merge(quote, req.body);
+    var updated = _.extend(quote, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, quote);

@@ -7,8 +7,3 @@ angular.module 'taskyApp'
   ,
     update:
       method: 'PUT'
-
-    getForm:
-      method: 'GET'
-      url: '/api/requests/:category_route/form'
-      cache: true

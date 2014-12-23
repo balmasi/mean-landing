@@ -37,6 +37,21 @@ exports.subcategories = function( req, res ) {
     );
 };
 
+exports.showByRoute = function (req, res) {
+  var category = req.params.category;
+  if (typeof category === 'undefined') return handleError(res, 'Category route not defined in form fetch');
+
+  Category.findOneAsync({
+    route: category
+  })
+    .then(function(cat) {
+      res.status(200).json(cat);
+    })
+    .catch (function(err) {
+      return handleError(res, err);
+  });
+};
+
 // Get a single category
 exports.show = function(req, res) {
   Category.findById(req.params.id, function (err, category) {

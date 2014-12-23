@@ -5,26 +5,44 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var CategorySchema = new Schema({
+  // Route such as request/:route . maps to this category
   route: String,
+  // name such as 'Math Tutoring' , shows up in search
   name: {
     type: String,
     required: true
   },
+  // e.g. math tutor
+  actor: String,
+  // e.g. math tutors
+  actor_plural: String,
+  // e.g. teach math
+  action: String,
+  // Null if 'service', Category ID if category BUCKET
   parent: {
     type: Schema.Types.ObjectId,
+    ref: 'Category',
     default: null,
     index: true
   },
-  credits: {
+  // Task Credits charged per introduction
+  credits_required: {
     type: Number
   },
-  actor: String,
-  action: String,
+  travel_types: {
+    type: [ String ],
+    enum: ['tocustomer', 'topro', 'remote'],
+    default: ['tocustomer', 'topro', 'remote']
+  },
+  // If appointment, gets dropdown, else just when/howlong
+  scheduling_type: {
+    type: String,
+    enum: ['appointment', 'event']
+  },
   questions: [
     Question.schema
   ]
-
-
+  // TODO: Restrict quote types per category? Fixed,hourly, need more info
 });
 
 

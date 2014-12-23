@@ -2,8 +2,8 @@
 
 angular.module 'taskyApp'
 .controller 'TaskCtrl', ($scope, requests, $state) ->
-  # This controller LISTS the Customer's outstanding Tasks
   $scope.pageVariables.pageClass = 'page-tasks'
+
   $scope.requests = requests
 
   $scope.hasQuotes = (r) ->
@@ -29,6 +29,9 @@ angular.module 'taskyApp'
 
 .controller 'QuoteShowCtrl', ($scope, $stateParams, me, Quote, Request, toastr) ->
   $scope.quote = _.findWhere $scope.quotes , { _id: $stateParams.offerId }
+  # Delete version since we dont have revision-sensitive operations
+  delete $scope.quote.__v
+
   $scope.messages = $scope.quote.messages
   $scope.me = me
 
@@ -40,24 +43,30 @@ angular.module 'taskyApp'
   $scope.hire = ->
     Quote.changeStatus $scope.quote, 'hired'
     .then (updatedQuote) ->
-      $scope.quote = updatedQuote
-      Request.update
-        id: $scope.quote.request
-      ,
-        status: 'fulfilled'
+      $scope.quote.status = updatedQuote.status
+      if updatedQuote.status == 'hired'
+        Request.update
+          id: $scope.quote.request
+        ,
+          status: 'fulfilled'
     .then ->
       toastr.success 'Accepted Offer', 'Hired'
 
   $scope.reject = ->
     Quote.changeStatus $scope.quote, 'rejected'
     .then (updatedQuote) ->
-      $scope.quote = updatedQuote
+      $scope.quote.status = updatedQuote.status
       toastr.error 'Declined Offer'
 
   $scope.undoStatus = ->
     Quote.undoStatus $scope.quote
     .then (updatedQuote) ->
-      $scope.quote = updatedQuote
+      if updatedQuote.status == 'pending'
+        Request.update
+          id: $scope.quote.request
+        ,
+          status: 'active'
+      $scope.quote.status = updatedQuote.status
 
 
   getNameFromAccount = (account) ->
@@ -72,6 +81,7 @@ angular.module 'taskyApp'
     if msg.from is me._id then myName else bizName
 
   $scope.addMessage = ->
+    _messageAdded = yes
     newMessage =
       from: me._id
       message: $scope.newMessage

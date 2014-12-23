@@ -40,10 +40,15 @@ Category.remove({}).exec()
     console.log('creating subcategory');
     return Category.create(
       {
-        name: 'Intercity Moving (within 100km)',
+        name: 'Intracity Moving',
         route: 'local-moving',
         parent: movingParent.id,
-        credits: 2,
+        travel_types: ['tocustomer', 'topro', 'remote'],
+        scheduling_type: 'appointment',
+        credits_required: 2,
+        actor: 'Mover',
+        actor_plural: 'Movers',
+        action: 'help you move',
         questions: [
           {
             field_type: 'text',
@@ -101,11 +106,11 @@ Category.remove({}).exec()
             lastName: 'Speedy',
             provider: 'local',
             name: 'Speedy Glass',
-            email: 'speedy@speed.com',
-            password: 'somepass',
+            email: 'pro@pro.com',
+            password: 'pro',
             phone: '416-222-2144',
             website: 'http://www.tasky.com',
-            services: [ subcat ]
+            services: [ subcat._id ]
           }, function(err, professional) {
             if (err) console.error(err);
             console.log('PROS Populated');
@@ -119,25 +124,6 @@ Category.remove({}).exec()
             name: 'Test User',
             email: 'test@test.com',
             password: 'test'
-          }).then(function(c) {
-            console.log('CUSTOMERS populated');
-            Request.remove({}, function() {
-              Request.create({
-                category: subcat._id,
-                requested_by: c._id,
-                questions: [
-                  { question: 'Whos your daddy?',
-                    answer: 'Arnold Shwaznenigger'
-                  },
-                  {
-                    question: 'But who really?',
-                    answer: 'ok fine I dunno'
-                  }
-                ]
-              }).then(function(request) {
-                console.log ('Requests Populated')
-              });
-            });
           });
         });
       },

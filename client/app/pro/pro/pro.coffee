@@ -8,4 +8,4 @@ angular.module 'taskyApp'
     controller: 'ProCtrl'
     resolve:
       account: (Auth) ->
-        Auth.getCurrentUser()
+        Auth.getCurrentUser().$promise

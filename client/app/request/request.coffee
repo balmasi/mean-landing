@@ -9,8 +9,8 @@ angular.module 'taskyApp'
     nav: false,
     resolve:
       user: (Auth) ->
-        Auth.getCurrentUser()
-      FormData: (Request, $stateParams) ->
-        Request.getForm
-          category_route: $stateParams.categoryRoute
+        Auth.getCurrentUser().$promise
+      category: (Category, $stateParams) ->
+        Category.getByRoute
+          route: $stateParams.categoryRoute
         .$promise

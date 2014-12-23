@@ -1,12 +1,33 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'RequestCtrl', ($scope, user, FormData, Request, Auth) ->
+.controller 'RequestCtrl', ($scope, user, category, Request, Auth) ->
   $scope.pageVariables.pageClass = 'page-request'
 
-  _categoryId = FormData._id
-  $scope.questions = FormData.questions
+  _categoryId = category._id
+  $scope.category = category
+  $scope.questions = category.questions
   $scope.user = user
+
+  $scope.schedule = {}
+  # Who travels to whom
+  $scope.travel = {}
+  $scope.hasTravelType = (type) ->
+    !!~category.travel_types.indexOf type
+
+  # Used to decide how to schedule in form
+  $scope.scheduleOptions =
+    flexible: "I'm flexible"
+    asap: "As soon as possible"
+    date: "On a particular day"
+    other: "I'd need to describe it"
+
+  # km's willing to travel (customer)
+  $scope.travelOptions = [5, 10, 25, 50]
+
+
+
+
   $scope.errors = {}
 
   $scope.hasAccount = () ->
@@ -41,8 +62,19 @@ angular.module 'taskyApp'
     createRequest = () ->
       request = new Request
         requested_by: $scope.user._id
-        category: _categoryId,
+        category: _categoryId
         questions: results
+        schedule_type: $scope.schedule.scheduleType
+        schedule_details:
+          date: $scope.schedule.scheduleDate
+          time: $scope.schedule.scheduleTime
+          duration: $scope.schedule.scheduleDuration
+          description: $scope.schedule.scheduleDescription
+        travel:
+          to_pro: $scope.travel.topro
+          to_customer: $scope.travel.tocustomer
+          remote: $scope.travel.remote
+          distance: $scope.travel.distance
 
       request.$save()
         .then (res) ->

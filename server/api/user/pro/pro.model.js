@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 var UserSchema = require('../user.model').schema;
 
 var ProSchema = UserSchema.extend({
+  // Note: Other attributes shared with USER model
   name: String,
   category: {
     type: Schema.Types.ObjectId,
@@ -39,16 +40,23 @@ var ProSchema = UserSchema.extend({
     type: [ Number ],
     index: '2dsphere'
   },
+  // Incoming requests come here (TODO: change name to incoming_requests)
   requests: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Request'
     }
   ],
+  // Counter for above
   requestCount: {
     type: Number,
     index: true,
     default: 0
+  },
+  // Number of task credits, default free until first customer hires
+  credits: {
+    type: Number,
+    default: Infinity
   }
 
 });

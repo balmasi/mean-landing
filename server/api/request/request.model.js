@@ -37,6 +37,23 @@ var RequestSchema = new Schema({
     ],
     default: []
   },
+  schedule_type: {
+    type: String,
+    enum: ['flexible', 'asap', 'date', 'other'],
+    required: true
+  },
+  schedule_details: {
+    date: Date,
+    time: String,
+    duration: String,
+    description: String
+  },
+  travel: {
+    to_pro: Boolean,
+    to_customer: Boolean,
+    remote: Boolean,
+    distance: Number
+  },
   date_created: {
     type: Date,
     default: Date.now

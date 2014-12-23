@@ -71,24 +71,6 @@ exports.myRequests = function (req, res) {
 
 };
 
-exports.getForm = function( req, res ) {
-  var category = req.params.category_route;
-  if (typeof category === 'undefined') handleError(res, 'Category route not defined in form fetch');
-  Category.findOne({
-    route: category
-  }, { questions: 1 })
-    .exec()
-    .then(
-    function(result){
-      res.json(result);
-    },
-    function(err) {
-      handleError(res, err);
-    }
-  );
-
-};
-
 // Creates a new request in the DB.
 exports.create = function(req, res) {
   Request.createAsync(req.body)

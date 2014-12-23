@@ -16,6 +16,7 @@
                             name="{{q._id}}"
                             ng-options="choice.label for choice in q.choices"
                             class="form-control">
+                        <option value="">Please select an option</option>
                     </select>
                 </div>
 
@@ -41,14 +42,58 @@
                     </ul>
                 </div>
 
-                <div ng-switch-when="date" class="form-group">
+            </div>
+            <div class="scheduling">
+                <div class="form-group">
                     <label>When?</label>
-                    <div class="input-group">
+                    <select name="whenSelect" class="form-control"
+                            ng-model="schedule.scheduleType" required
+                            ng-options="k as v for (k,v) in scheduleOptions">
+                        <option value="">Choose what works best for you</option>
+                    </select>
+                </div>
+                <div ng-if="schedule.scheduleType == 'date'" class="form-group">
+                    <div class="form-group input-group col-xs-12">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input required name="{{q._id}}" ng-model="q.answer" type="date" class="form-control" placeholder="Choose a Date">
+                        <input ng-required="schedule.scheduleType == 'date'"  ng-model="schedule.scheduleDate" type="date" class="form-control" placeholder="Choose a Date">
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-6">
+                            <label>At what time?</label>
+                            <input type="text" ng-model="schedule.scheduleTime" placeholder="Optional" class="form-control"/>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label>For how long?</label>
+                            <input type="text"  ng-model="schedule.scheduleDuration" placeholder="Optional" class="form-control"/>
+                        </div>
                     </div>
                 </div>
+                <div class="form-group" ng-if="schedule.scheduleType == 'other'">
+                    <textarea required name="{{q._id}}" ng-model="schedule.scheduleDescription" rows="4" class="form-control"
+                              placeholder="Describe how and when you'd like to set up an appointment"></textarea>
+                </div>
+            </div>
+            <div class="location">
+                <fieldset>
+                    <div class="form-group">
+                        <label>Where can the {{ category.name }} take place?</label>
+                        <div class="input-group" ng-if="hasTravelType('tocustomer')">
+                            <label><input ng-model="travel.tocustomer" value="tocustomer" type="checkbox"/> The {{category.actor | lowercase }} travels to me.</label>
+                        </div>
+                        <div class="input-group" ng-if="hasTravelType('topro')">
+                            <label><input ng-model="travel.topro" value="topro" type="checkbox"/> I can travel to the {{ category.actor | lowercase }} for up to
+                                <select ng-model="travel.distance" ng-options="distance + ' km' for distance in travelOptions"
+                                        ng-required="travel.topro">
+                                    <option value="">Please Specify Distance</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="input-group" ng-if="hasTravelType('remote')">
+                            <label><input ng-model="travel.remote" value="remote" type="checkbox"/> This takes place online or over the phone. </label>
+                        </div>
+                    </div>
 
+                </fieldset>
             </div>
             <div class="auth-fields row"
                  ng-if="!hasAccount()">

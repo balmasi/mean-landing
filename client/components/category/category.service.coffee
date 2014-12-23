@@ -18,3 +18,8 @@ angular.module 'taskyApp'
       method: 'GET'
       url: '/api/categories/:id/sub'
       isArray: true
+
+    getByRoute:
+      method: 'GET'
+      url: '/api/categories/route/:route'
+      cache: true

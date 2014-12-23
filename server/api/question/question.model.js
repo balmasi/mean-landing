@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var QuestionSchema = new Schema({
   field_type: {
     type: String,
-    enum: ['text', 'date', 'select', 'checklist'],
+    enum: ['text', 'date', 'select', 'checklist', 'radio'],
     required: true,
     default: 'text'
   },
