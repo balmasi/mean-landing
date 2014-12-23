@@ -3,6 +3,22 @@
 var _ = require('lodash');
 var Category = require('./category.model');
 
+// Search given search term
+exports.search = function(req, res) {
+  Category
+    .find(
+    { $text : { $search : req.params.searchTerm },
+      parent: { $type: 7 } // ObjectId type only
+    },
+    { score : { $meta: "textScore" } }
+  )
+    .sort({ score : { $meta : 'textScore' } })
+    .exec(function(err, results) {
+      if (err) handleError(res, err);
+      return res.json(200, results);
+    });
+};
+
 // Get list of categorys
 exports.index = function(req, res) {
   Category.find(function (err, categorys) {

@@ -23,3 +23,9 @@ angular.module 'taskyApp'
       method: 'GET'
       url: '/api/categories/route/:route'
       cache: true
+
+    search:
+      method: 'GET'
+      url: '/api/categories/search/:searchTerm'
+      cache: true
+      isArray: true

@@ -45,6 +45,12 @@ var CategorySchema = new Schema({
   // TODO: Restrict quote types per category? Fixed,hourly, need more info
 });
 
+CategorySchema.index({
+  name: 'text',
+  actor: 'text',
+  action: 'text'
+},
+  { default_language: "en" });
 
 // ---- Methods ----
 

@@ -1,0 +1,10 @@
+<form novalidate>
+    <div class="form-group input-group">
+        <input type="text" ng-model="searchTerm"
+               placeholder="Painter, Mover, etc."
+               typeahead="category.name for category in getCategories($viewValue)"
+               typeahead-min-length="3"
+               typeahead-loading="loading" class="form-control">
+        <i ng-show="loading" class="fa fa-refresh"></i>
+    </div>
+</form>

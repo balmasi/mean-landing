@@ -6,6 +6,7 @@ var controller = require('./category.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/search/:searchTerm', controller.search);
 router.get('/route/:category', controller.showByRoute);
 router.get('/root', controller.root);
 router.get('/:id/sub', controller.subcategories);
