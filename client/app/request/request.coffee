@@ -3,7 +3,7 @@
 angular.module 'taskyApp'
 .config ($stateProvider) ->
   $stateProvider.state 'request',
-    url: '/request/:categoryRoute'
+    url: '/request/:categoryRoute/:latLng'
     templateUrl: 'app/request/form.html'
     controller: 'RequestCtrl',
     nav: false,

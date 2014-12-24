@@ -1,0 +1,23 @@
+[text-spinner]{
+  position: relative;
+  display: inline;
+
+  .spinner-text-item {
+    transition: all 1s ease;
+
+    &.ng-enter {
+      animation: fadeInDown 0.8s;
+      &.ng-enter-active {
+        display: inline-block;
+      }
+    }
+
+    &.ng-leave {
+      animation: fadeOutDown 0.8s;
+
+      &.ng-leave-active {
+        display:none;
+      }
+    }
+  }
+}

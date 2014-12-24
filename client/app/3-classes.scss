@@ -16,6 +16,7 @@
   margin: 0 auto;
 }
 
+
 .col-img {
   img {
     max-width: 100%;
@@ -175,6 +176,11 @@ h3 {
 .container {
   padding-left: 45px;
   padding-right: 45px;
+}
+
+.page-container {
+  @extend .container;
+  padding-top: 4.5rem;
 }
 
 .section {

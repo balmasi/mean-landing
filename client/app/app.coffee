@@ -10,7 +10,9 @@ angular.module 'taskyApp', [
   'ngMessages',
   'ui.bootstrap'
 ]
-.config ($urlRouterProvider, $locationProvider, $httpProvider, toastrConfig) ->
+.config ($window, $urlRouterProvider, $locationProvider, $httpProvider, toastrConfig) ->
+  $window.Stripe.setPublishableKey('pk_test_eCdeZLHKYQbI6rsnCKWzVvED');
+
   $urlRouterProvider
   .otherwise '/'
 

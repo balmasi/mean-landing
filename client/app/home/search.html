@@ -1,10 +1,48 @@
-<form novalidate>
-    <div class="form-group input-group">
-        <input type="text" ng-model="searchTerm"
-               placeholder="Painter, Mover, etc."
-               typeahead="category.name for category in getCategories($viewValue)"
-               typeahead-min-length="3"
-               typeahead-loading="loading" class="form-control">
-        <i ng-show="loading" class="fa fa-refresh"></i>
+<div class="page-container">
+    <div class="banner">
+        <div class="banner-text">
+            <h1 class="text-spinner">The Easiest Way<br/>
+                to Hire a <div text-spinner="spinnerTexts"></div>
+            </h1>
+
+            <h2 class="text-sub">Compare quotes and prices
+               <span class="sm-block">from local professionals</span>
+            </h2>
+        </div>
+        <div class="search-box-wrapper">
+            <fieldset class="search-box">
+                <form novalidate ng-submit="newRequest()">
+                    <div class="form-group">
+                        <label>What do you need?</label>
+                        <div class="input-group">
+                            <input type="text" ng-model="searchTerm"
+                                   placeholder="Painter, Mover, etc."
+                                   typeahead="category.name for category in getCategories($viewValue)"
+                                   typeahead-min-length="3"
+                                   typeahead-on-select="setCategory($item)"
+                                   typeahead-loading="loading" class="form-control">
+                            <span class="loader-addon" ng-show="false">$</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Where are you located?</label>
+                        <div class="input-group">
+                            <input type="text" ng-model="addressSearchTerm"
+                                   ng-model-options="{ updateOn: 'default blur', debounce: {'default': 800, 'blur': 0} }"
+                                   placeholder="Address or postal code"
+                                   typeahead="add.formatted_address for add in getAddresses($viewValue)"
+                                   typeahead-editable="false"
+                                   typeahead-min-length="3"
+                                   typeahead-loading="loading" class="form-control"
+                                   typeahead-on-select="setLatLng($item, $model, $label)">
+                            <span class="loader-addon" ng-show="false">$</span>
+                        </div>
+                    </div>
+                    <input class="btn btn-blue" type="submit" value="Get Started"/>
+                </form>
+            </fieldset>
+        </div>
     </div>
-</form>
+
+</div>
+

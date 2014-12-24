@@ -1,0 +1,85 @@
+.page-search {
+  background-image: url('#{$img}/search-bg.jpeg');
+  background-size: cover;
+
+  .input-group {
+    width: 100%;
+  }
+
+  .banner {
+    height: auto;
+    padding-top: 10rem;
+    @include make-row();
+
+    @include screen-xs-max {
+      padding-top: 0;
+
+      .text-spinner, .text-sub { text-align: center; }
+      .search-box-wrapper { padding-top: 5rem; }
+      .search-box {
+        width: 90%;
+        max-width: 40rem;
+      }
+      .banner-text {
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  .banner-text {
+    margin-top: 5.5rem;
+    @extend .dark;
+    @include make-xs-column(12);
+    @include make-sm-column-push(6);
+    @include make-sm-column(6);
+  }
+
+  .search-box-wrapper {
+    @include make-xs-column(12);
+    @include make-sm-column-pull(6);
+    @include make-sm-column(6);
+  }
+
+  .search-box {
+    @extend .dark;
+    padding: 2rem;
+    width: 80%; max-width: 25rem;
+    margin: 0 auto;
+    text-align: left;
+    border-radius: 1rem;
+
+    .form-control {
+      &::placeholder {
+        color:white;
+      }
+    }
+
+    .input-group label {
+      font-weight: 200;
+      font-size: 2rem;
+    }
+
+    .btn { width: 100%; margin-top: 1rem; }
+
+  }
+  .text-spinner {
+    font-size: 4rem;
+    text-align: left;
+
+    .spinner-text-item {
+      color: $brand-primary;
+    }
+  }
+
+  .text-sub {
+    font-size: $font-size-h3;
+    line-height: 1.2;
+    font-weight: 100;
+    text-align: left;
+    margin-top: 4rem;
+  }
+
+  .vam-child {
+    float: none;
+  }
+}

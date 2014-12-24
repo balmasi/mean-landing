@@ -48,3 +48,11 @@ $path: "bootstrap";
     @content;
   }
 }
+
+.sm-block {
+  display: block;
+
+  @include screen-xs-max {
+    display: inline-block;
+  }
+}
