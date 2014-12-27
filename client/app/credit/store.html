@@ -1,0 +1,28 @@
+<div id="prices" class="section">
+    <div class="container">
+        <header class="section-header">
+            <h2>Our Prices</h2>
+            <div class="section-description">
+                <p>Check out our plans</p>
+            </div>
+        </header>
+
+        <div class="row">
+            <div class="price-item col-sm-4 col-xs-12 animated fadeIn"
+                    ng-repeat="p in packages">
+                <div class="price-block selected">
+                    <h3 class="title">{{p.credits}} Credits</h3>
+                    <div class="amount">
+                        <div class="amount-i">{{p.price | currency:"$":0 }}
+                            <span ng-show="k == 'medium'" class="promo">-10%</span></div>
+                    </div>
+                    <ul class="inf">
+                        <li>Price per credit: {{ p.ppc | currency:"$":2 }} </li>
+                    </ul>
+                    <div class="buy"><a href="#" ng-click="buy(p, $event)">Buy now</a></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

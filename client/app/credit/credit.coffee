@@ -2,10 +2,10 @@
 
 angular.module 'taskyApp'
 .config ($stateProvider) ->
-  $stateProvider.state 'pro',
-    url: '/pro'
-    templateUrl: 'app/pro/pro/pro.html'
-    controller: 'ProCtrl'
+  $stateProvider.state 'buy-credits',
+    url: '/credits'
+    templateUrl: 'app/credit/store.html'
+    controller: 'CreditCtrl'
     resolve:
       account: (Auth) ->
         Auth.getCurrentUser().$promise

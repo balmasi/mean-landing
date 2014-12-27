@@ -60,6 +60,8 @@
 <script src="bower_components/json3/lib/json3.min.js"></script>
 <![endif]-->
 <!-- build:js({client,node_modules}) app/vendor.js -->
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -88,6 +90,7 @@
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-toastr/dist/angular-toastr.js"></script>
+    <script src="bower_components/angular-timeago/src/timeAgo.js"></script>
     <!-- endbower -->
 <!-- endbuild -->
 
@@ -102,9 +105,10 @@
 <script src="app/admin/admin.js"></script>
 <script src="app/admin/businesses/business.js"></script>
 <script src="app/admin/users/users.js"></script>
+<script src="app/credit/credit.js"></script>
 <script src="app/home/home.js"></script>
 <script src="app/home/search.js"></script>
-<script src="app/pro/pro/pro.js"></script>
+<script src="app/pro/pro.js"></script>
 <script src="app/request/request.js"></script>
 <script src="app/task/task.js"></script>
 <script src="components/auth/auth.js"></script>
@@ -118,6 +122,7 @@
 <script src="components/directives/forms/standard-form-errors.js"></script>
 <script src="components/directives/forms/unmask.js"></script>
 <script src="components/navbar/navbar.js"></script>
+<script src="components/payment/payment.js"></script>
 <script src="components/quote/quote.js"></script>
 <script src="components/request/request.js"></script>
 <script src="components/textSpinner/textSpinner.js"></script>

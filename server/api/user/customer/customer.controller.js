@@ -36,7 +36,7 @@ controller.create = function (req, res, next) {
   newCustomer.save(function(err, customer) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: customer._id }, config.secrets.session, { expiresInMinutes: 60*5 });
-    res.json({ token: token });
+    res.json({ token: token, accountType: 'Customer' });
   });
 };
 

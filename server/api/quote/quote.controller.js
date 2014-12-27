@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var Quote = require('./quote.model');
 var Request = require('../request/request.model');
+var Pro = require('../user/pro/pro.model');
 
 // Get list of quotes
 exports.index = function(req, res) {
@@ -26,28 +27,44 @@ exports.getByRequestAndPro = function(req, res) {
   var proId = req.params.proId;
   var reqId = req.params.requestId;
   Quote.findOne({
-    from: proId,
-    request: reqId
-  },
-  function(err, quote) {
-    if(err) { return handleError(res, err); }
-    if(!quote) { return res.send(404); }
-    return res.json(quote);
-  });
+      from: proId,
+      request: reqId
+    },
+    function(err, quote) {
+      if(err) { return handleError(res, err); }
+      if(!quote) { return res.send(404); }
+      return res.json(quote);
+    });
 };
 
 // Creates a new quote in the DB.
 exports.create = function(req, res) {
-  Quote.create(req.body, function(err, quote) {
-    if(err) { return handleError(res, err); }
-    Request.update(
-      { _id: quote.request },
-      { $addToSet: { quotes: quote._id }}
-    , function(err, request) {
-        if (err) return handleError(res, err);
-        if (!request) return res.send(404, "Request for this quote could not be found");
-        return res.json(201, quote);
-      });
+  var credits_required = req.body.credits_required;
+  var proId = req.body.from;
+  var proCredits;
+  Pro.findByIdAsync(proId).then(function(pro){
+    proCredits = pro.credits
+    if (proCredits < credits_required) {
+      return handleError(res, new Error("Not Enough Credits to Quote"));
+    }
+    pro.credits -= credits_required;
+    pro.saveAsync().catch(function(err) {
+      return handleError(res, new Error(err));
+    });
+    return proCredits - credits_required;
+  })
+  .then(function(newCredits){
+    Quote.create(req.body, function(err, quote) {
+      if(err) { return handleError(res, err); }
+      Request.update(
+        { _id: quote.request },
+        { $addToSet: { quotes: quote._id }}
+        , function(err, request) {
+          if (err) return handleError(res, err);
+          if (!request) return res.send(404, "Request for this quote could not be found");
+          return res.json(201, { quote: quote, request: request, credits: newCredits });
+        });
+    });
   });
 };
 

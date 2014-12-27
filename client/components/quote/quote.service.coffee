@@ -25,7 +25,8 @@ angular.module 'taskyApp'
       quoteCopy.last_status = quote.status
       quoteCopy.status = newStatus
       quoteCopy.status_changed_on = new Date()
-      this.update({ id: quote._id} , quoteCopy).$promise
+      return this.update({ id: quote._id} , quoteCopy).$promise
+    #TODO: Return promise here
 
   QuoteService.undoStatus = (quote) ->
     if quote.last_status?
@@ -34,7 +35,8 @@ angular.module 'taskyApp'
       quoteCopy.status = quote.last_status
       quoteCopy.last_status = undefined if quote.status is 'pending'
       quoteCopy.status_changed_on = new Date()
-      this.update({ id: quote._id} , quoteCopy).$promise
+      return this.update({ id: quote._id} , quoteCopy).$promise
+    #TODO: return promise here.
 
   return QuoteService
 

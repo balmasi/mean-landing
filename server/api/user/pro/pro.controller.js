@@ -1,6 +1,8 @@
 'use strict';
 
 var Pro = require('./pro.model');
+var Customer = require('../customer/customer.model');
+var Category = require('../../category/category.model');
 var config = require('../../../config/environment');
 var jwt = require('jsonwebtoken');
 
@@ -42,6 +44,38 @@ controller.show = function (req, res, next) {
 };
 
 /**
+ * Get a single pro
+ */
+controller.me = function (req, res, next) {
+  var proId = req.user._id;
+
+  Pro.findById(proId, '-salt -hashedPassword')
+    .populate('requests').exec()
+    .then(
+      function(pro) {
+    return Category.populateAsync(pro, {
+      path: 'requests.category',
+      model: Category,
+      select: 'credits_required name scheduling_type'
+    });
+  })
+    .then(function(pro) {
+      return Customer.populateAsync(pro, {
+        path: 'requests.requested_by',
+        model: Customer,
+        select: 'firstName lastName email phone'
+      });
+    })
+    .then(function (pro) {
+      pro.credits = pro.credits == Infinity ? Infinity : pro.credits;
+      return res.status(200).json(pro);
+    },
+    function(err) {
+      return next(err);
+    });
+};
+
+/**
  * Creates a new pro
  */
 controller.create = function (req, res, next) {
@@ -51,7 +85,7 @@ controller.create = function (req, res, next) {
   newPro.save(function(err, pro) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: pro._id }, config.secrets.session, { expiresInMinutes: 60*5 });
-    res.json({ token: token });
+    res.json({ token: token, accountType: 'Pro' });
   });
 };
 

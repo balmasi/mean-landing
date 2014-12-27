@@ -2,7 +2,12 @@
 
 angular.module 'taskyApp'
 .factory 'Auth', ($location, $rootScope, $http, User, Customer, Pro, $cookieStore, $q) ->
-  currentUser = if $cookieStore.get 'token' then User.get() else {}
+  currentUserAccountType = $cookieStore.get 'accountType'
+  currentUser = switch
+    when currentUserAccountType is 'Pro' then Pro.get()
+    when currentUserAccountType is 'Customer' then User.get()
+    when currentUserAccountType is 'User' then User.get()
+    else {}
 
   ###
   Authenticate user and save token
@@ -19,7 +24,13 @@ angular.module 'taskyApp'
 
     .success (data) ->
       $cookieStore.put 'token', data.token
-      User.get().$promise.then (currentUser) ->
+      $cookieStore.put 'accountType', data.accountType
+      promise = switch
+        when data.accountType == 'Pro' then Pro.get().$promise
+        when data.accountType == 'Customer' then User.get().$promise
+        else User.get().$promise
+
+      promise.then (currentUser) ->
         deferred.resolve currentUser
       callback?()
 
@@ -38,6 +49,7 @@ angular.module 'taskyApp'
   ###
   logout: ->
     $cookieStore.remove 'token'
+    $cookieStore.remove 'accountType'
     currentUser = {}
     return
 
@@ -58,6 +70,7 @@ angular.module 'taskyApp'
     Entity.save user,
       (data) ->
         $cookieStore.put 'token', data.token
+        $cookieStore.put 'accountType', data.accountType
         currentUser = Entity.get()
         callback? user
 
@@ -139,3 +152,6 @@ angular.module 'taskyApp'
   ###
   getToken: ->
     $cookieStore.get 'token'
+
+  getAccountType: ->
+    $cookieStore.get 'accountType'

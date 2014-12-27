@@ -1,0 +1,114 @@
+.page-credits {
+  .section-header {
+    margin: 0 0 50px;
+  }
+  .section-description {
+    font-size: 20px;
+    font-weight: 100;
+    line-height: 30px;
+    text-align: center;
+  }
+
+  // Default section
+  .section {
+    padding: 80px 0;
+    position: relative;
+  }
+
+  .price-item {
+    margin-bottom: 40px;
+  }
+  .price-block {
+    background: #fff;
+    border: 1px solid lighten($gray, 50%);
+    color: $text-color;
+    max-width: 380px;
+    margin: 0 auto;
+    text-align: center;
+
+    .title {
+      background: $gray-lighter;
+      color: $text-color;
+      font-size: 34px;
+      padding: 15px 0;
+    }
+    .amount {
+      font-size: 90px;
+      font-weight: 100;
+      line-height: 90px;
+      margin: 20px 0 0;
+      position: relative;
+
+      .amount-i {
+        display: inline-block;
+        position: relative;
+      }
+      $promo-size: 40px;
+      .promo {
+        background: $brand-primary;
+        border-radius: 100%;
+        color: #fff;
+        cursor: default;
+        display: block;
+        font-size: 15px;
+        line-height: $promo-size;
+        position: absolute;
+        right: -30px;
+        top: -10px;
+        text-align: center;
+        width: $promo-size;
+        height: $promo-size;
+
+        transition: all .2s ease;
+
+        &:hover {
+          @include scale(1.2, 1.2);
+        }
+      }
+    }
+    .inf {
+      font-size: 16px;
+      list-style: none;
+      margin: 20px 30px;
+      padding: 0;
+
+      li {
+        border-bottom: 1px solid lighten($gray, 50%);
+        padding: 15px 0;
+
+        &:last-child {
+          border: 0;
+        }
+      }
+    }
+    .buy a {
+      background: $dark-color;
+      color: #fff;
+      display: block;
+      font-weight: 100;
+      font-size: 28px;
+      padding: 25px 0;
+
+      transition: background .2s ease;
+
+      &:hover {
+        background: lighten($dark-color, 10%);
+        text-decoration: none;
+      }
+    }
+    &.selected {
+      border-color: $brand-primary;
+
+      .amount {
+        color: $brand-primary;
+      }
+      .buy a {
+        background: $brand-primary;
+
+        &:hover {
+          background: lighten($brand-primary, 5%);
+        }
+      }
+    }
+  }
+}

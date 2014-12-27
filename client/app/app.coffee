@@ -8,10 +8,10 @@ angular.module 'taskyApp', [
   'toastr',
   'ui.router',
   'ngMessages',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'yaru22.angular-timeago'
 ]
-.config ($window, $urlRouterProvider, $locationProvider, $httpProvider, toastrConfig) ->
-  $window.Stripe.setPublishableKey('pk_test_eCdeZLHKYQbI6rsnCKWzVvED');
+.config ($urlRouterProvider, $locationProvider, $httpProvider, toastrConfig) ->
 
   $urlRouterProvider
   .otherwise '/'
@@ -35,9 +35,9 @@ angular.module 'taskyApp', [
   # Intercept 401s and redirect you to login
   responseError: (response) ->
     if response.status is 401
-      $location.path '/login'
       # remove any stale tokens
       $cookieStore.remove 'token'
+      $location.path '/login'
 
     $q.reject response
 

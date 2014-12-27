@@ -101,20 +101,36 @@ Category.remove({}).exec()
         console.log ('finished populating categories');
         Pro.find({}).remove(function(){
           Pro.create({
-            role: 'user',
-            firstName: 'Hasan',
-            lastName: 'Speedy',
-            provider: 'local',
-            name: 'Speedy Glass',
-            email: 'pro@pro.com',
-            password: 'pro',
-            phone: '416-222-2144',
-            website: 'http://www.tasky.com',
-            services: [ subcat._id ]
-          }, function(err, professional) {
-            if (err) console.error(err);
-            console.log('PROS Populated');
-          });
+              role: 'user',
+              firstName: 'Hasan',
+              lastName: 'Speedy',
+              provider: 'local',
+              name: 'Speedy Glass',
+              email: 'pro@pro.com',
+              credits: Infinity,
+              password: 'pro',
+              phone: '416-222-2144',
+              website: 'http://www.tasky.com',
+              services: [ subcat._id ]
+            },
+            {
+              role: 'user',
+              firstName: 'Pro2',
+              lastName: 'Mover',
+              provider: 'local',
+              name: 'Speedy Glass',
+              email: 'pro2@pro.com',
+              credits: 3,
+              password: 'pro',
+              phone: '416-222-2144',
+              website: 'http://www.tasky.com',
+              services: [ subcat._id ]
+            }
+            , function(err, professional) {
+              if (err) console.error(err);
+              console.log('PROS Populated');
+            });
+
         });
 
         Customer.find({}).remove(function() {

@@ -15,8 +15,30 @@
   }
 }
 
+.modal-content {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
 .quote-modal {
   padding: 2rem 1rem;
+  .credit-head {
+    margin-bottom: 2rem;
+    padding: 0 1.5rem;
+  }
+  .credit-number {
+    font-weight: bold;
+  }
+  .fa-circle {
+    color: $brand-primary;
+  }
+
+  .head-stat {
+    margin-right: 1rem;
+  }
+  .foot-stat {
+    margin: 2rem 0 0;
+  }
 
   .messages {
     @include make-sm-column(12);
@@ -28,10 +50,17 @@
       padding-top: 1rem;
       border-bottom: 1px solid #cccccc;
 
+      .time-stamp {
+        float: right;
+      }
+
       &.theirs {
         text-align: right;
         img { @include make-xs-column-push(10);}
         .message-text { @include make-xs-column-pull(2); }
+        .time-stamp {
+          float: left;
+        }
       }
 
       .message-text p {
@@ -41,7 +70,7 @@
 
   }
   .empty-instruction {
-    padding: 2rem 0;
+    padding: 2.5rem 1.5rem;
     text-align: center;
 
     h3 {

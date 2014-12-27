@@ -24,6 +24,10 @@ var QuoteSchema = new Schema({
   },
   messages:[
     {
+      date: {
+        type: Date,
+        default: Date.now
+      },
       from: {
         type: Schema.Types.ObjectId,
         ref: 'User'

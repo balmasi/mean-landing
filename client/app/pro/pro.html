@@ -1,0 +1,31 @@
+<div class="container page-container">
+    <div class="col-sm-3">
+        <label>Status</label>
+        <ul class="list-simple">
+            <li><label><input ng-model="filters.active" type="checkbox"/> Pending Review</label></li>
+            <li><label><input ng-model="filters.inactive" type="checkbox"/> Inactive</label></li>
+            <li><label><input ng-model="filters.fulfilled" type="checkbox"/> Fulfilled</label></li>
+        </ul>
+    </div>
+    <div class="col-sm-9">
+        <accordion close-others="true">
+            <accordion-group
+                    ng-repeat="r in requests | filter:statusFilter" class="{{r.status}}"
+                    ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+                <accordion-heading >
+                    <div class="clearfix">
+                        {{r.category.name}} request from {{r.requested_by.firstName}}
+                        <div class="pull-right">
+                            <a ng-click="openQuoteModal(r, $event)"
+                               class="btn btn-green">Workspace <i class="fa fa-chevron-circle-right"></i></a>
+                        </div>
+                    </div>
+                </accordion-heading>
+                <div class="question" ng-repeat="q in r.questions">
+                    <strong>{{q.question}}</strong>
+                    <p>{{q.answer}}</p>
+                </div>
+            </accordion-group>
+        </accordion>
+    </div>
+</div>
