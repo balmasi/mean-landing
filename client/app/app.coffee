@@ -45,4 +45,5 @@ angular.module 'taskyApp', [
   # Redirect to login if route requires auth and you're not logged in
   $rootScope.$on '$stateChangeStart', (event, next) ->
     Auth.isLoggedInAsync (loggedIn) ->
+      return if next.name in ['customer-signup', 'login', 'pro-signup.category']
       $location.path "/login" if next.authenticate and not loggedIn

@@ -8,5 +8,5 @@ angular.module 'taskyApp'
     controller: 'ProCtrl'
     authenticate: true
     resolve:
-      account: (Auth, Pro) ->
-        Auth.getCurrentUser().$promise
+      account: (Auth) ->
+        Auth.getCurrentUser()

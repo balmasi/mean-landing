@@ -6,7 +6,7 @@
         </p>
     </div>
     <div ng-if="!shouldBuyMoreCredits()">
-        <div class="credit-head">
+        <div class="credit-head" ng-if="canQuote()">
             <span class="head-stat">Credits Available  <i class="fa fa-circle"></i> <span class="credit-number">{{ getCredits() }}</span></span>
         </div>
         <div ng-if="canQuote()" class="empty-instruction">

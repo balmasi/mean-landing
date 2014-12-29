@@ -4,7 +4,7 @@ angular.module 'taskyApp'
 .controller 'ProCtrl', ($scope, account, $modal) ->
   $scope.pageVariables.pageClass = 'page-pro-requests'
   $scope.account = account
-  $scope.account.credits = 'Unlimited' if account.credits == null
+  $scope.account.credits = 'Unlimited' if account?.credits == null
   $scope.requests = account.requests
 
   $scope.filters =
@@ -14,6 +14,9 @@ angular.module 'taskyApp'
 
   $scope.statusFilter = (req) ->
     $scope.filters[req.status]
+
+  $scope.multipleChoices = (q) ->
+    _.isArray q.answer
 
   $scope.openQuoteModal = (request, e) ->
     e.stopPropagation()

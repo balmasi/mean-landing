@@ -6,7 +6,7 @@ var Category = require('../../category/category.model');
 var config = require('../../../config/environment');
 var jwt = require('jsonwebtoken');
 
-var controller = require('../user.controller');
+var userCtrl = require('../user.controller');
 
 
 var validationError = function(res, err) {
@@ -18,7 +18,7 @@ var validationError = function(res, err) {
  * Get list of pros
  * restriction: 'admin'
  */
-controller.index = function(req, res) {
+exports.index = function(req, res) {
   Pro.find({
     _accountType: 'Pro'
   }, '-salt -hashedPassword', function (err, pros) {
@@ -30,7 +30,7 @@ controller.index = function(req, res) {
 /**
  * Get a single pro
  */
-controller.show = function (req, res, next) {
+exports.show = function (req, res, next) {
   var proId = req.params.id;
 
   Pro.findById(proId, '-salt -hashedPassword')
@@ -46,7 +46,7 @@ controller.show = function (req, res, next) {
 /**
  * Get a single pro
  */
-controller.me = function (req, res, next) {
+exports.me = function (req, res, next) {
   var proId = req.user._id;
 
   Pro.findById(proId, '-salt -hashedPassword')
@@ -67,7 +67,6 @@ controller.me = function (req, res, next) {
       });
     })
     .then(function (pro) {
-      pro.credits = pro.credits == Infinity ? Infinity : pro.credits;
       return res.status(200).json(pro);
     },
     function(err) {
@@ -78,7 +77,7 @@ controller.me = function (req, res, next) {
 /**
  * Creates a new pro
  */
-controller.create = function (req, res, next) {
+exports.create = function (req, res, next) {
   var newPro = new Pro(req.body);
   newPro.provider = 'local';
   newPro.role = 'user';
@@ -89,12 +88,20 @@ controller.create = function (req, res, next) {
   });
 };
 
+exports.destroy = function(req,res,next) {
+  userCtrl.destroy(req,res,next);
+};
+
+exports.changePassword = function(req,res,next) {
+  userCtrl.changePassword;
+};
+
 
 /**
  * Authentication callback
  */
-controller.authCallback = function(req, res, next) {
+exports.authCallback = function(req, res, next) {
   res.redirect('/');
 };
 
-module.exports = exports = controller;
+module.exports = exports;

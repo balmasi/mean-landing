@@ -1,15 +1,20 @@
 .page-search {
-  background-image: url('#{$img}/search-bg.jpeg');
-  background-size: cover;
+  height: 100%;
+
+  .search-bg {
+    background-image: url('#{$img}/search-bg.jpeg');
+    background-size: cover;
+    height: 100%;
+  }
 
   .input-group {
     width: 100%;
   }
 
   .banner {
+    @include clearfix();
     height: auto;
     padding-top: 10rem;
-    @include make-row();
 
     @include screen-xs-max {
       padding-top: 0;

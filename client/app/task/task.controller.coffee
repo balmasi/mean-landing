@@ -16,6 +16,9 @@ angular.module 'taskyApp'
       requestId: r._id
       offerId: q._id
 
+  $scope.newRequest = ->
+    $state.go 'search'
+
 .controller 'QuotesCtrl', ($scope, request,  $state) ->
   $scope.pageVariables.pageClass = 'page-quotes'
   $scope.quotes = request.quotes

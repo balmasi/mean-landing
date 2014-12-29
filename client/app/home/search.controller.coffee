@@ -21,9 +21,7 @@ angular.module 'taskyApp'
   $scope.getCategories = (val) ->
     Category.search
       searchTerm: val
-    .$promise.then (response) ->
-      console.log response
-      response
+    .$promise
 
   $scope.getAddresses = (val) ->
     geocoder = new google.maps.Geocoder();

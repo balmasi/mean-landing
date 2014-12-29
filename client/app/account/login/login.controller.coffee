@@ -1,10 +1,27 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'LoginCtrl', ($scope, Auth, $state, $window) ->
+.controller 'LoginCtrl', ($scope, Auth, $location, $state,  $window) ->
   $scope.pageVariables.pageClass = 'page-login'
   $scope.user = {}
   $scope.errors = {}
+
+  $scope.loginAs = (who,form) ->
+    switch who
+      when 'customer'
+        $scope.user.email = 'test@test.com'
+        $scope.user.password = 'test'
+      when 'pro'
+        $scope.user.email = 'pro@pro.com'
+        $scope.user.password = 'pro'
+      when 'pro2'
+        $scope.user.email = 'pro2@pro.com'
+        $scope.user.password = 'pro'
+      when 'admin'
+        $scope.user.email = 'admin@admin.com'
+        $scope.user.password = 'admin'
+    $scope.login(form)
+
   $scope.login = (form) ->
     $scope.submitted = true
 
@@ -16,11 +33,11 @@ angular.module 'taskyApp'
 
       .then (user)->
         switch user._accountType
-          when 'Customer' then $state.go 'tasks'
-          when 'Pro' then $state.go 'pro'
+          when 'Customer' then $location.path 'tasks'
+          when 'Pro' then $location.path 'pro'
           else $state.go 'home'
       .catch (err) ->
         $scope.errors.other = err.message
 
   $scope.loginOauth = (provider) ->
-    $window.location.href = '/auth/' + provider
+    $location.path '/auth/' + provider

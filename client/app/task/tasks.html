@@ -1,7 +1,7 @@
 <div class="container">
     <h3 class="section-title">Tasks</h3>
     <section class="tasks-wrapper">
-        <div class="plus-one">+</div>
+        <div class="plus-one" ng-click="newRequest()">+</div>
         <div class="col-xs-12 col-sm-4"
              ng-repeat="r in requests"
              ng-click="goToQuotes(r)">

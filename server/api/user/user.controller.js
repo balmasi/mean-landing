@@ -1,27 +1,15 @@
 'use strict';
 
 var User = require('./user.model');
+var proCtrl = require('./pro/pro.controller');
+var customerCtrl = require('./customer/customer.controller');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
-var Promise = require('bluebird');
 
 var validationError = function(res, err) {
   return res.json(422, err);
 };
-
-var populateFields = function(user) {
-  if (user._accountType == 'Pro') {
-    return User.populate(user, {
-      path: 'requests',
-      model: 'Request'
-    });
-  }
-  else
-    return new Promise(function(resolve,reject) {
-      resolve(user);
-    });
-}
 
 /**
  * Get list of users
@@ -103,9 +91,13 @@ exports.me = function(req, res, next) {
   }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
     if (err) return next(err);
     if (!user) return res.json(401);
-    populateFields(user).then(function(populated) {
-      res.json(populated);
-    });
+    var type = user._accountType;
+    if (type === 'Pro') {
+      return proCtrl.me(req,res,next);
+    }
+    else {
+      res.status(200).json(user);
+    }
   });
 };
 

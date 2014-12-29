@@ -13,6 +13,10 @@
       border-left: 1rem solid #ef5e52;
     }
   }
+
+  .fa-check {
+    color: rgb(111, 147, 166);
+  }
 }
 
 .modal-content {
@@ -52,6 +56,8 @@
 
       .time-stamp {
         float: right;
+        font-size: 1.15rem;
+        color: #333;
       }
 
       &.theirs {
