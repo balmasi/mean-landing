@@ -10,3 +10,10 @@ angular.module 'taskyApp'
       method: 'GET'
       params:
         id: 'me'
+
+    myQuotes:
+      method: 'GET'
+      params:
+        id: 'me'
+        controller: 'quotes'
+      isArray: yes

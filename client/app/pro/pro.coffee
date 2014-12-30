@@ -10,3 +10,5 @@ angular.module 'taskyApp'
     resolve:
       account: (Auth) ->
         Auth.getCurrentUser()
+      quotes: (Pro) ->
+        Pro.myQuotes().$promise

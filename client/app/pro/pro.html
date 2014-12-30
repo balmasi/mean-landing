@@ -9,26 +9,64 @@
     </div>
     <div class="col-sm-9">
         <accordion close-others="true">
-            <accordion-group
-                    ng-repeat="r in requests | filter:statusFilter" class="{{r.status}}">
-                <accordion-heading >
-                    <div class="clearfix">
-                        <p>{{r.requested_by.firstName}} {{r.requested_by.lastName}} needs {{r.category.name}}</p>
-                        <p><i class="fa fa-map-marker"></i> Willowdale</p>
-                        <p><i class="fa fa-clock-o"></i> As Soon as possible</p>
+            <accordion-group ng-init="isExpanded = false"
+                             ng-repeat="r in requests | filter:statusFilter" class="{{r.status}}">
+                <accordion-heading>
+                    <div class="clearfix" ng-click="isExpanded = !isExpanded">
+                        <div class="pull-left">
+                            <p class="task-title">{{r.requested_by.firstName}} {{r.requested_by.lastName}} needs {{r.category.name}}</p>
+                            <p class="task-info"><i class="fa fa-map-marker"></i> {{r.location.subLocality}}</p>
+                        </div>
+
                         <div class="pull-right">
-                            <a ng-click="openQuoteModal(r, $event)"
-                               class="btn btn-green">Workspace <i class="fa fa-chevron-circle-right"></i></a>
+                            <i class="fa fa-chevron-down" ng-class="{'fa-chevron-down-rotate': isExpanded }"></i>
+                            <a ng-if="!haveSentQuote(r)" ng-click="openQuoteModal(r, $event)"
+                               class="btn btn-success">Send Proposal</a>
+                            <a ng-if="haveSentQuote(r)" ng-click="openQuoteModal(r, $event)"
+                               class="btn btn-blue">View Messages</a>
                         </div>
                     </div>
                 </accordion-heading>
-                <div ng-if="statusFilter(r)" class="question" ng-repeat="q in r.questions"
-                     ng-switch="multipleChoices(q)">
-                    <strong>{{q.question}}</strong>
-                    <ul ng-switch-when="true" class="list-simple">
-                        <li ng-repeat="a in q.answer"><i class="fa fa-check"></i> {{a}}</li>
-                    </ul>
-                    <p ng-switch-when="false">{{q.answer}}</p>
+                <div ng-if="statusFilter(r)">
+                    <section class="schedule" ng-switch="r.schedule_type" >
+                        <strong>When should the {{r.category.name}} happen?</strong>
+                        <p ng-switch-when="flexible" >I'm flexible.</p>
+                        <p ng-switch-when="asap" >As soon as possible.</p>
+                        <p ng-switch-when="other" >{{r.schedule_details.description}}</p>
+                        <p ng-switch-when="date" >On <strong>{{r.schedule_details.date | date}}</strong>
+                            <span ng-if="r.schedule_details.time">at <strong>{{r.schedule_details.time}}</strong></span>
+                            <span ng-if="r.schedule_details.duration"> for <strong>{{r.schedule_details.duration}}</strong></span>
+                        </p>
+                    </section>
+                    <section class="travel">
+                        <strong>How will the meeting happen?</strong>
+                        <ul class="list-simple">
+                            <li>
+                                <i class="fa" ng-class="{ 'fa-check': r.travel.to_pro, 'fa-times': !r.travel.to_pro }"></i>
+                                Customer travels to professional
+                            </li>
+                            <li>
+                                <i class="fa" ng-class="{ 'fa-check': r.travel.to_customer, 'fa-times': !r.travel.to_customer }"></i>
+                                Professional travels to customer
+                            </li>
+                            <li>
+                                <i class="fa" ng-class="{ 'fa-check': r.travel.remote, 'fa-times': !r.travel.remote }"></i>
+                                Work is done remotely
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="questions">
+                        <div ng-repeat="q in r.questions"
+                             ng-switch="multipleChoices(q)">
+
+                            <strong>{{q.question}}</strong>
+                            <ul ng-switch-when="true" class="list-simple">
+                                <li ng-repeat="a in q.answer"><i class="fa fa-angle-right"></i> {{a}}</li>
+                            </ul>
+                            <p ng-switch-when="false">{{q.answer}}</p>
+                        </div>
+                    </section>
+
                 </div>
             </accordion-group>
         </accordion>

@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'SearchCtrl', ($scope, Category, $q, $state) ->
+.controller 'SearchCtrl', ($scope, Category, $q, $state, Search) ->
   $scope.pageVariables.pageClass = 'page-search'
 
   $scope.spinnerTexts = [
@@ -16,6 +16,7 @@ angular.module 'taskyApp'
     latLng:
       lat: undefined
       lng: undefined
+    subLocality: undefined #e.g. North York
     categoryRoute: undefined
 
   $scope.getCategories = (val) ->
@@ -44,10 +45,17 @@ angular.module 'taskyApp'
       lat: i.geometry.location.lat(),
       lng: i.geometry.location.lng(),
 
+    _requestInfo.subLocality = _.find i.address_components, (item) ->
+      !!~item.types.indexOf 'sublocality_level_1'
+    .short_name
+
   $scope.setCategory = (item) ->
     _requestInfo.categoryRoute = item.route
 
   $scope.newRequest = ->
+    Search.subLocality _requestInfo.subLocality
+    Search.lngLat
+      lng: _requestInfo.latLng.lng
+      lat: _requestInfo.latLng.lat
     $state.go 'request',
       categoryRoute: _requestInfo.categoryRoute,
-      latLng: [_requestInfo.latLng.lat, _requestInfo.latLng.lng ].join ','

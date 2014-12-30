@@ -1,9 +1,6 @@
 .page-pro-requests {
 
   .panel {
-    .panel-heading {
-      border-left: 1rem solid #444444;
-    }
 
     &.active .panel-heading {
       border-left: 1rem solid #3ab14f;
@@ -12,11 +9,46 @@
     &.inactive .panel-heading {
       border-left: 1rem solid #ef5e52;
     }
+
+    .panel-heading {
+      border-left: 1rem solid #444444;
+
+      .accordion-toggle { text-decoration: none;  }
+      .btn { margin-top: 4px; width: 12.5rem; }
+    }
+
+    .panel-body {
+      box-shadow: inset 0 0 15px -5px;
+    }
+
+    .fa { width: 15px; }
+    .fa-chevron-down {
+      float: right;
+      width: auto;
+      color: #666;
+      margin-left: 10px;
+      line-height: 43px;
+    }
   }
 
-  .fa-check {
-    color: rgb(111, 147, 166);
+  .task-info {
+    font-weight: 100;
+    font-size: 14px;
+    margin: 0
   }
+
+  .task-title { font-weight: 400; }
+
+  .fa-chevron-down {
+    transition: transform 0.25s linear;
+  }
+  .fa-chevron-down-rotate {
+    transform: rotate(180deg);
+  }
+  .fa-check { color: $color-lighter-green; }
+  .fa-times, .fa-map-marker { color: $color-lighter-red; }
+  .fa-map-marker { font-size: 16px; }
+
 }
 
 .modal-content {

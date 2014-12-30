@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'ProCtrl', ($scope, account, $modal) ->
+.controller 'ProCtrl', ($scope, account, $modal, quotes) ->
   $scope.pageVariables.pageClass = 'page-pro-requests'
   $scope.account = account
   $scope.account.credits = 'Unlimited' if account?.credits == null
@@ -14,6 +14,10 @@ angular.module 'taskyApp'
 
   $scope.statusFilter = (req) ->
     $scope.filters[req.status]
+
+  $scope.haveSentQuote = (req) ->
+    !!_(quotes).findWhere
+      request: req._id
 
   $scope.multipleChoices = (q) ->
     _.isArray q.answer

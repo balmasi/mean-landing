@@ -2,6 +2,7 @@
 
 var Pro = require('./pro.model');
 var Customer = require('../customer/customer.model');
+var Quotes = require('../../quote/quote.model');
 var Category = require('../../category/category.model');
 var config = require('../../../config/environment');
 var jwt = require('jsonwebtoken');
@@ -72,6 +73,19 @@ exports.me = function (req, res, next) {
     function(err) {
       return next(err);
     });
+};
+
+// Returns quotes sent by pro
+exports.myQuotes = function (req, res, next) {
+  var proId = req.user._id;
+
+  Quotes.findAsync({
+    from: proId
+  }).then(function(quotes) {
+    return res.status(200).json(quotes);
+  }).error(function(error) {
+    return next(error);
+  });
 };
 
 /**

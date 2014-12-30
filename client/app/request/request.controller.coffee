@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'RequestCtrl', ($scope, user, category, Request, Auth) ->
+.controller 'RequestCtrl', ($scope, user, category, Request, Auth, toastr, Search, $state) ->
   $scope.pageVariables.pageClass = 'page-request'
 
   _categoryId = category._id
@@ -75,10 +75,15 @@ angular.module 'taskyApp'
           to_customer: $scope.travel.tocustomer
           remote: $scope.travel.remote
           distance: $scope.travel.distance
+        location:
+          subLocality: Search.subLocality()
+          lngLat: Search.lngLat()
 
       request.$save()
         .then (res) ->
-          console.log 'successfully created request'
+          toastr.success 'successfully created request'
+          Search.clearLocation()
+          $state.go 'tasks'
         .catch errorHandler
 
     if form.$valid
@@ -88,7 +93,7 @@ angular.module 'taskyApp'
           email: $scope.user.email
           password: $scope.user.password
         .then (token) ->
-          Auth.getCurrentUser().$promise
+          Auth.getCurrentUser()
         .then (user)->
           $scope.user = user
           createRequest()

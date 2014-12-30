@@ -42,6 +42,7 @@ exports.show = function(req, res) {
 };
 
 
+// Requested by me
 exports.myRequests = function (req, res) {
   var user = req.user;
   if (!user) return res.json(401);

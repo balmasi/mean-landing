@@ -54,6 +54,14 @@ var RequestSchema = new Schema({
     remote: Boolean,
     distance: Number
   },
+  location: {
+    subLocality: String,
+    lngLat:
+      {
+        type: [ Number ] ,
+        index: '2dsphere'
+      }
+  },
   date_created: {
     type: Date,
     default: Date.now
