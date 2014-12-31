@@ -30,13 +30,14 @@
             <div class="col-xs-12">
                 <div ng-if="canQuote()" class="form-group">
                     <div class="btn-group">
-                        <label class="btn btn-info" ng-model="newQuote.rate.method" btn-radio="'hourly'" uncheckable>Hourly</label>
-                        <label class="btn btn-info" ng-model="newQuote.rate.method" btn-radio="'fixed'" uncheckable>Fixed</label>
+                        <label class="btn btn-info" ng-model="newQuote.rate.method" btn-radio="'hourly'">Hourly</label>
+                        <label class="btn btn-info" ng-model="newQuote.rate.method" btn-radio="'fixed'">Fixed</label>
+                        <label class="btn btn-info" ng-model="newQuote.rate.method" btn-radio="'contact'">Need More Info</label>
                     </div>
                 </div>
-                <div ng-if="canQuote()" class="input-group form-group">
+                <div ng-if="canQuote() && newQuote.rate.method != 'contact'" class="input-group form-group">
                     <span class="input-group-addon">$</span>
-                    <input class="form-control" ng-model="newQuote.rate.value" type="number"/>
+                    <input class="form-control" ng-model="newQuote.rate.value" type="number" min="0"/>
                     <span class="input-group-addon" ng-show="newQuote.rate.method == 'hourly'">/ hr</span>
                 </div>
                 <div class="form-group">

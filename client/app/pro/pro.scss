@@ -1,6 +1,20 @@
 .page-pro-requests {
 
+  $filter-border-color: #ddd;
+  .filter-container {
+    border: 1px solid $filter-border-color;
+    padding: 0;
+  }
+
+  .filter-header {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid $filter-border-color;
+  }
+
   .filter-list {
+    padding-left: 10px;
+    li label { font-weight: 100;}
     .fa-square {
       margin: 0 5px;
       &.legend-noquote { color: #444444}
@@ -9,6 +23,7 @@
       &.legend-rejected  { color: #ef5e52;}
     }
   }
+
 
   .panel {
 
@@ -127,16 +142,21 @@
     }
 
   }
-  .empty-instruction {
-    padding: 2.5rem 1.5rem;
-    text-align: center;
+}
 
-    h3 {
-      font-size: $font-size-h3;
+.empty-instruction {
+  padding: 2.5rem 1.5rem;
+  text-align: center;
 
-      .subtext {
-        color: #7e7e7e;
-      }
+  &.ng-hide-remove {
+    animation: fadeIn 0.5s;
+  }
+
+  h3 {
+    font-size: $font-size-h3;
+
+    .subtext {
+      color: #7e7e7e;
     }
   }
 }
