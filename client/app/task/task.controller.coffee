@@ -57,7 +57,7 @@ angular.module 'taskyApp'
       toastr.error 'Declined Offer'
 
   $scope.undoStatus = ->
-    Quote.undoStatus $scope.quote, $scope.quotes
+    Quote.undoStatus $scope.quote, $scope.quotes, request
 
   getNameFromAccount = (account) ->
     account.firstName + ' ' + account.lastName
@@ -71,7 +71,6 @@ angular.module 'taskyApp'
     if msg.from is me._id then myName else bizName
 
   $scope.addMessage = ->
-    _messageAdded = yes
     newMessage =
       from: me._id
       message: $scope.newMessage

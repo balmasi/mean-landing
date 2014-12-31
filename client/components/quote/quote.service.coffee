@@ -58,7 +58,7 @@ angular.module 'taskyApp'
       .then -> quote.status = newStatus
 
 
-  QuoteService.undoStatus = (quote, quotes) ->
+  QuoteService.undoStatus = (quote, quotes, request) ->
     everyUpdate =
       status: 'pending'
       status_changed_on: new Date()
@@ -74,9 +74,10 @@ angular.module 'taskyApp'
           Request.update
             id: quote.request
           ,
-            status: 'inactive'
+            status: 'active'
           .$promise
         .then ->
+          request.status = 'inactive'
           _(quotes).each (q) ->
             q.status = q.last_status
 

@@ -6,6 +6,7 @@
              ng-repeat="r in requests"
              ng-click="goToQuotes(r)">
             <div class="index-task-item col-xs-12" ng-class="{ 'fulfilled' : r.status == 'fulfilled' }">
+                <div ng-show="r.status == 'inactive'" class="corner-ribbon top-left green shadow">Hired</div>
                 <h4 class="task-title">{{r.category.name}}</h4>
                 <p class="subtle">Created {{ r.date_created | timeAgo }}</p>
                 <hr/>
@@ -16,11 +17,11 @@
                 </div>
                 <div ng-show="hasQuotes(r)">
                     <ul class="quote-list" >
-                        <li ng-repeat="q in r.quotes" ng-switch="q.rate.method" class="clearfix">
+                        <li ng-repeat="q in r.quotes" class="clearfix">
                             <img class='pull-left' src="http://placehold.it/35x35" class="img-circle"/>
                             <div class="quote-info pull-left">
                                 <span class="quote-name">{{q.from.name}}</span>
-                                <span class="quote-price">
+                                <span class="quote-price" ng-switch="q.rate.method" >
                                     {{q.rate.value | currency:'$':0 }}
                                     <span ng-switch-when="hourly">/hr</span>
                                     <span ng-switch-when="fixed">Total</span>

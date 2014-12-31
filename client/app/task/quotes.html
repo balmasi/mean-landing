@@ -12,9 +12,12 @@
                     </div>
                     <div class="pro-tab-info">
                         <strong class="pro-name">{{q.from.name}}</strong>
-                        <rating class="pro-rating" ng-model="rating" max="5" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating>
-                        <p class="rate">
-                            {{q.rate.value | currency:"$":0 }} {{q.rate.method == 'hourly' ? '/hr' : '' }}
+                        <!--<rating class="pro-rating" ng-model="rating" max="5" readonly="true" state-on="'fa fa-star'" state-off="'fa fa-star-o'"></rating>-->
+                        <p ng-switch="q.rate.method" >
+                                    <span class="rate">{{q.rate.value | currency:'$':0 }}</span>
+                                    <span ng-switch-when="hourly">/hr</span>
+                                    <span ng-switch-when="fixed">Total</span>
+                                    <span class="need-more-info" ng-switch-when="contact">Need more info</span>
                         </p>
                     </div>
                 </tab-heading>

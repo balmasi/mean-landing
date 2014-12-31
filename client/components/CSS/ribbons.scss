@@ -1,0 +1,90 @@
+//colors
+$color_gallery: #f0f0f0;
+$color_silver_chalice: #aaa;
+$color_pink_swan: #bbb;
+$color_cinnabar: #e43;
+$black_30: rgba(0, 0, 0, .3);
+$color_fuscous_gray: #555;
+$color_mine_shaft: #333;
+$color_mountain_mist: #999;
+$color_curious_blue: #39d;
+$color_mountain_meadow: #2c7;
+$color_amethyst: #95b;
+$color_carrot_orange: #e82;
+$color_corn: #ec0;
+
+
+.corner-ribbon {
+  width: 100px;
+  background: $color_cinnabar;
+  position: absolute;
+  top: 10px;
+  left: -25px;
+  text-align: center;
+  line-height: 30px;
+  letter-spacing: 1px;
+  color: $color_gallery;
+  
+  transform: rotate(-45deg);
+  &.sticky {
+    position: fixed;
+  }
+  &.shadow {
+    box-shadow: 0 0 3px $black_30;
+  }
+  &.top-left {
+    top: 10px;
+    left: -25px;
+    transform: rotate(-45deg);
+  }
+  &.top-right {
+    top: 10px;
+    right: -25px;
+    left: auto;
+    transform: rotate(45deg);
+  }
+  &.bottom-left {
+    top: auto;
+    bottom: 10px;
+    left: -25px;
+    transform: rotate(45deg);
+  }
+  &.bottom-right {
+    top: auto;
+    right: -25px;
+    bottom: 10px;
+    left: auto;
+    transform: rotate(-45deg);
+  }
+  &.white {
+    background: $color_gallery;
+    color: $color_fuscous_gray;
+  }
+  &.black {
+    background: $color_mine_shaft;
+  }
+  &.grey {
+    background: $color_mountain_mist;
+  }
+  &.blue {
+    background: $color_curious_blue;
+  }
+  &.green {
+    background: $color_mountain_meadow;
+  }
+  &.turquoise {
+    background: $color_mountain_meadow;
+  }
+  &.purple {
+    background: $color_amethyst;
+  }
+  &.red {
+    background: $color_cinnabar;
+  }
+  &.orange {
+    background: $color_carrot_orange;
+  }
+  &.yellow {
+    background: $color_corn;
+  }
+}

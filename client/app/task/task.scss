@@ -146,6 +146,10 @@
 }
 
 .page-tasks {
+  .need-more-info {
+    font-size: 1.3rem;
+  }
+
   .tasks-wrapper {
     @include make-row();
     position: relative;
@@ -153,6 +157,7 @@
   }
 
   .index-task-item {
+    overflow: hidden;
     transition: all 0.5s;
     cursor: pointer;
     padding-top: 2rem;
