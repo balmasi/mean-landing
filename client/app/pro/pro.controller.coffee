@@ -1,23 +1,36 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'ProCtrl', ($scope, account, $modal, quotes) ->
+.controller 'ProCtrl', ($scope, account, $modal, quotes, Pro) ->
   $scope.pageVariables.pageClass = 'page-pro-requests'
   $scope.account = account
   $scope.account.credits = 'Unlimited' if account?.credits == null
   $scope.requests = account.requests
 
   $scope.filters =
-    active: true
-    inactive: true
-    fulfilled: true
+    noquote: true
+    pending: true
+    hired: true
+    rejected: true
+
+  _getQuoteForRequest = (r) ->
+    _(quotes).findWhere
+      request: r._id
+
+  _getRequestForQuote = (q) ->
+    _($scope.requests).findWhere
+      _id: q.request
+
+  _(quotes).each (q) ->
+    r = _getRequestForQuote q
+    r.quoteStatus = q.status if r?
 
   $scope.statusFilter = (req) ->
-    $scope.filters[req.status]
+    return $scope.filters.noquote unless req.quoteStatus?
+    $scope.filters[req.quoteStatus]
 
   $scope.haveSentQuote = (req) ->
-    !!_(quotes).findWhere
-      request: req._id
+    req.quoteStatus?
 
   $scope.multipleChoices = (q) ->
     _.isArray q.answer
@@ -33,21 +46,13 @@ angular.module 'taskyApp'
           request
         account: () ->
           account
-        myQuote: (Quote, $q) ->
-          deferred = $q.defer()
+        myQuote: ->
+          Pro.myQuotes().$promise
+          .then (qs) ->
+            quotes = qs
+            _getQuoteForRequest request
 
-          Quote.getByRequestAndPro
-            requestId: request._id
-            proId: account._id
-          .$promise.then (quote) ->
-            deferred.resolve quote
-          ,
-          (err) ->
-            deferred.resolve null
-
-          deferred.promise
-
-.controller 'QuoteCtrl', ($scope, request, $modalInstance, Quote, toastr , myQuote , account , $state, User) ->
+.controller 'QuoteCtrl', ($scope, request, $modalInstance, Quote, toastr , myQuote , account , $state) ->
   $scope.category = request.category
   $scope.getCredits = ->
     account.credits
@@ -64,6 +69,8 @@ angular.module 'taskyApp'
   $scope.canQuote = () ->
     not (myQuote? or $scope.needMoreCredits())
 
+
+  # Message Logic
   $scope.newMessage =
     from: account._id
 
@@ -122,7 +129,8 @@ angular.module 'taskyApp'
     newQuote.$save()
     .then (res) ->
       account.credits = res.credits
-      account.requests[requestIndex].quotes.push res.request
+      request.quoteStatus = 'pending'
+      request.quotes.push res.quote
       toastr.success 'Sent Quote Succesfully'
       $modalInstance.close(res.quote)
     .catch (err) ->

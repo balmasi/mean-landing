@@ -24,6 +24,7 @@ angular.module 'taskyApp'
   $scope.quotes = request.quotes
   $scope.rating = 4;
 
+
   $scope.category = request.category?.name
 
   $scope.go = (id) ->
@@ -31,6 +32,7 @@ angular.module 'taskyApp'
       offerId: id
 
 .controller 'QuoteShowCtrl', ($scope, $stateParams, me, Quote, Request, toastr) ->
+
   $scope.quote = _.findWhere $scope.quotes , { _id: $stateParams.offerId }
   # Delete version since we dont have revision-sensitive operations
   delete $scope.quote.__v
@@ -41,7 +43,6 @@ angular.module 'taskyApp'
   $scope.replyClicked = false
   $scope.toggleReply = ->
     $scope.replyClicked = ! $scope.replyClicked
-
 
   $scope.hire = ->
     Quote.changeStatus $scope.quote, 'hired'

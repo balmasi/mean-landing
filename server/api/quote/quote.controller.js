@@ -3,6 +3,7 @@
 var _ = require('lodash');
 var Quote = require('./quote.model');
 var Request = require('../request/request.model');
+var sock = require('./quote.socket');
 var Pro = require('../user/pro/pro.model');
 
 // Get list of quotes
@@ -85,15 +86,15 @@ exports.update = function(req, res) {
 exports.addMessage = function(req, res) {
   var qId = req.params.id;
   var message = req.body
-  Quote.findByIdAndUpdate(qId, {
-    $push: {
-      messages: message
-    }
-  }, function(err, quote) {
-    if (err) { return handleError(res, err); }
-    if(!quote) { return res.send(404); }
-    return res.status(201).json(message);
-  })
+  Quote.findByIdAsync(qId)
+    .then(function(quote) {
+      quote.messages.push(message);
+      quote.save();
+      return res.status(201).json(message);
+    })
+    .catch(function(err) {
+      return handleError(res, err);
+    });
 };
 
 // Deletes a quote from the DB.

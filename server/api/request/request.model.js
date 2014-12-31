@@ -25,7 +25,7 @@ var RequestSchema = new Schema({
   }],
   status: {
     type: String,
-    enum: ['active', 'inactive', 'fulfilled'],
+    enum: ['active', 'inactive'],
     default: 'active'
   },
   quotes: {

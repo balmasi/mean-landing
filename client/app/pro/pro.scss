@@ -1,20 +1,40 @@
 .page-pro-requests {
 
+  .filter-list {
+    .fa-square {
+      margin: 0 5px;
+      &.legend-noquote { color: #444444}
+      &.legend-pending  { color: $brand-warning}
+      &.legend-hired  { color: #3ab14f}
+      &.legend-rejected  { color: #ef5e52;}
+    }
+  }
+
   .panel {
 
-    &.active .panel-heading {
+    &.hired .panel-heading {
       border-left: 1rem solid #3ab14f;
     }
 
-    &.inactive .panel-heading {
+    &.rejected .panel-heading {
       border-left: 1rem solid #ef5e52;
+    }
+
+    &.pending .panel-heading {
+      border-left: 1rem solid $brand-warning;
     }
 
     .panel-heading {
       border-left: 1rem solid #444444;
 
       .accordion-toggle { text-decoration: none;  }
-      .btn { margin-top: 4px; width: 12.5rem; }
+      .btn {
+        &.ng-leave {
+          display: none;
+        }
+        margin-top: 4px;
+        width: 12.5rem;
+      }
     }
 
     .panel-body {

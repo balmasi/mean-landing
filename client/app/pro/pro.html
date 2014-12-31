@@ -1,16 +1,29 @@
 <div class="container page-container">
     <div class="col-sm-3">
         <label>Status</label>
-        <ul class="list-simple">
-            <li><label><input ng-model="filters.active" type="checkbox"/> Pending Review</label></li>
-            <li><label><input ng-model="filters.inactive" type="checkbox"/> Inactive</label></li>
-            <li><label><input ng-model="filters.fulfilled" type="checkbox"/> Fulfilled</label></li>
+        <ul class="list-simple filter-list">
+            <li><label>
+                <input ng-model="filters.noquote" type="checkbox"/>
+                <i class="fa fa-square legend-noquote"></i>No Quote Sent</label>
+            </li>
+            <li><label>
+                <input ng-model="filters.pending" type="checkbox"/>
+                <i class="fa fa-square legend-pending"></i>Pending Review
+            </label></li>
+            <li><label>
+                <input ng-model="filters.hired" type="checkbox"/>
+                <i class="fa fa-square legend-hired"></i>Hired
+            </label></li>
+            <li><label>
+                <input ng-model="filters.rejected" type="checkbox"/>
+                <i class="fa fa-square legend-rejected"></i>Declined
+            </label></li>
         </ul>
     </div>
     <div class="col-sm-9">
         <accordion close-others="true">
             <accordion-group ng-init="isExpanded = false"
-                             ng-repeat="r in requests | filter:statusFilter" class="{{r.status}}">
+                             ng-repeat="r in requests | filter:statusFilter" class="{{r.quoteStatus}}">
                 <accordion-heading>
                     <div class="clearfix" ng-click="isExpanded = !isExpanded">
                         <div class="pull-left">

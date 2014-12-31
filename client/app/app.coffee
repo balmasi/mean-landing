@@ -9,7 +9,8 @@ angular.module 'taskyApp', [
   'ui.router',
   'ngMessages',
   'ui.bootstrap',
-  'yaru22.angular-timeago'
+  'yaru22.angular-timeago',
+  'btford.socket-io',
 ]
 .config ($urlRouterProvider, $locationProvider, $httpProvider, toastrConfig) ->
 
