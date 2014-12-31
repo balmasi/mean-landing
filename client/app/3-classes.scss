@@ -108,6 +108,28 @@ h3 {
   }
 }
 
+.btn-blue-simple {
+  @extend .btn-blue;
+
+  &:hover {
+    box-shadow: none;
+    background: darken($brand-primary, 5);
+  }
+}
+
+.btn-gradient-grey {
+  $grey1: #fafafa;
+  $grey2: #eee;
+
+  color: #333;
+  border: 1px solid #eee;
+  background: linear-gradient(#fafafa,#eee);
+
+  &:hover {
+    background: linear-gradient(darken($grey1,5),darken($grey2,5));
+  }
+}
+
 .btn-default,
 .form-control {
   border-width: 2px;

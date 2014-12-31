@@ -31,7 +31,7 @@ angular.module 'taskyApp'
     $state.go 'quotes.offer',
       offerId: id
 
-.controller 'QuoteShowCtrl', ($scope, $stateParams, me, Quote, Request, toastr) ->
+.controller 'QuoteShowCtrl', ($scope, $stateParams, me, Quote, Request, toastr, request) ->
 
   $scope.quote = _.findWhere $scope.quotes , { _id: $stateParams.offerId }
   # Delete version since we dont have revision-sensitive operations
@@ -39,39 +39,25 @@ angular.module 'taskyApp'
 
   $scope.messages = $scope.quote.messages
   $scope.me = me
+  $scope.pro = $scope.quote.from
 
   $scope.replyClicked = false
   $scope.toggleReply = ->
     $scope.replyClicked = ! $scope.replyClicked
 
+
   $scope.hire = ->
-    Quote.changeStatus $scope.quote, 'hired'
-    .then (updatedQuote) ->
-      $scope.quote.status = updatedQuote.status
-      if updatedQuote.status == 'hired'
-        Request.update
-          id: $scope.quote.request
-        ,
-          status: 'fulfilled'
+    Quote.changeStatus $scope.quote, 'hired', $scope.quotes
     .then ->
       toastr.success 'Accepted Offer', 'Hired'
 
   $scope.reject = ->
-    Quote.changeStatus $scope.quote, 'rejected'
-    .then (updatedQuote) ->
-      $scope.quote.status = updatedQuote.status
+    Quote.changeStatus $scope.quote, 'rejected', $scope.quotes
+    .then ->
       toastr.error 'Declined Offer'
 
   $scope.undoStatus = ->
-    Quote.undoStatus $scope.quote
-    .then (updatedQuote) ->
-      if updatedQuote.status == 'pending'
-        Request.update
-          id: $scope.quote.request
-        ,
-          status: 'active'
-      $scope.quote.status = updatedQuote.status
-
+    Quote.undoStatus $scope.quote, $scope.quotes
 
   getNameFromAccount = (account) ->
     account.firstName + ' ' + account.lastName
@@ -81,7 +67,7 @@ angular.module 'taskyApp'
 
   $scope.getSender = (msg) ->
     myName = getNameFromAccount me
-    bizName = getNameFromAccount $scope.quote.from
+    bizName = getNameFromAccount $scope.pro
     if msg.from is me._id then myName else bizName
 
   $scope.addMessage = ->

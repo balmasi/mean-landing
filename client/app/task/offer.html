@@ -1,55 +1,66 @@
 
 <section class="quote-header">
+    <h3 class="pro-name">{{pro.name}}</h3>
+    <span class="pro-info"><i class="fa fa-user"></i> {{ pro.firstName + ' '+ pro.lastName }}</span>
+    <span class="pro-info"><i class="fa fa-phone"></i> {{ pro.phone }}</span>
+    <span class="pro-info"><i class="fa fa-map-marker"></i> {{ pro.address.city }}</span>
+
+    <span class="pro-info">
+        <i class="fa fa-globe"></i>
+        <a ng-href="{{pro.website}}" target="_blank"> Website</a>
+    </span>
 </section>
-<section class="messages">
-    <div class="message" ng-class="{ 'mine': isMine(m) }" ng-repeat="m in messages">
-        <img class="col-xs-2 img-rounded" src="http://placehold.it/50x50" alt=""/>
-        <div class="message-text col-xs-10">
-            <strong>{{getSender(m)}}</strong>
-            <p>{{m.message}}</p>
+<section class="quote-body">
+    <div class="messages">
+        <div class="message" ng-class="{ 'mine': isMine(m) }" ng-repeat="m in messages">
+            <img class="col-xs-2 img-rounded" src="http://placehold.it/50x50" alt=""/>
+            <div class="message-text col-xs-10">
+                <strong>{{getSender(m)}}</strong>
+                <p>{{m.message}}</p>
+            </div>
         </div>
     </div>
-</section>
-<div class="actions">
-    <div class="col-xs-4">
-        <button class="btn reply" ng-click="toggleReply()">
-            <i class="fa fa-reply"></i>
-            Reply
-        </button>
-    </div>
-    <div class="col-xs-4">
-        <button class="btn hire" ng-show="quote.status == 'pending'" ng-click="hire()">
-            <i class="fa fa-check"></i>
-            Hire
-        </button>
-    </div>
-    <div class="col-xs-4">
-        <button class="btn decline" ng-show="quote.status == 'pending'" ng-click="reject()">
-            <i class="fa fa-times"></i>
-            Decline
-        </button>
-    </div>
-</div>
-<div class="status-info" ng-hide="quote.status == 'pending'">
-    <alert ng-show="quote.status == 'hired'" type="info">
-        <i class="fa fa-check"></i> Hired <a href="#" ng-click="undoStatus()">Undo</a>
-    </alert>
-    <alert ng-show="quote.status == 'rejected'" type="info">
-        <i class="fa fa-times"></i> Declined <a href="#" ng-click="undoStatus()">Undo</a>
-    </alert>
-</div>
-<div ng-show="replyClicked" class="reply-action">
-    <div class="clearfix">
-        <p class="user-name">{{me.firstName + " " + me.lastName}}</p>
-        <img class="col-xs-2" src="http://placehold.it/50x50" alt=""/>
-        <div class="col-xs-10 row">
-            <textarea class="col-xs-12" name="reply" rows="5"
-                      ng-model="newMessage"
-                      placeholder="Enter a message for {{quote.from.name}}"></textarea>
-            <button class="btn btn-blue btn-send col-xs-2"
-                    ng-click="addMessage()">Send</button>
+    <div class="actions">
+        <div class="col-xs-4">
+            <button class="btn btn-gradient-grey reply" ng-click="toggleReply()">
+                <i class="fa fa-reply"></i>
+                Reply
+            </button>
+        </div>
+        <div class="col-xs-4">
+            <button class="btn btn-gradient-grey hire" ng-show="quote.status == 'pending'" ng-click="hire()">
+                <i class="fa fa-check"></i>
+                Hire
+            </button>
+        </div>
+        <div class="col-xs-4">
+            <button class="btn btn-gradient-grey decline" ng-show="quote.status == 'pending'" ng-click="reject()">
+                <i class="fa fa-times"></i>
+                Decline
+            </button>
         </div>
     </div>
-</div>
+    <div ng-show="replyClicked" class="reply-action">
+        <div class="clearfix">
+            <p class="user-name">{{me.firstName + " " + me.lastName}}</p>
+            <img class="col-xs-2" src="http://placehold.it/50x50" alt=""/>
+            <div class="col-xs-10 row">
+                <textarea class="col-xs-12" name="reply" rows="5"
+                          ng-model="newMessage"
+                          placeholder="Enter a message for {{quote.from.name}}"></textarea>
+                <button class="btn btn-blue btn-send col-xs-2"
+                        ng-click="addMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+    <div class="status-info" ng-hide="quote.status == 'pending'">
+        <alert ng-show="quote.status == 'hired'" type="success">
+            <i class="fa fa-check"></i> Hired <a href="#" ng-click="undoStatus()">Undo</a>
+        </alert>
+        <alert ng-show="quote.status == 'rejected'" type="danger">
+            <i class="fa fa-times"></i> Declined <a href="#" ng-click="undoStatus()">Undo</a>
+        </alert>
+    </div>
+</section>
 
 

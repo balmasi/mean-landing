@@ -47,11 +47,11 @@
                 </div>
 
                 <div ng-if="canQuote()" class="form-group">
-                    <button ng-click="sendOffer()" class="btn btn-blue">Send Offer</button>
+                    <button ng-click="sendOffer()" class="btn btn-blue-simple">Send Offer</button>
                     <p class="foot-stat">You will use <i class="fa fa-circle"></i> <span class="credit-number">{{category.credits_required}}</span> credits for this introduction</p>
                 </div>
                 <div ng-if="!canQuote()" class="form-group">
-                    <button ng-click="sendMessage()" class="btn btn-blue">Send Message</button>
+                    <button ng-click="sendMessage()" class="btn btn-blue-simple">Send Message</button>
                 </div>
             </div>
         </form>
