@@ -157,7 +157,7 @@
     cursor: pointer;
     padding-top: 2rem;
     min-height: 30rem;
-    background: white;
+    background: linear-gradient(#fff,#fafafa);
     border: #ddd 1px solid;
     border-radius: 0.5rem;
     text-align: center;
@@ -180,8 +180,24 @@
   .quote-list {
     @extend .list-simple;
     text-align: left;
+
+    li {
+      padding-bottom: 1rem;
+    }
+
     img {
       vertical-align: middle;
+      padding-top: 5px;
+    }
+
+    .quote-info {
+      padding-left: 1rem;
+    }
+
+    .quote-name {
+      font-family: 'Open Sans';
+      display:block;
+      font-weight: bold;
     }
   }
 
