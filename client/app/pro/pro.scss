@@ -80,8 +80,7 @@
   .fa-chevron-down-rotate {
     transform: rotate(180deg);
   }
-  .fa-check { color: $color-lighter-green; }
-  .fa-times, .fa-map-marker { color: $color-lighter-red; }
+
   .fa-map-marker { font-size: 16px; }
 
 }
@@ -103,6 +102,8 @@
   .fa-circle {
     color: $brand-primary;
   }
+
+  .quote-form { @extend .clearfix; }
 
   .head-stat {
     margin-right: 1rem;

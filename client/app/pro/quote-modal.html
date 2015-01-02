@@ -6,54 +6,59 @@
         </p>
     </div>
     <div ng-if="!shouldBuyMoreCredits()">
-        <div class="credit-head" ng-if="canQuote()">
-            <span class="head-stat">Credits Available  <i class="fa fa-circle"></i> <span class="credit-number">{{ getCredits() }}</span></span>
-        </div>
-        <div ng-if="canQuote()" class="empty-instruction">
-            <h3>You have not sent a quote yet.</h3>
-            <p class="subtext">If you would like to introduce yourself,
-                send a message with your rate.</p>
-        </div>
-
-        <form novalidate name="quote-form">
-            <section ng-if="!canQuote()" class="messages">
-                <div class="message" ng-class="{ 'theirs': isTheirs(m) }" ng-repeat="m in messages">
-                    <img class="col-xs-2 img-rounded" src="http://placehold.it/50x50" alt=""/>
-                    <div class="message-text col-xs-10">
-                        <strong>{{getSender(m)}}</strong>
-                        <span class="time-stamp">{{m.date | timeAgo }}</span>
-                        <p>{{m.message}}</p>
-                    </div>
-                </div>
-            </section>
-
-            <div class="col-xs-12">
-                <div ng-if="canQuote()" class="form-group">
-                    <div class="btn-group">
-                        <label class="btn btn-info" ng-model="newQuote.rate.method" btn-radio="'hourly'">Hourly</label>
-                        <label class="btn btn-info" ng-model="newQuote.rate.method" btn-radio="'fixed'">Fixed</label>
-                        <label class="btn btn-info" ng-model="newQuote.rate.method" btn-radio="'contact'">Need More Info</label>
-                    </div>
-                </div>
-                <div ng-if="canQuote() && newQuote.rate.method != 'contact'" class="rate-input input-group form-group">
-                    <span class="input-group-addon">$</span>
-                    <input class="form-control" ng-model="newQuote.rate.value" type="number" min="0"/>
-                    <span class="input-group-addon" ng-show="newQuote.rate.method == 'hourly'">/ hr</span>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-control" rows="4"
-                              placeholder="{{messagePlaceholder}}"
-                              ng-model="newMessage.message"></textarea>
-                </div>
-
-                <div ng-if="canQuote()" class="form-group">
-                    <button ng-click="sendOffer()" class="btn btn-blue-simple">Send Offer</button>
-                    <p class="foot-stat">You will use <i class="fa fa-circle"></i> <span class="credit-number">{{category.credits_required}}</span> credits for this introduction</p>
-                </div>
-                <div ng-if="!canQuote()" class="form-group">
-                    <button ng-click="sendMessage()" class="btn btn-blue-simple">Send Message</button>
-                </div>
+        <div class="col-sm-7">
+            <div class="credit-head" ng-if="canQuote()">
+                <span class="head-stat">Credits Available  <i class="fa fa-circle"></i> <span class="credit-number">{{ getCredits() }}</span></span>
             </div>
-        </form>
+            <div ng-if="canQuote()" class="empty-instruction">
+                <h3>You have not sent a quote yet.</h3>
+                <p class="subtext">If you would like to introduce yourself,
+                    send a message with your rate.</p>
+            </div>
+
+            <form novalidate name="quote-form">
+                <section ng-if="!canQuote()" class="messages">
+                    <div class="message" ng-class="{ 'theirs': isTheirs(m) }" ng-repeat="m in messages">
+                        <img class="col-xs-2 img-rounded" src="http://placehold.it/50x50" alt=""/>
+                        <div class="message-text col-xs-10">
+                            <strong>{{getSender(m)}}</strong>
+                            <span class="time-stamp">{{m.date | timeAgo }}</span>
+                            <p>{{m.message}}</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="col-xs-12">
+                    <div ng-if="canQuote()" class="form-group">
+                        <div class="btn-group">
+                            <label class="btn btn-info" ng-model="newQuote.rate.method" btn-radio="'hourly'">Hourly</label>
+                            <label class="btn btn-info" ng-model="newQuote.rate.method" btn-radio="'fixed'">Fixed</label>
+                            <label class="btn btn-info" ng-model="newQuote.rate.method" btn-radio="'contact'">Need More Info</label>
+                        </div>
+                    </div>
+                    <div ng-if="canQuote() && newQuote.rate.method != 'contact'" class="rate-input input-group form-group">
+                        <span class="input-group-addon">$</span>
+                        <input class="form-control" ng-model="newQuote.rate.value" type="text" ng-min="0" required numbers-only />
+                        <span class="input-group-addon" ng-show="newQuote.rate.method == 'hourly'">/ hr</span>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="4"
+                                  placeholder="{{messagePlaceholder}}"
+                                  ng-model="newMessage.message"></textarea>
+                    </div>
+
+                    <div ng-if="canQuote()" class="form-group">
+                        <button ng-click="sendOffer()" class="btn btn-blue-simple">Send Offer</button>
+                        <p class="foot-stat">You will use <i class="fa fa-circle"></i> <span class="credit-number">{{category.credits_required}}</span> credits for this introduction</p>
+                    </div>
+                    <div ng-if="!canQuote()" class="form-group">
+                        <button ng-click="sendMessage()" class="btn btn-blue-simple">Send Message</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <request-info request="request" class="side-info">
+            <h3 class="header-text">Request Overview</h3>
+        </request-info>
     </div>
 </div>

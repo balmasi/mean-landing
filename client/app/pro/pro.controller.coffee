@@ -32,8 +32,6 @@ angular.module 'taskyApp'
   $scope.haveSentQuote = (req) ->
     req.quoteStatus?
 
-  $scope.multipleChoices = (q) ->
-    _.isArray q.answer
 
   $scope.openQuoteModal = (request, e) ->
     e.stopPropagation()
@@ -55,6 +53,7 @@ angular.module 'taskyApp'
 
 .controller 'QuoteCtrl', ($scope, request, $modalInstance, Quote, toastr , myQuote , account , $state) ->
   $scope.category = request.category
+  $scope.request = request
   $scope.getCredits = ->
     account.credits
 

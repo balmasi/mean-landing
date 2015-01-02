@@ -1,0 +1,41 @@
+<div class="request-info">
+    <div ng-transclude></div>
+    <section class="schedule" ng-switch="request.schedule_type" >
+        <strong>When should the {{request.category.name}} happen?</strong>
+        <p ng-switch-when="flexible" >I'm flexible.</p>
+        <p ng-switch-when="asap" >As soon as possible.</p>
+        <p ng-switch-when="other" >{{request.schedule_details.description}}</p>
+        <p ng-switch-when="date" >On <strong>{{request.schedule_details.date | date}}</strong>
+            <span ng-if="request.schedule_details.time">at <strong>{{request.schedule_details.time}}</strong></span>
+            <span ng-if="request.schedule_details.duration"> for <strong>{{request.schedule_details.duration}}</strong></span>
+        </p>
+    </section>
+    <section class="travel">
+        <strong>How will the meeting happen?</strong>
+        <ul class="list-simple">
+            <li>
+                <i class="fa" ng-class="{ 'fa-check': request.travel.to_pro, 'fa-times': !request.travel.to_pro }"></i>
+                Customer travels to professional
+            </li>
+            <li>
+                <i class="fa" ng-class="{ 'fa-check': request.travel.to_customer, 'fa-times': !request.travel.to_customer }"></i>
+                Professional travels to customer
+            </li>
+            <li>
+                <i class="fa" ng-class="{ 'fa-check': request.travel.remote, 'fa-times': !request.travel.remote }"></i>
+                Work is done remotely
+            </li>
+        </ul>
+    </section>
+    <section class="questions">
+        <div ng-repeat="q in request.questions"
+             ng-switch="multipleChoices(q)">
+
+            <strong>{{q.question}}</strong>
+            <ul ng-switch-when="true" class="list-simple">
+                <li ng-repeat="a in q.answer"><i class="fa fa-angle-right"></i> {{a}}</li>
+            </ul>
+            <p ng-switch-when="false">{{q.answer}}</p>
+        </div>
+    </section>
+</div>
