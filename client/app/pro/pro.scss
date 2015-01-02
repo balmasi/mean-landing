@@ -87,7 +87,7 @@
 }
 
 .modal-content {
-  max-width: 40rem;
+  max-width: 80rem;
   margin: 0 auto;
 }
 
@@ -109,6 +109,10 @@
   }
   .foot-stat {
     margin: 2rem 0 0;
+  }
+
+  .rate-input {
+    max-width: 250px;
   }
 
   .messages {

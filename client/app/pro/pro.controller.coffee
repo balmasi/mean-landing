@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'ProCtrl', ($scope, account, $modal, quotes, Pro) ->
+.controller 'ProCtrl', ($scope, account, $modal, quotes, Pro, $state) ->
   $scope.pageVariables.pageClass = 'page-pro-requests'
   $scope.account = account
   $scope.account.credits = 'Unlimited' if account?.credits == null
@@ -41,6 +41,7 @@ angular.module 'taskyApp'
       templateUrl: 'app/pro/quote-modal.html'
       windowClass: 'quote-modal'
       controller: 'QuoteCtrl'
+      size: 'lg'
       resolve:
         request: () ->
           request
