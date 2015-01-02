@@ -8,4 +8,4 @@ angular.module 'taskyApp'
     controller: 'CreditCtrl'
     resolve:
       account: (Auth) ->
-        Auth.getCurrentUser().$promise
+        Auth.getCurrentUser()

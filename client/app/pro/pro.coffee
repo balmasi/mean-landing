@@ -3,12 +3,13 @@
 angular.module 'taskyApp'
 .config ($stateProvider) ->
   $stateProvider.state 'pro',
-    url: '/pro'
+    url: '/pro?refreshQuotes'
     templateUrl: 'app/pro/pro.html'
     controller: 'ProCtrl'
     authenticate: true
     resolve:
-      account: (Auth) ->
-        Auth.getCurrentUser()
+      account: (Auth, $state, $stateParams) ->
+        refresh = $stateParams.refreshQuotes
+        Auth.getCurrentUser(refresh)
       quotes: (Pro) ->
         Pro.myQuotes().$promise

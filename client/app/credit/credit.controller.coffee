@@ -32,7 +32,10 @@ angular.module 'taskyApp'
           description: "#{account.email} buying #{pack.credits} tasky credits"
         .then (res) ->
           toastr.success "You now have #{res.data.credits} credits!\n Start quoting!"
-          $state.go "pro"
+          $state.go "pro",
+            refreshQuotes: true
+          ,
+            reload: true
 
 
     handler.open

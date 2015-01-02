@@ -93,7 +93,8 @@ angular.module 'taskyApp'
 
   @return {Object} user
   ###
-  getCurrentUser: ->
+  getCurrentUser: (refresh) ->
+    return User.get().$promise if refresh and  $cookieStore.get('token')
     $q.when currentUser
 
 
