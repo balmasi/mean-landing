@@ -147,6 +147,13 @@ h3 {
 
 .form-control {
   outline: 0;
+  transition: all 1s ease;
+
+  &.ng-invalid.ng-dirty {
+    border-color: $brand-danger;
+    animation: pulse 0.8s;
+  }
+
   &::-webkit-input-placeholder {
     color: #555555;
   }
@@ -253,6 +260,7 @@ h3 {
   .form-control {
     border-color: #fff;
     color: #fff;
+
     &::-webkit-input-placeholder {
       color: #aaaaaa;
     }

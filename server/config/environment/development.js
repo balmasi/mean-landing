@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/tasky-dev'
   },
 
-  seedDB: false
+  seedDB: true
 };

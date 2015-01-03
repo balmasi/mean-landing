@@ -1,8 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Question = require('../question/question.model'),
-    Schema = mongoose.Schema;
+  Question = require('../question/question.model'),
+  Schema = mongoose.Schema;
 
 var CategorySchema = new Schema({
   // Route such as request/:route . maps to this category
@@ -41,16 +41,10 @@ var CategorySchema = new Schema({
   },
   questions: [
     Question.schema
-  ]
+  ],
+  search_keywords: [ String ]
   // TODO: Restrict quote types per category? Fixed,hourly, need more info
 });
-
-CategorySchema.index({
-  name: 'text',
-  actor: 'text',
-  action: 'text'
-},
-  { default_language: "en" });
 
 // ---- Methods ----
 
@@ -77,4 +71,27 @@ CategorySchema.statics.getSubcategoriesOf = function(id) {
   }, { name: 1 }).exec();
 };
 
-module.exports = mongoose.model('Category', CategorySchema);
+var CategoryModel= mongoose.model('Category', CategorySchema);
+
+// Ensure text index on fields for search
+CategoryModel.collection.ensureIndex({
+    name: 'text',
+    actor: 'text',
+    action: 'text'
+  },
+  {
+    weights: {
+      name: 5,
+      actor: 5,
+      action: 5,
+      search_keywords: 3
+    },
+    default_language: "en",
+    name: "CategorySearchIndex"
+  }
+  ,function (err) {
+    if (err) console.error(err);
+  }
+);
+
+module.exports = CategoryModel;

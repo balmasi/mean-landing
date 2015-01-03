@@ -58,7 +58,7 @@ UserSchema
 UserSchema
   .virtual('name')
   .get(function() {
-    return this.firstName + this.lastName
+    return this.firstName + " " + this.lastName
   })
   .set(function(name) {
     var names = name.split(" ");

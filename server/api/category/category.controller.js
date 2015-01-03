@@ -13,6 +13,8 @@ exports.search = function(req, res) {
     { score : { $meta: "textScore" } }
   )
     .sort({ score : { $meta : 'textScore' } })
+    .limit(10)
+    .select('name route')
     .exec(function(err, results) {
       if (err) handleError(res, err);
       return res.json(200, results);

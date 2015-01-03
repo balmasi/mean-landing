@@ -40,10 +40,11 @@ Category.remove({}).exec()
     console.log('creating subcategory');
     return Category.create(
       {
-        name: 'Intracity Moving',
+        name: 'Local Moving',
         route: 'local-moving',
+        search_keywords: ['local','short', 'distance', 'within','city','building', 'furniture'],
         parent: movingParent.id,
-        travel_types: ['tocustomer', 'topro', 'remote'],
+        travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
         actor: 'Mover',
@@ -92,10 +93,16 @@ Category.remove({}).exec()
         ]
       },
       {
-        name: 'Intracity Moving (more than 100km)',
+        name: 'Long Distance Moving',
         route: 'long-distance-moving',
+        travel_types: ['topro'],
         parent: movingParent.id,
-        credits: 2
+        search_keywords: ['long', 'distance', 'out', 'between', 'cities','move', 'office'],
+        credits: 2,
+        actor: 'Mover',
+        actor_plural: 'Movers',
+        action: 'help you move',
+        scheduling_type: 'event',
       }).then(
       function(subcat){
         console.log ('finished populating categories');

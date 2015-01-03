@@ -1,11 +1,12 @@
 'use strict';
 
 var Customer = require('./customer.model');
+var _ = require('lodash');
 var config = require('../../../' +
   'config/environment');
 var jwt = require('jsonwebtoken');
 
-var controller = require('../user.controller');
+var userCtrl = require('../user.controller');
 
 
 var validationError = function(res, err) {
@@ -17,7 +18,7 @@ var validationError = function(res, err) {
  * Get list of customers
  * restriction: 'admin'
  */
-controller.index = function(req, res) {
+exports.index = function(req, res) {
   Customer.find({
     _accountType: 'Customer'
   }, '-salt -hashedPassword', function (err, customers) {
@@ -29,7 +30,7 @@ controller.index = function(req, res) {
 /**
  * Creates a new customer
  */
-controller.create = function (req, res, next) {
+exports.create = function (req, res, next) {
   var newCustomer = new Customer(req.body);
   newCustomer.customervider = 'local';
   newCustomer.role = 'user';
@@ -40,12 +41,27 @@ controller.create = function (req, res, next) {
   });
 };
 
+exports.show = function(req,res,next) {
+  userCtrl.show(req,res,next);
+}
+
+exports.me = function(req,res,next) {
+  userCtrl.me(req,res,next);
+};
+
+exports.destroy = function(req,res,next) {
+  userCtrl.destroy(req,res,next);
+};
+
+exports.changePassword = function(req,res,next) {
+  userCtrl.changePassword;
+};
 
 /**
  * Authentication callback
  */
-controller.authCallback = function(req, res, next) {
+exports.authCallback = function(req, res, next) {
   res.redirect('/');
 };
 
-module.exports = exports =  controller;
+module.exports = exports

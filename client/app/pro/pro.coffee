@@ -10,6 +10,6 @@ angular.module 'taskyApp'
     resolve:
       account: (Auth, $state, $stateParams) ->
         refresh = $stateParams.refreshQuotes
-        Auth.getCurrentUser(refresh)
+        Auth.getCurrentUser(refresh).$promise
       quotes: (Pro) ->
         Pro.myQuotes().$promise

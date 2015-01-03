@@ -47,7 +47,8 @@ angular.module 'taskyApp'
 
     _requestInfo.subLocality = _.find i.address_components, (item) ->
       !!~item.types.indexOf 'sublocality_level_1'
-    .short_name
+
+    return (_requestInfo.subLocality || i.address_components[0]).short_name
 
   $scope.setCategory = (item) ->
     _requestInfo.categoryRoute = item.route

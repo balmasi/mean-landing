@@ -4,10 +4,9 @@ angular.module 'taskyApp'
 .controller 'NavbarCtrl', ($scope, $location, Auth) ->
 
   $scope.isCollapsed = true
+  $scope.signupActive = false
   $scope.isLoggedIn = Auth.isLoggedIn
   $scope.isAdmin = Auth.isAdmin
-  $scope.getCurrentUser = Auth.getCurrentUser
-  $scope.signupActive = false
 
   $scope.logout = ->
     Auth.logout()

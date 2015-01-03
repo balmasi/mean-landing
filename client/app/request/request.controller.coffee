@@ -1,13 +1,13 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'RequestCtrl', ($scope, user, category, Request, Auth, toastr, Search, $state) ->
+.controller 'RequestCtrl', ($scope, $q, category, Request, Auth, toastr, Search, $state) ->
   $scope.pageVariables.pageClass = 'page-request'
 
   _categoryId = category._id
   $scope.category = category
   $scope.questions = category.questions
-  $scope.user = user
+  $scope.user = Auth.getCurrentUser()
 
   $scope.schedule = {}
   # Who travels to whom
@@ -24,8 +24,6 @@ angular.module 'taskyApp'
 
   # km's willing to travel (customer)
   $scope.travelOptions = [5, 10, 25, 50]
-
-
 
 
   $scope.errors = {}
@@ -84,7 +82,8 @@ angular.module 'taskyApp'
           toastr.success 'successfully created request'
           Search.clearLocation()
           $state.go 'tasks'
-        .catch errorHandler
+        .catch(err) ->
+          toastr.error 'Something went wrong', 'Form Error'
 
     if form.$valid
       # If user has no account create it, then create request
@@ -92,19 +91,23 @@ angular.module 'taskyApp'
         Auth.createUser 'Customer',
           email: $scope.user.email
           password: $scope.user.password
+        .catch (err) ->
+          mongoErrorHandler err, form
+          $q.reject 'Could not create User'
         .then (token) ->
-          Auth.getCurrentUser()
+          Auth.getCurrentUser().$promise
         .then (user)->
           $scope.user = user
           createRequest()
-        .catch errorHandler
       # Otherwise just create the request
       else
         createRequest()
 
   # For each mongo error returned, set the field's validity to false
   # and add a message to be displayed in DOM via $scope.errors
-  errorHandler = (err) ->
+  mongoErrorHandler = (err, form) ->
     angular.forEach err.data.errors, (error, field) ->
-      form[field].$setValidity 'mongoose', false
-      $scope.errors[field] = error.message
+      if form[field]?
+        form[field].$setValidity 'mongoose', false
+        $scope.errors[field] = error.message
+        toastr.error 'That email is already registered', 'Email Taken'

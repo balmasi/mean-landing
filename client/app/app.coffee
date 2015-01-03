@@ -47,4 +47,6 @@ angular.module 'taskyApp', [
   $rootScope.$on '$stateChangeStart', (event, next) ->
     Auth.isLoggedInAsync (loggedIn) ->
       return if next.name in ['customer-signup', 'login', 'pro-signup.category']
-      $location.path "/login" if next.authenticate and not loggedIn
+      if next.authenticate and not loggedIn
+        console.log 'redirecting due to authenticate'
+        $location.path "/login"

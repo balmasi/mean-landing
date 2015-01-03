@@ -8,8 +8,6 @@ angular.module 'taskyApp'
     controller: 'RequestCtrl',
     nav: false,
     resolve:
-      user: (Auth) ->
-        Auth.getCurrentUser()
       category: (Category, $stateParams) ->
         Category.getByRoute
           route: $stateParams.categoryRoute

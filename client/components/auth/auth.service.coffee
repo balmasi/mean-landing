@@ -19,10 +19,9 @@ angular.module 'taskyApp'
 
     .success (data) ->
       $cookieStore.put 'token', data.token
-      User.get().$promise.then (user) ->
-        currentUser = user
-        deferred.resolve currentUser
-        callback?()
+      currentUser = User.get()
+      deferred.resolve currentUser
+      callback?()
 
     .error (err) =>
       @logout()
@@ -51,16 +50,19 @@ angular.module 'taskyApp'
   @return {Promise}
   ###
   createUser: (type = 'User', user, callback) ->
-    User.save user,
+    Entity = switch type
+      when 'Pro' then Pro
+      when 'Customer' then Customer
+      else User
+
+    Entity.save user,
       (data) ->
         $cookieStore.put 'token', data.token
         currentUser = Entity.get()
-        callback? user
-
-      , (err) =>
+      ,
+      (mongoErr) ->
         @logout()
-        callback? err
-
+        $q.reject(mongoErr)
     .$promise
 
 
@@ -94,8 +96,8 @@ angular.module 'taskyApp'
   @return {Object} user
   ###
   getCurrentUser: (refresh) ->
-    return User.get().$promise if refresh and  $cookieStore.get('token')
-    $q.when currentUser
+    return User.get() if refresh and $cookieStore.get('token')
+    currentUser
 
 
   ###
