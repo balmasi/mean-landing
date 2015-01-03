@@ -104,7 +104,7 @@ Category.remove({}).exec()
         action: 'help you move',
         scheduling_type: 'event',
       }).then(
-      function(subcat){
+      function(local, long){
         console.log ('finished populating categories');
         Pro.find({}).remove(function(){
           Pro.create({
@@ -112,26 +112,38 @@ Category.remove({}).exec()
               firstName: 'Hasan',
               lastName: 'Speedy',
               provider: 'local',
-              name: 'Speedy Glass',
+              name: 'Move4Life Ltd.',
+              address: {
+                street: '23 Village Squire Ln.',
+                city: 'Thornhill',
+                province: 'ON',
+                postal: 'L3T 1Z8'
+              },
               email: 'pro@pro.com',
               credits: Infinity,
               password: 'pro',
               phone: '416-222-2144',
               website: 'http://www.tasky.com',
-              services: [ subcat._id ]
+              services: [ local._id, long._id ]
             },
             {
               role: 'user',
               firstName: 'Pro2',
               lastName: 'Mover',
               provider: 'local',
-              name: 'Speedy Glass',
+              address: {
+                street: '4 Kenneth Ave',
+                city: 'North York',
+                province: 'ON',
+                postal: 'M2N 6M7'
+              },
+              name: 'Toronto Moving Inc.',
               email: 'pro2@pro.com',
               credits: 3,
               password: 'pro',
               phone: '416-222-2144',
               website: 'http://www.tasky.com',
-              services: [ subcat._id ]
+              services: [ local._id, long._id ]
             }
             , function(err, professional) {
               if (err) console.error(err);

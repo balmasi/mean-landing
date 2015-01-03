@@ -20,7 +20,7 @@ angular.module 'taskyApp'
     .success (data) ->
       $cookieStore.put 'token', data.token
       currentUser = User.get()
-      deferred.resolve currentUser
+      deferred.resolve currentUser.$promise
       callback?()
 
     .error (err) =>

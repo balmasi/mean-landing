@@ -33,9 +33,10 @@ angular.module 'taskyApp'
 
       .then (user)->
         switch user._accountType
-          when 'Customer' then $location.path 'tasks'
-          when 'Pro' then $location.path 'pro'
-          else $state.go 'home'
+          when 'Customer' then return $location.path 'tasks'
+          when 'Pro' then return $location.path 'pro'
+          else return $state.go 'admin' if user.role is 'admin'
+        $state.go 'home'
       .catch (err) ->
         $scope.errors.other = err.message
 

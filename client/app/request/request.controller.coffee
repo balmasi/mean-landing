@@ -79,10 +79,10 @@ angular.module 'taskyApp'
 
       request.$save()
         .then (res) ->
-          toastr.success 'successfully created request'
+          toastr.success 'Successfully Created Request'
           Search.clearLocation()
           $state.go 'tasks'
-        .catch(err) ->
+        .catch (err) ->
           toastr.error 'Something went wrong', 'Form Error'
 
     if form.$valid
