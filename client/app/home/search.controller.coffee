@@ -3,6 +3,9 @@
 angular.module 'taskyApp'
 .controller 'SearchCtrl', ($scope, Category, $q, $state, Search) ->
   $scope.pageVariables.pageClass = 'page-search'
+  $scope.loading =
+    category: false
+    location: false
 
   $scope.spinnerTexts = [
     'Plumber'
@@ -34,6 +37,8 @@ angular.module 'taskyApp'
     ,
       (results, status) ->
         if status is google.maps.GeocoderStatus.OK
+          # limit to 10
+          results = Array.prototype.slice.call results, 0, 5
           deferred.resolve results
         else
           deferred.reject results
@@ -45,10 +50,10 @@ angular.module 'taskyApp'
       lat: i.geometry.location.lat(),
       lng: i.geometry.location.lng(),
 
-    _requestInfo.subLocality = _.find i.address_components, (item) ->
+    subLoc = _.find i.address_components, (item) ->
       !!~item.types.indexOf 'sublocality_level_1'
 
-    return (_requestInfo.subLocality || i.address_components[0]).short_name
+    _requestInfo.subLocality = (subLoc || i.address_components[0]).short_name
 
   $scope.setCategory = (item) ->
     _requestInfo.categoryRoute = item.route

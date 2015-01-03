@@ -94,6 +94,21 @@ h3 {
   color: $brand-danger;
 }
 
+.loader-addon {
+  top: 10px;
+  right: 10px;
+  position: absolute;
+
+  img { width: 20px; }
+
+  &.ng-hide-add {
+    animation: fadeOut 0.5s;
+  }
+  &.ng-hide-remove {
+    animation: fadeIn 0.5s;
+  }
+}
+
 .btn-blue {
   background: $brand-primary;
   border-color: #58aaea !important;

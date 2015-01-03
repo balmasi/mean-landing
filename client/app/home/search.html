@@ -11,34 +11,45 @@
     </div>
     <div class="search-box-wrapper">
         <fieldset class="search-box">
-            <form novalidate ng-submit="newRequest()">
+            <form name="searchForm" novalidate ng-submit="newRequest()">
                 <div class="form-group">
                     <label>What do you need?</label>
                     <div class="input-group">
                         <input type="text" ng-model="searchTerm"
                                placeholder="Painter, Mover, etc."
+                               required
+                               name="category"
                                typeahead="category.name for category in getCategories($viewValue)"
+                               typeahead-editable="false"
                                typeahead-min-length="3"
                                typeahead-on-select="setCategory($item)"
-                               typeahead-loading="loading" class="form-control">
-                        <span class="loader-addon" ng-show="false">$</span>
+                               typeahead-wait-ms="50"
+                               typeahead-loading="loading.category"
+                               class="form-control">
+                        <span class="loader-addon" ng-show="loading.category">
+                            <img src="assets/images/loader-spin-white.GIF" alt=""/>
+                        </span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Where are you located?</label>
                     <div class="input-group">
                         <input type="text" ng-model="addressSearchTerm"
-                               ng-model-options="{ updateOn: 'default blur', debounce: {'default': 800, 'blur': 0} }"
+                               ng-model-options="{ updateOn: 'default blur', debounce: {'default': 300, 'blur': 0} }"
+                               required
+                               name="location"
                                placeholder="Address or postal code"
                                typeahead="add.formatted_address for add in getAddresses($viewValue)"
                                typeahead-editable="false"
                                typeahead-min-length="3"
-                               typeahead-loading="loading" class="form-control"
+                               typeahead-loading="loading.location" class="form-control"
                                typeahead-on-select="setLatLng($item, $model, $label)">
-                        <span class="loader-addon" ng-show="false">$</span>
+                        <span class="loader-addon" ng-show="loading.location"">
+                            <img src="assets/images/loader-spin-white.GIF" alt=""/>
+                        </span>
                     </div>
                 </div>
-                <input class="btn btn-blue" type="submit" value="Get Started"/>
+                <input class="btn btn-blue" type="submit" ng-disabled="searchForm.$invalid" value="Get Started"/>
             </form>
         </fieldset>
     </div>

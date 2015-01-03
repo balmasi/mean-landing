@@ -66,7 +66,15 @@
       font-size: 2rem;
     }
 
-    .btn { width: 100%; margin-top: 1rem; }
+    .btn {
+      width: 100%;
+      margin-top: 1rem;
+      &[disabled] {
+        color: white !important;
+        border: none;
+      }
+
+    }
 
   }
   .text-spinner {
