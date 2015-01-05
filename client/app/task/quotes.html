@@ -3,8 +3,9 @@
     <div class="tab-wrapper">
         <tabset class="quote-selector">
             <tab ng-repeat="q in quotes"
-                 select="go(q._id)"
-                 class="clearfix">
+                 select="go(q)"
+                 class="clearfix"
+                 active="q.tab_active">
 
                 <tab-heading>
                     <div class="pro-image">

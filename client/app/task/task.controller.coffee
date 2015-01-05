@@ -27,9 +27,9 @@ angular.module 'taskyApp'
 
   $scope.category = request.category?.name
 
-  $scope.go = (id) ->
+  $scope.go = (q) ->
     $state.go 'quotes.offer',
-      offerId: id
+      offerId: q._id
 
 .controller 'QuoteShowCtrl', ($scope, $stateParams, me, Quote, Request, toastr, request) ->
 
@@ -44,6 +44,10 @@ angular.module 'taskyApp'
   $scope.replyClicked = false
   $scope.toggleReply = ->
     $scope.replyClicked = ! $scope.replyClicked
+
+  $scope.$on '$stateChangeSuccess', ->
+    console.log 'state changed'
+    $scope.quote.tab_active = true
 
 
   $scope.hire = ->
