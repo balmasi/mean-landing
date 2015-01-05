@@ -1,7 +1,15 @@
 .page-pro-requests {
+  .page-container { padding: 4.5rem 0 0; }
 
   $filter-border-color: #ddd;
   .filter-container {
+    @include screen-xs-max {
+      float: none;
+      margin: 0 auto 2rem auto;
+      width: 40%;
+      min-width: 20rem;
+    }
+
     border: 1px solid $filter-border-color;
     padding: 0;
   }

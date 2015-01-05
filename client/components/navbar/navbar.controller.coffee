@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'NavbarCtrl', ($scope, $location, Auth) ->
+.controller 'NavbarCtrl', ($scope, $location, Auth, $rootScope, $timeout) ->
 
   $scope.isCollapsed = true
   $scope.signupActive = false
@@ -20,6 +20,13 @@ angular.module 'taskyApp'
 
   $scope.isSignUp = ->
     /signup/.test $location.path()
+
+  $rootScope.$on '$stateChangeSuccess', ->
+    $timeout ->
+      $('.navbar-toggle').click() unless $scope.isCollapsed
+    ,
+      0
+
 
 
 .directive 'onePageNav', () ->

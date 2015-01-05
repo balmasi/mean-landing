@@ -52,7 +52,7 @@ angular.module 'taskyApp'
         requested_by: $scope.user._id
         category: _categoryId
         questions: results
-        schedule_type: $scope.schedule.scheduleType
+        schedule_type: $scope.schedule.scheduleFormat
         schedule_details:
           date: $scope.schedule.scheduleDate
           time: $scope.schedule.scheduleTime

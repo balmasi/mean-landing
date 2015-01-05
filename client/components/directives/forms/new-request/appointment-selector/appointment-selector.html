@@ -9,9 +9,19 @@
         </select>
     </div>
     <div ng-if="schedule.scheduleFormat == 'date'" class="form-group">
-        <div class="form-group input-group col-xs-12">
-            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-            <input ng-required="schedule.scheduleFormat == 'date'"  ng-model="schedule.scheduleDate" type="date" class="form-control" placeholder="Choose a Date">
+        <div class="form-group input-group col-xs-12 datepicker">
+            <span class="input-group-addon open-calendar-btn" ng-click="open($event)" >
+                <i class="fa fa-calendar"></i>
+            </span>
+            <input type='text'  class="form-control" placeholder="Choose a Date"
+                   datepicker-popup="{{dpOptions.format}}"
+                   ng-model="schedule.scheduleDate"
+                   is-open="dpOptions.open"
+                   show-weeks="false"
+                   show-button-bar= "false"
+                   min-date="dpOptions.min"
+                   ng-focus="open($event)"
+                   ng-required="schedule.scheduleFormat == 'date'" />
         </div>
         <div class="row">
             <div class="form-group col-xs-6">

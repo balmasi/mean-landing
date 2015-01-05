@@ -190,13 +190,16 @@ h3 {
   }
 }
 
-.ng-enter, .ng-hide-remove {
-  animation: fadeIn 0.2s;
+.animated {
+  &.ng-enter, &.ng-hide-remove {
+    animation: fadeIn 0.2s;
+  }
+
+  &.ng-leave, &.ng-hide-add {
+    animation: fadeOut 0.2s;
+  }
 }
 
-.ng-leave, .ng-hide-add {
-  animation: fadeOut 0.2s;
-}
 
 
 

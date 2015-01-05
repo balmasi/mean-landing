@@ -56,3 +56,9 @@ $path: "bootstrap";
     display: inline-block;
   }
 }
+
+.col-xs-vertical-spacing {
+  @include screen-xs-max {
+    margin-bottom: 2rem;
+  }
+}
