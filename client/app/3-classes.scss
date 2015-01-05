@@ -121,6 +121,10 @@ h3 {
   &:hover {
     box-shadow: 0px 0px 15px #58aaea;
   }
+
+  &.disabled:hover {
+    box-shadow: none;
+  }
 }
 
 .btn-blue-simple {
@@ -185,6 +189,15 @@ h3 {
     border-color: #58aaea;
   }
 }
+
+.ng-enter, .ng-hide-remove {
+  animation: fadeIn 0.2s;
+}
+
+.ng-leave, .ng-hide-add {
+  animation: fadeOut 0.2s;
+}
+
 
 
 .btn {

@@ -10,23 +10,17 @@ angular.module 'taskyApp'
   $scope.user = Auth.getCurrentUser()
 
   $scope.schedule = {}
+
   # Who travels to whom
   $scope.travel = {}
 
-
-  # Used to decide how to schedule in form
-  $scope.scheduleOptions =
-    flexible: "I'm flexible"
-    asap: "As soon as possible"
-    date: "On a particular day"
-    other: "I'd need to describe it"
-
   $scope.errors = {}
-  $scope.travel = {}
 
   $scope.hasAccount = () ->
     $scope.user._id if $scope.user._id?
 
+  $scope.showErrorsOnHover = (form) ->
+    debugger
 
   $scope.sendRequest = (form) ->
     results = []
