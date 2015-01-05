@@ -12,8 +12,7 @@ angular.module 'taskyApp'
   $scope.schedule = {}
   # Who travels to whom
   $scope.travel = {}
-  $scope.hasTravelType = (type) ->
-    !!~category.travel_types.indexOf type
+
 
   # Used to decide how to schedule in form
   $scope.scheduleOptions =
@@ -22,11 +21,8 @@ angular.module 'taskyApp'
     date: "On a particular day"
     other: "I'd need to describe it"
 
-  # km's willing to travel (customer)
-  $scope.travelOptions = [5, 10, 25, 50]
-
-
   $scope.errors = {}
+  $scope.travel = {}
 
   $scope.hasAccount = () ->
     $scope.user._id if $scope.user._id?

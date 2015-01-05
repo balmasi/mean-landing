@@ -1,0 +1,35 @@
+<div class="location" ng-form="locationForm" ng-if="!travelSet">
+    <fieldset>
+        <div class="form-group">
+            <label>Where can the {{ category.name }} take place?</label>
+            <div class="input-group" ng-if="hasTravelType('tocustomer')">
+                <label>
+                    <input ng-model="travel.tocustomer"
+                           value="tocustomer" type="checkbox"
+                           ng-required="noneSelected()"/>
+                    The {{category.actor | lowercase }} travels to me.
+                </label>
+            </div>
+            <div class="input-group" ng-if="hasTravelType('topro')">
+                <label>
+                    <input ng-model="travel.topro" value="topro"
+                           type="checkbox"
+                           ng-required="noneSelected()"/>I can travel to the {{ category.actor | lowercase }} for up to
+                    <select ng-model="travel.distance" ng-options="distance + ' km' for distance in travelOptions"
+                            ng-required="travel.topro">
+                        <option value="">Please Specify Distance</option>
+                    </select>
+                </label>
+            </div>
+            <div class="input-group" ng-if="hasTravelType('remote')">
+                <label>
+                    <input ng-required="noneSelected()"
+                           ng-model="travel.remote" value="remote"
+                           type="checkbox"/>
+                    This takes place online or over the phone.
+                </label>
+            </div>
+        </div>
+
+    </fieldset>
+</div>

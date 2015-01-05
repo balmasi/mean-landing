@@ -7,10 +7,14 @@ var QuestionSchema = new Schema({
   field_type: {
     type: String,
     enum: ['text', 'date', 'select', 'checklist', 'radio'],
-    required: true,
     default: 'text'
   },
-  question: String,
+  required: {
+    type: Boolean,
+    default: true
+  },
+  description: String,  // Descriptive label of question
+  question: String, // Question to ask during request
   choices: {  // Optional
     type: [ {
       label: { type: String },

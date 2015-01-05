@@ -53,6 +53,7 @@ Category.remove({}).exec()
         questions: [
           {
             field_type: 'text',
+            required: false,
             question: 'Is there anything else the mover should know?'
           },
           {

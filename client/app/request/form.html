@@ -3,15 +3,16 @@
     <form novalidate name="form">
         <div class="panel-body">
             <div ng-repeat="q in questions" ng-switch="q.field_type">
+
                 <div class="form-group" ng-switch-when="text">
                     <label>{{q.question}}</label>
-                    <input required class="form-control" name="{{q._id}}" ng-model="q.answer" type="text"/>
+                    <textarea rows="3" ng-required="q.required" class="form-control" name="{{q._id}}" ng-model="q.answer"></textarea>
                 </div>
 
 
                 <div class="form-group" ng-switch-when="select">
                     <label>{{q.question}}</label>
-                    <select required
+                    <select ng-required="q.required"
                             ng-model="q.answer"
                             name="{{q._id}}"
                             ng-options="choice.label for choice in q.choices"
@@ -20,27 +21,11 @@
                     </select>
                 </div>
 
+                <!-- Renders a multi checkbox -->
                 <div ng-switch-when="checklist">
-                    <label>{{q.question}}</label>
-                    <ul class="list-group form-list">
-                        <li ng-repeat="choice in q.choices"
-                            ng-switch="choice.can_describe"
-                            class="list-group-item checkbox input-group">
-
-                            <label ng-switch-when="undefined">
-                                <input type="checkbox"
-                                       ng-model="choice.answer"
-                                       name="{{q._id}}">{{choice.label}}
-                            </label>
-                            <label ng-switch-when="true">
-                                <input ng-model="choice.otherChecked"
-                                       type="checkbox" name="{{q._id}}">
-                                <input ng-model="choice.answer" class="plain-input" type="text" placeholder="Other">
-                            </label>
-                        </li>
-
-                    </ul>
+                    <multicheck question="q" require-one="q.required"></multicheck>
                 </div>
+
 
             </div>
             <div class="scheduling">
@@ -73,28 +58,10 @@
                               placeholder="Describe how and when you'd like to set up an appointment"></textarea>
                 </div>
             </div>
-            <div class="location">
-                <fieldset>
-                    <div class="form-group">
-                        <label>Where can the {{ category.name }} take place?</label>
-                        <div class="input-group" ng-if="hasTravelType('tocustomer')">
-                            <label><input ng-model="travel.tocustomer" value="tocustomer" type="checkbox"/> The {{category.actor | lowercase }} travels to me.</label>
-                        </div>
-                        <div class="input-group" ng-if="hasTravelType('topro')">
-                            <label><input ng-model="travel.topro" value="topro" type="checkbox"/> I can travel to the {{ category.actor | lowercase }} for up to
-                                <select ng-model="travel.distance" ng-options="distance + ' km' for distance in travelOptions"
-                                        ng-required="travel.topro">
-                                    <option value="">Please Specify Distance</option>
-                                </select>
-                            </label>
-                        </div>
-                        <div class="input-group" ng-if="hasTravelType('remote')">
-                            <label><input ng-model="travel.remote" value="remote" type="checkbox"/> This takes place online or over the phone. </label>
-                        </div>
-                    </div>
 
-                </fieldset>
-            </div>
+            <!-- Asks who travels to whom? -->
+            <travel-checkboxes travel="travel" category="category"></travel-checkboxes>
+
             <div class="auth-fields row"
                  ng-if="!hasAccount()">
                 <h4 class="hr-text"><span>Create your Tasky Account</span></h4>
@@ -131,7 +98,10 @@
 
         </div>
         <div class="panel-footer">
-            <a class="btn btn-blue" ng-click="sendRequest(form)">Send Request</a>
+            <input type="submit"
+                   class="btn btn-blue"
+                   ng-disabled="form.$invalid"
+                   ng-click="sendRequest(form)"></input>
         </div>
     </form>
 </div>

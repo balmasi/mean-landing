@@ -39,7 +39,6 @@ angular.module 'taskyApp', [
       # remove any stale tokens
       $cookieStore.remove 'token'
       $location.path '/login'
-
     $q.reject response
 
 .run ($rootScope, $location, Auth) ->

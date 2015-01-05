@@ -1,0 +1,31 @@
+<div class="multicheck" ng-init="checkForm='multi_{{question._id}}'" ng-form="checkForm">
+    <label>{{question.question}}</label>
+    <ul class="list-group form-list">
+        <li ng-repeat="choice in question.choices"
+            ng-switch="choice.can_describe"
+            class="list-group-item checkbox input-group">
+
+            <label ng-switch-when="undefined">
+                <input type="checkbox"
+                       ng-model="choice.answer"
+                       ng-required="anySelected()"
+                       name="{{choice._id}}">{{choice.label}}
+            </label>
+            <label ng-switch-when="true">
+                <input ng-model="choice.otherChecked"
+                       ng-required="anySelected()"
+                       type="checkbox" name="{{choice._id}}">
+                <input ng-model="choice.answer" class="plain-input"
+                       name="otherText" type="text" placeholder="Other"
+                       ng-required="choice.otherChecked">
+            </label>
+        </li>
+    </ul>
+
+    <span class="form-error" role="alert" ng-show="checkForm.$dirty && checkForm.$error.required">
+        Please select at least one option.
+    </span>
+    <p class="form-error" role="alert" ng-show="checkForm.$dirty && checkForm.otherText.$error.required">
+        You must provide a value for the text field if choosing 'Other'.
+    </p>
+</div>
