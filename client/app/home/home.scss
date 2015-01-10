@@ -136,7 +136,7 @@
   }
 
   .icon-block {
-    background: #58aaea;
+    background: $brand-primary;
     border-radius: 100%;
     color: #fff;
     font-size: 30px;
@@ -156,7 +156,7 @@
     }
 
     .icon-block {
-      background: #58aaea;
+      background: $brand-primary;
       border-radius: 100%;
       color: #fff;
       font-size: 30px;
@@ -245,8 +245,8 @@
   #type-customer, #type-business {
     &:checked {
       + label .type-choice-btn {
-        background: #58aaea;
-        border-color: #58aaea !important;
+        background: $brand-primary;
+        border-color: $brand-primary !important;
       }
     }
   }
@@ -298,7 +298,7 @@
   }
 
   .contact-block {
-    color: #58aaea;
+    color: $brand-primary;
     padding: 30px 40px;
     background: #eee;
 
@@ -350,7 +350,7 @@
           height: 40px;
           transition: background 0.2s ease;
           &:hover {
-            background: #58aaea;
+            background: $brand-primary;
           }
         }
       }

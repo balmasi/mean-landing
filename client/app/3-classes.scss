@@ -34,14 +34,14 @@
   height: 6px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #58aaea;
+  background: $brand-primary;
 }
 ::-moz-selection {
-  background: #58aaea;
+  background: $brand-primary;
   color: #fff;
 }
 ::selection {
-  background: #58aaea;
+  background: $brand-primary;
   color: #fff;
 }
 
@@ -186,7 +186,7 @@ unmask.ng-dirty.ng-invalid .form-control, .form-control.ng-dirty.ng-invalid {
     color: #555555;
   }
   &:focus {
-    border-color: #58aaea;
+    border-color: $brand-primary;
   }
 }
 
@@ -212,8 +212,8 @@ unmask.ng-dirty.ng-invalid .form-control, .form-control.ng-dirty.ng-invalid {
   border-width: 3px;
 }
 .btn-default:hover {
-  background: #58aaea;
-  border-color: #58aaea !important;
+  background: $brand-primary;
+  border-color: $brand-primary !important;
   color: #fff;
 }
 
@@ -305,7 +305,7 @@ unmask.ng-dirty.ng-invalid .form-control, .form-control.ng-dirty.ng-invalid {
       color: #aaaaaa;
     }
     &:focus {
-      border-color: #58aaea;
+      border-color: $brand-primary;
     }
   }
   .btn[disabled] {
@@ -329,7 +329,7 @@ unmask.ng-dirty.ng-invalid .form-control, .form-control.ng-dirty.ng-invalid {
 }
 
 #preloader {
-  background: #58aaea;
+  background: $brand-primary;
   position: fixed;
   left: 0;
   top: 0;
@@ -353,7 +353,7 @@ unmask.ng-dirty.ng-invalid .form-control, .form-control.ng-dirty.ng-invalid {
 }
 
 #loader {
-  background: #58aaea;
+  background: $brand-primary;
   box-sizing: content-box;
   border-radius: 50%;
   margin: -16px 0 0 -16px;
