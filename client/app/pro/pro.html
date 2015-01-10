@@ -23,7 +23,7 @@
     <div class="col-sm-9">
         <accordion close-others="true">
             <accordion-group ng-init="isExpanded = false"
-                             ng-repeat="r in filteredRequests = (requests | filter:statusFilter)" class="{{r.quoteStatus}}">
+                             ng-repeat="r in filteredRequests = (incoming_requests | filter:statusFilter)" class="{{r.quoteStatus}}">
                 <accordion-heading>
                     <div class="clearfix" ng-click="isExpanded = !isExpanded">
                         <div class="pull-left">
@@ -46,10 +46,10 @@
                     <request-info request="r"></request-info>
                 </div>
             </accordion-group>
-            <div ng-show="!filteredRequests.length && requests.length" class="empty-instruction">
+            <div ng-show="!filteredRequests.length && incoming_requests.length" class="empty-instruction">
                 <h3>No requests match your filters.</h3>
             </div>
-            <div ng-show="!filteredRequests.length && !requests.length" class="empty-instruction">
+            <div ng-show="!filteredRequests.length && !incoming_requests.length" class="empty-instruction">
                 <h3>No requests have been sent to you yet.</h3>
                 <p class="subtext">Hold on tight and we will notify you as soon as someone is looking for your services.</p>
             </div>

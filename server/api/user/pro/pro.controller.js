@@ -35,7 +35,7 @@ exports.show = function (req, res, next) {
   var proId = req.params.id;
 
   Pro.findById(proId, '-salt -hashedPassword')
-    .populate('requests')
+    .populate('incoming_requests')
     .exec()
     .then(function (err, pro) {
       if (err) return next(err);
@@ -51,18 +51,18 @@ exports.me = function (req, res, next) {
   var proId = req.user._id;
 
   Pro.findById(proId, '-salt -hashedPassword')
-    .populate('requests').exec()
+    .populate('incoming_requests').exec()
     .then(
       function(pro) {
     return Category.populateAsync(pro, {
-      path: 'requests.category',
+      path: 'incoming_requests.category',
       model: Category,
       select: 'credits_required name scheduling_type'
     });
   })
     .then(function(pro) {
       return Customer.populateAsync(pro, {
-        path: 'requests.requested_by',
+        path: 'incoming_requests.requested_by',
         model: Customer,
         select: '-hashedPassword -facebook -google -_accountType'
       });

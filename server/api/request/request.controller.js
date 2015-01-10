@@ -86,7 +86,7 @@ exports.create = function(req, res) {
         .exec().then(function(pros) {
           pros.forEach( function (pro){
             pro.requestCount++;
-            pro.requests.addToSet(requestObj);
+            pro.incoming_requests.addToSet(requestObj);
             pro.save(function(err) {
               console.error(err);
             });

@@ -6,7 +6,7 @@
             <span class="new-request-text">New Request</span>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4"
-             ng-repeat="r in requests"
+             ng-repeat="r in incoming_requests"
              ng-click="goToQuotes(r)">
             <div class="index-task-item col-xs-12" ng-class="{ 'fulfilled' : r.status == 'fulfilled' }">
                 <div ng-show="r.status == 'inactive'" class="corner-ribbon top-left green shadow">Picked</div>

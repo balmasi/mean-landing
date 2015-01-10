@@ -5,7 +5,7 @@ angular.module 'taskyApp'
   $scope.pageVariables.pageClass = 'page-pro-requests'
   $scope.account = account
   $scope.account.credits = 'Unlimited' if account?.credits == null
-  $scope.requests = account.requests
+  $scope.incoming_requests = account.incoming_requests
 
   $scope.filters =
     noquote: true
@@ -18,7 +18,7 @@ angular.module 'taskyApp'
       request: r._id
 
   _getRequestForQuote = (q) ->
-    _($scope.requests).findWhere
+    _($scope.incoming_requests).findWhere
       _id: q.request
 
   _(quotes).each (q) ->
@@ -110,7 +110,7 @@ angular.module 'taskyApp'
     .catch (err) ->
       toastr.error 'Could not send your message'
 
-  requestIndex = account.requests.indexOf request
+  requestIndex = account.incoming_requests.indexOf request
 
   $scope.newQuote =
     rate:

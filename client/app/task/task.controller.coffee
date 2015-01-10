@@ -4,7 +4,7 @@ angular.module 'taskyApp'
 .controller 'TaskCtrl', ($scope, requests, $state) ->
   $scope.pageVariables.pageClass = 'page-tasks'
 
-  $scope.requests = requests
+  $scope.incoming_requests = requests
 
   $scope.hasQuotes = (r) ->
     r.quotes.length > 0

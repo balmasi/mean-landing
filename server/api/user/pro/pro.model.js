@@ -40,8 +40,7 @@ var ProSchema = UserSchema.extend({
     type: [ Number ],
     index: '2dsphere'
   },
-  // Incoming requests come here (TODO: change name to incoming_requests)
-  requests: [
+  incoming_requests: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Request'
