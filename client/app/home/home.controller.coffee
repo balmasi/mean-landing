@@ -1,7 +1,8 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'HomeCtrl', ($scope, $http) ->
+.controller 'HomeCtrl', ($scope, $http, $rootScope) ->
+  #TODO: REDO IN ANGULAR
   $scope.pageVariables.pageClass = 'page-home'
   $scope.subscriber =
     accountType: 'customer'
@@ -71,11 +72,7 @@ angular.module 'taskyApp'
     scrollSpeed: 1000 # Smooth scrolling speed
     scrollOffset: 80 # For one page nav. Recomended to be as navbar height
     preloaderTimeout: 4000 # If loading is to long, hide overlay after N ms
-    screen: # Breakpoints. Like in bootstrap
-      xs: 480
-      sm: 768
-      md: 992
-      lg: 1200
+
 
   transitionEnd = "transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd"
   animationEnd = "webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend"
@@ -303,11 +300,15 @@ angular.module 'taskyApp'
       all.parallax()
       all.scrollToGlobal()
       maps.init()
+      $rootScope.readyStatus = 'ready'
       return
 
     scroll: ->
       all.navbarSelect()
       return
 
+
+
   $(document).ready init.ready
   $(window).scroll init.scroll
+
