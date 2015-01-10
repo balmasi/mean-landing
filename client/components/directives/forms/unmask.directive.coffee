@@ -2,7 +2,6 @@
 
 angular.module 'taskyApp'
 .directive 'unmask', () ->
-  # A function that masks every character except last one. TODO: Make advanced masker
   maskTillLast = (val) ->
     strLen = val.length
     return Array(strLen).join("●") + val.slice(strLen-1,strLen)

@@ -80,14 +80,15 @@ angular.module 'taskyApp'
     newMessage =
       from: me._id
       message: $scope.newMessage
+      date: Date.now()
 
     Quote.addMessage
       id: $scope.quote._id
     ,
         newMessage
     .$promise.then (m) ->
-      $scope.messages.push m
+      $scope.messages.push newMessage
       $scope.newMessage = ''
-      toastr.success 'Message Sent Successfuly'
+      toastr.success 'Message Sent Successfully'
     .catch (err) ->
       toastr.error 'Could not send your message'
