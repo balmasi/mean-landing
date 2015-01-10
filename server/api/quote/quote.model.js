@@ -12,6 +12,10 @@ var QuoteSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Pro'
   },
+  sent_at: {
+    type: Date,
+    default: Date.now
+  },
   status: {
     type: String,
     enum: ['pending', 'hired' , 'rejected'],

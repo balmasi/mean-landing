@@ -46,7 +46,6 @@ angular.module 'taskyApp'
     $scope.replyClicked = ! $scope.replyClicked
 
   $scope.$on '$stateChangeSuccess', ->
-    console.log 'state changed'
     $scope.quote.tab_active = true
 
 
@@ -73,6 +72,9 @@ angular.module 'taskyApp'
     myName = getNameFromAccount me
     bizName = getNameFromAccount $scope.pro
     if msg.from is me._id then myName else bizName
+
+  $scope.getMsgThumb = (m) ->
+    if m.from is me._id then me.getThumbnailUrl() else $scope.pro.image?.url
 
   $scope.addMessage = ->
     newMessage =

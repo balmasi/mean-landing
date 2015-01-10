@@ -102,8 +102,8 @@ $line-height-large:         1.33;
 $line-height-small:         1.5;
 
 $border-radius-base:        0;
-$border-radius-large:       0;
-$border-radius-small:       0;
+$border-radius-large:       15px;
+$border-radius-small:       10px;
 
 //** Global color for active items (e.g., navs or dropdowns).
 $component-active-color:    #fff;
@@ -597,7 +597,7 @@ $modal-sm:                    300px;
 //## Define alert colors, border radius, and padding.
 
 $alert-padding:               15px;
-$alert-border-radius:         5px;
+$alert-border-radius:         0;
 $alert-link-font-weight:      bold;
 
 $alert-success-bg:            $state-success-bg;
@@ -711,7 +711,7 @@ $thumbnail-bg:                $body-bg;
 //** Thumbnail border color
 $thumbnail-border:            #ddd;
 //** Thumbnail border radius
-$thumbnail-border-radius:     $border-radius-base;
+$thumbnail-border-radius:     $border-radius-small;
 
 //** Custom text color for thumbnail captions
 $thumbnail-caption-color:     $text-color;

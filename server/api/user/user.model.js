@@ -9,6 +9,11 @@ var authTypes = ['facebook', 'google'];
 var UserSchema = new Schema({
   firstName: String,
   lastName: String,
+  image: {
+    fd: String,
+    fileId: Schema.Types.ObjectId,
+    url: String
+  },
   email: { type: String, lowercase: true },
   _accountType: {
     type: String,
@@ -51,6 +56,7 @@ UserSchema
   .get(function() {
     return {
       'name': this.firstName + this.lastName,
+      'image': '/api/users/image/' + this.image,
       'role': this.role
     };
   });

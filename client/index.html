@@ -59,6 +59,9 @@
 <script src="bower_components/es5-shim/es5-shim.js"></script>
 <script src="bower_components/json3/lib/json3.min.js"></script>
 <![endif]-->
+<!--[if lte IE 9]>
+    <script src="bower_components/ng-file-upload/angular-file-upload-shim.js"></script>
+<![endif]-->
 <!-- build:js({client,node_modules}) app/vendor.js -->
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script src="https://checkout.stripe.com/checkout.js"></script>
@@ -92,6 +95,7 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-toastr/dist/angular-toastr.js"></script>
     <script src="bower_components/angular-timeago/src/timeAgo.js"></script>
+    <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
     <!-- endbower -->
     <script src="socket.io-client/socket.io.js"></script>
 <!-- endbuild -->
@@ -124,6 +128,7 @@
 <script src="components/directives/forms/request-info/request-info.js"></script>
 <script src="components/directives/forms/standard-form-errors.js"></script>
 <script src="components/directives/forms/unmask.js"></script>
+<script src="components/filters/thumbnail.js"></script>
 <script src="components/model-services/auth/auth.js"></script>
 <script src="components/model-services/auth/customer.js"></script>
 <script src="components/model-services/auth/pro.js"></script>

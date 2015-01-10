@@ -129,10 +129,28 @@
     margin-bottom: 2rem;
 
     .message {
+      $min-img-size: 80px;
       @include clearfix();
       padding-bottom: 1rem;
       padding-top: 1rem;
       border-bottom: 1px solid #cccccc;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      img {
+        float: left;
+        min-width: $min-img-size;
+      }
+
+      .message-text {
+        float: none;
+        margin-left: $min-img-size + 5px;
+        p {
+          white-space: pre-line;
+        }
+      }
 
       .time-stamp {
         float: right;
@@ -142,15 +160,17 @@
 
       &.theirs {
         text-align: right;
-        img { @include make-xs-column-push(10);}
-        .message-text { @include make-xs-column-pull(2); }
+        img {
+          float:right;;
+        }
         .time-stamp {
           float: left;
         }
-      }
 
-      .message-text p {
-        white-space: pre-line;
+        .message-text {
+          margin-left:0;
+          margin-right: $min-img-size + 5px;
+        }
       }
     }
 

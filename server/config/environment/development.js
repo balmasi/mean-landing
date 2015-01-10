@@ -5,7 +5,7 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/tasky-dev'
+    uri: 'mongodb://localhost:27017/tasky-dev'
   },
 
   seedDB: false

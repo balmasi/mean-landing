@@ -1,7 +1,8 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'SettingsCtrl', ($scope, User, Auth) ->
+.controller 'SettingsCtrl', ($scope, User, Auth, $upload) ->
+  $scope.me = User.get()
   $scope.errors = {}
   $scope.changePassword = (form) ->
     $scope.submitted = true
@@ -15,3 +16,22 @@ angular.module 'taskyApp'
         form.password.$setValidity 'mongoose', false
         $scope.errors.other = 'Incorrect password'
         $scope.message = ''
+
+  $scope.profilePic = undefined
+  $scope.$watch 'profilePic', ->
+
+    $scope.uploadImage = (files, e) ->
+      file = files[0]
+      $upload.upload
+        url: '/api/users/me/image'
+        method: 'POST'
+        data :
+          'Content-Type': if file.type != '' then file.type else 'application/octet-stream'
+          filename: file.name
+        file: file
+        fileFormDataName: 'profile'
+      .success (data) ->
+        $scope.me.image = {} unless $scope.me.image?
+        $scope.me.image.url = data.url
+      .error (err) ->
+        console.error err

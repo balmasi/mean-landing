@@ -164,16 +164,16 @@ h3 {
   padding: 0.25rem 0.5rem;
 }
 
+unmask.ng-dirty.ng-invalid .form-control, .form-control.ng-dirty.ng-invalid {
+  border-color: $brand-danger;
+  top: 0px; // Workaround to force re-rendering
+  animation: pulse 0.8s;
+}
+
 .form-control {
   outline: 0;
   transition: all 0.5s ease;
   position: relative;
-
-  &.ng-invalid.ng-dirty {
-    border-color: $brand-danger;
-    top: 0px; // Workaround to force re-rendering
-    animation: pulse 0.8s;
-  }
 
   &::-webkit-input-placeholder {
     color: #555555;

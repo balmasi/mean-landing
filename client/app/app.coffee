@@ -11,6 +11,7 @@ angular.module 'taskyApp', [
   'ui.bootstrap',
   'yaru22.angular-timeago',
   'btford.socket-io',
+  'angularFileUpload'
 ]
 .config ($urlRouterProvider, $locationProvider, $httpProvider, toastrConfig) ->
 

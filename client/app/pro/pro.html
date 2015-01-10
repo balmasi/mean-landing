@@ -33,8 +33,10 @@
 
                         <div class="pull-right">
                             <i class="fa fa-chevron-down" ng-class="{'fa-chevron-down-rotate': isExpanded }"></i>
+                            <a ng-if="!haveSentQuote(r)" ng-click="declineRequest(r, $event)"
+                               class="btn btn-danger">Decline</a>
                             <a ng-if="!haveSentQuote(r)" ng-click="openQuoteModal(r, $event)"
-                               class="btn btn-success">Send Proposal</a>
+                               class="btn btn-success">Accept</a>
                             <a ng-if="haveSentQuote(r)" ng-click="openQuoteModal(r, $event)"
                                class="btn btn-blue-simple">View Messages</a>
                         </div>

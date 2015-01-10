@@ -1,12 +1,15 @@
 <div class="page-container">
     <h3 class="page-title">Your Submitted Requests</h3>
     <section class="tasks-wrapper">
-        <div class="plus-one" ng-click="newRequest()">+</div>
-        <div class="col-xs-12 col-sm-4"
+        <div class="plus-one" ng-click="newRequest()" ng-mouseover="console.log($element)">
+            <span class="plus">+</span>
+            <span class="new-request-text">New Request</span>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4"
              ng-repeat="r in requests"
              ng-click="goToQuotes(r)">
             <div class="index-task-item col-xs-12" ng-class="{ 'fulfilled' : r.status == 'fulfilled' }">
-                <div ng-show="r.status == 'inactive'" class="corner-ribbon top-left green shadow">Hired</div>
+                <div ng-show="r.status == 'inactive'" class="corner-ribbon top-left green shadow">Picked</div>
                 <h4 class="task-title">{{r.category.name}}</h4>
                 <p class="subtle">Created {{ r.date_created | timeAgo }}</p>
                 <hr/>
@@ -17,8 +20,9 @@
                 </div>
                 <div ng-show="hasQuotes(r)">
                     <ul class="quote-list" >
+
                         <li ng-repeat="q in r.quotes" class="clearfix">
-                            <img class='pull-left' src="http://placehold.it/35x35" class="img-circle"/>
+                            <img class='pull-left' ng-src="{{q.from.image.url | thumbnail }}" class="img-circle"/>
                             <div class="quote-info pull-left">
                                 <span class="quote-name">{{q.from.name}}</span>
                                 <span class="quote-price" ng-switch="q.rate.method" >

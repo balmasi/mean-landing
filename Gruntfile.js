@@ -201,7 +201,10 @@ module.exports = function (grunt) {
     'node-inspector': {
       custom: {
         options: {
-          'web-host': 'localhost'
+          'web-host': 'localhost',
+          'save-live-edit': true,
+          'no-preload': true,
+          'hidden': ['node_modules']
         }
       }
     },
@@ -211,7 +214,8 @@ module.exports = function (grunt) {
       debug: {
         script: 'server/app.js',
         options: {
-          nodeArgs: ['--debug-brk', '--save-live-edit=true'],
+          nodeArgs: ['--debug-brk'],
+          ignore: ['node_modules/**'],
           env: {
             PORT: process.env.PORT || 9000
           },
@@ -418,11 +422,11 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'coffee',
-        'sass',
+        'sass'
       ],
       test: [
         'coffee',
-        'sass',
+        'sass'
       ],
       debug: {
         tasks: [

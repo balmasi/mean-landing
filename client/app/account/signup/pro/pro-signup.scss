@@ -1,40 +1,41 @@
-#status-buttons {
-  background: black;
-  padding: 2rem;
-}
+.page-signup-pro  {
+  #status-buttons {
+    background: black;
+    padding: 2rem;
+  }
 
 
-.step {
-  display: inline-block;
-  margin-right: 1.5rem;
+  .step {
+    display: inline-block;
+    margin-right: 1.5rem;
 
-  &.active {
-    .step-number {
-      background: $brand-primary;
+    &.active {
+      .step-number {
+        background: $brand-primary;
+      }
     }
   }
-}
-.step-number {
-  margin: 0 auto;
-  width: 4rem;
-  height: 4rem;
-  line-height: 3.7rem;
-  font-size: 1.8rem;
-  background: #333;
-  box-shadow: 0 0 5px inset rgba(0,0,0,0.5);
-  border: 2px solid white;
-  border-radius: 50%;
-  display: block;
-  font-weight: 600;
-}
+  .step-number {
+    margin: 0 auto;
+    width: 4rem;
+    height: 4rem;
+    line-height: 3.7rem;
+    font-size: 1.8rem;
+    background: #333;
+    box-shadow: 0 0 5px inset rgba(0,0,0,0.5);
+    border: 2px solid white;
+    border-radius: 50%;
+    display: block;
+    font-weight: 600;
+  }
 
-.step-label {
-  margin-top: 0.5rem;
-  font-weight: 400;
-}
+  .step-label {
+    margin-top: 0.5rem;
+    font-weight: 400;
+  }
 
 
-.business-signup {
+
 
   .hook-wrap {
     margin-top: 10rem;
@@ -80,5 +81,4 @@
       animation: fadeInDown 0.35s;
     }
   }
-
 }

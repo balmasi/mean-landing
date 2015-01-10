@@ -54,6 +54,8 @@ angular.module 'taskyApp'
 .controller 'QuoteCtrl', ($scope, request, $modalInstance, Quote, toastr , myQuote , account , $state) ->
   $scope.category = request.category
   $scope.request = request
+  $scope.myQuote = myQuote
+
   $scope.getCredits = ->
     account.credits
 
@@ -91,6 +93,9 @@ angular.module 'taskyApp'
     myName = getNameFromAccount account
     custName = getNameFromAccount request.requested_by
     if msg.from is account._id then myName else custName
+
+  $scope.getThumbnail = (msg) ->
+    if msg.from is account._id then account.image?.url else request.requested_by.image?.url
 
   $scope.sendMessage = ->
     Quote.addMessage

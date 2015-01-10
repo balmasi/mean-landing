@@ -4,10 +4,11 @@ var express = require('express');
 var passport = require('passport');
 var config = require('../config/environment');
 var User = require('../api/user/user.model');
+var Customer = require('../api/user/customer/customer.model');
 
 // Passport Configuration
 require('./local/passport').setup(User, config);
-require('./facebook/passport').setup(User, config);
+require('./facebook/passport').setup(Customer, config);
 require('./google/passport').setup(User, config);
 
 var router = express.Router();

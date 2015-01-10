@@ -53,7 +53,7 @@ var ProSchema = UserSchema.extend({
     index: true,
     default: 0
   },
-  // Number of task credits, default free until first customer hires
+  // Number of task credits, default TODO: free until first customer hires
   credits: {
     type: Number,
     default: Infinity

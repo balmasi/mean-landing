@@ -16,10 +16,19 @@
                     send a message with your rate.</p>
             </div>
 
+
+            <div ng-if="myQuote">
+                <p class="credit-head">You quoted {{request.requested_by.firstName}}
+                    <span ng-if="myQuote.rate.method == 'contact'">requesting more information</span>
+                    <strong ng-if="myQuote.rate.method != 'contact'"> {{myQuote.rate.value | currency:'$'}} {{myQuote.rate.method == 'hourly' ? '/hr' : 'total' }}</strong>
+                    on {{myQuote.sent_at | date:'mediumDate'}}
+                </p>
+            </div>
+
             <form novalidate name="quote-form">
                 <section ng-if="!canQuote()" class="messages">
                     <div class="message" ng-class="{ 'theirs': isTheirs(m) }" ng-repeat="m in messages">
-                        <img class="col-xs-2 img-rounded" src="http://placehold.it/50x50" alt=""/>
+                        <img class="col-xs-2 img-rounded" ng-src="{{getThumbnail(m) | thumbnail}}" alt=""/>
                         <div class="message-text col-xs-10">
                             <strong>{{getSender(m)}}</strong>
                             <span class="time-stamp">{{m.date | timeAgo }}</span>

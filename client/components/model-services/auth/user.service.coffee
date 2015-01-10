@@ -1,8 +1,8 @@
 'use strict'
 
 angular.module 'taskyApp'
-.factory 'User', ($resource) ->
-  $resource '/api/users/:id/:controller',
+.factory 'User', ($resource, $filter) ->
+  User = $resource '/api/users/:id/:controller',
     id: '@_id'
   ,
     changePassword:
@@ -14,3 +14,15 @@ angular.module 'taskyApp'
       method: 'GET'
       params:
         id: 'me'
+
+  # Only call this on prepopulated User model
+  User.prototype.getThumbnailUrl = ->
+    if not this.image? then '' else this.image.url
+
+
+
+  User.prototype.getImageUrl = ->
+    return '' unless this.image?
+    this.image.url
+
+  User

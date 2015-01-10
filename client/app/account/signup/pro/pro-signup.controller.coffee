@@ -6,7 +6,7 @@ rerouteIfNeeded = (scope, $state) ->
 app = angular.module 'taskyApp'
 
 app.controller 'ProSignUp.Ctrl', ($scope, $state) ->
-  $scope.pageVariables.pageClass = 'page-signup'
+  $scope.pageVariables.pageClass = 'page-signup-pro'
 
   $scope.$on "$stateNotFound", ->
     console.error 'State Not Found'

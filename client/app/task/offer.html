@@ -13,8 +13,11 @@
 <section class="quote-body">
     <div class="messages">
         <div class="message" ng-class="{ 'mine': isMine(m) }" ng-repeat="m in messages">
-            <img class="col-xs-2 img-rounded" src="http://placehold.it/50x50" alt=""/>
+            <div class="col-xs-2 message-image">
+                <img class="img-rounded" ng-src="{{getMsgThumb(m) | thumbnail }}" alt=""/>
+            </div>
             <div class="message-text col-xs-10">
+                <span class="time-stamp">{{m.date | timeAgo}}</span>
                 <strong>{{getSender(m)}}</strong>
                 <p>{{m.message}}</p>
             </div>
@@ -43,7 +46,7 @@
     <div ng-show="replyClicked" class="reply-action">
         <div class="clearfix">
             <p class="user-name">{{me.firstName + " " + me.lastName}}</p>
-            <img class="col-xs-2" src="http://placehold.it/50x50" alt=""/>
+            <img class="col-xs-2" ng-src="{{me.getThumbnailUrl()}}" alt=""/>
             <div class="col-xs-10 row">
                 <textarea class="col-xs-12" name="reply" rows="5"
                           ng-model="newMessage"

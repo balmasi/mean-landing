@@ -64,7 +64,7 @@ exports.me = function (req, res, next) {
       return Customer.populateAsync(pro, {
         path: 'requests.requested_by',
         model: Customer,
-        select: 'firstName lastName email phone'
+        select: '-hashedPassword -facebook -google -_accountType'
       });
     })
     .then(function (pro) {

@@ -25,6 +25,7 @@ angular.module 'taskyApp'
         return undefined
 
       $input = elem.find 'input'
+      $input.attr 'placeholder', attrs.placeholder if attrs.placeholder
 
       scope.textType = 'password'
       scope.toggleMask = () ->
