@@ -2,6 +2,7 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema,
   extend = require('mongoose-schema-extend'),
   Request = require('../../request/request.model');
+  Review = require('../../review/review.model');
 
 var UserSchema = require('../user.model').schema;
 
@@ -36,6 +37,14 @@ var ProSchema = UserSchema.extend({
   website: String,
   description: String,
   phone: String,
+
+  feedback : {
+    average_rating: {
+      type: Number,
+      default: 0
+    },
+    reviews: [ Review.schema ]
+  },
   geo: {
     type: [ Number ],
     index: '2dsphere'

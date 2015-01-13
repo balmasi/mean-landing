@@ -4,8 +4,10 @@ var Pro = require('./pro.model');
 var Customer = require('../customer/customer.model');
 var Quotes = require('../../quote/quote.model');
 var Category = require('../../category/category.model');
+var Review = require('../../review/review.model');
 var config = require('../../../config/environment');
 var jwt = require('jsonwebtoken');
+var errors = require('../../../components/errors');
 
 var userCtrl = require('../user.controller');
 
@@ -35,12 +37,15 @@ exports.show = function (req, res, next) {
   var proId = req.params.id;
 
   Pro.findById(proId, '-salt -hashedPassword')
-    .populate('incoming_requests')
+    // TODO: embed service name instead of populating
+    .populate('incoming_requests services')
     .exec()
-    .then(function (err, pro) {
-      if (err) return next(err);
-      if (!pro) return res.send(401);
-      res.json(user);
+    .then(function (pro) {
+      if (!pro) return errors[404](req,res);
+      res.status(200).json(pro);
+    },
+    function(err) {
+      return next(err);
     });
 };
 
@@ -99,6 +104,30 @@ exports.create = function (req, res, next) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: pro._id }, config.secrets.session, { expiresInMinutes: 60*5 });
     res.json({ token: token, accountType: 'Pro' });
+  });
+};
+
+
+exports.newReview = function(req, res, next) {
+  var id = req.params.id;
+
+  Pro.findByIdAsync(id).then(function(pro) {
+    var numReviews = pro.feedback.reviews.length,
+      newReview = new Review(req.body);
+
+    pro.feedback.reviews.push(newReview);
+    pro.feedback.average_rating = ((pro.feedback.average_rating * numReviews) +  newReview.rating ) / (numReviews + 1);
+    pro.save(function (err, professional) {
+      if (err) return res.status(500).send(err);
+      console.log(professional);
+      return res.status(201).json({
+        review: newReview,
+        rating: professional.feedback.average_rating
+      });
+    });
+  })
+    .catch (function(err) {
+      return next(err);
   });
 };
 

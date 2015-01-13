@@ -1,0 +1,110 @@
+
+<div id="pro-header">
+    <div id="cover-photo">
+        <div class="pro-names">
+            <h2 class="biz-name">{{vm.pro.name}}</h2>
+            <p class="pro-name">{{ vm.pro.firstName + ' ' + vm.pro.lastName }}</p>
+        </div>
+    </div>
+    <div id="pro-subheading">
+        <div id="profile-pic">
+            <img ng-src="{{ vm.pro.image.url | thumbnail }}" alt=""/>
+        </div>
+        <div id="profile-info">
+            <ul class="contact-summary">
+                <li><i class="fa fa-map-marker"></i> {{vm.pro.address.city}}</li>
+                <li><i class="fa fa-phone"></i> {{ vm.pro.phone }}</li>
+                <li>
+                    <rating class="rating"
+                            ng-model="vm.pro.feedback.average_rating"
+                            readonly="true"
+                            max="5"
+                            state-on="'fa fa-star'"
+                            state-off="'fa fa-star-o'"></rating>
+                    <span ng-if="vm.pro.feedback.reviews.length">
+                        {{vm.pro.feedback.average_rating | number:1}}
+                        <span class="sub-info"> ({{vm.pro.feedback.reviews.length}} reviews)</span>
+                    </span>
+                    <span class="sub-info no-reviews" ng-if="vm.pro.feedback.reviews.length == 0"> No Reviews Yet</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="pro-body">
+    <div class="col-sm-8">
+        <section id="about">
+            <label class="section-label">About</label>
+           <p>{{ vm.pro.description }}</p>
+        </section>
+        <section id="reviews" ng-hide="false">
+            <label class="section-label">Reviews</label>
+            <ul ng-if="vm.pro.feedback.reviews.length" class="reviews-list">
+                <li ng-repeat="review in vm.pro.feedback.reviews">
+                    <img src="http://placehold.it/100x100" class="img-circle"/>
+                    <label>{{ review.reviewer_name }}</label>
+                    <rating class="rating review-rating"
+                            ng-model="review.rating"
+                            max="5"
+                            readonly="true"
+                            state-on="'fa fa-star'"
+                            state-off="'fa fa-star-o'">
+                    </rating>
+                        <p>{{review.comment}}</p>
+
+
+                </li>
+            </ul>
+            <div ng-if="vm.loggedIn" class="clearfix">
+                <button ng-hide="vm.reviewOpen" class="btn btn-default" ng-click="vm.reviewOpen = true" disable-animate>Leave A review</button>
+                <div ng-show="vm.reviewOpen" class="col-xs-12">
+                    <form class="form" name="reviewForm" novalidate role="form" ng-submit="vm.submitReview()">
+                        <div class="form-group">
+                            <div><strong>How would you rate {{vm.pro.name}}?</strong></div>
+                            <rating class="rating"
+                                    ng-model="vm.newReview.rating"
+                                    max="5"
+                                    state-on="'fa fa-star'"
+                                    state-off="'fa fa-star-o'"
+                                    tooltip="Click to leave a rating"
+                                    tooltip-placement="right"
+                                    >
+                            </rating>
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Describe your experience</label>
+                            <textarea class='form-control'
+                                      name="comment"
+                                      ng-model="vm.newReview.comment"
+                                      required
+                                      standard-form-errors
+                                      id="comment" rows="4"></textarea>
+                        </div>
+                        <input type="submit"
+                               disable-click="vm.newReview.rating == 0 || reviewForm.$invalid"
+                               tooltip="{{vm.newReview.rating == 0 ? 'Make sure to leave a rating using the stars above!' : '' }}"
+                               tooltip-placement="right"
+                               class="btn btn-default" value="Submit Review" >
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-sm-4">
+        <section id="credentials">
+            <label class="section-label">Credentials</label>
+            <div class="badge">Tasky Verified</div>
+            <div class="badge">Credit Card</div>
+            <div class="badge">Phone</div>
+            <div class="badge">Facebook</div>
+        </section>
+        <section id="services">
+            <label class="section-label">Services</label>
+            <ul class="list-inline">
+                <li ng-repeat="tag in vm.pro.services" class="tag">
+                    {{tag.name}}
+                </li>
+            </ul>
+        </section>
+    </div>
+</div>

@@ -1,4 +1,7 @@
 .customer-signup {
+  background: #222 url('#{$img}/bg-shapes.png') center top;
+  background-size: cover;
+  
   .panel {
     width: 80%;
     max-width: 40rem;

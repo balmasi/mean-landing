@@ -1,5 +1,3 @@
-'use strict'
-
 angular.module 'taskyApp'
 .config ($stateProvider, $urlRouterProvider) ->
   $urlRouterProvider
@@ -10,11 +8,6 @@ angular.module 'taskyApp'
       $state.go 'pro-signup.category'
 
   $stateProvider
-  .state 'login',
-    url: '/login'
-    templateUrl: 'app/account/login/login.html'
-    controller: 'LoginCtrl'
-
   .state 'pro-signup',
     url: '/signup/pro'
     abstract: true
@@ -62,14 +55,3 @@ angular.module 'taskyApp'
     resolve:
       accountData: (ProSignupData) ->
         ProSignupData.getAccountData()
-
-  .state 'customer-signup',
-    url: '/signup/customer'
-    templateUrl: 'app/account/signup/customer/signup.html'
-    controller: 'CustomerSignupCtrl'
-
-  .state 'settings',
-    url: '/settings'
-    templateUrl: 'app/account/settings/settings.html'
-    controller: 'SettingsCtrl'
-    authenticate: true

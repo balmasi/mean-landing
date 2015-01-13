@@ -87,8 +87,9 @@ exports.create = function(req, res) {
           pros.forEach( function (pro){
             pro.requestCount++;
             pro.incoming_requests.addToSet(requestObj);
-            pro.save(function(err) {
-              console.error(err);
+            pro.save(function(err, pro) {
+              if (err) console.error(err);
+              return pro;
             });
           });
         });

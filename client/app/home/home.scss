@@ -185,10 +185,9 @@
   }
 
 
-
   #subscribe {
-    background: #141720 url('#{$img}/bg-subscribe1.jpg') center top;
-    background-size: 100% auto;
+    background-size: cover;
+    background: fixed #141720 url('#{$img}/bg-subscribe1.jpg') center top;
     padding-bottom: 60px;
   }
   .subscribe-form {

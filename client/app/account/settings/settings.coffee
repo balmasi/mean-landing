@@ -1,0 +1,12 @@
+'use strict'
+
+angular.module 'taskyApp'
+.config ($stateProvider) ->
+
+
+  $stateProvider
+  .state 'settings',
+    url: '/settings'
+    templateUrl: 'app/account/settings/settings.html'
+    controller: 'SettingsCtrl'
+    authenticate: true

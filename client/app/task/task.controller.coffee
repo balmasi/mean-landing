@@ -31,7 +31,7 @@ angular.module 'taskyApp'
     $state.go 'quotes.offer',
       offerId: q._id
 
-.controller 'QuoteShowCtrl', ($scope, $stateParams, me, Quote, Request, toastr, request) ->
+.controller 'QuoteShowCtrl', ($scope, $stateParams, me, Quote, Request, toastr, request, $state) ->
 
   $scope.quote = _.findWhere $scope.quotes , { _id: $stateParams.offerId }
   # Delete version since we dont have revision-sensitive operations
@@ -40,6 +40,10 @@ angular.module 'taskyApp'
   $scope.messages = $scope.quote.messages
   $scope.me = me
   $scope.pro = $scope.quote.from
+
+  $scope.goToProfile = (pro) ->
+    $state.go 'profile',
+      proId: pro._id
 
   $scope.replyClicked = false
   $scope.toggleReply = ->

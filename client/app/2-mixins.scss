@@ -31,3 +31,23 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+@mixin animate-enter-leave( $duration: 0.8s ) {
+  &.ng-enter, .ng-enter {
+    animation: fadeIn $duration;
+  }
+
+  &.ng-leave, .ng-leave {
+    animation: fadeOut $duration;
+  }
+}
+
+@mixin animate-show-hide( $duration: 0.8s ) {
+  &.ng-hide-remove, .ng-hide-remove {
+    animation: fadeIn $duration;
+  }
+
+  &.ng-hide-add, .ng-hide-add {
+    animation: fadeOut $duration;
+  }
+}

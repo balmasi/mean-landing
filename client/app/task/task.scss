@@ -3,21 +3,42 @@
 }
 
 .page-quotes {
+  background: $color-page;
+
   .nav-tabs > li > a {
     margin: 0;
   }
+
+  .page-container {
+    padding: 45px 0 0 0;
+  }
   //   QUOTES
 
+  $tab-width: 270px;
+
   .tab-wrapper {
-    width: 75rem;
+    background: white;
+    width: 100%;
+    max-width: 920px;
+    position: relative;
     margin: 3rem auto;
     border: 1px solid #dedede;
     @include clearfix;
+    @include screen-xs-max {
+      border: none;
+    }
   }
 
   .quote-selector {
-    width: 20rem;
-    float: left;
+    width: $tab-width;
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    border-right: 1px solid #e3e3e3;
+
+    .sub-info {
+      font-size: 10px;
+      margin-left: 2px;
+    }
 
     li {
       width: 100%;
@@ -36,6 +57,15 @@
         }
       }
     }
+
+    @include screen-xs-max {
+      position: relative;
+      width: 100%;
+      max-width: $tab-width;
+      margin: 30px auto;
+      display: block;
+      border: 1px solid #dedede;
+    }
   }
 
 
@@ -50,6 +80,8 @@
     }
   }
 
+  .pro-name { display: block; }
+  .pro-rating { color: $color-rating-stars; }
   .pro-tab-info {
     display: inline-block;
     width: 55%;
@@ -74,12 +106,31 @@
     .fa { color: darken($brand-primary,10); margin-right: 5px; }
     .pro-info { margin-right: 5px; }
     h3 { text-align: left; font-size: 2.2rem;}
+
+    .profile-buttons {
+      padding-top: 10px;
+
+      button {
+        margin-right: 5px;
+
+        a {
+          @extend .link-simple;
+        }
+      }
+      .fa {
+        color: #888;
+      }
+    }
   }
 
   .quote-content {
-    width: 548px;
-    float: left;
-    border-left: 1px solid #e3e3e3;
+    width: 100%;
+    padding-left: $tab-width;
+
+    @include screen-xs-max {
+      padding-left: 0;
+      border: 1px solid #dededf;
+    }
 
     .message {
       @include clearfix();

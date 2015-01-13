@@ -104,7 +104,8 @@ angular.module 'taskyApp'
           all.preloader.hide $preloader
           return
         ), p.preloaderTimeout
-        $(window).load ->
+
+        $scope.$on '$viewContentLoaded', ->
           all.preloader.hide $preloader
           return
 

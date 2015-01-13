@@ -12,5 +12,6 @@ router.get('/me', auth.isAuthenticated(), controller.me);
 router.get('/me/quotes', auth.isAuthenticated(), controller.myQuotes);
 router.get('/:id',controller.show);
 router.post('/', controller.create);
+router.post('/:id/review', controller.newReview);
 
 module.exports = router;

@@ -5,10 +5,10 @@
     <span class="pro-info"><i class="fa fa-phone"></i> {{ pro.phone }}</span>
     <span class="pro-info"><i class="fa fa-map-marker"></i> {{ pro.address.city }}</span>
 
-    <span class="pro-info">
-        <i class="fa fa-globe"></i>
-        <a ng-href="{{pro.website}}" target="_blank"> Website</a>
-    </span>
+    <div class="profile-buttons">
+        <button class="simple" ng-click="goToProfile(pro)">View Profile</button>
+        <button class="simple" ng-if="pro.website"><i class="fa fa-globe"></i> <a ng-href="{{pro.website}}" target="_blank">Website</a></button>
+    </div>
 </section>
 <section class="quote-body">
     <div class="messages">

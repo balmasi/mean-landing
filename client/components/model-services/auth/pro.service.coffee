@@ -17,3 +17,8 @@ angular.module 'taskyApp'
         id: 'me'
         controller: 'quotes'
       isArray: yes
+
+    newReview:
+      method: 'POST'
+      params:
+        controller: 'review'

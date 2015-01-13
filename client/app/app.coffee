@@ -27,7 +27,7 @@ angular.module 'taskyApp', [
     toastClass: 'toastr'
 
 
-.factory 'authInterceptor', ($rootScope, $q, $cookieStore, $location) ->
+.factory 'authInterceptor', ($q, $cookieStore, $location) ->
   # Add authorization token to headers
   request: (config) ->
     config.headers = config.headers or {}
@@ -42,11 +42,11 @@ angular.module 'taskyApp', [
       $location.path '/login'
     $q.reject response
 
-.run ($rootScope, $location, Auth) ->
+.run ($rootScope, $location, Auth, $window) ->
+
   # Redirect to login if route requires auth and you're not logged in
   $rootScope.$on '$stateChangeStart', (event, next) ->
     Auth.isLoggedInAsync (loggedIn) ->
       return if next.name in ['customer-signup', 'login', 'pro-signup.category']
       if next.authenticate and not loggedIn
-        console.log 'redirecting due to authenticate'
         $location.path "/login"
