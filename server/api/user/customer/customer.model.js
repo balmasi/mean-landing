@@ -4,9 +4,15 @@ var mongoose = require('mongoose'),
 var UserSchema = require('../user.model').schema;
 
 var CustomerSchema = UserSchema.extend({
-  isCustomer: {
-    type: Boolean,
-    default: true
+  image: {
+    url: {
+      type: String,
+      default: 'assets/images/profiles/empty-profile-customer.png'
+    },
+    thumb: {
+      type: String,
+      default: 'assets/images/profiles/empty-profile-customer.png'
+    }
   }
 });
 

@@ -10,7 +10,6 @@ router.get('/', auth.hasRole('admin'), controller.index);
 router.post('/', controller.create);
 router.get('/me', auth.isAuthenticated(), controller.me);
 router.get('/:id', auth.isAuthenticated(), controller.show);
-router.get('/image/:fd/:thumb?', controller.getImage);
 router.post('/me/image', auth.isAuthenticated(), controller.uploadProfilePic);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);

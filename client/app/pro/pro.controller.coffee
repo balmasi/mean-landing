@@ -95,7 +95,7 @@ angular.module 'taskyApp'
     if msg.from is account._id then myName else custName
 
   $scope.getThumbnail = (msg) ->
-    if msg.from is account._id then account.image?.url else request.requested_by.image?.url
+    if msg.from is account._id then account.image?.thumb else request.requested_by.image?.thumb
 
   $scope.sendMessage = ->
     Quote.addMessage

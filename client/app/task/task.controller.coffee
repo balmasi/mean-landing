@@ -78,7 +78,7 @@ angular.module 'taskyApp'
     if msg.from is me._id then myName else bizName
 
   $scope.getMsgThumb = (m) ->
-    if m.from is me._id then me.getThumbnailUrl() else $scope.pro.image?.url
+    if m.from is me._id then me.getThumbnailUrl() else $scope.pro.image?.thumb
 
   $scope.addMessage = ->
     newMessage =

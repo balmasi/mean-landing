@@ -2,12 +2,14 @@
 
 var User = require('./user.model');
 var proCtrl = require('./pro/pro.controller');
-var customerCtrl = require('./customer/customer.controller');
+var fs = require('fs');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
-var lwip = require('lwip');
+var gm = require('gm');
 var config = require('../../config/environment');
+
+var inspect = require('util').inspect;
 
 var validationError = function(res, err) {
   return res.json(422, err);
@@ -55,82 +57,70 @@ exports.show = function (req, res, next) {
   });
 };
 
-/*
- *   Gets an image with a File Descriptor
- *   with optional thumbnail
- * */
-
-exports.getImage = function(req, res) {
-  var sgfs = require('skipper-gridfs')({
-    uri: config.mongo.uri + '.images'
-  });
-  var fd = req.params.fd,
-    ext = fd.split('.')[1],
-    thumb = req.params.thumb == 'thumb',
-    type;
-
-  if (/jpe?g/.test(ext))  type = 'jpeg';
-  else if ('png' == ext)  type = 'png';
-  else return handleError(res, "Unknown File Type: " + type);
-
-  var reader = sgfs.read;
-  reader(fd, function (err, image) {
-    if(err) { return handleError(res, err); }
-    if(!image) { return res.status(404).send('Could not find image.'); }
-    lwip.open(image, type , function(err, lwipImage){
-      if (err == 'Error: Unsupported number of channels') {
-        return res.type('image/'+type).status(200).send(image);
-      }
-      else if (err) { return handleError(res, err); }
-
-
-      var w = lwipImage.width(),
-        h = lwipImage.height(),
-        cropSize = Math.min(w,h);
-
-
-      var batch = lwipImage.batch();
-      // if thumb was specified, make 100x100
-      if (thumb) batch = batch.crop(cropSize,cropSize).resize(100,100);
-      // Set MIME type and send buffer to client
-      batch.toBuffer( type , function(err, resizedImage) {
-        return res.type('image/'+type).status(200).send(resizedImage);
-      })
-    })
-  });
-};
-
-
 
 exports.uploadProfilePic = function (req, res) {
+  var ss3 = require('skipper-s3')({
+    key: config.s3.accessKey,
+    secret: config.s3.secret,
+    bucket: config.s3.bucket,
+  });
+
   req.file('profile').upload({
-    getTypeFromHeader: true,
-    adapter: require('skipper-gridfs'),
-    uri: config.mongo.uri + '.images'
+    adapter: ss3
   }, function (err, uploadedFiles) {
     if (err) return res.status(500).send(err);
 
     var file = uploadedFiles[0];
-    User.update(
-      { _id: req.user._id },
-      {
-        image: {
-          fd: file.fd,
-          fileId: file.extra.fileId,
-          url: '/api/users/image/'+ file.fd
-        }
-      })
-      .exec()
-      .then(function(doc){
-        return res.status(200).json({
-          message: uploadedFiles.length + ' file(s) uploaded successfully!',
-          file: file,
-          url: '/api/users/image/'+ file.fd
+    var thumbTemp = '.tmp/s3-upload-part-queue/thumb-'+ file.fd;
+
+    ss3.read(file.fd, function(err, s3Image) {
+      gm(s3Image)
+        .options({imageMagick: true})
+        .filter('Lanczos')
+        // TODO: Find out how to resize Center without creating a file.
+        .thumb(100, 100, thumbTemp, 90,'center',
+        function onThumbCreate() {
+          var Uploader = require('s3-streaming-upload').Uploader;
+          var upload = new Uploader({
+            accessKey: config.s3.accessKey,
+            secretKey: config.s3.secret,
+            bucket: config.s3.bucket,
+            objectName: "thumb-" + file.fd,
+            stream: fs.createReadStream(thumbTemp)
+          });
+
+          upload.on('completed', function (err, s3res) {
+            if (err) handeError(res,err);
+
+            User.update(
+              { _id: req.user._id },
+              {
+                image: {
+                  url: file.extra.Location,
+                  thumb: s3res.location,
+                  fd: file.fd
+                }
+              })
+              .exec()
+              .then(function(doc){
+                fs.unlink(thumbTemp);
+                return res.status(200).json({
+                  message: uploadedFiles.length + ' file(s) uploaded successfully!',
+                  file: file,
+                  url: file.extra.Location,
+                  thumbUrl: s3res.location
+                });
+              }, function(err){
+                return res.status(500).send(err);
+              });
+          });
+
+          upload.on('failed', function (err) {
+            handleError(res,err);
+          });
         });
-      }, function(err){
-        return res.status(500).send(err);
-      })
-  })  ;
+    });
+  });
 };
 
 

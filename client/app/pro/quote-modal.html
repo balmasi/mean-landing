@@ -28,7 +28,7 @@
             <form novalidate name="quote-form">
                 <section ng-if="!canQuote()" class="messages">
                     <div class="message" ng-class="{ 'theirs': isTheirs(m) }" ng-repeat="m in messages">
-                        <img class="col-xs-2 img-rounded" ng-src="{{getThumbnail(m) | thumbnail}}" alt=""/>
+                        <img class="col-xs-2 img-rounded" ng-src="{{getThumbnail(m)}}" alt=""/>
                         <div class="message-text col-xs-10">
                             <strong>{{getSender(m)}}</strong>
                             <span class="time-stamp">{{m.date | timeAgo }}</span>

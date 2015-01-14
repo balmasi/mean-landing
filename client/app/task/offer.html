@@ -14,7 +14,7 @@
     <div class="messages">
         <div class="message" ng-class="{ 'mine': isMine(m) }" ng-repeat="m in messages">
             <div class="col-xs-2 message-image">
-                <img class="img-rounded" ng-src="{{getMsgThumb(m) | thumbnail }}" alt=""/>
+                <img class="img-rounded" ng-src="{{getMsgThumb(m) }}" alt=""/>
             </div>
             <div class="message-text col-xs-10">
                 <span class="time-stamp">{{m.date | timeAgo}}</span>

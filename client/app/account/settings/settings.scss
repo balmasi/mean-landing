@@ -1,0 +1,40 @@
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  position: relative;
+
+  &:hover .change-photo {
+    animation: slideUp 2s;
+    cursor: pointer;
+    background: rgba(0,0,0,0.8);
+    color: white;
+  }
+
+  .change-photo {
+    @include animate-show-hide();
+    position: absolute;
+    right: 0;  top: 0;
+    background: rgba(0,0,0,0.65);
+    color: #fafafa;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .loader {
+    transition: all 0.7s;
+    height: 0px;
+    opacity: 0;
+    position: absolute;
+    width: 100px;
+    top: 100%;
+    background: black;
+  }
+
+  &.uploading {
+    .loader {
+      height: 10px;
+      opacity: 1;
+    }
+  }
+
+}

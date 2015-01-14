@@ -17,7 +17,7 @@ angular.module 'taskyApp'
 
   # Only call this on prepopulated User model
   User.prototype.getThumbnailUrl = ->
-    if not this.image? then '' else this.image.url
+    if not this.image? then '' else this.image.thumb
 
 
 

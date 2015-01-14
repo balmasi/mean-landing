@@ -19,5 +19,11 @@ module.exports = {
             process.env.MONGOHQ_URL ||
             process.env.OPENSHIFT_MONGODB_DB_URL+process.env.OPENSHIFT_APP_NAME ||
             'mongodb://localhost:27017/tasky'
+  },
+
+  s3: {
+    bucket:  process.env.S3_BUCKET || 'tasky-prod'
   }
+
+
 };

@@ -22,7 +22,7 @@
                     <ul class="quote-list" >
 
                         <li ng-repeat="q in r.quotes" class="clearfix">
-                            <img class='pull-left' ng-src="{{q.from.image.url | thumbnail }}" class="img-circle"/>
+                            <img class='pull-left' ng-src="{{q.from.image.thumb}}" class="img-circle"/>
                             <div class="quote-info pull-left">
                                 <span class="quote-name">{{q.from.name}}</span>
                                 <span class="quote-price" ng-switch="q.rate.method" >

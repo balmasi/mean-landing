@@ -9,6 +9,16 @@ var UserSchema = require('../user.model').schema;
 var ProSchema = UserSchema.extend({
   // Note: Other attributes shared with USER model
   name: String,
+  image: {
+    url: {
+      type: String,
+      default: 'assets/images/profiles/empty-profile-pro.png'
+    },
+    thumb: {
+      type: String,
+      default: 'assets/images/profiles/empty-profile-pro.png'
+    }
+  },
   category: {
     type: Schema.Types.ObjectId,
     ref: 'Category',

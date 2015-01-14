@@ -34,6 +34,7 @@ angular.module 'taskyApp'
   vm.resetReview = () ->
     vm.newReview =
       reviewer_name: me?.firstName + " " + me?.lastName
+      reviewer_thumb: me?.image?.thumb
       from: me?._id
       rating: 0
       comment: ''

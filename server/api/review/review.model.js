@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 
 var ReviewSchema = new Schema({
   reviewer_name: String,
+  reviewer_thumb: String,
   from:  {
     type: Schema.Types.ObjectId,
     ref: 'User'

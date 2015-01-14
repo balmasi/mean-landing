@@ -11,8 +11,8 @@ var UserSchema = new Schema({
   lastName: String,
   image: {
     fd: String,
-    fileId: Schema.Types.ObjectId,
-    url: String
+    url: String,
+    thumb: String
   },
   email: { type: String, lowercase: true },
   _accountType: {
