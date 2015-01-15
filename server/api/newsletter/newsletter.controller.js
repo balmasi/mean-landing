@@ -66,42 +66,6 @@ exports.create = function(req, res) {
   });
 };
 
-// Sends an email to EMAIL_TO for use in contact us section
-exports.contact = function (req, res, next) {
-  var v = require('validator'), errors = [];
-  var
-    from = req.body.from,
-    subject = req.body.subject,
-    message = req.body.message;
-
-
-  if (!v.isEmail(from)) {
-    errors.push('"From" email address must be valid.');
-  }
-  if (v.isNull(message)) {
-    errors.push("Message cannot be blank");
-  }
-
-  if (errors !== []) {
-    return handleError(res, errors);
-  }
-
-  var EMAIL_TO = 'borna+tasky@borna-almasi.com';
-  var myMsg = new Email(
-    { from: from || 'unprovided@sample.net',
-      to:   EMAIL_TO,
-      subject: subject || 'Email from Landing Page',
-      body: message || 'Empty Body'
-    });
-
-  myMsg.send(function (err){
-    if (err !== null) {
-      return handleError(res, err);
-    }
-    return res.json(201, myMsg);
-  });
-
-};
 
 
 function handleError(res, err) {
