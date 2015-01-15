@@ -56,6 +56,10 @@ var all = {
   mailchimp: {
     apiKey: process.env.MAILCHIMP_API_KEY || 'd0a987791548f7f27b4ed9c8f4a1880b-us9',
     newsletterListId: '8d3f84ea4c'
+  },
+
+  mandrill: {
+    apiKey: process.env.MANDRILL_API_KEY
   }
 };
 

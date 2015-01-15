@@ -34,8 +34,7 @@ module.exports = function(app) {
     var file = __dirname + "/snapshots" + filename;
     fs.exists(file, function (exists) {
       if (!exists) {
-        var hostname = req.protocol + '://'
-          + req.host + ':'  + config.port;
+        var hostname = req.protocol + '://' + req.host + ':'  + config.port;
 
         var browser = new Browser({
           loadCSS: false,

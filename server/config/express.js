@@ -29,7 +29,7 @@ module.exports = function(app) {
   app.use(cookieParser());
   app.use(passport.initialize());
   require('../seo')(app);
-  if ('production' === env) {
+  if (!!~['production','staging'].indexOf(env)) {
     app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
     app.use(express.static(path.join(config.root, 'public')));
     app.set('appPath', config.root + '/public');

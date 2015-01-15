@@ -7,7 +7,5 @@ var router = express.Router();
 
 
 router.post('/', controller.create);
-router.post('/contact', controller.contact);
-//router.delete('/:id', controller.destroy);
 
 module.exports = router;
