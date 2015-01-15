@@ -61,6 +61,10 @@ var all = {
   s3: {
     accessKey: process.env.S3_ACCESSKEY,
     secret: process.env.S3_SECRET
+  },
+
+  mandrill: {
+    apiKey: process.env.MANDRILL_API_KEY
   }
 };
 

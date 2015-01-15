@@ -17,6 +17,7 @@ module.exports = function(app) {
   app.use('/api/newsletter', require('./api/newsletter'));
   app.use('/api/customers', require('./api/user/customer'));
   app.use('/api/pros', require('./api/user/pro'));
+  app.use('/api/mail', require('./api/mail'));
 
   app.use('/auth', require('./auth'));
 
