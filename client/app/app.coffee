@@ -27,7 +27,6 @@ angular.module 'taskyApp', [
     timeOut: 4000,
     toastClass: 'toastr'
 
-  console.log 'running this'
   $animateProvider.classNameFilter /^(?:(?!ng-animate-disabled).)*$/
 
 
@@ -46,7 +45,7 @@ angular.module 'taskyApp', [
       $location.path '/login'
     $q.reject response
 
-.run ($rootScope, $location, Auth, $window) ->
+.run ($rootScope, $location, Auth) ->
 
   # Redirect to login if route requires auth and you're not logged in
   $rootScope.$on '$stateChangeStart', (event, next) ->

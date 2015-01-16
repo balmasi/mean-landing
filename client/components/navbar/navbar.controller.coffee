@@ -10,10 +10,9 @@ angular.module 'taskyApp'
 
   nav.isLoggedIn = Auth.isLoggedIn
   nav.isAdmin = Auth.isAdmin
-  isPro = Auth.isPro()
 
-
-  nav.dashboardUrl = if isPro then '/pro' else '/tasks'
+  nav.dashboardUrl = ->
+    if Auth.isPro() then '/pro' else '/tasks'
 
 
   nav.logout = ->

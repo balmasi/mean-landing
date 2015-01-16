@@ -1,5 +1,7 @@
 <!-- NAVBAR -->
-<nav id="header" class="navbar navbar-inverse navbar-static-top"
+<nav id="header"
+     ng-hide="nav.isSignUp()"
+     class="navbar navbar-inverse navbar-static-top ng-animate-disabled"
      ng-class=" { highlight: !nav.isHome() }" role="navigation"
      ng-controller="NavbarCtrl as nav"
      spark-scroll="{ 200: { 'downAddClass,upRemoveClass': 'highlight'} }">
@@ -14,7 +16,7 @@
                 <li ng-show="nav.nav.isAdmin()" ng-class="{active: nav.isActive('/admin')}"><a href="/admin">Admin</a></li>
                 <!-- DASHBOARD Button-->
                 <li ng-show="nav.isLoggedIn() && nav.isHome()" class="nav-btn ng-animate-disabled">
-                    <a ng-href="{{nav.dashboardUrl}}">Dashboard</a>
+                    <a ng-href="{{nav.dashboardUrl()}}">Dashboard</a>
                 </li>
                 <li ng-hide="nav.isLoggedIn()" class="submenu" ng-class="{active: nav.isActive('/signup'), pressed: nav.signupActive }">
                     <a ng-click="nav.signupActive = !nav.signupActive">Sign up
@@ -22,8 +24,8 @@
                         <i ng-show="nav.signupActive" class="fa fa-chevron-up"></i>
                     </a>
                     <ul class="dropdown">
-                        <li><a href="/signup/pro/category">BUSINESS</a></li>
-                        <li><a href="/signup/customer">CUSTOMER</a></li>
+                        <li><a ui-sref="pro-signup.category">BUSINESS</a></li>
+                        <li><a ui-sref="customer-signup">CUSTOMER</a></li>
                     </ul>
                 </li>
                 <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/login')}"><a href="/login">Login</a></li>
