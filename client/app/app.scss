@@ -17,6 +17,38 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     padding: 0.2em 0;
 }
 
+
+::-webkit-scrollbar {
+  background: #fff;
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: $brand-primary;
+}
+
+::-moz-selection {
+  background: $brand-primary;
+  color: #fff;
+}
+::selection {
+  background: $brand-primary;
+  color: #fff;
+}
+
+
+html, body, .main-body  {
+  position: relative;
+  min-height: 100%;
+  min-height: 100vh;
+}
+
+body {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 22px;
+}
+
 .main-body {
   height: 100%;
   width: 100%;
@@ -38,7 +70,6 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import 'admin/businesses/business.scss';
 @import 'credit/credit.scss';
 @import 'home/home.scss';
-@import 'home/search.scss';
 @import 'pro/pro.scss';
 @import 'request/request.scss';
 @import 'task/task.scss';

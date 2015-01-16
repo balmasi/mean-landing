@@ -11,7 +11,8 @@ angular.module 'taskyApp', [
   'ui.bootstrap',
   'yaru22.angular-timeago',
   'btford.socket-io',
-  'angularFileUpload'
+  'angularFileUpload',
+  'gilbox.sparkScroll'
 ]
 .config ($urlRouterProvider, $locationProvider, $httpProvider, toastrConfig) ->
 
@@ -47,6 +48,5 @@ angular.module 'taskyApp', [
   # Redirect to login if route requires auth and you're not logged in
   $rootScope.$on '$stateChangeStart', (event, next) ->
     Auth.isLoggedInAsync (loggedIn) ->
-      return if next.name in ['customer-signup', 'login', 'pro-signup.category']
       if next.authenticate and not loggedIn
         $location.path "/login"

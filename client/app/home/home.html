@@ -1,7 +1,8 @@
+
 <!-- Preloader -->
-<div id="preloader">
+<preloader>
     <div>tasky</div>
-</div>
+</preloader>
 <!-- // Preloader -->
 
 <!-- Loader -->
@@ -9,23 +10,31 @@
     <div class="loadingspin"></div>
 </div>
 <!-- // Loader -->
-<!-- HOME -->
-<div id="home" class="home-section home-default dark overlay home-bg2"
-     data-top-top="background-position:0 0px;" data-800="background-position:0 250px;">
-    <div class="home-table">
-        <div class="home-inner">
-            <div class="container">
-                <header>
-                    <h1>tasky</h1>
-                    <div class="home-sub-title">The simplest way to match your service needs to local businesses!</div>
-                </header>
 
-                <a href="#features" class="btn btn-default btn-lg scrollTo">Learn More</a>
+
+<div id="search" class="hero-section overlay bg-toronto"
+     spark-scroll-animate="{
+            'bottomBottom':{ backgroundPosition: 'center 0px'},
+         bottomTop:{ backgroundPosition: 'center 400px' }
+    }">
+    <div class="home-table">
+            <div class="home-inner">
+                <div class="container" after-preloader="pageIsReady">
+                    <div class="banner-text">
+                        <h1 class="text-spinner">The Easiest Way<br/>
+                            to Hire a <div text-spinner="spinnerTexts"></div>
+                        </h1>
+
+                        <h2 class="text-sub">Compare quotes and prices
+                            <span class="sm-block">from local professionals</span>
+                        </h2>
+                    </div>
+                    <div ui-view="search"></div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<!-- // HOME -->
 
 <!-- FEATURES -->
 <div id="features" class="section grey">
@@ -33,7 +42,11 @@
         <header class="section-header">
             <h2>How does it work?</h2>
         </header>
-        <div class="row" data-emit-events>
+        <div class="row"
+             spark-scroll="{
+                        topBottom:{ opacity: 0 },
+                        'topBottom+20':{ opacity: 1, 'downStagger': '.feature-item' },
+                    }">
             <!-- Feature -->
             <div class="row feature-item feature-item-right">
                 <div class="col-sm-4 hidden-xs col-img">
@@ -74,96 +87,12 @@
                     </div>
                 </div>
             </div>
-
-            <div class="row feature-item">
-                <div class="col-sm-8 vam-parent">
-                    <div class="content vam-child">
-                        <div class="icon-block"><i class="fa fa-cog"></i></div>
-                        <h4>Task Completion</h4>
-                        <p>Upon completion of the task, the business is reimbursed for their services online, or in person!</p>
-                    </div>
-                </div>
-                <div class="col-sm-4 hidden-xs col-img">
-                    <img src="/assets/images/transaction.png" alt="checklist"/>
-                </div>
-            </div>
         </div>
     </div>
 </div>
 <!-- // FEATURES -->
 
 
-<!-- SUBSCRIBE -->
-<div id="subscribe" class="section dark overlay" data-1150="background-position:0px -200px;" data-2200="background-position:0px 100px;" >
-    <div class="container">
-        <header class="section-header">
-            <h3>Subscribe for <span class="text-primary">Updates</span></h3>
-            <div class="section-description">
-                <p>You'll be the first to get early access and special offers!</p>
-            </div>
-        </header>
-
-        <!-- Form -->
-        <div class="subscribe-form">
-            <form id="subscribe-form" name="subscribeForm" class="form" ng-submit="subscribe()">
-                <div class="account-type-choice form-group" data-emit-events>
-                    <input id="type-customer" type="radio" ng-model="subscriber.accountType" checked="checked" value="customer" class="sr-only"/>
-                    <label class="hide-business-field" for="type-customer"><div class="btn btn-default type-choice-btn">I am a customer</div></label>
-                    <input id="type-business" type="radio" ng-model="subscriber.accountType" value="business" class="sr-only"/>
-                    <label class="show-business-field" for="type-business"><div class="btn btn-default type-choice-btn">I am a business</div></label>
-                </div>
-
-                <div class="form-group">
-                    <input type="email" class="form-control email" ng-model="subscriber.email" name="email" placeholder="your@email.com" required>
-                    <!--<input type="text" class="form-control" name="fname" placeholder="First Name" required>-->
-                    <!--<input type="text" class="form-control" name="lname" placeholder="Last Name" required>-->
-                    <input type="text" class="form-control business-field" ng-model="subscriber.service" name="service" placeholder="(Optional) service you provide">
-                    <input type="submit" class="btn btn-default" value="Submit" ng-disabled="subscribeForm.$invalid">
-                </div>
-
-            </form>
-
-            <div id="message-box" class="message-box">Subscribed!</div>
-        </div>
-        <!-- // Form -->
-
-    </div>
-</div>
-<!-- // SUBSCRIBE -->
-
-<!-- CONTACT FORM -->
-<div id="contact-form" class="section" data-emit-events>
-    <div class="container">
-        <header class="section-header">
-            <h2>Contact Us</h2>
-        </header>
-
-        <div id="c-alert-box"></div>
-
-        <form id="c-form" action="/api/mail/contact" name="contactform" method="post">
-            <div class="row contact-form">
-                <div class="form-group col-md-6"><input type="text" name="name" class="form-control" placeholder="Name (Optional)"></div>
-                <div class="form-group col-md-6"><input type="email" name="from" class="form-control" placeholder="E-mail" required></div>
-                <div class="form-group col-md-12"><input type="text" name="subject" class="form-control" placeholder="Subject (Optional)"></div>
-                <div class="form-group col-md-12"><textarea class="form-control" name="message" rows="6" placeholder="Your Message ..." required></textarea></div>
-
-                <!-- Submit Button -->
-                <div class="col-md-12 text-center">
-                    <input type="submit" value="Send Message" id="submit" class="btn btn-default btn-lg">
-                </div>
-                <!-- // Submit Button -->
-
-            </div>
-        </form>
-    </div>
-</div>
-<!-- // CONTACT FORM -->
-
-<!-- MAP -->
-<div id="map" class="grey">
-    <div id="google-map"></div>
-</div>
-<!-- // MAP -->
 
 <!-- FOOTER -->
 <footer id="footer">

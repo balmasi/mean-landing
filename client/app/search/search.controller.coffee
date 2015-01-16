@@ -2,18 +2,9 @@
 
 angular.module 'taskyApp'
 .controller 'SearchCtrl', ($scope, Category, $q, $state, Search) ->
-  $scope.pageVariables.pageClass = 'page-search'
   $scope.loading =
     category: false
     location: false
-
-  $scope.spinnerTexts = [
-    'Plumber'
-    'Mover'
-    'Painter'
-    'Photographer'
-    'DJ'
-  ]
 
   _requestInfo =
     latLng:

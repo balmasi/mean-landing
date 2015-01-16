@@ -12,7 +12,7 @@
         <title>Tasky - Compare custom quotes and prices from local businesses in Canada.</title>
         <meta name="description" content="Get custom quotes for moving, painting, cleaning, and handymen from local professionals.">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=1">
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:100,300,400,500,700%7CDamion">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:100,300,400,500,700%7CDamion">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(client) app/vendor.css -->
         <!-- bower:css -->
@@ -33,7 +33,7 @@
 
 
         <div ng-controller="AppCtrl" class="main-body {{pageVariables.pageClass}}">
-            <div ng-include="'components/navbar/navbar.html'" ></div>
+            <div ng-include="'components/navbar/navbar-static.html'" ></div>
             <ui-view></ui-view>
         </div>
 
@@ -71,7 +71,6 @@
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/jquery.nav/jquery.nav.js"></script>
         <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
         <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
         <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
@@ -90,8 +89,6 @@
         <script src="bower_components/angular-socket-io/socket.js"></script>
         <script src="bower_components/lodash/dist/lodash.compat.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="bower_components/appear/jquery.appear.js"></script>
-        <script src="bower_components/skrollr/src/skrollr.js"></script>
         <script src="bower_components/jquery.scrollTo/jquery.scrollTo.js"></script>
         <script src="bower_components/angular-animate/angular-animate.js"></script>
         <script src="bower_components/angular-messages/angular-messages.js"></script>
@@ -99,6 +96,11 @@
         <script src="bower_components/angular-toastr/dist/angular-toastr.js"></script>
         <script src="bower_components/angular-timeago/src/timeAgo.js"></script>
         <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
+        <script src="bower_components/animation-frame/AnimationFrame.js"></script>
+        <script src="bower_components/shifty/dist/shifty.min.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="bower_components/rekapi/dist/rekapi.min.js"></script>
+        <script src="bower_components/spark-scroll/src/spark-scroll.js"></script>
         <!-- endbower -->
         <script src="socket.io-client/socket.io.js"></script>
         <!-- endbuild -->
@@ -116,10 +118,11 @@
         <script src="app/admin/users/users.js"></script>
         <script src="app/credit/credit.js"></script>
         <script src="app/home/home.js"></script>
-        <script src="app/home/search.js"></script>
+        <script src="app/home/preloader.js"></script>
         <script src="app/pro/pro.js"></script>
         <script src="app/pro/profile.js"></script>
         <script src="app/request/request.js"></script>
+        <script src="app/search/search.js"></script>
         <script src="app/task/task.js"></script>
         <script src="components/directives/disableAnimate.js"></script>
         <script src="components/directives/forms/disable-click.js"></script>
