@@ -14,7 +14,7 @@ angular.module 'taskyApp', [
   'angularFileUpload',
   'gilbox.sparkScroll'
 ]
-.config ($urlRouterProvider, $locationProvider, $httpProvider, toastrConfig) ->
+.config ($urlRouterProvider, $locationProvider, $httpProvider, toastrConfig, $animateProvider) ->
 
   $urlRouterProvider
   .otherwise '/'
@@ -26,6 +26,9 @@ angular.module 'taskyApp', [
     tapToDismiss: true,
     timeOut: 4000,
     toastClass: 'toastr'
+
+  console.log 'running this'
+  $animateProvider.classNameFilter /^(?:(?!ng-animate-disabled).)*$/
 
 
 .factory 'authInterceptor', ($q, $cookieStore, $location) ->

@@ -14,6 +14,23 @@
     padding: 0 45px;
   }
 
+  .nav-btn {
+    border: solid 2px white;
+    border-radius: 5px;
+    position: relative;
+    top: 0px;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    @include screen-xs-max {
+      border: none;
+      margin-right: auto;
+    }
+  }
+
   .navbar-brand {
     color: #fff;
     font-family: $font-logo;
@@ -75,6 +92,8 @@
   .pressed .dropdown {
     height: 8.2rem;
     background: #4298DB;
+    border: 2px solid rgba(255,255,255,1);
+    opacity: 1;
   }
 
   .dropdown {
@@ -82,7 +101,9 @@
     list-style: none;
     padding: 0;
     height: 0;
-    transition: all 1s ease;
+    transition: all 0.4s ease-in;
+    border: 2px solid rgba(255,255,255,0);
+    opacity: 0;
 
     > li {
       padding: 1rem 0;

@@ -1,29 +1,36 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'NavbarCtrl', ($scope, $state, $location, Auth, $rootScope, $timeout) ->
+.controller 'NavbarCtrl', ($scope, $animate, $location, Auth, $rootScope, $timeout) ->
 
-  $scope.isCollapsed = true # collapse = small
-  $scope.signupActive = false # Signup dropdown active?
+  nav = this
 
-  $scope.isLoggedIn = Auth.isLoggedIn
-  $scope.isAdmin = Auth.isAdmin
+  nav.isCollapsed = true # collapse = small
+  nav.signupActive = false # Signup dropdown active?
 
-  $scope.logout = ->
+  nav.isLoggedIn = Auth.isLoggedIn
+  nav.isAdmin = Auth.isAdmin
+  isPro = Auth.isPro()
+
+
+  nav.dashboardUrl = if isPro then '/pro' else '/tasks'
+
+
+  nav.logout = ->
     Auth.logout()
     $location.path '/login'
 
-  $scope.isActive = (route) ->
+  nav.isActive = $scope.isActive = (route) ->
     route is $location.path()
 
-  $scope.isHome = ->
+  nav.isHome = $scope.isHome = ->
     $location.path() is '/'
 
-  $scope.isSignUp = ->
+  nav.isSignUp = $scope.isSignUp = ->
     /signup/.test $location.path()
 
   $rootScope.$on '$stateChangeSuccess', ->
     $timeout ->
-      $('.navbar-toggle').click() unless $scope.isCollapsed
+      $('.navbar-toggle').click() unless nav.isCollapsed
     ,
       0

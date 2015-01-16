@@ -1,6 +1,29 @@
 .page-home {
 
   #search {
+    &.bg-toronto {
+      @extend .dark;
+      background: #141720 url('#{$img}/bg_toronto.jpg');
+      background-size: cover;
+
+    }
+
+    // Preloader makes this visible
+    .container {
+      opacity: 0;
+    }
+
+    // Center Vertically
+    .home-table {
+      display: table;
+      width: 100%;
+      height: 100%;
+    }
+    .home-inner {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
     .input-group {
       width: 100%;
     }
@@ -22,11 +45,14 @@
         .banner-text {
           margin-top: 2rem;
         }
+
+        .text-spinner { font-size: 3rem; }
+        .text-sub { font-size: 2rem; }
       }
     }
 
     .banner-text {
-      margin-top: 5.5rem;
+      margin-top: 4rem;
       h1,h2 { text-align: left; }
 
       @extend .dark;
@@ -47,8 +73,8 @@
 
     .search-box {
       @extend .dark;
-      padding: 2rem;
-      width: 80%; max-width: 25rem;
+      padding: 2rem 0;
+      width: 80%; max-width: 26rem;
       margin: 0 auto;
       border-radius: 1rem;
 
@@ -110,17 +136,8 @@
     left: 0;
     top: 0;
 
-    &.highlight .navbar-brand {
-      opacity: 1;
-    }
-
     @include screen-sm-min {
       background: transparent;
-
-      .navbar-brand {
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
 
       &.highlight {
         background: $brand-primary;
@@ -129,26 +146,6 @@
   }
   /*     HOME SECTION     */
 
-  .bg-toronto {
-    @extend .dark;
-    background: #141720 url('#{$img}/bg_toronto.jpg');
-    background-size: cover;
-
-  }
-
-
-  .hero-section .container {
-    opacity: 0;
-  }
-  .home-table {
-    display: table;
-    width: 100%;
-    height: 100%;
-  }
-  .home-inner {
-    display: table-cell;
-    vertical-align: middle;
-  }
 
   #features {
     padding-bottom: 40px;

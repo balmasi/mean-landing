@@ -119,7 +119,6 @@ exports.newReview = function(req, res, next) {
     pro.feedback.average_rating = ((pro.feedback.average_rating * numReviews) +  newReview.rating ) / (numReviews + 1);
     pro.save(function (err, professional) {
       if (err) return res.status(500).send(err);
-      console.log(professional);
       return res.status(201).json({
         review: newReview,
         rating: professional.feedback.average_rating

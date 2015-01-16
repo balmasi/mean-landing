@@ -1,5 +1,4 @@
 .page-profile {
-  @include animate-show-hide(0.3s);
 
   .rating {
     color: $color-rating-stars;
@@ -81,6 +80,8 @@
 
   #pro-body {
     @include container-fixed();
+    @include animate-show-hide(0.3s);
+
     padding-top: 45px;
     background: $color-page;
 

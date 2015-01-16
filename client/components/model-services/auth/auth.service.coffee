@@ -138,3 +138,6 @@ angular.module 'taskyApp'
   ###
   getToken: ->
     $cookieStore.get 'token'
+
+  isPro: ->
+    currentUser._accountType is 'Pro'
