@@ -342,9 +342,12 @@ $container-lg:                 $container-large-desktop;
 //== Navbar
 //
 //##
+$navbar-color-primary: $brand-primary;
+$navbar-color-secondary: #4497D7;
+$header-bg: linear-gradient($navbar-color-primary, $navbar-color-secondary);
 
 // Basics of a navbar
-$navbar-height:                    50px;
+$navbar-height:                    60px;
 $navbar-margin-bottom:             $line-height-computed;
 $navbar-border-radius:             $border-radius-base;
 $navbar-padding-horizontal:        floor(($grid-gutter-width / 2));
@@ -863,7 +866,7 @@ $dark-color:					#141720;
 $light-gray: 					#f4f4f4;
 
 //** Height of navbar on desktop
-$navbar-height: 				80px;
+$navbar-height: 				70px;
 //** Height of navbar on mobile devices
 $navbar-height-mobile: 			50px;
 

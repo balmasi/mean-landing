@@ -14,9 +14,22 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li ng-show="nav.nav.isAdmin()" ng-class="{active: nav.isActive('/admin')}"><a href="/admin">Admin</a></li>
+
+                <!-- SECTION Buttons (Projects, Requests) -->
+                <li ng-if="!nav.isHome() && nav.isPro()"
+                    ui-sref-active="active"
+                    class="nav-section first">
+                    <a ui-sref="pro">Jobs</a>
+                </li>
+                <li ng-if="nav.isLoggedIn() && !nav.isHome()"
+                    ui-sref-active="active"
+                    class="nav-section">
+                    <a ui-sref="tasks">Projects</a>
+                </li>
+
                 <!-- DASHBOARD Button-->
-                <li ng-show="nav.isLoggedIn() && nav.isHome()" class="nav-btn ng-animate-disabled">
-                    <a ng-href="{{nav.dashboardUrl()}}">Dashboard</a>
+                <li ng-show="nav.isLoggedIn() && nav.isHome()" class="ng-animate-disabled">
+                    <a class="dash-btn" ng-href="{{nav.dashboardUrl()}}">Dashboard</a>
                 </li>
                 <li ng-hide="nav.isLoggedIn()" class="submenu" ng-class="{active: nav.isActive('/signup'), pressed: nav.signupActive }">
                     <a ng-click="nav.signupActive = !nav.signupActive">Sign up
@@ -29,8 +42,20 @@
                     </ul>
                 </li>
                 <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/login')}"><a href="/login">Login</a></li>
-                <li ng-show="nav.isLoggedIn() && !nav.isHome()" ng-class="{active: nav.isActive('/settings')}"><a href="/settings"><span class="fa fa-cog "></span></a></li>
-                <li ng-show="nav.isLoggedIn()" ng-class="{active: nav.isActive('/logout')}"><a href="" ng-click="nav.logout()">Logout</a></li>
+                <li ng-show="nav.isLoggedIn() && !nav.isHome()"">
+                    <a href="#" ng-click="nav.avatarActive = !nav.avatarActive">
+                        <span class="user-name">{{nav.getUserName()}}</span>
+                        <img class='avatar' ng-src="{{nav.getUserAvatar()}}" alt="profile picture"/>
+                        <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <div class="avatar-popover" ng-show="nav.avatarActive">
+                        <a class="settings" ui-sref="settings"><i class="fa fa-cog"></i></a>
+                        <a href="#" class="logout" ng-click="nav.logout()">LOGOUT</a>
+                    </div>
+                </li>
+
+                <li ng-show="nav.isLoggedIn() && nav.isHome()"><a href="" ng-click="nav.logout()">Logout</a></li>
+
             </ul>
         </div>
     </div>

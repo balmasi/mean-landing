@@ -1,5 +1,6 @@
 #header {
-  background: $brand-primary;
+  background: $navbar-color-primary;
+  background: $header-bg;
   border: 0;
   color: #fff;
   height: $navbar-height-mobile;
@@ -7,29 +8,60 @@
   margin: 0;
   width: 100%;
   z-index: 200;
-
   transition: background .3s ease;
+
+  .user-name {
+    margin-left: 10px;
+    text-transform: capitalize;
+  }
+
+  .avatar {
+    width: 50px;
+    line-height: 90px;
+    vertical-align: middle;
+    border: 2px solid white;
+    border-radius: 50%;
+    margin: 0 10px;
+  }
+
+  .avatar-popover {
+    @include animate-show-hide(0.2s);
+    background: #fafafa;
+    height: 40px;
+    line-height: 40px;
+    color: black;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+
+    .settings {
+      border-right: 1px solid #E0E0E0;
+      width: 30%;
+      font-size: 16px;
+    }
+
+    .logout {
+      width:70%;
+    }
+
+    a {
+      cursor: pointer;
+      height: 100%;
+      display: inline-block;
+      float: left;
+      padding: 0 15px;
+      color: $text-color;
+      font-weight: 400;
+      font-size: 12px;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 
   .container {
     padding: 0 45px;
   }
 
-  .nav-btn {
-    border: solid 2px white;
-    border-radius: 5px;
-    position: relative;
-    top: 0px;
-    margin-right: 10px;
-    transition: transform 0.3s ease;
-    &:hover {
-      transform: scale(1.05);
-    }
-
-    @include screen-xs-max {
-      border: none;
-      margin-right: auto;
-    }
-  }
 
   .navbar-brand {
     color: #fff;
@@ -55,7 +87,7 @@
         text-transform: uppercase;
       }
       &.active > a {
-        background: darken($brand-primary, 3%);
+        background: #4388BE;
       }
     }
   }
@@ -108,6 +140,7 @@
     > li {
       padding: 1rem 0;
       border-top: $brand-primary;
+      line-height: initial;
 
       > a {
         &, &:hover {
@@ -127,22 +160,75 @@
   @include screen-sm-min {
     height: $navbar-height;
 
+    .nav-btn {
+      border: solid 2px white;
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin-right: 10px;
+      transition: transform 0.3s ease;
+      &:hover {
+        transform: scale(1.02);
+      }
+
+      @include screen-xs-max {
+        border: none;
+        margin-right: auto;
+      }
+    }
+
     .navbar-brand {
       line-height: $navbar-height;
+      font-size: 40px;
     }
     .navbar-nav {
-      margin-top: 20px;
-      margin-right: -25px;
+      height: $navbar-height;
 
-      & > li {
-        & > a {
+      > li {
+        height: 100%;
+        line-height: $navbar-height;
+
+        &.nav-section {
+          $seperator-color: rgba(59, 112, 173, 0.3);
+          border-right: 1px solid $seperator-color;
+          border-left: 1px solid $seperator-color;
+
+          &.first {
+            border-right: none;
+          }
+
+          &:hover {
+            background: lighten($navbar-color-primary,3);
+            background: linear-gradient(lighten($navbar-color-primary,3), lighten($navbar-color-secondary,3));
+          }
+
+          > a {
+            height: 100%;
+          }
+        }
+
+        > a {
+          display: inline-block;
           border: 0;
-          margin: 0 15px;
-          padding: 10px 0;
+          padding: 0 15px;
+          line-height: inherit;
+
+
+          &.dash-btn {
+            line-height: initial;
+            border: solid 2px white;
+            border-radius: 5px;
+            padding: 10px 10px;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+            &:hover {
+              background: rgba(255,255,255,0.12);
+              transform: scale(1.02);
+            }
+          }
         }
         &.active > a {
           background: transparent;
-          border-bottom: 2px solid #fff;
+          box-shadow: inset 0 0px 42px -8px rgba(0,0,0,0.3);
         }
       }
     }
@@ -152,10 +238,6 @@
       margin-left: 0;
     }
 
-    .dropdown {
-      margin-top: 1.8rem;
-    }
-
     .pressed .dropdown{
       background: transparent;
     }
@@ -163,11 +245,11 @@
 
   @include screen-md-min {
     .navbar-brand {
-      font-size: 35px;
+      font-size: 45px;
     }
     .navbar-nav > li > a {
       font-size: 14px;
-      margin: 0 25px;
+      padding: 0 25px;
     }
   }
 }
