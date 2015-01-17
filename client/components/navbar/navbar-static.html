@@ -42,7 +42,7 @@
                     </ul>
                 </li>
                 <li ng-hide="nav.isLoggedIn()" ng-class="{active: nav.isActive('/login')}"><a href="/login">Login</a></li>
-                <li ng-show="nav.isLoggedIn() && !nav.isHome()"">
+                <li ng-show="nav.isLoggedIn() && !nav.isHome()">
                     <a href="#" ng-click="nav.avatarActive = !nav.avatarActive">
                         <span class="user-name">{{nav.getUserName()}}</span>
                         <img class='avatar' ng-src="{{nav.getUserAvatar()}}" alt="profile picture"/>

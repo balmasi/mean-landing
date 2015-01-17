@@ -1,16 +1,22 @@
 'use strict'
 
 angular.module 'taskyApp'
-.directive 'preloader', ($timeout, $animate, $document, $rootScope) ->
+.directive 'preloader', ($timeout, $animate, $document, $rootScope, $cookieStore) ->
   restrict: 'AE'
   template: '<div id="preloader" ng-transclude></div>'
   transclude: true
   replace: true
   link: (scope, iElem) ->
+    if $cookieStore.get 'splash'
+      return $timeout ->
+        $rootScope.$broadcast 'preloader-hidden'
+      , 100
+
+
     body = $document[0].body
     show = ->
       $(body).css 'overflow', 'hidden'
-      iElem.show()
+      iElem.css('display', 'block')
 
     hide = ->
       $(body).css 'overflow', 'auto'
@@ -18,9 +24,10 @@ angular.module 'taskyApp'
       .then ->
         iElem.remove()
         $rootScope.$broadcast 'preloader-hidden'
+        $cookieStore.put 'splash', 1
 
     show()
-    $timeout hide, 2000
+    $timeout hide, 3000
 
 .directive 'afterPreloader', ->
   restrict: 'A'

@@ -1,5 +1,30 @@
 .page-home {
 
+  #preloader {
+    display: none;
+    background: $brand-primary;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 998;
+
+    > div {
+      color: #fff;
+      font-family: 'Damion', cursive;
+      font-size: 40px;
+      line-height: 40px;
+      margin: -20px 0 0;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      text-align: center;
+      width: 100%;
+      animation: intr 1.5s infinite;
+    }
+  }
+
   #search {
     &.bg-toronto {
       @extend .dark;
