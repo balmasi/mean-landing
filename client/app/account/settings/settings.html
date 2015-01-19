@@ -1,48 +1,109 @@
-<div class="page-container">
+<div class="container page-container">
     <div class="row">
-        <div class="col-sm-6">
-            <h3>Change Password</h3>
-            <form class="form" name="form" ng-submit="changePassword(form)" novalidate>
-
-                <div class="form-group">
-                    <label>Current Password</label>
-
-                    <input type="password" name="password" class="form-control" ng-model="user.oldPassword"
-                           mongoose-error/>
-                    <p class="help-block" ng-show="form.password.$error.mongoose">
-                        {{ errors.other }}
-                    </p>
-                </div>
-
-                <div class="form-group">
-                    <label>New Password</label>
-
-                    <input type="password" name="newPassword" class="form-control" ng-model="user.newPassword"
-                           ng-minlength="3"
-                           required/>
-                    <p class="help-block"
-                       ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || submitted)">
-                        Password must be at least 3 characters.
-                    </p>
-                </div>
-
-                <p class="help-block"> {{ message }} </p>
-
-                <button class="btn btn-lg btn-primary" type="submit">Save changes</button>
-            </form>
-        </div>
-        <div class="col-sm-6">
+        <div class="col-xs-6 col-sm-3 profile-pic-wrapper">
             <div class="profile-pic" ng-class="{ 'uploading': vm.uploading }">
-                <img class="loader" ng-show="vm.uploading" src="assets/images/loader-dots-white.GIF" alt="Loader"/>
-                <div class="change-photo" ng-hide="vm.uploading"
+                <img class="loader" src="assets/images/loader-dots-white.GIF" alt="Uploading..."/>
+                <div class="change-photo"
                      ng-file-select ng-model="profilePic"
                      ng-file-change="uploadImage($files, $event)"
                      accept="image/jpeg,image/png">
                     <i class="fa fa-camera"></i>
                 </div>
-
-                <img ng-src="{{me.getThumbnailUrl() }}" alt=""/>
+                <img class="profile-image" ng-src="{{me.getImageUrl() }}" alt="Profile Picture"/>
             </div>
+        </div>
+        <div class="col-sm-6 clear-xs">
+            <section>
+                <h3 class="section-label">Account</h3>
+                <form class="form row" name="accountForm" ng-submit="vm.updateUser(accountForm)" novalidate>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label>First Name</label>
+                        <input ng-model="me.firstName" type="text" class="form-control"/>
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label>Last Name</label>
+                        <input ng-model="me.lastName" type="text" class="form-control"/>
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label>Phone</label>
+                        <input ng-model="me.phone" type="text" class="form-control"/>
+                    </div>
+                    <div class="form-group col-sm-6 col-xs-12">
+                        <label>Email</label>
+                        <input ng-model="me.email" type="text" class="form-control"/>
+                    </div>
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </section>
+            <section ng-if="me._accountType == 'Pro'">
+                <label class="section-label">Business</label>
+
+                <form name="businessForm" class="form row" ng-submit="vm.updateUser(businessForm)" novalidate>
+                    <div class="form-group col-xs-12">
+                        <label>Business Name</label>
+                        <input type="text" name="name" class="form-control"
+                                ng-model="me.name" required>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <label>Website</label>
+                        <input type="text" name="website" class="form-control"
+                               ng-model="me.website">
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <label>About</label>
+                        <textarea name="description" class="form-control" rows="8"
+                                  ng-model="me.description"></textarea>
+                    </div>
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </section>
+            <section>
+                <h3 class="section-label">Password</h3>
+                <form class="form row" name="passwordForm" ng-submit="vm.changePassword(passwordForm)" novalidate>
+                    <div class="form-group col-sm-12">
+                        <label>Current Password</label>
+                        <input type="password" name="password" class="form-control" ng-model="vm.password.oldPassword"
+                               mongoose-error/>
+                        <span class="form-error" ng-show="passwordForm.password.$error.mongoose">
+                            The password you entered did not match our records.
+                        </span>
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        <label>New Password</label>
+                        <input type="password" name="newPassword" class="form-control" ng-model="vm.password.newPassword"
+                               ng-minlength="3"
+                               required/>
+                    </div>
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-primary">Change Password</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+        <div class="col-sm-3">
+            <section>
+                <label class="section-label">Notification</label>
+
+                <form class="form clearfix" novalidate>
+                    <div class="input-group">
+                        <label for="leads"><input type="checkbox" id="leads" name="leads"/> New Leads</label>
+                    </div>
+                    <div class="input-group">
+                        <label for="offers"><input type="checkbox" id="offers" name="offers"/> Offers</label>
+                    </div>
+                    <div class="input-group">
+                        <label for="tips"><input type="checkbox" id="tips" name="tips"/> Tips</label>
+                    </div>
+                    <div class="col-xs-12">
+                        <!--<button type="submit" class="btn btn-primary">Update</button>-->
+                    </div>
+                </form>
+            </section>
         </div>
     </div>
 </div>

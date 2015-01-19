@@ -205,7 +205,12 @@ unmask.ng-dirty.ng-invalid .form-control, .form-control.ng-dirty.ng-invalid {
   }
 }
 
-
+form label {
+  font-weight: 400;
+  input[type="checkbox"], input[type="radio"] {
+    margin-right: 5px;
+  }
+}
 
 
 .btn {

@@ -32,6 +32,7 @@ angular.module 'taskyApp'
         password: $scope.user.password
 
       .then (user)->
+        $scope.$emit 'loggedIn'
         switch user._accountType
           when 'Customer' then return $state.go 'tasks'
           when 'Pro' then return $state.go 'pro'

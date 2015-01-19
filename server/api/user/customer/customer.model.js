@@ -11,7 +11,7 @@ var CustomerSchema = UserSchema.extend({
     },
     thumb: {
       type: String,
-      default: 'assets/images/profiles/empty-profile-customer.png'
+      default: 'assets/images/profiles/thumb-empty-profile-customer.png'
     }
   }
 });

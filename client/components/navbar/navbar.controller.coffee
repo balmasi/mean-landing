@@ -13,15 +13,21 @@ angular.module 'taskyApp'
   nav.isAdmin = Auth.isAdmin
   nav.user = Auth.getCurrentUser()
 
+  $rootScope.$on 'profilePicChanged', (e, data) ->
+    nav.user.image =
+      url: data.url
+      thumb: data.thumb
+
+  $rootScope.$on 'loggedIn', ->
+    nav.user = Auth.getCurrentUser()
+
   nav.dashboardUrl = ->
     if Auth.isPro() then '/pro' else '/tasks'
 
   nav.isPro = -> Auth.isPro()
 
-  nav.getUserAvatar = ->
-    nav.user = Auth.getCurrentUser()
-    nav.user?.image?.thumb
   nav.getUserName = ->
+    return '' if !nav.user.firstName
     nav.user.firstName + ' ' + nav.user.lastName
 
   nav.logout = ->

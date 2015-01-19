@@ -7,7 +7,7 @@ var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var gm = require('gm');
-var config = require('../../config/environment');
+var _ = require('lodash');
 
 var inspect = require('util').inspect;
 
@@ -119,6 +119,21 @@ exports.uploadProfilePic = function (req, res) {
             handleError(res,err);
           });
         });
+    });
+  });
+};
+
+
+// Updates an existing User
+exports.update = function(req, res) {
+  if(req.body._id) { delete req.body._id; }
+  User.findById(req.params.id, function (err, user) {
+    if (err) { return handleError(res, err); }
+    if(!user) { return res.send(404); }
+    var updated = _.extend(user, req.body);
+    user.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, user);
     });
   });
 };

@@ -16,7 +16,7 @@ var ProSchema = UserSchema.extend({
     },
     thumb: {
       type: String,
-      default: 'assets/images/profiles/empty-profile-pro.png'
+      default: 'assets/images/profiles/thumb-empty-profile-pro.png'
     }
   },
   category: {

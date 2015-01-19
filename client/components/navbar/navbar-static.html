@@ -19,7 +19,7 @@
                 <li ng-if="!nav.isHome() && nav.isPro()"
                     ui-sref-active="active"
                     class="nav-section first">
-                    <a ui-sref="pro">Jobs</a>
+                    <a ui-sref="pro">Leads</a>
                 </li>
                 <li ng-if="nav.isLoggedIn() && !nav.isHome()"
                     ui-sref-active="active"
@@ -45,7 +45,7 @@
                 <li ng-show="nav.isLoggedIn() && !nav.isHome()">
                     <a href="#" ng-click="nav.avatarActive = !nav.avatarActive">
                         <span class="user-name">{{nav.getUserName()}}</span>
-                        <img class='avatar' ng-src="{{nav.getUserAvatar()}}" alt="profile picture"/>
+                        <img class='avatar' ng-src="{{nav.user.image.thumb}}" alt="profile picture"/>
                         <i class="fa fa-chevron-down"></i>
                     </a>
                     <div class="avatar-popover" ng-show="nav.avatarActive">

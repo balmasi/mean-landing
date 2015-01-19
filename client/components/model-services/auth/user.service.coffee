@@ -15,6 +15,9 @@ angular.module 'taskyApp'
       params:
         id: 'me'
 
+    update:
+      method: 'PUT'
+
   # Only call this on prepopulated User model
   User.prototype.getThumbnailUrl = ->
     if not this.image? then '' else this.image.thumb
