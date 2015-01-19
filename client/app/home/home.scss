@@ -161,8 +161,20 @@
     left: 0;
     top: 0;
 
+    .pressed .dropdown {
+      border: 2px solid rgba(255,255,255,1);
+    }
+
+    .dropdown {
+      border: 2px solid rgba(255,255,255,0);
+    }
+
     @include screen-sm-min {
       background: transparent;
+
+      .pressed .dropdown{
+        background: transparent;
+      }
 
       &.highlight {
         background: $header-bg;

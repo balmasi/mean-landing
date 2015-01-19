@@ -124,8 +124,6 @@
 
   .pressed .dropdown {
     height: 8.2rem;
-    background: #4298DB;
-    border: 2px solid rgba(255,255,255,1);
     opacity: 1;
   }
 
@@ -135,7 +133,6 @@
     padding: 0;
     height: 0;
     transition: all 0.4s ease-in;
-    border: 2px solid rgba(255,255,255,0);
     opacity: 0;
 
     > li {
@@ -239,9 +236,7 @@
       margin-left: 0;
     }
 
-    .pressed .dropdown{
-      background: transparent;
-    }
+
   }
 
   @include screen-md-min {
