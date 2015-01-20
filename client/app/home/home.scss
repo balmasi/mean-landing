@@ -28,7 +28,7 @@
   #search {
     &.bg-toronto {
       @extend .dark;
-      background: #141720 url('#{$img}/bg_toronto.jpg');
+      background: #141720 url('#{$img}/backgrounds/bg-toronto.jpg');
       background-size: cover;
 
     }
@@ -48,6 +48,7 @@
       display: table-cell;
       vertical-align: middle;
     }
+
 
     .input-group {
       width: 100%;
@@ -145,6 +146,11 @@
     }
   }
 
+  .section {
+    padding: 80px 0;
+    position: relative;
+  }
+
   .section-header {
     margin: 0 0 50px;
   }
@@ -160,6 +166,7 @@
     position: fixed;
     left: 0;
     top: 0;
+    transition: background .3s ease;
 
     .pressed .dropdown {
       border: 2px solid rgba(255,255,255,1);
@@ -177,7 +184,7 @@
       }
 
       &.highlight {
-        background: $header-bg;
+        background: transparentize($brand-primary, 0.05);
       }
     }
   }
@@ -216,10 +223,6 @@
       padding: 0 0 0 80px;
     }
 
-
-    .content {
-      padding: 0 0 0 80px;
-    }
 
     .icon-block {
       background: $brand-primary;

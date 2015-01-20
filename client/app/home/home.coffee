@@ -4,7 +4,6 @@ angular.module 'taskyApp'
 .config ($stateProvider, sparkActionProps) ->
   $stateProvider.state 'home',
     url: '/'
-    nav: ['transparent', 'home']
     views:
       'search@home':
         controller: 'SearchCtrl'
@@ -14,6 +13,10 @@ angular.module 'taskyApp'
         templateUrl: 'app/home/home.html'
         controller: 'HomeCtrl'
         controllerAs: 'vm'
+
+  .state 'pros-info',
+    templateUrl: 'app/home/pros/pros-info.html'
+    url: '/pros/how-tasky-works'
 
   angular.extend sparkActionProps,
     downStagger:

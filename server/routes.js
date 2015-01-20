@@ -30,4 +30,13 @@ module.exports = function(app) {
     .get(function(req, res) {
       res.sendfile(app.get('appPath') + '/index.html');
     });
+
+  var routes = app.routes;
+  for (var verb in routes){
+    if (routes.hasOwnProperty(verb)) {
+      routes[verb].forEach(function(route){
+        console.log(verb + " : "+route['path']);
+      });
+    }
+  }
 };
