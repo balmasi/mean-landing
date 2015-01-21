@@ -107,7 +107,7 @@ exports.update = function(req, res) {
   Request.findById(req.params.id, function (err, request) {
     if (err) { return handleError(res, err); }
     if(!request) { return res.send(404); }
-    var updated = _.merge(request, req.body);
+    var updated = _.extend(request, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, request);

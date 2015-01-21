@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'ProCtrl', ($scope, account, $modal, quotes, Pro, $state) ->
+.controller 'ProCtrl', ($scope, account, $modal, quotes, Pro, Request) ->
   $scope.pageVariables.pageClass = 'page-pro-requests'
   $scope.account = account
   $scope.account.credits = 'Unlimited' if account?.credits == null
@@ -32,7 +32,6 @@ angular.module 'taskyApp'
   $scope.haveSentQuote = (req) ->
     req.quoteStatus?
 
-
   $scope.openQuoteModal = (request, e) ->
     e.stopPropagation()
     $modal.open
@@ -50,6 +49,31 @@ angular.module 'taskyApp'
           .then (qs) ->
             quotes = qs
             _getQuoteForRequest request
+
+  $scope.discardRequest = (request, e) ->
+    e.stopPropagation()
+    updateFields =
+      discarded_by: _.union request.discarded_by, [ account._id ]
+    Request.update
+      id: request._id
+    ,
+      updateFields
+    .$promise
+    .then (newRequest) ->
+      scopeRequest = _($scope.incoming_requests).find request
+      scopeRequest?.discarded_by = newRequest.discarded_by
+    .catch (err) ->
+      console.error "Could not discard request...", err
+
+  $scope.discardedFilter = (req) ->
+    !!~req.discarded_by.indexOf account._id
+
+  $scope.notDiscardedFilter = (req) ->
+    not $scope.discardedFilter (req)
+
+  $scope.anyDiscarded = (reqs) ->
+    _(reqs).any (req) ->
+      $scope.discardedFilter(req)
 
 .controller 'QuoteCtrl', ($scope, request, $modalInstance, Quote, toastr , myQuote , account , $state) ->
   $scope.category = request.category

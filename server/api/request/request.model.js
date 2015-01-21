@@ -19,6 +19,14 @@ var RequestSchema = new Schema({
     required: true,
     index: true
   },
+  discarded_by: {
+    type: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Pro'
+    }],
+    default: []
+  },
+
   questions: [ {
     question: String,
     answer: Schema.Types.Mixed
@@ -66,6 +74,8 @@ var RequestSchema = new Schema({
     type: Date,
     default: Date.now
   }
+
+
 });
 
 module.exports = mongoose.model('Request', RequestSchema);
