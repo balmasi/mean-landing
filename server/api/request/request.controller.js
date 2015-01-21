@@ -6,7 +6,7 @@ var Category = require('../category/category.model');
 var Pro = require('../user/pro/pro.model');
 var User = require('../user/user.model');
 var Quote = require('../quote/quote.model');
-var passport = require('passport');
+var notification = require('../mail/pro-mail.controller');
 
 // Get list of requests
 exports.index = function(req, res) {
@@ -74,6 +74,7 @@ exports.myRequests = function (req, res) {
 
 // Creates a new request in the DB.
 exports.create = function(req, res) {
+
   Request.createAsync(req.body)
     .then(function(requestObj) {
       // Find the BOTTOM 20 pros in this category
@@ -81,20 +82,20 @@ exports.create = function(req, res) {
       Pro.find({
         services: requestObj.category
       })
-        .limit(20)
         .sort('requestCount')
+        .limit(20)
         .exec().then(function(pros) {
           pros.forEach( function (pro){
             pro.requestCount++;
             pro.incoming_requests.addToSet(requestObj);
             pro.save(function(err, pro) {
-              if (err) console.error(err);
-              return pro;
+              if (err) handleError(res, 'Could not route new request to pro(s)');
             });
           });
-        });
 
-      return res.json(201, requestObj);
+          // Send notification Email to Pro's we sent to
+          return notification.newRequest(requestObj, pros, res);
+        });
     })
     .catch( function(err) {
       return handleError(res, err);

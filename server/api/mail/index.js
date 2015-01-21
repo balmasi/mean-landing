@@ -1,7 +1,8 @@
 'use strict';
 
 var express = require('express');
-var homeCtrl = require('./home.controller.js');
+var homeCtrl = require('./home-mail.controller.js');
+var proCtrl = require('./pro-mail.controller.js');
 
 var router = express.Router();
 
