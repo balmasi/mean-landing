@@ -18,6 +18,10 @@ angular.module 'taskyApp'
     templateUrl: 'app/home/pros/pros-info.html'
     url: '/pros/how-tasky-works'
 
+  .state 'about-credits',
+    templateUrl: 'app/home/pros/about-credits.html'
+    url: '/pros/about-credits'
+
   angular.extend sparkActionProps,
     downStagger:
       down: (o)->

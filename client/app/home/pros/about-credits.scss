@@ -1,0 +1,48 @@
+.page-about-credits {
+
+  #credits-header {
+    padding: 60px 0 30px;
+    text-align: center;
+
+    img {
+      width: 50px;
+      vertical-align: text-bottom;
+      margin: 0 10px;
+    }
+    h3 { font-size: 30px; }
+    h4 {
+      font-weight: 100;
+      font-size: 20px;
+    }
+  }
+
+  hr {
+    margin-bottom: 0;
+  }
+
+
+  .vertical-spacing {
+    margin-bottom: 30px;
+  }
+
+  .btn {
+    margin-top: 20px;
+  }
+
+
+  .explanation {
+    padding-top: 30px;
+    background: #fefefe url('#{$img}/backgrounds/bg-shapes.png') center top;
+    margin: 0 auto;
+  }
+
+  @include screen-xs-max {
+    .padding-left, .padding-right {
+      padding: 0;
+    }
+
+    .explanation {
+      text-align: center;
+    }
+  }
+}
