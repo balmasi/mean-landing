@@ -36,7 +36,7 @@ exports.newRequest = function (requestObj, pros, res) {
           },
           {
             name: 'LAST_NAME',
-            content: pro.firstName
+            content: pro.lastName
           },
           {
             name: 'LOCATION',
@@ -87,6 +87,67 @@ exports.newRequest = function (requestObj, pros, res) {
 
 };
 
+// Exposed via /mail/pros/hired
+exports.hired = function(req, res) {
+  var pro = req.body.pro;
+  var request = req.body.request;
+
+  var mergeVars =  [{
+      rcpt: pro.email,
+      vars: [
+        {
+          name: 'FIRST_NAME',
+          content: pro.firstName
+        },
+        {
+          name: 'LAST_NAME',
+          content: pro.lastName
+        },
+        {
+          name: 'SERVICE_NAME',
+          content: request.category.name
+        }
+      ]
+    }];
+
+  mandrill('/messages/send-template', {
+      template_name: 'pro-hired-notification',
+      template_content: [],
+      message: {
+        to: [{
+          name: pro.firstName + ' ' + pro.lastName,
+          email: pro.email
+        }],
+        preserve_recipients: true,
+
+        from_email: 'notification.hired@tasky.me',
+        subject: "You've just been hired on Tasky!",
+
+
+        track_opens: true,
+        track_clicks: true,
+
+        autotext: true,
+        merge: true,
+        merge_language: 'handlebars',
+        merge_vars: mergeVars,
+
+
+        tags: [
+          'pro',
+          'hired',
+        ]
+      }
+    }
+    ,function(err, response) {
+      if (err) {
+        return handleError(res, 'Error while sending notification emails to pro(s)');
+      }
+      res.status(200).send('Mail Sent');
+
+    });
+
+};
 
 function handleError(res, err) {
   return res.send(500, err);
