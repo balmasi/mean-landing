@@ -2,16 +2,20 @@
 <nav id="header"
      ng-hide="nav.isSignUp()"
      class="navbar navbar-inverse navbar-static-top ng-animate-disabled"
-     ng-class=" { highlight: !nav.isHome() }" role="navigation"
+     ng-class=" { highlight: !isHome() }" role="navigation"
      ng-controller="NavbarCtrl as nav"
-     spark-scroll="{ 200: { 'downAddClass,upRemoveClass': 'highlight'} }">
+     spark-scroll="{ 200: { 'highlightHomeHeader': true } }">
 
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">tasky</a>
-            <button type="button" ng-click="nav.isCollapsed = !isCollapsed" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
+            <button type="button"
+                    class="navbar-toggle" ng-click="nav.isCollapsed = !nav.isCollapsed"
+                    data-target=".navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
         </div>
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" collapse="nav.isCollapsed">
             <ul class="nav navbar-nav navbar-right">
                 <li ng-show="nav.nav.isAdmin()" ng-class="{active: nav.isActive('/admin')}"><a href="/admin">Admin</a></li>
 

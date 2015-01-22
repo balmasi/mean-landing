@@ -32,9 +32,9 @@
         <![endif]-->
 
 
-        <div ng-controller="AppCtrl" class="main-body {{pageVariables.pageClass}}">
+        <div ng-controller="AppCtrl" class="body-container {{pageVariables.pageClass}}">
             <div ng-include="'components/navbar/navbar-static.html'" ></div>
-            <ui-view></ui-view>
+            <ui-view class="main-body"></ui-view>
         </div>
 
         <script>

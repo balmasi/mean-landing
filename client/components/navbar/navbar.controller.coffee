@@ -13,6 +13,10 @@ angular.module 'taskyApp'
   nav.isAdmin = Auth.isAdmin
   nav.user = Auth.getCurrentUser()
 
+  collapseAll = ->
+    nav.isCollapsed = true
+    nav.signupActive = nav.avatarActive = false
+
   $rootScope.$on 'profilePicChanged', (e, data) ->
     nav.user.image =
       url: data.url
@@ -45,7 +49,4 @@ angular.module 'taskyApp'
     /signup/.test $location.path()
 
   $rootScope.$on '$stateChangeSuccess', ->
-    $timeout ->
-      $('.navbar-toggle').click() unless nav.isCollapsed
-    ,
-      0
+    collapseAll()

@@ -22,6 +22,8 @@ angular.module 'taskyApp'
     templateUrl: 'app/home/pros/about-credits.html'
     url: '/pros/about-credits'
 
+
+  pathIsHome = -> !!~['', '/'].indexOf window.location.pathname
   angular.extend sparkActionProps,
     downStagger:
       down: (o)->
@@ -32,3 +34,10 @@ angular.module 'taskyApp'
             $(elem).addClass 'animated fadeIn'
           ,
             staggerMs = staggerMs + staggerDiff
+
+    highlightHomeHeader:
+      down: ->
+        @element.addClass 'highlight' if pathIsHome()
+
+      up: ->
+        @element.removeClass 'highlight' if pathIsHome()
