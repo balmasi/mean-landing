@@ -5,6 +5,8 @@ var Quote = require('./quote.model');
 var Request = require('../request/request.model');
 var sock = require('./quote.socket');
 var Pro = require('../user/pro/pro.model');
+var custNotifier = require('../mail/customer-mail.controller');
+
 
 // Get list of quotes
 exports.index = function(req, res) {
@@ -40,33 +42,51 @@ exports.getByRequestAndPro = function(req, res) {
 
 // Creates a new quote in the DB.
 exports.create = function(req, res) {
+  // BLOG: Promise chain value management
+
   var credits_required = req.body.credits_required;
   var proId = req.body.from;
-  var proCredits;
-  Pro.findByIdAsync(proId).then(function(pro){
-    proCredits = pro.credits
+  var newCredits;
+
+  // Deduct Amount from pro's credits
+  var proPromise = Pro.findByIdAsync(proId).then(function (pro) {
+    var proCredits = pro.credits;
     if (proCredits < credits_required) {
       return handleError(res, new Error("Not Enough Credits to Quote"));
     }
-    pro.credits -= credits_required;
-    pro.saveAsync().catch(function(err) {
-      return handleError(res, new Error(err));
-    });
-    return proCredits - credits_required;
+    newCredits = pro.credits -= credits_required;
+    return pro;
+  }).error(function() { return handleError(res, 'Could not deduct credits from Pro when creating quote'); });
+
+
+  var quotePromise = proPromise.then(function() { return Quote.createAsync(req.body); });
+
+  quotePromise.then( function() {
+    return Request.findOneAsync({ _id: quotePromise.value().request })
+  }).then(function (request) {
+    request.quotes.addToSet(quotePromise.value()._id);
+    return request.saveAsync()
   })
-  .then(function(newCredits){
-    Quote.create(req.body, function(err, quote) {
-      if(err) { return handleError(res, err); }
-      Request.update(
-        { _id: quote.request },
-        { $addToSet: { quotes: quote._id }}
-        , function(err, request) {
-          if (err) return handleError(res, err);
-          if (!request) return res.send(404, "Request for this quote could not be found");
-          return res.json(201, { quote: quote, request: request, credits: newCredits });
-        });
+    .spread(function (request, numAffected) {
+      try {
+        custNotifier.newQuote(request, quotePromise.value(), proPromise.value(), res);
+      }
+      catch (e) {
+        return handleError(res, e);
+      }
+
+      return res.status(201).json({
+        quote: quotePromise.value(),
+        request: request,
+        credits: newCredits
+      });
+    })
+    .error(function(err) { /* Catch-all Error handler for quote and request */
+      return handleError(res, err);
+    })
+    .catch(function(err) {
+      return handleError(res, err);
     });
-  });
 };
 
 // Updates an existing quote in the DB.

@@ -7,12 +7,13 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 var RequestSchema = new Schema({
-  category:{
+  category:{ // Only used to populate category if many category details needed
     type: Schema.Types.ObjectId,
     ref: 'Category',
     required: true,
     index: true
   },
+  category_name: String, // Otherwise just use this TODO: Fill this throughout app
   requested_by: {
     type: Schema.Types.ObjectId,
     ref: 'User',

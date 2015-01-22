@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema,
   extend = require('mongoose-schema-extend'),
-  Request = require('../../request/request.model');
+  Request = require('../../request/request.model'),
   Review = require('../../review/review.model');
 
 var UserSchema = require('../user.model').schema;

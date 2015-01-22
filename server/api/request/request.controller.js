@@ -53,6 +53,7 @@ exports.myRequests = function (req, res) {
     {
       path: 'category quotes'
     })
+    .sort({ date_created: -1})
     .exec()
     .then(
     function(request) {

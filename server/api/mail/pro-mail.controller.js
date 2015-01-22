@@ -69,8 +69,8 @@ exports.newRequest = function (requestObj, pros, res) {
           tags: [
             'pro',
             'new-request',
-              'category-'+requestObj.category,
-              'location-' + requestObj.location.subLocality,
+            'category-'+ service.route ,
+            'location-' + requestObj.location.subLocality ,
             'subject-potential-customer'
           ]
         }
