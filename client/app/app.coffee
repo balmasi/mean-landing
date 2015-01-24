@@ -35,6 +35,7 @@ angular.module 'taskyApp', [
   request: (config) ->
     config.headers = config.headers or {}
     config.headers.Authorization = 'Bearer ' + $cookieStore.get 'token' if $cookieStore.get 'token'
+
     config
 
   # Intercept 401s and redirect you to login

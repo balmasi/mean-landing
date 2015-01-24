@@ -34,6 +34,7 @@
 
         <div ng-controller="AppCtrl" class="body-container {{pageVariables.pageClass}}">
             <div ng-include="'components/navbar/navbar-static.html'" ></div>
+            <div ng-include="'components/support/support-tab.html'"></div>
             <ui-view class="main-body"></ui-view>
         </div>
 
@@ -144,6 +145,8 @@
         <script src="components/model-services/request/request.js"></script>
         <script src="components/navbar/navbar.js"></script>
         <script src="components/socket/socket.js"></script>
+        <script src="components/support/support-api.js"></script>
+        <script src="components/support/support.js"></script>
         <script src="components/textSpinner/textSpinner.js"></script>
         <!-- endinjectorApp -->
         <!-- endbuild -->

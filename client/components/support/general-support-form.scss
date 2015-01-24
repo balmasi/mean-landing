@@ -1,0 +1,19 @@
+.help-tab {
+  @extend .dark;
+  padding: 5px 10px;
+  background: $brand-primary;
+  font-weight: bold;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.support-modal .modal-content {
+  padding: 20px 15px;
+
+  .form-control {
+    background: white;
+  }
+}

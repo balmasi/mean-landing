@@ -42,8 +42,8 @@ var all = {
   },
 
   facebook: {
-    clientID:     process.env.FACEBOOK_ID || '399188436896788',
-    clientSecret: process.env.FACEBOOK_SECRET || '76dabdbf8fae49a7721863c595a206f3',
+    clientID:     process.env.FACEBOOK_ID,
+    clientSecret: process.env.FACEBOOK_SECRET,
     callbackURL:  (process.env.DOMAIN || '') + '/auth/facebook/callback'
   },
 
@@ -54,7 +54,7 @@ var all = {
   },
 
   mailchimp: {
-    apiKey: process.env.MAILCHIMP_API_KEY || 'd0a987791548f7f27b4ed9c8f4a1880b-us9',
+    apiKey: process.env.MAILCHIMP_API_KEY,
     newsletterListId: '8d3f84ea4c'
   },
 
@@ -65,6 +65,14 @@ var all = {
 
   mandrill: {
     apiKey: process.env.MANDRILL_API_KEY
+  },
+
+  zoho: {
+    support: {
+      token: process.env.ZOHO_SUPPORT_TOKEN,
+      portal: 'tasky',
+      department: 'tasky-support'
+    }
   }
 };
 

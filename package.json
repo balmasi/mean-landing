@@ -28,6 +28,7 @@
     "passport-facebook": "latest",
     "passport-google-oauth": "latest",
     "passport-local": "~0.1.6",
+    "request": "^2.51.0",
     "s3-streaming-upload": "^0.1.16",
     "serve-favicon": "~2.0.1",
     "sitemap": "^0.7.4",
@@ -38,6 +39,7 @@
     "socketio-jwt": "^2.0.2",
     "stripe": "^3.0.2",
     "validator": "^3.19.1",
+    "xml2js": "^0.4.4",
     "zombie": "^2.2.1"
   },
   "devDependencies": {
