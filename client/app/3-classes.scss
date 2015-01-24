@@ -227,15 +227,19 @@ form label {
   color: #fff;
 }
 .btn[disabled], .btn.disabled {
+
   &, &:hover {
-    border-color: #aaa !important;
     color: #aaa !important;
     cursor: not-allowed;
   }
 
   .dark &, .dark &:hover {
     color: white !important;
-    border: none !important;
+    border: white !important;
+  }
+
+  &.pointer-events-on {
+    pointer-events: all;
   }
 }
 

@@ -18,22 +18,31 @@
                 <form class="form row" name="accountForm" ng-submit="vm.updateUser(accountForm)" novalidate>
                     <div class="form-group col-sm-6 col-xs-12">
                         <label>First Name</label>
-                        <input ng-model="me.firstName" type="text" class="form-control"/>
+                        <input ng-model="me.firstName" required standard-form-errors
+                               type="text" class="form-control" name="firstName"/>
                     </div>
                     <div class="form-group col-sm-6 col-xs-12">
                         <label>Last Name</label>
-                        <input ng-model="me.lastName" type="text" class="form-control"/>
+                        <input ng-model="me.lastName" required standard-form-errors
+                               name="lastName" type="text" class="form-control"/>
                     </div>
                     <div class="form-group col-sm-6 col-xs-12">
                         <label>Phone</label>
-                        <input ng-model="me.phone" type="text" class="form-control"/>
+                        <input pattern-validator="phone" name="phone" ng-model="me.phone" type="text" class="form-control"/>
+                        <div ng-if="accountForm.phone.$dirty && accountForm.phone.$error.pattern"
+                             class="form-error" role="alert">Invalid phone number.</div>
                     </div>
                     <div class="form-group col-sm-6 col-xs-12">
                         <label>Email</label>
-                        <input ng-model="me.email" type="text" class="form-control"/>
+                        <input placeholder="Email" type="email" name="email" class="form-control"
+                               ng-model="me.email" standard-form-errors required/>
+
                     </div>
                     <div class="col-xs-12">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" ng-disabled="accountForm.$invalid"
+                                class="pointer-events-on btn btn-blue-simple">
+                            Update
+                        </button>
                     </div>
                 </form>
             </section>
