@@ -39,7 +39,8 @@ angular.module 'taskyApp'
           else return $state.go 'admin' if user.role is 'admin'
         $state.go 'home'
       .catch (err) ->
-        $scope.errors.other = err.message
+        form.email.$error.serverEmail = err.email?.message
+        form.password.$error.serverPassword = err.password?.message
 
   $scope.loginOauth = (provider) ->
     $window.location.href =  '/auth/' + provider
