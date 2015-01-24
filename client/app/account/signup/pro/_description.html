@@ -9,14 +9,22 @@
                 <label>Name of Business</label>
                 <input required
                        standard-form-errors
+                       placeholder="i.e. City Movers Inc. or Rainbow Tutoring"
+                       name="name"
                        ng-model="description.name" type="text" class="form-control" >
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <label>Website</label>
                     <input ng-model="description.website"
+                           name="website"
+                           pattern-validator="website"
                            placeholder="Optional"
+                           type="url"
                            class="form-control" type="text">
+                    <div class="form-error" role="error"
+                            ng-if="form.website.$dirty && form.website.$error.pattern">
+                        That does not look like a valid url</div>
                 </div>
             </div>
             <div class="form-group">
@@ -24,6 +32,9 @@
                     <label>Describe Your Business:</label>
                     <textarea required
                               standard-form-errors
+                              name="description"
+                              rows="8"
+                              placeholder="Let your customers know more about you! Tell them what makes you great. Tell them about your experience.Use this description to make your profile shine!"
                               ng-model="description.description"
                               class="form-control"></textarea>
                 </div>

@@ -6,14 +6,17 @@
         </div>
         <div class="panel-body">
             <ul class="list-group form-list">
-                <li ng-if="service.id !== 'other'" ng-repeat="service in services" class="list-group-item checkbox">
+                <li ng-if="service.id !== 'other'" ng-repeat="service in services"
+                    class="list-group-item checkbox"
+                    ng-class="{ 'selected': services[service.id].selected }">
                     <label>
                         <input type="checkbox"
                                   ng-required="!someServicesSelected()"
                                   ng-model="services[service.id].selected">{{service.label}}
                     </label>
                 </li>
-                <li class="list-group-item input-group checkbox">
+                <li class="list-group-item input-group checkbox"
+                    ng-class="{ 'selected': services.other.selected }">
                     <label><input type="checkbox" ng-model="services.other.selected">
                         <input name='otherText' class="plain-input" type="text" placeholder="Other"
                                ng-model="services.other.value"

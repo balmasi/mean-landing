@@ -127,7 +127,14 @@ app.controller 'ProSignUp.Location.Ctrl', ($scope, $state, ProSignupData, $q, lo
   # Update map when distance willing to travel changes
   $scope.$watch 'location.distance', (newVal, oldVal) ->
     if newVal != oldVal
-      $scope.map.makeCircle newVal if newVal? and $scope.map._map?
+      if $scope.map._map?
+        $scope.map.makeCircle newVal if newVal?
+      else
+        $scope.map.init()
+
+  $scope.$on '$stateChangeSuccess', ->
+    if $scope.location.outgoing
+      $scope.map.init()
 
   $scope.prev = ->
     ProSignupData.setLocationData $scope.location
@@ -174,11 +181,10 @@ app.controller 'ProSignUp.Account.Ctrl', ($scope, accountData, $state, ProSignup
     ProSignupData.setAccountData $scope.account
     $state.go 'pro-signup.description'
 
-  $scope.register = () ->
+  $scope.register = (form) ->
     if this.form.$valid
       ProSignupData.setAccountData $scope.account
       data = ProSignupData.getAll()
-      console.log data
       # --------- Registration Logic ---------
       Auth.createUser 'Pro'
       ,
@@ -208,4 +214,6 @@ app.controller 'ProSignUp.Account.Ctrl', ($scope, accountData, $state, ProSignup
         $cookieStore.put 'token', data.token
         $state.go 'home'
       .catch (err) ->
-        console.error 'there was an error', err
+        angular.forEach err.data.errors, (error, field) ->
+          form[field].$setValidity 'mongoose', false
+          form[field].$error.mongoose = error.message

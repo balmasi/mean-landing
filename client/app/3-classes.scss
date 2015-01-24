@@ -249,7 +249,20 @@ form label {
   .list-group-item {
     background: rgb(247,247,247); /* Old browsers */
     background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(245,245,245,1) 100%); /* W3C */
+    margin-bottom: 4px;
 
+    &.selected {
+      $selected-color: #E2ECF4;
+      background: $selected-color;
+      background: linear-gradient($selected-color, darken($selected-color,2));
+      border-color: #fafafa;
+
+      &:hover {
+        $hover-color: darken($selected-color, 8);
+        background: $hover-color;
+        background: linear-gradient($hover-color, darken($hover-color, 5));
+      }
+    }
     &:hover {
       background: rgb(227,227,227); /* Old browsers */
       background: linear-gradient(to bottom, rgba(245,245,245,1) 0%,rgba(235,235,235,1) 100%); /* W3C */

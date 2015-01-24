@@ -12,6 +12,7 @@ angular.module 'taskyApp'
   @return {Promise}
   ###
   login: (user, callback) ->
+    self = this
     deferred = $q.defer()
     $http.post '/auth/local',
       email: user.email
@@ -24,7 +25,7 @@ angular.module 'taskyApp'
       callback?()
 
     .error (err) =>
-      @logout()
+      self.logout()
       deferred.reject err
       callback? err
 
@@ -55,13 +56,15 @@ angular.module 'taskyApp'
       when 'Customer' then Customer
       else User
 
+    self = this
+
     Entity.save user,
       (data) ->
         $cookieStore.put 'token', data.token
         currentUser = Entity.get()
       ,
       (mongoErr) ->
-        @logout()
+        self.logout()
         $q.reject(mongoErr)
     .$promise
 
