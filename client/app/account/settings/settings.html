@@ -35,11 +35,14 @@
                     <div class="form-group col-sm-6 col-xs-12">
                         <label>Email</label>
                         <input placeholder="Email" type="email" name="email" class="form-control"
-                               ng-model="me.email" standard-form-errors required/>
+                               ng-model="me.email" standard-form-errors mongoose-error required/>
+                        <span class="form-error" ng-show="accountForm.email.$error.mongoose">
+                            This email seems to be taken.
+                        </span>
 
                     </div>
                     <div class="col-xs-12">
-                        <button type="submit" ng-disabled="accountForm.$invalid"
+                        <button type="submit" ng-disabled="accountForm.$invalid || accountForm.$pristine"
                                 class="pointer-events-on btn btn-blue-simple">
                             Update
                         </button>
@@ -53,20 +56,33 @@
                     <div class="form-group col-xs-12">
                         <label>Business Name</label>
                         <input type="text" name="name" class="form-control"
-                                ng-model="me.name" required>
+                                ng-model="me.name" required
+                                standard-form-errors
+                                name="name"
+                                placeholder="i.e. City Movers Inc. or Rainbow Tutoring"
+                                >
                     </div>
                     <div class="form-group col-xs-12">
                         <label>Website</label>
-                        <input type="text" name="website" class="form-control"
+                        <input type="url" name="website" class="form-control"
+                               name="website"
+                               pattern-validator="website"
                                ng-model="me.website">
+                        <div class="form-error" role="error"
+                             ng-if="businessForm.website.$dirty && businessForm.website.$error.pattern">
+                            That does not look like a valid url</div>
                     </div>
                     <div class="form-group col-xs-12">
                         <label>About</label>
-                        <textarea name="description" class="form-control" rows="8"
+                        <textarea name="description" class="form-control"
+                                  name="description"
+                                  rows="8"
+                                  placeholder="Let your customers know more about you! Tell them what makes you great. Tell them about your experience.Use this description to make your profile shine!"
                                   ng-model="me.description"></textarea>
                     </div>
                     <div class="col-xs-12">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" ng-disabled="businessForm.$invalid || businessForm.$pristine"
+                                class="pointer-events-on btn btn-blue-simple">Update</button>
                     </div>
                 </form>
             </section>
@@ -85,11 +101,14 @@
                     <div class="form-group col-sm-12">
                         <label>New Password</label>
                         <input type="password" name="newPassword" class="form-control" ng-model="vm.password.newPassword"
-                               ng-minlength="3"
+                               ng-minlength="4"
+                               tooltip="Must be at least 4 characters"
                                required/>
                     </div>
                     <div class="col-xs-12">
-                        <button type="submit" class="btn btn-primary">Change Password</button>
+                        <button type="submit"
+                                ng-disabled="passwordForm.$invalid || passwordForm.$pristine"
+                                class="pointer-events-on btn btn-blue-simple">Change Password</button>
                     </div>
                 </form>
             </section>

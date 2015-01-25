@@ -20,6 +20,12 @@ angular.module 'taskyApp'
     .$promise
     .then (data) ->
       toastr.success 'Updated User'
+    .catch (err) ->
+      err = err.data
+      if err.name is 'ValidationError'
+        form.email.$setValidity 'mongoose', false
+      toastr.error 'Could not update user information'
+
 
 
   vm.changePassword = (form) ->
