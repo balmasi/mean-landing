@@ -35,6 +35,9 @@
                 <li ng-show="nav.isLoggedIn() && nav.isHome()" class="ng-animate-disabled">
                     <a class="dash-btn" ng-href="{{nav.dashboardUrl()}}">Dashboard</a>
                 </li>
+                <li ng-show="nav.isHome()">
+                    <a ui-sref="pros-info">For Businesses</a>
+                </li>
                 <li ng-hide="nav.isLoggedIn()" class="submenu" ng-class="{active: nav.isActive('/signup'), pressed: nav.signupActive }">
                     <a ng-click="nav.signupActive = !nav.signupActive">Sign up
                         <i ng-hide="nav.signupActive" class="fa fa-chevron-down"></i>

@@ -12,6 +12,9 @@ angular.module 'taskyApp'
     'Painter'
   ]
 
+  $scope.$on '$stateChangeStart', ->
+    $scope.pageVariables.pageClass = ''
+
   # Slides in the header module and
   # sets ready status to ready for SEO pre-renderer
   $scope.pageIsReady = (elem) ->
