@@ -18,6 +18,11 @@
 
 .hero-section {
   height: 100vh;
+
+  @include screen-xs-max {
+    height: auto;
+    padding: 30px 10px;
+  }
 }
 
 

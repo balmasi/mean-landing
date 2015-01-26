@@ -2,10 +2,13 @@
 
 angular.module 'taskyApp'
 
-.controller 'HomeCtrl', ($scope, $http, $rootScope) ->
+.controller 'HomeCtrl', ($scope, $http, $rootScope, $detect, sparkSetup) ->
   $scope.pageVariables.pageClass = 'page-home'
 
   vm = this
+
+  sparkSetup.disableSparkScrollAnimate = true if $detect.isMobile()
+
   $scope.spinnerTexts = [
     'Cleaner'
     'Mover'

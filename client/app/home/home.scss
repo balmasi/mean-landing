@@ -54,28 +54,6 @@
       width: 100%;
     }
 
-    .banner {
-      @include clearfix();
-      height: auto;
-      padding-top: 10rem;
-
-
-      @include screen-xs-max {
-        padding-top: 0;
-        .text-spinner, .text-sub { text-align: center; }
-        .search-box-wrapper { padding-top: 5rem; }
-        .search-box {
-          width: 90%;
-          max-width: 40rem;
-        }
-        .banner-text {
-          margin-top: 2rem;
-        }
-
-        .text-spinner { font-size: 3rem; }
-        .text-sub { font-size: 2rem; }
-      }
-    }
 
     .banner-text {
       margin-top: 4rem;
@@ -144,6 +122,21 @@
     .vam-child {
       float: none;
     }
+
+    @include screen-xs-max {
+      .text-spinner, .text-sub { text-align: center; }
+      .search-box-wrapper { padding-top: 3rem; }
+      .search-box {
+        width: 90%;
+        max-width: 40rem;
+      }
+      .banner-text {
+        margin-top: 2rem;
+      }
+
+      .text-spinner { font-size: 3rem; }
+      .text-sub { font-size: 1.8rem; }
+    }
   }
 
   .section {
@@ -186,6 +179,10 @@
       &.highlight {
         background: transparentize($brand-primary, 0.05);
       }
+    }
+
+    @include screen-xs-max {
+      position: relative;
     }
   }
   /*     HOME SECTION     */

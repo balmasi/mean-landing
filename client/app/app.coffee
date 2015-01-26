@@ -14,7 +14,13 @@ angular.module 'taskyApp', [
   'angularFileUpload',
   'gilbox.sparkScroll'
 ]
-.config ($urlRouterProvider, $locationProvider, $httpProvider, toastrConfig, $animateProvider) ->
+.config (
+  $urlRouterProvider,
+  $locationProvider,
+  $httpProvider,
+  toastrConfig,
+  $animateProvider,
+  ) ->
 
   $urlRouterProvider
   .otherwise '/'
@@ -28,6 +34,7 @@ angular.module 'taskyApp', [
     toastClass: 'toastr'
 
   $animateProvider.classNameFilter /^(?:(?!ng-animate-disabled).)*$/
+
 
 
 .factory 'authInterceptor', ($q, $cookieStore, $location) ->

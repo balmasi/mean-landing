@@ -13,11 +13,7 @@
     }
 
     &.ng-leave {
-      animation: fadeOutDown 0.8s;
-
-      &.ng-leave-active {
-        display:none;
-      }
+      display:none;
     }
   }
 }
