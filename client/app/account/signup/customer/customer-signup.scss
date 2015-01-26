@@ -1,5 +1,5 @@
 .customer-signup {
-  background: #222 url('#{$img}/backgrounds/bg-shapes.png') center top;
+  background: #EFEFEF url('#{$img}/backgrounds/bg-shapes.png') center top;
   background-size: cover;
   
   .panel {
@@ -14,7 +14,6 @@
   }
 
   .heading {
-    color: white;
     margin:3rem 0;
   }
 }

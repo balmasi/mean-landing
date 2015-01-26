@@ -126,7 +126,16 @@
         top: 25px;
       }
     }
+    
+  }
 
+  .signup-cta {
+    padding: 40px 0;
+    text-align: center;
+    background: white;
+
+    h4 { font-size: 20px; text-align: center; width: auto;}
+    p { font-size: 16px; }
   }
 
 }

@@ -1,10 +1,12 @@
 .page-signup-pro  {
-  background: #222 url('#{$img}/backgrounds/bg-shapes.png') center top;
+  background: #E7E7E7 url('#{$img}/backgrounds/bg-shapes.png') center top;
   background-size: cover;
   
   #status-buttons {
-    background: black;
+    background: rgb(60, 60, 65);
     padding: 2rem;
+    z-index: 200;
+    position: relative;
   }
 
 
@@ -50,11 +52,11 @@
 
     .subtitle {
       margin-top: 1rem;
+      font-size: 18px;
+      font-weight: 100;
+      line-height: 1.6;
     }
 
-    .btn-get-started {
-
-    }
   }
 
   form label{

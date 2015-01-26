@@ -1,4 +1,4 @@
-<div class="page-about-credits">
+<div ng-controller="AboutCreditsCtrl as vm" ng-init="pageVariables.pageClass = 'page-about-credits'">
 
     <header id="credits-header">
         <div class="container">
@@ -20,9 +20,9 @@
                 </div>
                 <div class="vertical-spacing">
                     <h4>How many credits would I need to <br/>send a quote to a customer?</h4>
-                    <p>On average, each introduction costs only <strong>2 credits</strong>. Depending on your industry,
-                        the number of credits required per introduction may vary. You can see how many credits
-                        are required when sending a quote.</p>
+                    <p>Depending on your industry,the number of credits required per introduction may vary.
+                        On average, each introduction costs only <strong>2 credits</strong>.
+                        You can see how many credits are required when sending a quote.</p>
                 </div>
                 <div>
                     <h4>How can I get more Tasky credits?</h4>
@@ -30,7 +30,18 @@
                         <a href="/credits">credits</a> page. You can buy enought to send a single quote, or
                         buy them in bulk at a discounted rate. Your credits will never expire!
                     </p>
-                    <a class="btn btn-primary" ui-sref="credits">Top up your Account</a>
+
+                    <div class="current-credits" ng-if="vm.hasLowCredits()">
+                        <p><strong>You currently have only
+                                <ng-pluralize count="vm.user.credits"
+                                              when="{
+                                                        '1': '1 credit',
+                                                        'other': '{{ ::vm.user.credits}} credits'
+                                                    }"></ng-pluralize>
+                            </strong></p>
+                        <a  class="btn btn-primary" ui-sref="buy-credits">Top up your Account</a>
+                    </div>
+
                 </div>
             </div>
         </div>

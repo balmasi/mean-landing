@@ -2,4 +2,4 @@
 
 angular.module 'taskyApp'
 .controller 'AppCtrl', ($scope) ->
-  $scope.pageVariables = {} 
+  $scope.pageVariables = {}

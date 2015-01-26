@@ -46,7 +46,10 @@ angular.module 'taskyApp'
     $location.path() is '/'
 
   nav.isSignUp = $scope.isSignUp = ->
-    /signup/.test $location.path()
+    /signup\/.+/.test $location.path()
+
+  nav.isChooseAccount = ->
+    /signup\/?$/.test $location.path()
 
   $rootScope.$on '$stateChangeSuccess', ->
     collapseAll()

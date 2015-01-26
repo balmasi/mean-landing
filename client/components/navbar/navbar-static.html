@@ -8,7 +8,7 @@
 
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">tasky</a>
+            <a class="navbar-brand" ui-sref="home">tasky</a>
             <button type="button"
                     class="navbar-toggle" ng-click="nav.isCollapsed = !nav.isCollapsed"
                     data-target=".navbar-collapse">
@@ -38,7 +38,7 @@
                 <li ng-show="nav.isHome()">
                     <a ui-sref="pros-info">For Businesses</a>
                 </li>
-                <li ng-hide="nav.isLoggedIn()" class="submenu" ng-class="{active: nav.isActive('/signup'), pressed: nav.signupActive }">
+                <li ng-hide="nav.isLoggedIn() || nav.isChooseAccount()" class="submenu" ng-class="{active: nav.isActive('/signup'), pressed: nav.signupActive }">
                     <a ng-click="nav.signupActive = !nav.signupActive">Sign up
                         <i ng-hide="nav.signupActive" class="fa fa-chevron-down"></i>
                         <i ng-show="nav.signupActive" class="fa fa-chevron-up"></i>
