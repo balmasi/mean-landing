@@ -17,8 +17,8 @@ User.find({}).remove(function(){
       provider: 'local',
       role: 'admin',
       name: 'Admin',
-      email: 'admin@admin.com',
-      password: 'admin'
+      email: 'tasky-admin@mailinator.com',
+      password: 'taskyadmin'
     }
     , function(){
       console.log('ADMINS created');
@@ -120,9 +120,9 @@ Category.remove({}).exec()
                 province: 'ON',
                 postal: 'L3T 1Z8'
               },
-              email: 'pro@pro.com',
+              email: 'tasky-pro@mailinator.com',
               credits: Infinity,
-              password: 'pro',
+              password: 'taskypro',
               phone: '416-222-2144',
               website: 'http://www.tasky.com',
               services: [ local._id, long._id ]
@@ -139,9 +139,9 @@ Category.remove({}).exec()
                 postal: 'M2N 6M7'
               },
               name: 'Toronto Moving Inc.',
-              email: 'pro2@pro.com',
+              email: 'tasky-pro2@mailinator.com',
               credits: 3,
-              password: 'pro',
+              password: 'taskypro',
               phone: '416-222-2144',
               website: 'http://www.tasky.com',
               services: [ local._id, long._id ]
@@ -158,8 +158,8 @@ Category.remove({}).exec()
             role: 'user',
             provider: 'local',
             name: 'Test User',
-            email: 'test@test.com',
-            password: 'test'
+            email: 'tasky-test@mailinator.com',
+            password: 'taskytest'
           });
         });
       },

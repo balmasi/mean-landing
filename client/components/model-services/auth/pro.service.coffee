@@ -11,6 +11,9 @@ angular.module 'taskyApp'
       params:
         id: 'me'
 
+    update:
+      method: 'PUT'
+
     myQuotes:
       method: 'GET'
       params:

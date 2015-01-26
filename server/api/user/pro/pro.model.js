@@ -71,10 +71,27 @@ var ProSchema = UserSchema.extend({
     index: true,
     default: 0
   },
-  // Number of task credits, default TODO: free until first customer hires
   credits: {
     type: Number,
     default: Infinity
+  },
+  preferences: {
+    quote: {
+      type: Boolean,
+      default : true
+    },
+    news: {
+      type: Boolean,
+      default : true
+    },
+    hired: {
+      type: Boolean,
+      default : true
+    },
+    leads: {
+      type: Boolean,
+      default : true
+    }
   }
 
 });

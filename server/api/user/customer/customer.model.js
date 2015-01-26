@@ -13,6 +13,16 @@ var CustomerSchema = UserSchema.extend({
       type: String,
       default: 'assets/images/profiles/thumb-empty-profile-customer.png'
     }
+  },
+  preferences: {
+    quote: {
+      type: Boolean,
+      default : true
+    },
+    news: {
+      type: Boolean,
+      default : true
+    }
   }
 });
 

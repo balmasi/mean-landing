@@ -5,21 +5,29 @@ var key = require('../../config/environment/index').mandrill.apiKey;
 var mandrill = require('node-mandrill')(key);
 var Category = require('../category/category.model');
 
-// Sends an email to EMAIL_TO for use in contact us section
+// Send email notif when pro receives new request
 exports.newRequest = function (requestObj, pros, res) {
   // Isolate only the name and emails
   var mappedPros = _.map(pros, function (pro) {
-    return {
-      name: pro.firstName + ' ' + pro.lastName,
-      email: pro.email
+    if (pro.preferences.leads) {
+      return {
+        name: pro.firstName + ' ' + pro.lastName,
+        email: pro.email
+      }
     }
   });
+
+  // Remove pro's form above map who don't want emails aka are undefined
+  mappedPros = _.compact(mappedPros);
+  if (!mappedPros.length) {
+    return res.status(201).send('Created Request');
+  }
 
   Category.findOneAsync({ _id: requestObj.category })
     .then (function (category) {
     return category
   }).error(function(err) {
-      return handleError(res, 'Failed while retreiving the category of request for email notifications');
+      return handleError(res, 'Failed while retrieving the category of request for email notifications');
     })
     .then (function (service) {
     var mergeVars = _.map(pros, function (pro) {
@@ -88,9 +96,14 @@ exports.newRequest = function (requestObj, pros, res) {
 };
 
 // Exposed via /mail/pros/hired
+// Sends a "you've been hired notification to pro's mail"
 exports.hired = function(req, res) {
   var pro = req.body.pro;
   var request = req.body.request;
+
+  if (!pro.preferences.hired) {
+    return;
+  }
 
   var mergeVars =  [{
       rcpt: pro.email,

@@ -9,17 +9,17 @@ angular.module 'taskyApp'
   $scope.loginAs = (who,form) ->
     switch who
       when 'customer'
-        $scope.user.email = 'test@test.com'
-        $scope.user.password = 'test'
+        $scope.user.email = 'tasky-test@mailinator.com'
+        $scope.user.password = 'taskytest'
       when 'pro'
-        $scope.user.email = 'pro@pro.com'
-        $scope.user.password = 'pro'
+        $scope.user.email = 'tasky-pro@mailinator.com'
+        $scope.user.password = 'taskypro'
       when 'pro2'
-        $scope.user.email = 'pro2@pro.com'
-        $scope.user.password = 'pro'
+        $scope.user.email = 'tasky-pro2@mailinator.com'
+        $scope.user.password = 'taskypro'
       when 'admin'
-        $scope.user.email = 'admin@admin.com'
-        $scope.user.password = 'admin'
+        $scope.user.email = 'tasky-admin@mailinator.com'
+        $scope.user.password = 'taskyadmin'
     form.$valid = true
     $scope.login(form)
 

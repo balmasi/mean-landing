@@ -8,13 +8,14 @@ var User = require('../user/user.model');
 
 var mandrill =require('node-mandrill')('7g377aWuJAx4NdoAkC8iQw');
 
-// Sends an email to EMAIL_TO for use in contact us section
+// Sends an email to customer when user receives a new quote
 exports.newQuote = function (requestObj, quote, pro, res) {
   var requestingUser;
   User.findOneAsync({ _id: requestObj.requested_by })
     .then(
     function (user) {
       requestingUser = user;
+
       return Category.findOneAsync({ _id: requestObj.category })
     })
     .error(
@@ -23,6 +24,10 @@ exports.newQuote = function (requestObj, quote, pro, res) {
     })
     .then (
     function (service) {
+      // Only send quote if user preferences allow it
+      if (!requestingUser.preferences.quote) {
+        return;
+      }
       var mergeVars = [{
         rcpt: requestingUser.email,
         vars: [

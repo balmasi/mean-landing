@@ -15,7 +15,7 @@ angular.module 'taskyApp'
   vm.updateUser = (form) ->
     return if form.$invalid
     # protect a bit against hackers
-    userCopy = _.pick $scope.me, ['_id', 'firstName', 'lastName', 'phone', 'email', 'name', 'website', 'description']
+    userCopy = _.pick $scope.me, ['_id', 'firstName', 'lastName', 'phone', 'email', 'name', 'website', 'description', 'preferences']
     User.update userCopy
     .$promise
     .then (data) ->

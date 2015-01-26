@@ -12,7 +12,7 @@
                 <img class="profile-image" ng-src="{{me.getImageUrl() }}" alt="Profile Picture"/>
             </div>
         </div>
-        <div class="col-sm-6 clear-xs">
+        <div class="col-sm-9 clear-xs">
             <section>
                 <h3 class="section-label">Account</h3>
                 <form class="form row" name="accountForm" ng-submit="vm.updateUser(accountForm)" novalidate>
@@ -58,10 +58,10 @@
                     <div class="form-group col-xs-12">
                         <label>Business Name</label>
                         <input type="text" name="name" class="form-control"
-                                ng-model="me.name" required
-                                standard-form-errors
-                                name="name"
-                                placeholder="i.e. City Movers Inc. or Rainbow Tutoring"
+                               ng-model="me.name" required
+                               standard-form-errors
+                               name="name"
+                               placeholder="i.e. City Movers Inc. or Rainbow Tutoring"
                                 >
                     </div>
                     <div class="form-group col-xs-12">
@@ -114,26 +114,44 @@
                     </div>
                 </form>
             </section>
-        </div>
-        <div class="col-sm-3">
             <section>
-                <label class="section-label">Notification</label>
+                <label class="section-label">Notifications</label>
 
-                <form class="form clearfix" novalidate>
-                    <div class="input-group">
-                        <label for="leads"><input type="checkbox" id="leads" name="leads"/> New Leads</label>
+                <form name="notificationForm" class="form clearfix"
+                      ng-submit="vm.updateUser(notificationForm)" novalidate>
+                    <div ng-if="me._accountType == 'Pro'">
+                        <div class="input-group">
+                            <label for="leads">
+                                <input ng-model="me.preferences.leads" type="checkbox" id="leads"
+                                       name="leads"/>
+                                Email me when I receive a new customer request.
+                            </label>
+                        </div>
+                        <div class="input-group">
+                            <label for="hired">
+                                <input ng-model="me.preferences.hired" type="checkbox" id="hired" name="hired"/>
+                                Email me when I get hired.
+                            </label>
+                        </div>
                     </div>
                     <div class="input-group">
-                        <label for="offers"><input type="checkbox" id="offers" name="offers"/> Offers</label>
+                        <label for="quote">
+                            <input ng-model="me.preferences.quote" type="checkbox" id="quote" name="quote"/>
+                            Email me when a professional sends me a quote.
+                        </label>
                     </div>
-                    <div class="input-group">
-                        <label for="tips"><input type="checkbox" id="tips" name="tips"/> Tips</label>
+                    <div class="input-group form-group">
+                        <label for="news">
+                            <input ng-model="me.preferences.news" type="checkbox" id="news" name="news"/>
+                            Keep me up to date with Tasky news and updates.
+                        </label>
                     </div>
-                    <div class="col-xs-12">
-                        <!--<button type="submit" class="btn btn-primary">Update</button>-->
-                    </div>
+
+                    <button type="submit" class="pointer-events-on btn btn-blue-simple"
+                            ng-disabled="notificationForm.$pristine">Update</button>
                 </form>
             </section>
         </div>
+
     </div>
 </div>
