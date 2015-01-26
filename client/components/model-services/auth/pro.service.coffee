@@ -22,3 +22,8 @@ angular.module 'taskyApp'
       method: 'POST'
       params:
         controller: 'review'
+
+    resetCreditsIfUnlimited:
+      method: 'PUT'
+      params:
+        controller: 'resetCreditsIfUnlimited'

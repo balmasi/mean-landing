@@ -45,41 +45,40 @@ exports.newQuote = function (requestObj, quote, pro, res) {
         ]
       }];
 
-      console.log('\n\nMergeVars :', mergeVars);
-        mandrill('/messages/send-template', {
-          template_name: 'customer-new-quote-notification',
-          template_content: [],
-          message: {
-            to: [{
-              name: requestingUser.firstName + ' ' + requestingUser.lastName,
-              email: requestingUser.email
-            }],
-            preserve_recipients: false,
+      mandrill('/messages/send-template', {
+        template_name: 'customer-new-quote-notification',
+        template_content: [],
+        message: {
+          to: [{
+            name: requestingUser.firstName + ' ' + requestingUser.lastName,
+            email: requestingUser.email
+          }],
+          preserve_recipients: false,
 
-            from_email: 'notification.newquote@tasky.me',
-            subject: 'New quote received for ' + service.name + '!',
-
-
-            track_opens: true,
-            track_clicks: true,
-
-            autotext: true,
-            merge: true,
-            merge_language: 'handlebars',
-            merge_vars: mergeVars,
+          from_email: 'notification.newquote@tasky.me',
+          subject: 'New quote received for ' + service.name + '!',
 
 
-            tags: [
-              'customer',
-              'new-quote',
-                'category-' + service.name,
-                'location-' + requestObj.location.subLocality
-            ]
-          }
-        }, function (err, response) {
-          if (err) { throw new Error('could not send notification email for new quote to customer' ) }
-          console.log('notification email for new quote sent successfully', response);
-        });
+          track_opens: true,
+          track_clicks: true,
+
+          autotext: true,
+          merge: true,
+          merge_language: 'handlebars',
+          merge_vars: mergeVars,
+
+
+          tags: [
+            'customer',
+            'new-quote',
+              'category-' + service.name,
+              'location-' + requestObj.location.subLocality
+          ]
+        }
+      }, function (err, response) {
+        if (err) { throw new Error('could not send notification email for new quote to customer' ) }
+        console.log('notification email for new quote sent successfully', response);
+      });
     });
 };
 

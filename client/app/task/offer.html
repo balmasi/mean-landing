@@ -58,10 +58,12 @@
     </div>
     <div class="status-info" ng-hide="quote.status == 'pending'">
         <alert ng-show="quote.status == 'hired'" type="success">
-            <i class="fa fa-check"></i> Hired <a href="#" ng-click="undoStatus()">Undo</a>
+            <i class="fa fa-check"></i> Hired
+            <!--<a href="#" ng-click="undoStatus()">Undo</a>-->
         </alert>
         <alert ng-show="quote.status == 'rejected'" type="danger">
-            <i class="fa fa-times"></i> Declined <a href="#" ng-click="undoStatus()">Undo</a>
+            <i class="fa fa-times"></i> Declined
+            <!--<a href="#" ng-click="undoStatus()">Undo</a>-->
         </alert>
     </div>
 </section>

@@ -130,6 +130,28 @@ exports.newReview = function(req, res, next) {
   });
 };
 
+
+exports.resetCreditsIfUnlimited = function(req, res, next) {
+  var id = req.params.id;
+
+  Pro.findByIdAsync(id).then(function(pro) {
+    if (!pro) return res.status(404).send('Could not find pro with id: ' + id);
+
+    if (pro.credits == Infinity) {
+      pro.credits = 0;
+      pro.save(function(err) {
+        if (err) {
+          return res.status(500).send(err)
+        }
+        return res.status(200).send('Credits reset to 0');
+      });
+    }
+  })
+    .catch (function(err) {
+      res.status(500).send(err);
+  });
+};
+
 exports.destroy = function(req,res,next) {
   userCtrl.destroy(req,res,next);
 };

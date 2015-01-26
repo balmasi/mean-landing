@@ -31,7 +31,7 @@ angular.module 'taskyApp'
     $state.go 'quotes.offer',
       offerId: q._id
 
-.controller 'QuoteShowCtrl', ($scope, $stateParams, me, Quote, Request, toastr, request, $state, Mail) ->
+.controller 'QuoteShowCtrl', ($scope, $stateParams, me, Quote, Request, toastr, request, $state, Mail, Pro) ->
 
   $scope.quote = _.findWhere $scope.quotes , { _id: $stateParams.offerId }
   # Delete version since we dont have revision-sensitive operations
@@ -57,6 +57,11 @@ angular.module 'taskyApp'
     Quote.changeStatus $scope.quote, 'hired', $scope.quotes
     .then ->
       toastr.success 'Accepted Offer', 'Hired'
+      Pro.resetCreditsIfUnlimited
+        id: $scope.pro._id
+      ,
+        _id: $scope.pro._id
+      .$promise
     .then ->
       Mail.Pros.hire
         pro: $scope.pro
