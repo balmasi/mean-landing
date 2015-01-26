@@ -10,13 +10,13 @@ angular.module 'taskyApp'
       email: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/
       website: /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi
 
-    validate = (regexp, value) ->
-      value is "" or not required or regexp.test(value)
-
     validator = undefined
     patternValidator = undefined
     pattern = attrs.patternValidator
     required = true
+
+    validate = (regexp, value) ->
+      value is "" or not required or regexp.test(value)
 
     if pattern
       if PATTERNS[pattern]

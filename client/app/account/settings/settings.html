@@ -28,7 +28,9 @@
                     </div>
                     <div class="form-group col-sm-6 col-xs-12">
                         <label>Phone</label>
-                        <input pattern-validator="phone" name="phone" ng-model="me.phone" type="text" class="form-control"/>
+                        <input ng-required="me._accountType == 'Pro' " pattern-validator="phone"
+                               standard-form-errors
+                               name="phone" ng-model="me.phone" type="text" class="form-control"/>
                         <div ng-if="accountForm.phone.$dirty && accountForm.phone.$error.pattern"
                              class="form-error" role="alert">Invalid phone number.</div>
                     </div>
