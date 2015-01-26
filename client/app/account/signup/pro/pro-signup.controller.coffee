@@ -212,6 +212,8 @@ app.controller 'ProSignUp.Account.Ctrl', ($scope, accountData, $state, ProSignup
         phone: data.account.phone
       .then (data) ->
         $cookieStore.put 'token', data.token
+        # Add 'other' service to bucket in DB if exists
+        ProSignupData.saveOtherService()
         $state.go 'home'
       .catch (err) ->
         angular.forEach err.data.errors, (error, field) ->

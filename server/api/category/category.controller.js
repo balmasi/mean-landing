@@ -46,13 +46,13 @@ exports.subcategories = function( req, res ) {
   }
   Category.getSubcategoriesOf(parentId)
     .then(
-      function(subCats){
-        res.json(subCats);
-      },
-      function(err) {
-        return handleError(res, err);
-      }
-    );
+    function(subCats){
+      res.json(subCats);
+    },
+    function(err) {
+      return handleError(res, err);
+    }
+  );
 };
 
 exports.showByRoute = function (req, res) {
@@ -66,7 +66,7 @@ exports.showByRoute = function (req, res) {
       res.status(200).json(cat);
     })
     .catch (function(err) {
-      return handleError(res, err);
+    return handleError(res, err);
   });
 };
 
@@ -84,6 +84,32 @@ exports.create = function(req, res) {
   Category.create(req.body, function(err, category) {
     if(err) { return handleError(res, err); }
     return res.json(201, category);
+  });
+};
+
+exports.addToOtherServices = function (req, res) {
+  var catId = req.params.id;
+  var newService = req.body.other;
+  Category.findOneAsync({ _id: catId}).then(function(cat) {
+    if (!cat) return res.status(404).send('Could not find requested category');
+
+    if (!cat.other_services) cat.other_services = {};
+
+    var serviceHash = cat.other_services[newService];
+    if (serviceHash) {
+      cat.other_services[newService] += 1;
+    }
+    else {
+      cat.other_services[newService] = 1;
+    }
+
+    // Due to Mixed Type we have to mark modified
+    cat.markModified('other_services');
+    cat.save(function(err){
+      if (err) return handleError(res, err);
+      res.status(201).send('Successfully updated "Other" service for category: ' + cat.name);
+    });
+
   });
 };
 

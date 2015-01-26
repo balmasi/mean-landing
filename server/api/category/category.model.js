@@ -25,6 +25,15 @@ var CategorySchema = new Schema({
     default: null,
     index: true
   },
+  /*  Format:
+    {
+      someCat: 3,
+      otherCat: 1
+    }
+    where the key is a typed category in registration and value is the count
+    of times that category was 'requested'
+    */
+  other_services: {},
   // Task Credits charged per introduction
   credits_required: {
     type: Number

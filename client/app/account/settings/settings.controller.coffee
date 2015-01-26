@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'SettingsCtrl', ($scope, User, Auth, $upload, $rootScope, toastr) ->
+.controller 'SettingsCtrl', ($scope, User, Auth, $upload, $rootScope, toastr, $state) ->
   $scope.pageVariables.pageClass = 'page-settings'
   vm = this
   vm.uploading = false

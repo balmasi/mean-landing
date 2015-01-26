@@ -1,4 +1,5 @@
 .page-profile {
+  background: $color-page;
 
   .rating {
     color: $color-rating-stars;
@@ -11,8 +12,8 @@
   #pro-header { position: relative; }
 
   #cover-photo {
-    height: 300px;
-    background: fixed #8D92A0 url('#{$img}/backgrounds/bg-shapes.png') center top;
+    height: 150px;
+    background: fixed #a8aebf url('#{$img}/backgrounds/bg-shapes.png') center top;
     background-size: cover;
     position: relative;
   }
@@ -27,9 +28,6 @@
 
   .biz-name { font-size: $font-size-h3; }
 
-  #pro-subheading {
-
-  }
 
   #profile-pic {
     position: absolute;
@@ -46,6 +44,7 @@
 
   #profile-info {
     padding: 10px 0 10px $push-left;
+    background: white;
 
     .contact-summary {
       @extend .list-simple;
@@ -83,7 +82,6 @@
     @include animate-show-hide(0.3s);
 
     padding-top: 45px;
-    background: $color-page;
 
     section {
       background: white;
@@ -124,6 +122,11 @@
   }
 
   #reviews {
+    .not-reviewed-yet {
+      font-size: 15px;
+      margin: 15px 0;
+    }
+
     .reviews-list {
       @extend .list-simple;
       $review-padding-vertical: 10px;
@@ -141,6 +144,14 @@
         width: $review-image-width;
         position: absolute;
         left: 0; top: $review-padding-vertical + 5 ;
+      }
+    }
+  }
+
+  section {
+    p {
+      &:last-child {
+        margin-bottom: 0;
       }
     }
   }

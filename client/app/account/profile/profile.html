@@ -55,7 +55,10 @@
 
                 </li>
             </ul>
-            <div ng-if="vm.loggedIn" class="clearfix">
+            <p ng-if="!vm.pro.feedback.reviews.length" class="not-reviewed-yet">
+                This professional has not been reviewed yet. Be the first to leave feedback!
+            </p>
+            <div ng-if="vm.loggedIn && vm.loggedInUser._id != vm.pro._id" class="clearfix">
                 <button ng-hide="vm.reviewOpen" class="btn btn-default" ng-click="vm.reviewOpen = true" disable-animate>Leave A review</button>
                 <div ng-show="vm.reviewOpen" class="col-xs-12">
                     <form class="form" name="reviewForm" novalidate role="form" ng-submit="vm.submitReview()">
@@ -103,6 +106,9 @@
             <ul class="list-inline">
                 <li ng-repeat="tag in vm.pro.services" class="tag">
                     {{tag.name}}
+                </li>
+                <li ng-if="vm.pro.otherService" class="tag">
+                    {{vm.pro.otherService}}
                 </li>
             </ul>
         </section>

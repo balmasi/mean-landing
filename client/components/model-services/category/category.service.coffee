@@ -2,7 +2,7 @@
 
 angular.module 'taskyApp'
 .factory 'Category', ($resource) ->
-  $resource '/api/categories/:id/',
+  $resource '/api/categories/:id/:controller',
     id: '@_id'
   ,
     update:
@@ -13,6 +13,11 @@ angular.module 'taskyApp'
       url: '/api/categories/root',
       isArray: true,
       cache: true
+
+    addToOtherServices:
+      method: 'POST'
+      params:
+        controller: 'addToOtherServices'
 
     getSubcategories:
       method: 'GET'

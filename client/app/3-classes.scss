@@ -228,8 +228,14 @@ form label {
 }
 .btn[disabled], .btn.disabled {
 
+  &.btn-default {
+    &, &:hover {
+      color: #999 !important;
+    }
+  }
+
   &, &:hover {
-    color: #aaa !important;
+    color: #ddd !important;
     cursor: not-allowed;
   }
 

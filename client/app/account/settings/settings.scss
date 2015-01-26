@@ -13,7 +13,7 @@
     padding: 15px 20px;
     border-radius: 5px;
     margin-bottom: 40px;
-    box-shadow: 1px 5px 10px -7px rgba(0,0,0,0.2);
+    box-shadow: 1px 5px 10px -7px rgba(0, 0, 0, 0.2);
 
     .section-label {
       position: absolute;
@@ -30,65 +30,81 @@
       }
     }
   }
-}
 
-.profile-pic-wrapper {
-  @include screen-xs-max {
-    margin: 0 auto 4rem;
-    float: none;
-  }
-}
-
-.profile-pic {
-  position: relative;
-
-  img { max-width: 100%; }
-
-  &:hover .change-photo {
-    cursor: pointer;
-    color: white;
-    opacity: 1;
-  }
-
-  .profile-image {
-    display: block;
-    margin: 0 auto;
-  }
-
-  .change-photo {
-    transition: opacity 0.4s;
-    opacity: 0;
-    position: absolute;
-    right: 0;  top: 0; left:0; bottom: 0;
-    background: rgba(0,0,0,0.65);
-    color: #fafafa;
+  .public-profile {
     text-align: center;
-    z-index: 1;
+    padding-top: 30px;
+  }
 
-    .fa-camera {
-      position: absolute;
-      font-size: 40px;
-      top: 50%;
-      margin-top: -20px;
-      margin-left: -20px;
+  .profile-pic-wrapper {
+    @include screen-xs-max {
+      margin: 0 auto 4rem;
+      float: none;
     }
   }
 
-  &.uploading {
-    .fa-camera {  display: none; }
-    .change-photo { opacity: 1;  cursor: wait; }
-    .loader { display: block; }
+  .profile-pic {
+    position: relative;
+
+    img {
+      max-width: 100%;
+    }
+
+    &:hover .change-photo {
+      cursor: pointer;
+      color: white;
+      opacity: 1;
+    }
+
+    .profile-image {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .change-photo {
+      transition: opacity 0.4s;
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.65);
+      color: #fafafa;
+      text-align: center;
+      z-index: 1;
+
+      .fa-camera {
+        position: absolute;
+        font-size: 40px;
+        top: 50%;
+        margin-top: -20px;
+        margin-left: -20px;
+      }
+    }
+
+    &.uploading {
+      .fa-camera {
+        display: none;
+      }
+      .change-photo {
+        opacity: 1;
+        cursor: wait;
+      }
+      .loader {
+        display: block;
+      }
+    }
+
+    .loader {
+      @include animate-show-hide();
+      z-index: 2;
+      display: none;
+      position: absolute;
+      top: 45%;
+      margin: 0 auto;
+    }
+
   }
-
-  .loader {
-    @include animate-show-hide();
-    z-index: 2;
-    display: none;
-    position: absolute;
-    top: 45%;
-    margin: 0 auto;
-  }
-
-
 
 }

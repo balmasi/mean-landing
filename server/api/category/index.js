@@ -12,6 +12,7 @@ router.get('/root', controller.root);
 router.get('/:id/sub', controller.subcategories);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
+router.post('/:id/addToOtherServices', controller.addToOtherServices);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);

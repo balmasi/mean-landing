@@ -43,6 +43,14 @@ angular.module 'taskyApp'
     getOtherService: ->
       _data.services?.other?.value if _data.services?.other?.selected
 
+    saveOtherService: ->
+      other = api.getOtherService()
+      if other
+        Category.addToOtherServices
+          id: _data.category,
+        ,
+          other: other
+
 
     setServices: (services) ->
       selectedServices = _.omit services, (service) ->
