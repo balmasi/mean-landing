@@ -25,7 +25,7 @@
                 </p>
             </div>
 
-            <form novalidate name="quote-form">
+            <form novalidate name="quoteForm">
                 <section ng-if="!canQuote()" class="messages">
                     <div class="message" ng-class="{ 'theirs': isTheirs(m) }" ng-repeat="m in messages">
                         <img class="col-xs-2 img-rounded" ng-src="{{getThumbnail(m)}}" alt=""/>
@@ -47,21 +47,25 @@
                     </div>
                     <div ng-if="canQuote() && newQuote.rate.method != 'contact'" class="rate-input input-group form-group">
                         <span class="input-group-addon">$</span>
-                        <input class="form-control" ng-model="newQuote.rate.value" type="text" ng-min="0" required numbers-only />
+                        <input class="form-control" name="quoteAmount" ng-model="newQuote.rate.value" type="text" ng-min="0" required numbers-only />
                         <span class="input-group-addon" ng-show="newQuote.rate.method == 'hourly'">/ hr</span>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" rows="4"
+                        <textarea name="message" class="form-control" rows="4"
                                   placeholder="{{messagePlaceholder}}"
+                                  required
+                                  minlength="120"
+                                  standard-form-errors='{ "minlength" : "Message needs to be at least 120 characters" }'
                                   ng-model="newMessage.message"></textarea>
                     </div>
 
                     <div ng-if="canQuote()" class="form-group">
-                        <button ng-click="sendOffer()" class="btn btn-blue-simple">Send Offer</button>
+                        <button ng-click="sendOffer()" class="btn btn-blue-simple"
+                                ng-disabled="quoteForm.$invalid">Send Offer</button>
                         <p class="foot-stat">You will use <i class="fa fa-circle"></i> <span class="credit-number">{{category.credits_required}}</span> credits for this introduction</p>
                     </div>
                     <div ng-if="!canQuote()" class="form-group">
-                        <button ng-click="sendMessage()" class="btn btn-blue-simple">Send Message</button>
+                        <button ng-click="sendMessage()" ng-disabled="quoteForm.$invalid" class="btn btn-blue-simple">Send Message</button>
                     </div>
                 </div>
             </form>
