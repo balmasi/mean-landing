@@ -14,6 +14,10 @@ angular.module 'taskyApp'
   # Who travels to whom
   $scope.travel = {}
 
+  $scope.otherDetails =
+    description: 'Extra details customer wants you to know'
+    answer: null
+
   $scope.errors = {}
 
   $scope.hasAccount = () ->
@@ -27,11 +31,14 @@ angular.module 'taskyApp'
     $scope.questions.forEach (q) ->
       if q.field_type == 'checklist'
         transformedChoices = _.map q.choices, (choice) ->
+          answerVal = null
           if choice.can_describe
             return choice.answer if choice.answer? && choice.answer && choice.otherChecked
           else
             return choice.value if choice.answer? && choice.answer
+
         q.answer = _.compact transformedChoices
+        q.question = q.description # Substite customer question to pro description
         results.push _.pick(q,['question','answer']) if q.answer.length
 
       else if q.field_type == 'select'
@@ -42,6 +49,12 @@ angular.module 'taskyApp'
 
       else
         results.push _.pick(q,['question','answer']) if q.answer? && q.answer
+
+    if $scope.otherDetails.answer
+      $scope.questions.push
+        question: $scope.otherDetails.description
+        answer: $scope.otherDetails.answer
+
 
 
     # This function creates a request given

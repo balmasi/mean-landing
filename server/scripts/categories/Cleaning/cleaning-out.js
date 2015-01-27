@@ -83,12 +83,6 @@ module.exports = function(parentId) {
             value: 'Commercial'
           }
         ]
-      },
-      {
-        field_type: 'text',
-        question: 'Is there anything else should the cleaner know?',
-        description: "Customer comment",
-        required: false
       }
     ]
   };

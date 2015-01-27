@@ -34,6 +34,14 @@
 
             <!-- Asks who travels to whom? -->
             <travel-checkboxes travel="travel" category="category"></travel-checkboxes>
+            
+            <!-- Catchall details -->
+            <div class="form-group">
+                <label>Is there anything else you'd like the {{category.actor}} to know?</label>
+                <textarea type="text" class="form-control" rows="5"
+                          placeholder="Describe any further details that can help the professional understand your project."
+                        ng-model="otherDetails.answer"></textarea>
+            </div>
 
             <div class="auth-fields row"
                  ng-if="!hasAccount()">

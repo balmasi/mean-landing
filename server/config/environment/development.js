@@ -13,5 +13,5 @@ module.exports = {
   },
 
   seedDB: false,
-  setUpCategories: true
+  setUpCategories: false
 };
