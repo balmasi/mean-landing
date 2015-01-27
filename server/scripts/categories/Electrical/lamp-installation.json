@@ -1,0 +1,59 @@
+{
+  name: 'Lamp Installation',
+  route: 'lamp-installation',
+  search_keywords: ['lamp' ,'lamp installation', 'outdoor lamp', 'outdoor lamp installation'],
+        parent:  // TO DO ( Add Parent ID)
+        travel_types: ['tocustomer'],
+        scheduling_type: 'appointment',
+        credits_required: 2,
+        actor: 'Electrician',
+        actor_plural: 'Electricinas',
+        action: 'Fixing electrican problems',
+        questions:  [
+        {
+          field_type:"checklist",
+          question:"What of lamp(s) installation?",
+          describtion:"Type of lamp(s)",
+          choices:[
+          {
+            label:"Floor",
+            value:"Floor"
+          },
+          {
+            label:"Ceiling",
+            value:"Ceiling"
+          },
+          {
+            label:"Wall",
+            value:"Wall"
+          },
+          {
+            label:"Outdoor",
+            value:"Outdoor"
+          },
+          {
+            label:"Table",
+            value:"Table"
+          },
+          {
+            can_describe:true
+          }
+          ]
+        },
+        {
+          field_type:"select",
+          question:"What type of property is it?",
+          description:"Type of property",
+          choices:[
+          {
+            label:"Residential",
+            value:"Residential"
+          },
+          {
+            label:"Commercial",
+            value:"Commercial"
+          }
+          ]
+        }
+        ]
+      }

@@ -1,0 +1,4 @@
+{
+	name:"Painting",
+	parent:null
+}

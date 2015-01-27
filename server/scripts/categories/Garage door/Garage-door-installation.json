@@ -1,0 +1,153 @@
+{
+  name: 'Garage door Installing or replacement',
+  route: 'Garage-door-replacement',
+  search_keywords: ['Garage','Garage door', 'Parking door', 'Garage door installing', "garage door replacement"],
+        parent:  // TO DO ( Add Parent ID)
+        travel_types: ['tocustomer'],
+        scheduling_type: 'appointment',
+        credits_required: 3,
+        actor: 'Garage door professional',
+        actor_plural: 'Garage door professionals',
+        action: 'Installing and reparing garge doors',
+        questions:  [
+        {
+          field_type:"checklist", 
+          question:"What kind of garage door service do you need?",
+          description:"Type of service required",
+          choices:[
+          {
+            label:"Install a new garage door",
+            value:"installing a new door"
+          },
+          {
+            label:"Just remove an old door",
+            value:"Removing an old door"
+          },
+          {
+            label:"Replace door"
+            value:"Replacing"
+          },
+          {
+            can_describe:true
+          }
+          ]
+        },
+        {
+          field_type:"checklist",
+          question:"What size is your garage door",
+          description:"Size of the garage",
+          choices:[
+          {
+            label:"Single car",
+            value:"Single car"
+          },
+          {
+            label:"Double car",
+            value:"Double car"
+          },
+          {
+            can_describe:true
+          }
+          ]
+        },
+        {
+          field_type:"checklist",
+          question:"What material is the door?",
+          description:"Door material",
+          choices:[
+          {
+            label:"Steel",
+            value:"Steel"
+          },
+          {
+            label:"Aluminum",
+            value:"Aluminum"
+          },
+          {
+            label:"Vinyl",
+            value:"Vinyl"
+          },
+          {
+            label:"Fiberglass",
+            value:"Fiberglass"
+          },
+          {
+            label:"Masonite",
+            value:"Masonite"
+          },
+          {
+            label:"I am not sure",
+            value:"Customer is not sure"
+          },
+          {
+            can_describe:true
+          }
+          ]
+        },
+        {
+          field_type:"select",
+          question:"Will you supply the new garage door and parts?",
+          description:"If the customer supplies the garage door and parts or not ",
+          choices:[
+          {
+            label:"Yes, I will provide the materials and parts",
+            value:"Yes, Customer will provide the materials and parts"
+          },
+          {
+            label:" Yes, but I will need guidance from the professional",
+            value:"Yes, but customer needs your guidance"
+          },
+          {
+            label:"No, I want the professional to supply the parts",
+            value:"No, customer wants you to supply the parts"
+          }
+          ]
+        },
+        {
+          field_type:"checklist",
+          question:"Does your opener need any service",
+          description:"Services related to opner",
+          required:false,
+          choices:[
+          {
+            label:"repair garage door opener",
+            value:"repair garage door opener"
+          },
+          {
+            label:"Install garage door opener",
+            value:"Install garage door opener"
+          },
+          {
+            label:"Replace garage door opener",
+            value:"Replace garage door opener"
+          }
+          
+          ]
+        },
+        {
+                field_type:"select",
+                question: "What type of property do you have?",
+                description: "Type of property",
+                choices:[
+                {
+                        label:"Home",
+                        value:"Home"
+                },
+                {
+                        label:"Multi unit building",
+                        value:"Multi unit building"
+                },
+                {
+                        label:"Office/business",
+                        value:"Office/business"
+                },
+                {
+                        label:"Commercial",
+                        value:"Commercial"
+                },
+
+
+                ]
+        },
+        ]
+}

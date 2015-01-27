@@ -12,5 +12,6 @@ module.exports = {
     bucket: process.env.S3_BUCKET || 'tasky-dev'
   },
 
-  seedDB: false
+  seedDB: false,
+  setUpCategories: true
 };

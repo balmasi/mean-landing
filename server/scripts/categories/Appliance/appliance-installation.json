@@ -1,0 +1,67 @@
+{
+        name: 'Dishwasher installation',
+        route: 'Dishwasher-installation',
+        search_keywords: [ 'Appliance', 'appliance installation','washer installation','Refrigerator installation','Oven installation','Dishwasher installation','Vacuum cleaner installation'],
+        parent: // TO DO ADD PARENT ID
+        travel_types: ['tocustomer'],
+        scheduling_type: 'appointment',
+        credits_required: 2,
+        actor: 'plumber',
+        actor_plural: 'plumbers',
+        action: 'plumbing',
+        questions: [
+        {
+                 field_type:"checklist",
+                question: "What appliances are you installing?",
+                description: "Which appliances",
+                choices:[
+                
+                {
+                        label:"Dryer",
+                        value:"Dryer"
+                },
+                {
+                        label:"Oven/Stove",
+                        value:"Oven/Stove"
+                },
+                {
+                        label:"Dishwasher",
+                        value:"Dishwasher"
+                },
+                
+                {
+                        label:"Refrigerator",
+                        value:"Refrigerator"
+                },
+                {
+                        label:"Washing machine",
+                        value:"Washing machine"
+                },
+                {
+                        can_describe: true
+
+                }
+
+                ]
+        },
+        {
+                field_type:"Select",
+                question: "Are there items to be moved?",
+                description: "If there are items to be moved or not ",
+                choices:[
+                {
+                        label:"Yes",
+                        value:"Yes"
+                },
+                {
+                        label:"No",
+                        value:"No"
+                },
+                
+                {
+                        can_describe: true
+                        
+                }
+
+                ]
+        }

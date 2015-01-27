@@ -1,0 +1,127 @@
+{
+        name: 'Steam Cleaning',
+        route: 'steam-cleaning',
+        search_keywords: ['steam','cleaning', 'floor cleaning', 'tile cleaning','air duct cleaning'],
+        parent:// TO DO ( Add Parent ID)
+        travel_types: ['tocustomer'],
+        scheduling_type: 'appointment',
+        credits_required: 2,
+        actor: 'Cleaner',
+        actor_plural: 'Cleaners',
+        action: 'Help you keep your home or place of business clean',
+        questions: [
+        {
+                field_type:"checklist",
+                question:"What needs steaming?",
+                description:"What needs steaming",
+                choices:[
+                {
+                        label:"carpet/rug",
+                        value:"carpet/rug"
+                },
+                {
+                        label:"Couch & sofas",
+                        value:"Counch & sofas"
+                },
+                {
+                        label:"tile and grout",
+                        value:"tile and grout"
+                },
+                {
+                        label:"mattress(es)"
+                        value:"mattress(es)"
+                },
+                {
+                        lablel:"air duct",
+                        value:"air duct"
+                }
+                ]
+
+        },
+        {
+                field_type:"checklist",
+                question:"Which rooms need cleaning?"
+                description:"Room types that need the cleaning"
+                choices:[
+                {
+                        label:"Kitchen",
+                        value:"Kitchen"
+                },
+                {
+                        label:"Bathroom",
+                        value:"Bathroom"
+
+                },
+                {
+                        label:"Entire building",
+                        value:"Entire buidling"
+                },
+                {
+                        can_describe:true
+                }
+                ]
+
+
+
+        },
+        {
+                field_type:"select",
+                question:"What is the approximate squre footage of the area that needs cleaning?",
+                description:"Approximate squre footage of the area that needs cleaning",
+                choices:[
+                {
+                        label:"Less than 500",
+                        value: "Less than 500"
+                },
+                {
+                        label:"501 to 1000",
+                        value:"501 to 1000"
+                },
+                {
+                        label:"1001 to 1500",
+                        value:"1501 to 2000"
+                },
+                {
+                        label:"more than 2000",
+                        value:"more than 2000"
+                },
+                {
+                    can_describe:true
+                }
+                ]
+        },
+        {
+                 field_type:"select",
+                description:"Moving furniture or not"
+                quesion:"Do you need the professional to move furniture?"
+                choices:[
+                {
+                        label:"Yes",
+                        value:"Yes"
+                },
+                {
+                        label:"No",
+                        value:"No"
+                }
+
+                ]
+
+        },
+        {
+         field_type:"select",
+         description:"Inside smoking"
+         quesion:"Does anyone regularly smoke inside?"
+         choices:[
+         {
+                label:"Yes",
+                value:"Yes"
+        },
+        {
+                label:"No",
+                value:"No"
+        }
+
+        ] 
+        
+}]
+}
