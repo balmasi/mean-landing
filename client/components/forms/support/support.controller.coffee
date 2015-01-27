@@ -6,7 +6,7 @@ angular.module 'taskyApp'
 
   vm.popupHelp =  ->
     $modal.open
-      templateUrl: 'components/support/general-support-form.html'
+      templateUrl: 'components/forms/support/general-support-form.html'
       windowClass: 'support-modal'
       controller: 'SupportModalCtrl'
       controllerAs: 'vm'

@@ -34,7 +34,7 @@
 
         <div ng-controller="AppCtrl" class="body-container {{pageVariables.pageClass}}">
             <div ng-include="'components/navbar/navbar-static.html'" ></div>
-            <div ng-include="'components/support/support-tab.html'"></div>
+            <div ng-include="'components/forms/support/support-tab.html'"></div>
             <ui-view class="main-body"></ui-view>
         </div>
 
@@ -124,18 +124,21 @@
         <script src="app/request/request.js"></script>
         <script src="app/search/search.js"></script>
         <script src="app/task/task.js"></script>
-        <script src="components/directives/forms/disable-click.js"></script>
-        <script src="components/directives/forms/new-request/appointment-selector/appointment-selector.js"></script>
-        <script src="components/directives/forms/new-request/multicheck/multicheck.js"></script>
-        <script src="components/directives/forms/new-request/travel-checkboxes/travel-checkboxes.js"></script>
-        <script src="components/directives/forms/numbers-only.js"></script>
-        <script src="components/directives/forms/pattern-validator.js"></script>
-        <script src="components/directives/forms/request-info/request-info.js"></script>
-        <script src="components/directives/forms/standard-form-errors.js"></script>
-        <script src="components/directives/forms/unmask.js"></script>
         <script src="components/errors/mongoose-error.js"></script>
         <script src="components/errors/server-validation-error.js"></script>
         <script src="components/filters/thumbnail.js"></script>
+        <script src="components/forms/disable-click.js"></script>
+        <script src="components/forms/new-request/appointment-selector/appointment-selector.js"></script>
+        <script src="components/forms/new-request/location-search/location-search.js"></script>
+        <script src="components/forms/new-request/multicheck/multicheck.js"></script>
+        <script src="components/forms/new-request/travel-checkboxes/travel-checkboxes.js"></script>
+        <script src="components/forms/numbers-only.js"></script>
+        <script src="components/forms/pattern-validator.js"></script>
+        <script src="components/forms/request-info/request-info.js"></script>
+        <script src="components/forms/standard-form-errors.js"></script>
+        <script src="components/forms/support/support-api.js"></script>
+        <script src="components/forms/support/support.js"></script>
+        <script src="components/forms/unmask.js"></script>
         <script src="components/model-services/auth/auth.js"></script>
         <script src="components/model-services/auth/customer.js"></script>
         <script src="components/model-services/auth/pro.js"></script>

@@ -19,5 +19,8 @@ angular.module 'taskyApp'
     location.lat = lngLat.lat
     return
 
+  isRequestLocationSet: ->
+    location.lng && location.lat && location.subLocality
+
   clearLocation: ->
     location = {}

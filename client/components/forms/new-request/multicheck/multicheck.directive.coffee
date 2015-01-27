@@ -6,7 +6,7 @@ angular.module 'taskyApp'
     requireOne: '=requireOne'
     question: "="
   restrict: 'EA'
-  templateUrl: 'components/directives/forms/new-request/multicheck/multicheck.html'
+  templateUrl: 'components/forms/new-request/multicheck/multicheck.html'
   link: (scope, element, attrs) ->
     scope.anySelected = ->
       if scope.requireOne

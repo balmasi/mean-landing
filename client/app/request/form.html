@@ -29,6 +29,18 @@
 
             </div>
 
+            <!-- Get Customer Location -->
+            <div ng-if="locationNotSet" class="form-group">
+                <label>Where do you need the {{category.name | lowercase}}?</label>
+                <div class="input-group">
+                    <location-search model="location" loading="loading"></location-search>
+                    <span class="loader-addon" ng-show="loading">
+                            <img src="assets/images/loader-spin-black.GIF" alt=""/>
+                        </span>
+                </div>
+            </div>
+
+
             <!-- Asks When? -->
             <appointment-selector schedule="schedule" schedule-type="{{category.scheduling_type}}"></appointment-selector>
 

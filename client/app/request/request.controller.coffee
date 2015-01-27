@@ -14,6 +14,9 @@ angular.module 'taskyApp'
   # Who travels to whom
   $scope.travel = {}
 
+  $scope.location = {}
+  $scope.locationNotSet = !Search.isRequestLocationSet()
+
   $scope.otherDetails =
     description: 'Extra details customer wants you to know'
     answer: null
@@ -105,6 +108,9 @@ angular.module 'taskyApp'
       # Otherwise just create the request
       else
         createRequest()
+
+  $scope.$on '$destroy', ->
+    Search.clearLocation()
 
   # For each mongo error returned, set the field's validity to false
   # and add a message to be displayed in DOM via $scope.errors

@@ -6,7 +6,7 @@ angular.module 'taskyApp'
     category: "="
     travel: "="
   restrict: 'EA'
-  templateUrl: 'components/directives/forms/new-request/travel-checkboxes/travel-checkboxes.html'
+  templateUrl: 'components/forms/new-request/travel-checkboxes/travel-checkboxes.html'
   link: (scope, element, attrs) ->
     numTypes = scope.category.travel_types.length
 

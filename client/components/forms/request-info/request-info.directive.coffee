@@ -6,7 +6,7 @@ angular.module 'taskyApp'
   transclude: true
   scope:
     request: "="
-  templateUrl: 'components/directives/forms/request-info/request-info.html'
+  templateUrl: 'components/forms/request-info/request-info.html'
   link: (scope, elem, attrs) ->
     scope.multipleChoices = (q) ->
       _.isArray q.answer

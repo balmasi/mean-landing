@@ -23,17 +23,8 @@
             <div class="form-group">
                 <label>Where are you located?</label>
                 <div class="input-group">
-                    <input type="text" ng-model="addressSearchTerm"
-                           ng-model-options="{ updateOn: 'default blur', debounce: {'default': 100, 'blur': 0} }"
-                           required
-                           name="location"
-                           placeholder="Address or postal code"
-                           typeahead="add.formatted_address for add in getAddresses($viewValue)"
-                           typeahead-editable="false"
-                           typeahead-min-length="3"
-                           typeahead-loading="loading.location" class="form-control"
-                           typeahead-on-select="setLatLng($item, $model, $label)">
-                    <span class="loader-addon" ng-show="loading.location"">
+                    <location-search model="location" loading="loading.location"></location-search>
+                    <span class="loader-addon" ng-show="loading.location">
                     <img src="assets/images/loader-spin-white.GIF" alt=""/>
                     </span>
                 </div>

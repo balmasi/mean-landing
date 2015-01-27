@@ -76,11 +76,11 @@ body {
 @import 'request/request.scss';
 @import 'task/task.scss';
 @import 'CSS/ribbons.scss';
-@import 'directives/forms/new-request/appointment-selector/appointment-selector.scss';
-@import 'directives/forms/new-request/multicheck/multicheck.scss';
-@import 'directives/forms/new-request/travel-checkboxes/travel-checkboxes.scss';
-@import 'directives/forms/request-info/request-info.scss';
+@import 'forms/new-request/appointment-selector/appointment-selector.scss';
+@import 'forms/new-request/multicheck/multicheck.scss';
+@import 'forms/new-request/travel-checkboxes/travel-checkboxes.scss';
+@import 'forms/request-info/request-info.scss';
+@import 'forms/support/general-support-form.scss';
 @import 'navbar/navbar.scss';
-@import 'support/general-support-form.scss';
 @import 'textSpinner/textSpinner.scss';
 // endinjector

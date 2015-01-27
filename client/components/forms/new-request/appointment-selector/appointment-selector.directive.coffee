@@ -2,7 +2,7 @@
 
 angular.module 'taskyApp'
 .directive 'appointmentSelector', ($timeout) ->
-  templateUrl: 'components/directives/forms/new-request/appointment-selector/appointment-selector.html'
+  templateUrl: 'components/forms/new-request/appointment-selector/appointment-selector.html'
   restrict: 'E'
   scope:
     schedule: '='
