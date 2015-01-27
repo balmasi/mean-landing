@@ -1,4 +1,12 @@
-{
-	name:"Painting",
-	parent:null
+'use strict';
+
+exports.root = {
+  name: "Painting",
+  parent: null
 }
+
+exports.children = [
+  require('./interior-painting'),
+  require('./painting'),
+  require('./exterior-painting')
+];
