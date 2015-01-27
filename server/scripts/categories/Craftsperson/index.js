@@ -1,6 +1,6 @@
 'use strict';
 exports.root = {
-	name:"Carfting",
+	name:"Craftswork",
 	parent:null
 };
 

@@ -19,8 +19,8 @@ module.exports = function(parentId) {
                 description: "Type of sink",
                 choices:[
                 {
-                        label:"Vessle sink",
-                        value:"Vessle sink"
+                        label:"Vessel sink",
+                        value:"Vessel sink"
                 },
                 {
                         label:"Pedestal sink",
@@ -48,7 +48,7 @@ module.exports = function(parentId) {
                 {
 
                         label:"Single bowl",
-                        value:"Sinle bowl"
+                        value:"Single bowl"
                 },
                 {
 
@@ -65,8 +65,6 @@ module.exports = function(parentId) {
                         can_describe: true
                 }
 
-
-
                 ]
         },
         {
@@ -79,19 +77,19 @@ module.exports = function(parentId) {
                         value:"Single handle that controls both hot and cold water"
                 },
                 {
-                        label:"Seperate handles to control hot and cold water",
-                        value:"Seperate handles to control hot and cold water"
+                        label:"Separate handles to control hot and cold water",
+                        value:"Separate handles to control hot and cold water"
                 },
                 {
                         label:"As recommended by the professional",
                         value:"As recommended by the professional"
-                },
+                }
 
                 ]
         },
         {
                 field_type:"select",
-                question: "How many sinks or faucets do you need to intall?",
+                question: "How many sinks or faucets do you need to install?",
                 description: "Number of sinks or faucets need installation",
                 choices:[
                 {
@@ -109,16 +107,13 @@ module.exports = function(parentId) {
                 {
                         label:"More than three",
                         value:"More than three"
-                },
-
-
-
+                }
                 ]
         },
         {
                 field_type:"select",
                 question: "Are supply and drain lines already in place?",
-                description: "If supply and drain lines are in place or not",
+                description: "Are supply and drain lines in place?",
                 choices:[
                 {
                         label:"Yes, supply and drain lines are there",
@@ -128,14 +123,13 @@ module.exports = function(parentId) {
                 {
                         label:"No, new supply and drain lines are needed",
                         value:"No, new supply and drain lines are needed"
-                },
-
+                }
                 ]
         },
         {
                 field_type:"select",
                 question: "Will you supply all the necessary parts and materials?",
-                description: "Customer provides materials and parts or not",
+                description: "Will the customer provide parts and materials?",
                 choices:[
                 {
                         label:"Yes, I will provide the materials and parts",
@@ -147,8 +141,8 @@ module.exports = function(parentId) {
                 },
                 {
                         label:"No",
-                        value:"No, customer wants to supply the parts and materials"
-                },
+                        value:"No, customer wants you to supply the parts and materials"
+                }
 
                 ]
         },
@@ -172,11 +166,9 @@ module.exports = function(parentId) {
                 {
                         label:"Commercial",
                         value:"Commercial"
-                },
-
-
+                }
                 ]
-        },
+        }
         ]
 };
 };

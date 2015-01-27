@@ -7,6 +7,5 @@ exports.root = {
 };
 
 exports.children=[
-require('./handyman')
-
+  require('./handyman')
 ];

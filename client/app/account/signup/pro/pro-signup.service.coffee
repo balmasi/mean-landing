@@ -17,8 +17,6 @@ angular.module 'taskyApp'
       Category.getRootCategories()
 
     getServices: ->
-      return _data.services if _data.services?
-
       Category.getSubcategories({ id: _data.category })
         .$promise
         .then (services) ->

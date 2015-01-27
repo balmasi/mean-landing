@@ -1,7 +1,7 @@
 'use strict';
 
 exports.root={
-	name:"furnace and heating system",
+	name:"Furnace and Heating System",
 	parent:null
 };
 exports.children=[

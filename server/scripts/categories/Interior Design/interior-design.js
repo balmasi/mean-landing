@@ -49,39 +49,39 @@ module.exports = function(parentId) {
         description: "Spaces that need improvement ",
         choices: [
           {
-            lable: "Office or shop",
+            label: "Office or shop",
             value: "Office or shop"
           },
           {
-            lable: "Home office",
+            label: "Home office",
             value: "Home office"
           },
           {
-            lable: "Bathroom(s)",
+            label: "Bathroom(s)",
             value: "Bathroom(s)"
           },
           {
-            lable: "Hallway",
+            label: "Hallway",
             value: "Hallway"
           },
           {
-            lable: "Bedroom(s)",
+            label: "Bedroom(s)",
             value: "Bedroom(s)"
           },
           {
-            lable: "Kitchen",
+            label: "Kitchen",
             value: "Kitchen"
           },
           {
-            lable: "Family room",
+            label: "Family room",
             value: "Family room"
           },
           {
-            lable: "Living room",
+            label: "Living room",
             value: "Living room"
           },
           {
-            lable: "My apartment",
+            label: "My apartment",
             value: "My apartment"
           },
           {

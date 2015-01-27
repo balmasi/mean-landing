@@ -8,14 +8,14 @@ module.exports = function(parentId) {
         scheduling_type: 'appointment',
         credits_required: 2,
         actor: 'Electrician',
-        actor_plural: 'Electricans',
+        actor_plural: 'Electricians',
         action: 'help you install lamps',
         questions:  [
         {
-          field_type:"checklist",
-          question:"What type of lamp(s) are you installing?",
-          describtion:"Type of lamp(s)",
-          choices:[
+          field_type: "checklist",
+          question: "What type of lamp(s) are you installing?",
+          description: "Type of lamp(s)",
+          choices: [
           {
             label:"Floor",
             value:"Floor"

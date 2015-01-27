@@ -66,8 +66,8 @@ module.exports = function(parentId) {
         question:"What type of property do you need the service in?",
         choices:[
           {
-            label:"Condo/appartment",
-            value:"Condo/appartment"
+            label:"Condo/apartment",
+            value:"Condo/apartment"
           },
           {
             label:"One-story house",
@@ -122,8 +122,8 @@ module.exports = function(parentId) {
       },
       {
         field_type:"select",
-        description:"Moving furniture or not",
         question:"Do you need the professional to move furniture?",
+        description: "Does furniture need to be moved?",
         choices:[
           {
             label:"Yes",
@@ -139,7 +139,7 @@ module.exports = function(parentId) {
       },
       {
         field_type:"select",
-        description:"Inside smoking",
+        description:"Does anyone regularly smoke inside?",
         question:"Does anyone regularly smoke inside?",
         choices:[
           {

@@ -44,12 +44,12 @@ module.exports = function(parentId) {
             value:"Just a few items"
           },
           {
-            label:"Studio or one bedroom appartment",
-            value:"Stuio or one bedroom appartment"
+            label:"Studio or one bedroom apartment",
+            value:"Studio or one bedroom apartment"
           },
           {
-            label:"2 or 3 bedroom appartment",
-            value:"2 or 3 bedroom appartment"
+            label:"2 or 3 bedroom apartment",
+            value:"2 or 3 bedroom apartment"
           },
           {
             label:"2 or 3 bedroom house",
@@ -62,9 +62,6 @@ module.exports = function(parentId) {
           {
             label:"More than 4 bedroom house",
             value:"More than 4 bedroom house"
-          },
-          {
-            can_describe:true
           }
         ]
       },
@@ -169,9 +166,6 @@ module.exports = function(parentId) {
           {
             label:"More than 50",
             value:"More than 50"
-          },
-          {
-            can_describe:true
           }
         ]
       }
