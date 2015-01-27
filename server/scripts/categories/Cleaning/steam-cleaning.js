@@ -1,8 +1,9 @@
-{
+module.exports = function(parentId) {
+  return {
         name: 'Steam Cleaning',
         route: 'steam-cleaning',
-        search_keywords: ['steam','cleaning', 'floor cleaning', 'tile cleaning','air duct cleaning'],
-        parent:// TO DO ( Add Parent ID)
+        search_keywords: ['steam','cleaning', 'floor cleaning', 'tile cleaning','air duct cleaning','ste','stea','steam'],
+        parent: parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
@@ -16,40 +17,40 @@
                 description:"What needs steaming",
                 choices:[
                 {
-                        label:"carpet/rug",
-                        value:"carpet/rug"
+                        label:"Carpet/rug",
+                        value:"Carpet/rug"
                 },
                 {
                         label:"Couch & sofas",
-                        value:"Counch & sofas"
+                        value:"Couch & sofas"
                 },
                 {
-                        label:"tile and grout",
-                        value:"tile and grout"
+                        label:"Tile and grout",
+                        value:"Tile and grout"
                 },
                 {
-                        label:"mattress(es)"
-                        value:"mattress(es)"
+                        label:"Mattress(es)"
+                        value:"Mattress(es)"
                 },
                 {
-                        lablel:"air duct",
-                        value:"air duct"
+                        lablel:"Air duct",
+                        value:"Air duct"
                 }
                 ]
 
         },
         {
                 field_type:"checklist",
-                question:"Which rooms need cleaning?"
-                description:"Room types that need the cleaning"
+                question:"Which rooms need cleaning?",
+                description:"Which rooms",
                 choices:[
                 {
                         label:"Kitchen",
                         value:"Kitchen"
                 },
                 {
-                        label:"Bathroom",
-                        value:"Bathroom"
+                        label:"Bathroom(s)",
+                        value:"Bathroom(s)"
 
                 },
                 {
@@ -82,18 +83,16 @@
                         value:"1501 to 2000"
                 },
                 {
-                        label:"more than 2000",
-                        value:"more than 2000"
+                        label:"More than 2000",
+                        value:"More than 2000"
                 },
-                {
-                    can_describe:true
-                }
+            
                 ]
         },
         {
                  field_type:"select",
-                description:"Moving furniture or not"
-                quesion:"Do you need the professional to move furniture?"
+                description:"Moving furniture or not",
+                quesion:"Do you need the professional to move furniture?",
                 choices:[
                 {
                         label:"Yes",
@@ -109,8 +108,8 @@
         },
         {
          field_type:"select",
-         description:"Inside smoking"
-         quesion:"Does anyone regularly smoke inside?"
+         description:"Inside smoking",
+         quesion:"Does anyone regularly smoke inside?",
          choices:[
          {
                 label:"Yes",
@@ -123,5 +122,7 @@
 
         ] 
         
-}]
 }
+]
+};
+};

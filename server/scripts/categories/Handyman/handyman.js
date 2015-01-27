@@ -1,14 +1,15 @@
-{
+module.exports = function(parentId) {
+  return {
   name: 'Handyman',
   route: 'handyman',
-  search_keywords: ['handyman'],
-        parent:  // TO DO ( Add Parent ID)
+  search_keywords: ['handyman','han','hand','handy','handym','handyma'],
+        parent:  parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 1,
         actor: 'handyman',
         actor_plural: 'hanymen',
-        action: 'repairing & installing',
+        action: 'help you repair, install and assemble',
         questions:  [
         {
           field_type:"text",
@@ -16,4 +17,5 @@
           description:"The project"
         },
         ]
-      }
+      };
+    };

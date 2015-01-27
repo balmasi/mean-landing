@@ -1,14 +1,15 @@
-{
+module.exports = function(parentId) {
+  return{
   name: 'Furnace & Heating System Installation',
-  route: 'Furnace-and-heating-system-installation',
-  search_keywords: ['furnace' ,'fur', 'heating', 'heating system','furnace installation', 'furnace replaceing', 'replacing', 'replacing furnace', 'replacing heating system'],
-        parent:  // TO DO ( Add Parent ID)
+  route: 'furnace-and-heating-system-installation',
+  search_keywords: ['furnace' ,'fur', 'heating', 'heating system','furnace installation', 'furnace replaceing', 'replacing', 'replacing furnace', 'replacing heating system','furn','furna','furnac','hea','heat'],
+        parent:  parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 4,
         actor: 'furnace specialist',
         actor_plural: 'furnace specialists',
-        action: 'furnace and heating system installing',
+        action: 'help you install your furnace',
         questions:  [
         {
           field_type:"checklist",
@@ -57,14 +58,12 @@
             label:"No",
             value:"No"
           },
-          {
-            can_describe:true
-          },
+         
           ]
         },
         {
                 field_type:"select",
-                question:"How many stores is your property?",
+                question:"How many stories is your property?",
                 description:"Number of stores in the property",
                 choices:[
                 {
@@ -83,9 +82,7 @@
                         label:"Two stores, with basement",
                         value:"Two stores, with basement"
                 },
-                { 
-                  can_describe:true
-                }
+                
                 ]
         },
          {
@@ -137,4 +134,5 @@
                 ]
         },
         ]
-      }
+      };
+    };

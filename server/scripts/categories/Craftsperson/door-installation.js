@@ -1,14 +1,15 @@
-{
+module.exports = function(parentId) {
+  return {
         name: 'Door Installation',
         route: 'door-installation',
-        search_keywords: [ 'door', 'door installation'],
-        parent: // TO DO ADD PARENT ID
+        search_keywords: [ 'door', 'door installation','d','do','doo','Installation','installing door','installing'],
+        parent: parentId
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 3,
-        actor: 'Carpenter',
-        actor_plural: 'Carpenters',
-        action: 'Carpenting',
+        actor: 'Carftsperson',
+        actor_plural: 'Craftspeople',
+        action: 'help you install your door',
         questions: [
         {
                 field_type:"select",
@@ -52,13 +53,14 @@
                 },
 
                 {
-                        can_describe:true
+                        label:"More than four doors",
+                        value:"More than four doors"
                 }
                 ]
         },
 
         {
-                   field_type:"select",
+                field_type:"select",
                 question:"Do have the door(s) for you project?",
                 description:"If the customer supplies the door(s) or not",
                 choices:[
@@ -100,7 +102,7 @@
                 ]
         },
         {
-                    field_type:"select",
+                field_type:"select",
                 question:"What materials will your doors made of?",
                 description:"Door materials",
                 choices:[
@@ -121,7 +123,8 @@
                         value:"As recommended by you"
                 },
                 {
-                        can_describe:true
+                       label:"Other",
+                       value:"Other"
                 }
                 ]
 
@@ -211,4 +214,5 @@
                 ]
         },
         ]
-}
+    };
+};

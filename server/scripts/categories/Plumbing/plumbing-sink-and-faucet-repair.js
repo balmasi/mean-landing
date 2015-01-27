@@ -1,14 +1,15 @@
-{
+module.exports = function(parentId) {
+  return{
         name: 'Sink and faucet repair',
         route: 'plumbing-sink-and-faucet-repair',
-        search_keywords: [ 'plumber','fauce repair', 'sink repair'],
-        parent: // TO DO ADD PARENT ID
+        search_keywords: [ 'plumber','fauce repair', 'sink repair','si','sin','sink','fa','fau','fauc','fauce','faucet'],
+        parent: parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
         actor: 'plumber',
         actor_plural: 'plumbers',
-        action: 'plumbing',
+        action: 'fix your sink and faucet',
         questions: [
         {
 
@@ -217,4 +218,5 @@
                 ]
         },
         ]
-}
+};
+};

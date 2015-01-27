@@ -1,14 +1,15 @@
-{
+module.exports = function(parentId) {
+  return {
   name: 'Construction Clean up',
-  route: 'Construction-cleanup',
-  search_keywords: ['Construction' ,'Construction clean up', 'post Construction cleaning', 'after Construction cleaning', 'foreclosure', 'estate sale', 'brand new house cleaning','junk'],
-        parent:  // TO DO ( Add Parent ID)
+  route: 'construction-cleanup',
+  search_keywords: ['Construction' ,'Construction clean up', 'post Construction cleaning', 'after Construction cleaning', 'foreclosure', 'estate sale', 'brand new house cleaning','junk', 'const','cons','deb','debris'],
+        parent:  parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
-        credits_required: 2,
+        credits_required: 3,
         actor: 'Cleaner',
         actor_plural: 'Cleaners',
-        action: 'help you clean out',
+        action: 'help clean your construction site',
         questions:  [
         {
 
@@ -36,7 +37,7 @@
         },
         field_type: 'checklist',
           question: 'What needs to be removed?',
-          description: "",
+          description: "Things to be removed",
           choices: 
           [
             {
@@ -86,4 +87,5 @@
                 ]
         },
         ]
-      }
+      };
+    };

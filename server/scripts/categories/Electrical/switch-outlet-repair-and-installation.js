@@ -1,14 +1,15 @@
-{
+module.exports = function(parentId) {
+  return{
   name: 'Switch or outlet repair & installation',
-  route: 'Switch-outlet-repair-and-installation',
+  route: 'switch-outlet-repair-and-installation',
   search_keywords: ['Switch' ,'outlet', 'Switch repair', 'switch installation', 'outlet and switch', 'switch and outlet', 'swi','outl','outlet repair'],
-        parent:  // TO DO ( Add Parent ID)
+        parent:  parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
         actor: 'Electrician',
-        actor_plural: 'Electricinas',
-        action: 'Fixing electrican problems',
+        actor_plural: 'Electricians',
+        action: 'fix your electrical problems',
         questions:  [
         {
           field_type:"checklist",
@@ -113,4 +114,5 @@
                 ]
         }
         ]
-        }
+        };
+      };

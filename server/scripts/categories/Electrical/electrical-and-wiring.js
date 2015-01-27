@@ -1,14 +1,15 @@
-{
+module.exports = function(parentId) {
+  return {
   name: 'Electrical & Wiring Issues',
   route: 'electrical-and-wiring',
   search_keywords: ['electrical' ,'elec', 'Wiring', 'Wiring problems', 'Wiring Issue', 'repair wiring', 'replace wiring','electrician'],
-        parent:  // TO DO ( Add Parent ID)
+        parent:  parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
         actor: 'Electrician',
-        actor_plural: 'Electricinas',
-        action: 'Fixing electrican problems',
+        actor_plural: 'Electricians',
+        action: 'help you fix your electrical problems',
         questions:  [
         {
           field_type:"checklist",
@@ -44,7 +45,7 @@
         },
         {
           field_type:"checklist",
-          question:"What electrical problem are currently experiencing?",
+          question:"What electrical problem are you currently experiencing?",
           description:"Problems currently customer experiencing",
           choices:[
           {
@@ -114,7 +115,7 @@
         },
         {
           field_type:"select",
-          question:"Does the problem belong to indoor areas or outdoors?",
+          question:"Does the problem belong to indoors or outdoors?",
           description:"Indoors or outdoors",
           choices:[
           {
@@ -173,4 +174,5 @@
                 ]
         }
         ]
-        }
+        };
+      };

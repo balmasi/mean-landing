@@ -1,14 +1,15 @@
-{
+module.exports = function(parentId) {
+  return {
         name: 'Door repair',
         route: 'door-repair',
-        search_keywords: [ 'door', 'door repair','closet','closet door repair'],
-        parent: // TO DO ADD PARENT ID
+        search_keywords: [ 'door', 'door repair','closet','closet door repair','d','do','doo'],
+        parent: parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
-        actor: 'Carpenter',
-        actor_plural: 'Carpenters',
-        action: 'Carpenting',
+        actor: 'Craftsperson',
+        actor_plural: 'Carftspeople',
+        action: 'help you repair your door',
         questions: [
         {
                 field_type:"checklist",
@@ -100,8 +101,9 @@
                         value:"Four doors"
                 },
 
-                {
-                        can_describe:true
+                 {
+                        label:"More than four doors",
+                        value:"More than four doors"
                 }
                 ]
         },
@@ -127,7 +129,8 @@
                         value:"As recommended by you"
                 },
                 {
-                        can_describe:true
+                        label:"Other",
+                        value:"Other"
                 }
                 ]
 
@@ -178,4 +181,5 @@
                 ]
         },
         ]
-}
+};
+};

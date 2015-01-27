@@ -1,18 +1,19 @@
-{
-  name: 'Spa and hot tub installation and repair',
-  route: 'Spa-and-hot-tub-installation-and-repair',
+module.exports = function(parentId) {
+  return{
+  name: 'Spa and hot-tub installation or repair',
+  route: 'spa-and-hot-tub-installation-and-repair',
   search_keywords: ['Spa' ,'hot', 'hot tub', 'hottub', 'hottub', 'spa installation', 'hot tub installation','spa repair'],
-        parent:  // TO DO ( Add Parent ID)
+        parent:  parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 3,
-        actor: 'Spa specialiast',
-        actor_plural: 'Spa specialiasts',
-        action: 'Installing and repairing spa and hot tubs',
+        actor: 'Spa repair specialist',
+        actor_plural: 'Spa repair specialists',
+        action: 'help you Install and repair spa and hot-tub',
         questions:  [
         {
           field_type:"select",
-          question:"What service do yo need from the specialiasts?",
+          question:"What service do yo need from the specialists?",
           describtion:"Type of servcie",
           choices:[
             {
@@ -33,14 +34,15 @@
 
             },
             {
-              can_describe:true
+              label:"Other",
+              value:"Other"
             }
           ]
         },
         {
           field_type:"select",
-          question:"What kind of hot tub or spa?",
-          describtion:"Type of hot tub or spa",
+          question:"What kind of hot-tub or spa?",
+          describtion:"Type of hot-tub or spa",
           choices:[
             {
               label:"Above-ground",
@@ -50,14 +52,12 @@
               label:"In-ground",
               value:"In-ground"
             },
-            {
-              can_describe:true
-            }
+            
           ]
         },
         field_type:"select",
-          question:"Location of hot tub or spa?",
-          describtion:"Location of hot tub or spa",
+          question:"Location of hot-tub or spa?",
+          describtion:"Location of hot-tub or spa",
           choices:[
             {
               label:"Indoor",
@@ -67,7 +67,10 @@
               label:"Outdoor",
               value:"Outdoor"
             },
-            {
-              can_describe:true
-            }
+            
           ]
+        }
+        ]
+
+      };
+    };

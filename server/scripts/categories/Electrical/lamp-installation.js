@@ -1,18 +1,19 @@
-{
+module.exports = function(parentId) {
+  return{
   name: 'Lamp Installation',
   route: 'lamp-installation',
-  search_keywords: ['lamp' ,'lamp installation', 'outdoor lamp', 'outdoor lamp installation'],
-        parent:  // TO DO ( Add Parent ID)
+  search_keywords: ['lamp' ,'lamp installation', 'outdoor lamp', 'outdoor lamp installation','la','lam'],
+        parent: parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
         actor: 'Electrician',
-        actor_plural: 'Electricinas',
-        action: 'Fixing electrican problems',
+        actor_plural: 'Electricans',
+        action: 'help you install lamps',
         questions:  [
         {
           field_type:"checklist",
-          question:"What of lamp(s) installation?",
+          question:"What type of lamp(s) are you installing?",
           describtion:"Type of lamp(s)",
           choices:[
           {
@@ -56,4 +57,5 @@
           ]
         }
         ]
-      }
+      };
+    };

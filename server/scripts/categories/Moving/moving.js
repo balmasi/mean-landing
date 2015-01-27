@@ -1,7 +1,7 @@
 module.exports = function(parentId) {
   return {
     name: 'Moving',
-    route: 'Moving',
+    route: 'moving',
     search_keywords: ['Moving' ,'Mov', 'M', 'Moving out',"moving service","two guys one truck"],
     parent:  parentId,
     travel_types: ['tocustomer'],
@@ -178,4 +178,3 @@ module.exports = function(parentId) {
     ]
   };
 };
-

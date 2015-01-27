@@ -1,14 +1,15 @@
-{
+module.exports = function(parentId) {
+  return{
   name: 'Wiring',
   route: 'wiring',
   search_keywords: ['wiring' ,'Home theater', 'Electrical wiring'],
-        parent:  // TO DO ( Add Parent ID)
+        parent:  parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 3,
         actor: 'Electrician',
-        actor_plural: 'Electricinas',
-        action: 'Fixing electrican problems',
+        actor_plural: 'Electricians',
+        action: 'fix your electrical problems',
         questions:  [
         {
           field_type:"checklist",
@@ -90,4 +91,5 @@
           ]
         }
         ]
-      }
+      };
+    };

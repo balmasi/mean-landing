@@ -1,14 +1,15 @@
-{
-        name: 'Plumbing',
-        route: 'plumbing',
-        search_keywords: [ 'Plumbing', 'installation sink','replace pip',' replace pips', 'Sink installation', 'sink repair','bathroom remodeling', 'dish washer installation'],
-        parent: // TO DO ADD PARENT ID
+module.exports = function(parentId) {
+  return{
+        name: 'General Plumbing',
+        route: 'general-plumbing',
+        search_keywords: [ 'Plumbing', 'installation sink','replace pip',' replace pips', 'Sink installation', 'sink repair','bathroom remodeling', 'dish washer installation','pl','plum','plumb'],
+        parent: parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
         actor: 'plumber',
         actor_plural: 'plumbers',
-        action: 'plumbing',
+        action: 'help you with your plumbing problems',
         questions: [
         {
                 field_type:"checklist",
@@ -209,6 +210,7 @@
                 ]
         },
         ]
-}
+};
+};
 
         

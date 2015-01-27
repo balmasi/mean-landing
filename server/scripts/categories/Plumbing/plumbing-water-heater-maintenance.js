@@ -1,14 +1,15 @@
-{
+module.exports = function(parentId) {
+  return{
         name: 'Water heater maintenance',
         route: 'plumbing-water-heater-maintenance',
-        search_keywords: [ 'plumber', 'heater maintenance','water heater',' water heater repair'],
-        parent: // TO DO ADD PARENT ID
+        search_keywords: [ 'plumber', 'heater maintenance','water heater maintenance','water heater',' water heater repair','water','water h','water he','water hea','wa','wat','wate','water'],
+        parent: parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
         actor: 'plumber',
         actor_plural: 'plumbers',
-        action: 'plumbing',
+        action: 'fix and maintain your water heater',
         questions: [
         {
                 field_type:"checklist",
@@ -84,7 +85,35 @@
                         label:"No",
                         value:"No"
                 },
+        
+                ]
+        },
+        {
+                field_type:"select",
+                question:"Where is the heater located?",
+                describtion:"The heater is located at",
+                choices:[
+                {
+                        label:"Basement",
+                        value:"Basement"
+                },
                 
+                {
+                        label:"Bathroom",
+                        value:"Bathroom"
+                },
+                {
+                        label:"Kitchen",
+                        value:"Kitchen"
+                },
+                {
+                        label:"Attic",
+                        value:"Attic"
+                },
+                {
+                        label:"Closet",
+                        value:"Closet"
+                },
                 {
                         can_describe:true
                 }
@@ -123,66 +152,18 @@
                         value:"Electricity"
                 },
                 {
-                        label:"I am not sure",
-                        value:"Customer is not sure and needs your help"
-                },
-                {
-                        can_describe:true
+                        label:"Oil",
+                        value:"Oil"
                 }
-                ]
-        },
-        {
-                field_type:"select",
-                question:"How is your heater powered?",
-                describtion:"Heater is powered by",
-                choices:[
-                {
-                        label:"Gas",
-                        value:"Gas"
-                },
-                {
-                        label:"Electricity",
-                        value:"Electricity"
-                },
                 {
                         label:"I am not sure",
                         value:"Customer is not sure and needs your help"
                 },
-                {
-                        can_describe:true
-                }
+
                 ]
         },
-        {
-                field_type:"select",
-                question:"Where is the heater located?",
-                describtion:"The heater is located at",
-                choices:[
-                {
-                        label:"Basement",
-                        value:"Basement"
-                },
-                {
-                        label:"Attic",
-                        value:"Attic"
-                },
-                {
-                        label:"Closet",
-                        value:"Closet"
-                },
-                {
-                        label:"Bathroom",
-                        value:"Bathroom"
-                },
-                {
-                        label:"Kitchen",
-                        value:"Kitchen"
-                },
-                {
-                        can_describe:true
-                }
-                ]
-        },
+
+        
         {
                 field_type:"select",
                 question:"Are you boiler and water heater combined?",
@@ -200,9 +181,7 @@
                         label:"I am not sure",
                         value:"Customer is not sure and needs your help"
                 },
-                {
-                        can_describe:true
-                }
+                
                 ]
         },
         {
@@ -211,8 +190,8 @@
                 description: "Type of property",
                 choices:[
                 {
-                        label:"Home",
-                        value:"Home"
+                        label:"House",
+                        value:"House"
                 },
                 {
                         label:"Multi unit building",
@@ -235,4 +214,5 @@
 
 
 
-}
+};
+};

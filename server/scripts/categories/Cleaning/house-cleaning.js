@@ -1,8 +1,9 @@
-{
+module.exports = function(parentId) {
+  return{
         name: 'House cleaning',
         route: 'house-cleaning',
-        search_keywords: ['House','cleaning', 'housecleaning', 'maid service','maid','cleaning lady'],
-        parent:// TO DO ( Add Parent ID)
+        search_keywords: ['House','cleaning', 'housecleaning', 'maid service','maid','cleaning lady','hous','clea'],
+        parent: parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
@@ -13,7 +14,7 @@
         {
                 field_type:"select",
                 description:"Customer requires services for",
-                question: "How often do you need services?"
+                question: "How often do you need services?",
                choices:[
                 {     
             label:'One time light cleaning',
@@ -23,9 +24,14 @@
             label:"One time deep cleaning",
             value:"One time deep cleaning"
           },
+
           {
             label:"Weekly",
             value:"Weekly"
+          },
+           {
+            label:"Twice a week",
+            value:"Twice a week"
           },
            {
             label:"Every other week",
@@ -40,9 +46,7 @@
             value:"Customer is not sure and needs your advice"
           },
 
-          {
-            can_describe: true
-          }
+          
           ]
 
         },
@@ -52,7 +56,7 @@
                 question:"What type of home do you live in?",
                 choices:[
                 {
-                        label:"Condo/appartment",
+                        label:"Condo/appartment unit",
                         value:"Condo/appartment unit"
                 },
                 {
@@ -64,7 +68,8 @@
                         value:"Two-story house"
                 },
                 {
-                        can_describe:true
+                        label:"Other",
+                        value:"Other"
                 }
 
 
@@ -102,17 +107,15 @@
         {
           field_type:"select",
           question:"Will you provide all the equipments and supplies?",
+          description:"Customer will supply all the equipments or not",
           choices:[ 
-          {
+           {
             label: "Yes",
-            value:"Yes"
+            value:"Yes, customer will provide all the equipments and supplies"
           },
           {
             label:"No",
-            value:"No"
-          },
-          {
-                can_describe:true
+            value:"No, customer wants you to bring your own equipments and supplies"
           }
           ]
 
@@ -121,7 +124,7 @@
         },
         {
           field_type:'text',
-          description:"Approximate square footage of the area to be cleaned"
+          description:"Approximate square footage of the area to be cleaned",
           question:" what is the approximate square footage of the area to be cleaned?"
 
 
@@ -137,7 +140,7 @@
                 },
                 {
                         label:"I want laundry",
-                        value:"Customer wants laundry"
+                        value:"Customer wants you to do the laundry"
                 },
                 {
                         label:"I have a pet",
@@ -152,5 +155,7 @@
                         value:"Customer needs his/her windows cleaned"
                 }
                 ]
-        }
-}
+              }
+              ]
+        };
+};

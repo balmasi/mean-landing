@@ -1,14 +1,15 @@
-{
+module.exports = function(parentId) {
+  return{
   name: 'Furnace & Heating System Repair',
-  route: 'Furnace-and-heating-system-repair',
-  search_keywords: ['furnace' ,'fur', 'heating', 'heating system','furnace repair', 'furnace maintenance', 'maintenance'],
-        parent:  // TO DO ( Add Parent ID)
+  route: 'furnace-and-heating-system-repair',
+  search_keywords: ['furnace' ,'fur', 'heating', 'heating system','furnace repair', 'furnace maintenance', 'maintenance','furn','furna','furnac','hea','heat'],
+        parent: parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
         actor: 'furnace specialist',
         actor_plural: 'furnace specialists',
-        action: 'furnace and heating system installing',
+        action: 'help you with your furnace and heating system repair',
         questions:  [
         {
 
@@ -96,8 +97,8 @@
         },
         {
                 field_type:"select",
-                question:"How many stores is your property?",
-                description:"Number of stores in the property",
+                question:"How many stories is your property?",
+                description:"Number of stories in the property",
                 choices:[
                 {
                         label:"Single level,no basement",
@@ -108,15 +109,16 @@
                         value:"Single level, with basement"
                 },
                 {
-                        label:"Two stores, no basement",
-                        value:"Two stores, no basement"
+                        label:"Two stories, no basement",
+                        value:"Two stories, no basement"
                 },
                 {
-                        label:"Two stores, with basement",
-                        value:"Two stores, with basement"
+                        label:"Two stories, with basement",
+                        value:"Two stories, with basement"
                 },
                 { 
-                  can_describe:true
+                        label:"More than two stories",
+                        value:"More than two stories"
                 }
                 ]
         },
@@ -146,4 +148,5 @@
                 ]
         },
         ]
-      }
+      };
+  };

@@ -1,47 +1,86 @@
-{
-        name: 'Shower and bathtube installation',
-        route: 'shower-and-bathtub-installation',
-        search_keywords: [ 'plumber','shower installation', 'bathtube installation'],
-        parent: // TO DO ADD PARENT ID
+module.exports = function(parentId) {
+  return {
+        name: 'Toilet Repair or Installation',
+        route: 'plumbing-toilet-repair-or-installation',
+        search_keywords: [ 'toilet repair', 'toilet installation','plumber toilet work',' plumber toilet repair', 'plumber toilet installation','t','to','toi','toil','toile','toilet'],
+        parent: parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
         actor: 'plumber',
         actor_plural: 'plumbers',
-        action: 'plumbing',
+        action: 'fix your toilet',
         questions: [
         {
+
                 field_type:"checklist",
-                question:"What kind of shower or bathtub do you need?"
-                description:"Type of shower or bathtub customer needs"
+                question: "What toilet problem do you have?",
+                description: "Type of problems",
                 choices:[
                 {
-                        label:"Just shower",
-                        value:"Just shower"
+                        label:"No Problem, Just need installation",
+                        value:"No problem just need installation"
                 },
                 {
-                        label:"Just a bathtub",
-                        value:"Just a bathtub"
+                        label:"Clogged",
+                        value:"Clogged"
                 },
                 {
-                        label:"Combination of bathtub and shower",
-                        value:"Combination of bathtub and shower"
+                        label:"Not flushing",
+                        value:"Not flushing"
                 },
                 {
-                        label:"Steam shower",
-                        value:"Steam shower"
+
+                        label:"Flushes slowly",
+                        value:"Flushes slowly"
                 },
                 {
-                        can_describe:true
+
+                        label:"Constant flushing",
+                        value:"Constant flushing"
+                },
+                {
+
+                        label:"Fills slowly",
+                        value:"Fills slowly"
+                },
+                {
+
+                        label:"Overflowing",
+                        value:"Overflowing"
+                },
+                {
+
+                        label:"Leaking from pipes",
+                        value:"Leaking from pipes"
+                },
+                {
+
+                        label:"Unpleasant odor",
+                        value:"Unpleasant odor"
+                },
+                {
+
+                        label:"Loose and wobbly toilet",
+                        value:"Loose and wobbly toilet"
+                },
+                {
+
+                        label:"Broken handle",
+                        value:"Broken handle"
+                },
+                {
+                        can_describe: true
                 }
 
-                ]
 
+
+                ]
         },
         {
                 field_type:"select",
-                question: "How many showers or bathtubs need installation?",
-                description: "Number of showers or bathtubs that need installation",
+                question: "How many toilets need work?",
+                description: "Number of toilets that need work",
                 choices:[
                 {
                         label:"One",
@@ -66,26 +105,6 @@
         },
         {
                 field_type:"select",
-                question: "What kind of faucets/handle do you want?",
-                description: "Kind of faucet that customer wants",
-                choices:[
-                {
-                        label:"Single handle that controls both hot and cold water",
-                        value:"Single handle that controls both hot and cold water"
-                },
-                {
-                        label:"Seperate handles to control hot and cold water",
-                        value:"Seperate handles to control hot and cold water"
-                },
-                {
-                        label:"As recommended by the professional",
-                        value:"As recommended by the professional"
-                },
-
-                ]
-        },
-        {
-                field_type:"select",
                 question: "Will you supply all the necessary parts and materials?",
                 description: "Customer provides materials and parts or not",
                 choices:[
@@ -100,23 +119,6 @@
                 {
                         label:"No",
                         value:"No, customer wants to supply the parts and materials"
-                },
-
-                ]
-        },
-        {
-                field_type:"select",
-                question: "Are supply and drain lines already in place?",
-                description: "If supply and drain lines are in place or not",
-                choices:[
-                {
-                        label:"Yes, supply and drain lines are there",
-                        value:"Yes, supply and drain lines are there"
-                },
-                
-                {
-                        label:"No, new supply and drain lines are needed",
-                        value:"No, new supply and drain lines are needed"
                 },
 
                 ]
@@ -145,6 +147,7 @@
 
 
                 ]
-        }
+        },
         ]
-}
+};
+};

@@ -1,80 +1,16 @@
-{
-        name: 'Pipe repair',
-        route: 'plumbing-pipe-repair',
-        search_keywords: [ 'Pipe repair', 'Plumbing pipe repair','replace pip',' replace pips'],
-        parent: // TO DO ADD PARENT ID
+module.exports = function(parentId) {
+  return {
+        name: 'Pipe Installation',
+        route: 'pipe-installation',
+        search_keywords: [ "plumb",'plumber', 'Pipe Installation', 'Plumbing pipe Installation','replace pipe',' replace pipes'],
+        parent: parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
-        credits_required: 2,
+        credits_required: 3,
         actor: 'plumber',
         actor_plural: 'plumbers',
-        action: 'plumbing',
+        action: 'help you with your pipe installation',
         questions: [
-        {
-                field_type:"checklist",
-                question: "What pip problem do you have?",
-                description: "Type of problems",
-                choices:[
-                {
-                        label:"Leaking",
-                        value:"Leaking"
-                },
-                {
-                        label:"Frozen Pipe(s)",
-                        value:"Frozen pipe(s)"
-                },
-                {
-                        label:"Burst Pipe(s)",
-                        value:"Burst Pipe(s)"
-                },
-                {
-
-                        label:"Noisy Pipe(s)",
-                        value:"Noisy Pipe(s)"
-                },
-                {
-
-                        label:"Clogged drain(s)",
-                        value:"clogged drain(s)"
-                },
-                {
-
-                        label:"Slow drain(s)",
-                        value:"Slow drain(s)"
-                },
-                {
-
-                        label:"Unpleasant odor from drain(s)",
-                        value:"Unpleasant odor from drain(s)"
-                },
-                {
-                        can_describe: true
-                }
-
-
-
-                ]
-        },
-        {
-                field_type:"select",
-                question: "How long has this problem existed?",
-                description: "The problem has been around for",
-                choices:[
-                {
-                        label:"Just recently",
-                        value:"Just recently"
-                },
-                {
-                        label:"Over the past week",
-                        value:"Over the past week"
-                },
-                {
-                        label:"Periodically over the past month or longer",
-                        value:"Periodically over the past month or longer"
-                },
-
-                ]
-        },
         {
                 field_type:"checklist",
                 question: "Which appliances are affected?",
@@ -117,7 +53,7 @@
         },
         {
                 field_type:"checklist",
-                question: "What material are your pipes made of?",
+                question: "What material are the pipes you need?",
                 description: "Type of pipes",
                 choices:[
                 {
@@ -144,6 +80,10 @@
                         label:"PEX",
                         value:"PEX"
                 },
+                {
+                        label:"As recommended by professional",
+                        value:"As recommended by professional"
+                },
                 
                 {
                         can_describe: true
@@ -152,21 +92,6 @@
 
                 ]
         },
-                field_type:"select",
-                question: "Is any part of the building flooded?",
-                description: "If the building is flooded or not",
-                choices:[
-                {
-                        label:"Yes",
-                        value:"Yes"
-                },
-                {
-                        label:"No",
-                        value:"No"
-                },
-                ]
-        },
-        {
                 field_type:"select",
                 question: "Will you supply all the necessary parts and materials?",
                 description: "Customer provides materials and parts or not",
@@ -181,7 +106,7 @@
                 },
                 {
                         label:"No",
-                        value:"No, customer wants you to supply the parts and materials"
+                        value:"No, customer wants to supply the parts and materials"
                 },
 
                 ]
@@ -210,6 +135,7 @@
 
 
                 ]
-        },
+        }
         ]
+};
 }

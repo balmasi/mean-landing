@@ -1,8 +1,9 @@
-{
+module.exports = function(parentId) {
+  return{
   name: 'Commercial Cleaning',
   route: 'commercial-cleaning',
   search_keywords: ['cleaning','commercial', 'business', 'clean', 'office', 'commercial estate', 'cleaning service'],
-        parent:  // TO DO ( Add Parent ID)
+        parent:  parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
@@ -43,12 +44,11 @@
 
           ]
 
-
         },
         {
           field_type:'select',
           description: "Customer requires the service for",
-          question:"How often do you need the service?"
+          question:"How often do you need the service?",
           choices:[
           {
             label:'Just once',
@@ -62,9 +62,7 @@
             label:"More than once a week",
             value:"More than once a week"
           },
-          {
-            can_descripe: true
-          }
+          
           ]
         },
         {
@@ -113,7 +111,8 @@
             value: "Four bathrooms"
           },
           {
-            can_describe: true
+            label: "More than four bathrooms",
+            value: "More than four bathrooms"
           }
           ]
 
@@ -122,13 +121,13 @@
 
           field_type: 'text', 
           question:"How windows do you need to be cleaned?",
-          description:"The number of windows to be cleaned"
+          description:"The number of windows to be cleaned",
 
         },
         {
           field_type:"select",
           question:"Will the building be occupied during the cleaning?",
-          
+          description:"If the building is occupied during the cleaning or not",
           choices:[ 
           {
             label: "Yes",
@@ -143,14 +142,15 @@
         {
           field_type:"select",
           question:"Will you provide all the equipments and supplies?",
+          description:"Customer will supply all the equipments or not",
           choices:[ 
           {
             label: "Yes",
-            value:"Yes"
+            value:"Yes, customer will provide all the equipments and supplies"
           },
           {
             label:"No",
-            value:"No"
+            value:"No, customer wants you to bring your own equipments and supplies"
           }
           ]
 
@@ -161,5 +161,6 @@
 
 
         ]
-      }
+      };
+};
 

@@ -1,31 +1,37 @@
-{
-  name: 'Garage door Installing or replacement',
-  route: 'Garage-door-replacement',
-  search_keywords: ['Garage','Garage door', 'Parking door', 'Garage door installing', "garage door replacement"],
-        parent:  // TO DO ( Add Parent ID)
+module.exports = function(parentId) {
+  return {
+  name: 'Garage door repair',
+  route: 'garage-door-repair',
+  search_keywords: ['Garage','Garage door', 'Parking door', 'Garage door repair','g','ga','gar','gara','garag','par','park','parki','parkin'],
+        parent:parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
-        credits_required: 3,
+        credits_required: 2,
         actor: 'Garage door professional',
         actor_plural: 'Garage door professionals',
-        action: 'Installing and reparing garge doors',
+        action: 'help you repair your garage door',
         questions:  [
         {
-          field_type:"checklist", 
-          question:"What kind of garage door service do you need?",
-          description:"Type of service required",
+          field_type:"checklist",
+          question:"What do you need repaired?",
+          description:"Repair service is related to",
           choices:[
           {
-            label:"Install a new garage door",
-            value:"installing a new door"
+            label:"Inoperable or jammed door",
+            value:"Inoperable or jammed door"
+
           },
           {
-            label:"Just remove an old door",
-            value:"Removing an old door"
+            label:"Slow or erratic door",
+            value:"Slow or erratic door"
           },
           {
-            label:"Replace door"
-            value:"Replacing"
+            label:"Usuall sounds",
+            value:"Usual sounds"
+          },
+          {
+            label:"Dents or scrapes on door",
+            value:"Dents or scrapes on door"
           },
           {
             can_describe:true
@@ -86,42 +92,24 @@
         },
         {
           field_type:"select",
-          question:"Will you supply the new garage door and parts?",
-          description:"If the customer supplies the garage door and parts or not ",
+          question:"How does the garage door open?",
+          description:"How the door opens",
           choices:[
           {
-            label:"Yes, I will provide the materials and parts",
-            value:"Yes, Customer will provide the materials and parts"
+            label:"One piece tilt-up",
+            value:"One piece tilt-up"
           },
           {
-            label:" Yes, but I will need guidance from the professional",
-            value:"Yes, but customer needs your guidance"
+            label:"sectional roll-up",
+            value:"sectional roll-up"
           },
           {
-            label:"No, I want the professional to supply the parts",
-            value:"No, customer wants you to supply the parts"
+            label:"I am not sure",
+            value:"Customer is not sure"
+          },
+          {
+            can_describe:true
           }
-          ]
-        },
-        {
-          field_type:"checklist",
-          question:"Does your opener need any service",
-          description:"Services related to opner",
-          required:false,
-          choices:[
-          {
-            label:"repair garage door opener",
-            value:"repair garage door opener"
-          },
-          {
-            label:"Install garage door opener",
-            value:"Install garage door opener"
-          },
-          {
-            label:"Replace garage door opener",
-            value:"Replace garage door opener"
-          }
-          
           ]
         },
         {
@@ -150,4 +138,5 @@
                 ]
         },
         ]
-}
+};
+};

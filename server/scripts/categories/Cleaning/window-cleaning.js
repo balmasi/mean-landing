@@ -1,8 +1,9 @@
-{
+module.exports = function(parentId) {
+  return{
         name: 'Window Cleaning',
         route: 'window-cleaning',
-        search_keywords: ['window cleaning','window', 'window treatment'],
-        parent:// TO DO ( Add Parent ID)
+        search_keywords: ['window cleaning','window', 'window treatment','win','wind','windo'],
+        parent:parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
@@ -13,7 +14,7 @@
         {
                 field_type:"checklist",
                 question:"What window cleaning service(s) do you need?",
-                description:"Window cleaning service(s) customer needs"
+                description:"Window cleaning service(s) customer needs",
                 choices:[
                 {
                         label:"Clean exterior of windows",
@@ -21,14 +22,14 @@
                 },
                 {
                         label:"Clean interior of windows",
-                        value:"Clean window screens"
+                        value:"Clean interior of windows"
                 },
                 {
                         label:"Clean window tracks",
                         value:"Clean window tracks"
                 },
                 {
-                        label:"Clean window treatments (shutters, blinds, and sills)",
+                        label:"Clean window treatments (shutters, blinds and sills)",
                         value:"Clean window treatmenrs (shutters,blind and sills)"
                 },
                 {
@@ -69,7 +70,7 @@
         {
                 field_type:"checklist",
                 question:"What kinds of special windows need cleaning?"
-                description:"Special windows that need cleaning"
+                description:"Special windows that need cleaning",
                 choices:[
                 {
                         label:"Not applicable",
@@ -103,7 +104,7 @@
         {
                 field_type:"select",
                 question:"What type of property do you have?",
-                description:"Type of property"
+                description:"Type of property",
                 choices:[
                 {
                         label:"Home",
@@ -126,7 +127,7 @@
         {
                 field_type:"select",
                 question:"How many stories is your property?",
-                description:"Building stories"
+                description:"Building stories",
                 choices:[
 
                 {
@@ -145,8 +146,8 @@
         },
         {
                 field_type:"select",
-                question:"How windows need cleaning?"
-              description:"Number of windows to be cleaned"
+                question:"How windows need cleaning?",
+              description:"Number of windows to be cleaned",
               choices:[
               {
                 label:"1-5",
@@ -174,7 +175,7 @@
         {
                 field_type:"select",
                 description:"Customer requires services for",
-                question: "How often do you need services?"
+                question: "How often do you need services?",
                choices:[
                 {     
             label:'One time light cleaning',
@@ -201,11 +202,10 @@
             value:"Customer is not sure and may need your advice"
           },
 
-          {
-            can_describe: true
-          }
+         
           ]
 
         }
         ]
-}
+};
+};

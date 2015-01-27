@@ -1,14 +1,15 @@
-{
-        name: 'Sink and faucet installation',
+module.exports = function(parentId) {
+  return {
+        name: 'Sink & Faucet Installation',
         route: 'plumbing-sink-and-faucet-installation',
-        search_keywords: [ 'plumber faucet installation','faucet installation', 'sink installation'],
-        parent: // TO DO ADD PARENT ID
+        search_keywords: [ 'plumber faucet installation','faucet installation', 'sink installation','si','sin','sink','fa','fau','fauc','fauce','faucet'],
+        parent: parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
-        credits_required: 2,
+        credits_required: 3,
         actor: 'plumber',
         actor_plural: 'plumbers',
-        action: 'plumbing',
+        action: 'install your sink & faucet',
         questions: [
         {
 
@@ -90,7 +91,7 @@
         },
         {
                 field_type:"select",
-                question: "How many sinks or faucets need installation?",
+                question: "How many sinks or faucets do you need to intall?",
                 description: "Number of sinks or faucets need installation",
                 choices:[
                 {
@@ -177,4 +178,5 @@
                 ]
         },
         ]
-}
+};
+};

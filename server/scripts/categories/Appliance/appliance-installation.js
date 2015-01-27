@@ -1,14 +1,15 @@
-{
-        name: 'Dishwasher installation',
-        route: 'Dishwasher-installation',
-        search_keywords: [ 'Appliance', 'appliance installation','washer installation','Refrigerator installation','Oven installation','Dishwasher installation','Vacuum cleaner installation'],
-        parent: // TO DO ADD PARENT ID
+module.exports = function(parentId) {
+  return{
+        name: 'Appliance installation',
+        route: 'appliance-installation',
+        search_keywords: [ 'Appliance', 'appliance installation','washer installation','Refrigerator installation','Oven installation','Dishwasher installation','Vacuum cleaner installation','app','appli','applia','applian','applianc'],
+        parent: parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
-        actor: 'plumber',
-        actor_plural: 'plumbers',
-        action: 'plumbing',
+        actor: 'Appliance Professional',
+        actor_plural: 'Appliance Professionals',
+        action: 'help you install an appliance',
         questions: [
         {
                  field_type:"checklist",
@@ -65,3 +66,6 @@
 
                 ]
         }
+        ]
+    };
+};

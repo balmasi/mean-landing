@@ -1,14 +1,15 @@
-{
+module.exports = function(parentId) {
+  return {
         name: 'Bathroom remodeling',
         route: 'bathroom-remodeling',
-        search_keywords: [ 'plumber', 'Bathroom','bathroom remodeling','remodeling bathroom'],
-        parent: // TO DO ADD PARENT ID
+        search_keywords: [ 'plumber', 'Bathroom','bathroom remodeling','remodeling bathroom','ba','bat','bath','bathr','bathro','bathroo','bathroom'],
+        parent: parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 4,
         actor: 'plumber',
         actor_plural: 'plumbers',
-        action: 'plumbing',
+        action: 'help you remodel your bathroom',
         questions: [
         {
                 field_type:"checklist",
@@ -53,9 +54,7 @@
                         label:"Guest bathroom",
                         value:"Guest bathroom"
                 },
-                {
-                        can_describe:true
-                }
+               
 
                 ]
 
@@ -77,9 +76,7 @@
                         label:"Already have a plan, just need installation",
                         value:"Already has a plan, just need installation"
                 },
-                {
-                        can_describe:true
-                }
+                
 
                 ]
 
@@ -157,9 +154,7 @@
                         label:"As recommended by professional",
                         value:"Customer wants your recommendation"
                 },
-                {
-                        can_describe:true
-                }
+                
 
                 ]
 
@@ -302,6 +297,7 @@
                 ]
         }
         ]
-}
+};
+};
 
 

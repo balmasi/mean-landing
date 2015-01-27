@@ -1,8 +1,9 @@
-{
+module.exports = function(parentId) {
+  return{
         name: 'Gutter Cleaning',
         route: 'gutter-cleaning',
-        search_keywords: ['gutter cleaning','clogged', 'water overflow', 'downspout cleaning'],
-        parent:// TO DO ( Add Parent ID)
+        search_keywords: ['gutter cleaning','clogged', 'water overflow', 'downspout cleaning','gut','gu','g','clo','clog'],
+        parent:parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
@@ -10,10 +11,10 @@
         actor_plural: 'Cleaners',
         action: 'Help you keep your home or place of business clean',
         questions: [
-        {
+            {
                 field_type:"checklist",
                 question:"Why do you need gutter cleaning?",
-                description:"Reason for the request"
+                description:"Reason for the request",
                 choices:[
                 {
                         label:"gutters are clogged with debris",
@@ -41,7 +42,7 @@
         {
                  field_type:"select",
                 question:"How many gutters?",
-                description:"Reason for the request"
+                description:"Reason for the request",
                 choices:[
                 {
                         label:"1 gutter",
@@ -59,11 +60,11 @@
                         label:"more than 8 gutters",
                         value:"more than 8 gutters"
                 },
-        }
+        },
         {
                  field_type:"select",
                 question:"What material are your current gutter?",
-                description:"Material type of gutter"
+                description:"Material type of gutter",
                 choices:[
                 {
                         label:"Aluminum",
@@ -78,6 +79,10 @@
                         value:"Customer is not sure about the material type"
                 },
                 {
-                        can_describe:true
+                        label:"Other",
+                        value:"Other"
                 },
-        }
+            }
+        ]
+    };
+};

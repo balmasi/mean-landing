@@ -1,19 +1,20 @@
-{
+module.exports = function(parentId) {
+  return {
   name: 'Pressure washing',
-  route: 'Presure-washing',
-  search_keywords: ['Power wash' ,'Pressure washing', 'Driveway washing', 'side walk', 'Driveway', 'deck', 'deck washing','washing'],
-        parent:  // TO DO ( Add Parent ID)
+  route: 'presure-washing',
+  search_keywords: ['Power wash' ,'Pressure washing', 'Driveway washing', 'side walk', 'Driveway', 'deck', 'deck washing','washing','pow','powe',"power"],
+        parent:  parentId,
         travel_types: ['tocustomer'],
         scheduling_type: 'appointment',
         credits_required: 2,
         actor: 'Cleaner',
         actor_plural: 'Cleaners',
-        action: 'help you clean out',
+        action: 'help you clean',
         questions:  [
         {
           field_type: 'checklist',
           question: 'What do you need to pressure wash?',
-          description: "what customer needs to pressure wash",
+          description: "What customer needs to pressure wash",
           choices: 
           [
             {
@@ -48,7 +49,7 @@
         {
           field_type: 'checklist',
           question: 'Why do you need to pressure wash?',
-          description: "what customer needs to pressure wash",
+          description: "The reason for the request",
           choices: 
           [
           {
@@ -122,9 +123,10 @@
                         value:"more than 2000"
                 }
                 ]
-        },
+        }
         ]
-      }
+      };
+    };
 
 
 
