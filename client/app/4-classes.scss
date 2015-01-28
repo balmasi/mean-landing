@@ -63,6 +63,15 @@ button.simple {
   }
 }
 
+div[ui-view] {
+  &.ng-enter {
+
+  }
+  &.ng-leave {
+
+  }
+}
+
 
 img {
   vertical-align: top;

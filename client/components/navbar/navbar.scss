@@ -27,35 +27,24 @@
   }
 
   .avatar-popover {
-    @include animate-show-hide(0.2s);
-    background: #fafafa;
-    height: 40px;
-    line-height: 40px;
-    color: black;
+    $avatar-menu-bg: lighten($brand-primary, 5);
+    $avatar-menu-bg-lighter: lighten($avatar-menu-bg,2);
+    background: $avatar-menu-bg;
+    background: linear-gradient($avatar-menu-bg, $avatar-menu-bg-lighter);
     box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 
+    .fa-cog { font-size: 16px; margin-right: 5px; margin-left: -16px;}
     .settings {
-      border-right: 1px solid #E0E0E0;
-      width: 30%;
-      font-size: 16px;
+     font-size: 14px;
     }
 
-    .logout {
-      width:70%;
-    }
-
-    a {
+    > li {
       cursor: pointer;
-      height: 100%;
-      display: inline-block;
-      float: left;
-      padding: 0 15px;
-      color: $text-color;
-      font-weight: 400;
+      line-height: 3.2;
       font-size: 12px;
 
       &:hover {
-        text-decoration: none;
+        background: lighten($avatar-menu-bg-lighter,3);
       }
     }
   }
@@ -89,7 +78,8 @@
         text-transform: uppercase;
       }
       &.active > a {
-        background: #4388BE;
+        background: $brand-primary;
+        box-shadow: inset 0 0px 42px -8px rgba(0, 0, 0, 0.3);
       }
     }
   }

@@ -13,6 +13,7 @@ angular.module 'taskyApp'
     'Cleaner'
     'Mover'
     'Painter'
+    'Plumber'
   ]
 
 
