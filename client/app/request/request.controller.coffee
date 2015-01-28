@@ -26,8 +26,6 @@ angular.module 'taskyApp'
   $scope.hasAccount = () ->
     $scope.user._id if $scope.user._id?
 
-  $scope.showErrorsOnHover = (form) ->
-    debugger
 
   $scope.sendRequest = (form) ->
     results = []

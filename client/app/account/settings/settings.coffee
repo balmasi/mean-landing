@@ -11,3 +11,6 @@ angular.module 'taskyApp'
     controller: 'SettingsCtrl'
     controllerAs: 'vm'
     authenticate: true
+    resolve:
+      myAccount: (Auth) ->
+        Auth.getCurrentUser().$promise

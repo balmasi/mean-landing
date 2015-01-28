@@ -38,10 +38,10 @@
                 <li ng-show="nav.isHome()">
                     <a ui-sref="pros-info">For Businesses</a>
                 </li>
-                <li ng-hide="nav.isLoggedIn() || nav.isChooseAccount()" class="submenu" ng-class="{active: nav.isActive('/signup'), pressed: nav.signupActive }">
-                    <a ng-click="nav.signupActive = !nav.signupActive">Sign up
-                        <i ng-hide="nav.signupActive" class="fa fa-chevron-down"></i>
-                        <i ng-show="nav.signupActive" class="fa fa-chevron-up"></i>
+                <li ng-hide="nav.isLoggedIn() || nav.isChooseAccount()" class="submenu" ng-class="{active: nav.isActive('/signup'), pressed: nav.signupMenuCollapsed }">
+                    <a ng-click="nav.signupMenuCollapsed = !nav.signupMenuCollapsed">Sign up
+                        <i ng-hide="nav.signupMenuCollapsed" class="fa fa-chevron-down"></i>
+                        <i ng-show="nav.signupMenuCollapsed" class="fa fa-chevron-up"></i>
                     </a>
                     <ul class="dropdown">
                         <li><a ui-sref="pro-signup.category">BUSINESS</a></li>
@@ -54,12 +54,12 @@
 
                 <!-- PROFILE DROPDOWN-->
                 <li ng-show="nav.isLoggedIn() && !nav.isHome()">
-                    <a href="#"data-target=".avatar-popover" ng-click="nav.avatarActive = !nav.avatarActive">
+                    <a href="#"data-target=".avatar-popover" ng-click="accountMenuCollapsed = !accountMenuCollapsed">
                         <span class="user-name">{{nav.getUserName()}}</span>
                         <img class='avatar' ng-src="{{nav.user.image.thumb}}" alt="profile picture"/>
                         <i class="fa fa-chevron-down"></i>
                     </a>
-                    <ul class="avatar-popover list-simple" collapse="nav.avatarActive">
+                    <ul class="avatar-popover list-simple" collapse="accountMenuCollapsed">
                         <li ui-sref="settings"><i class="fa fa-cog"></i> SETTINGS</li>
                         <li class="logout" ng-click="nav.logout()">LOGOUT</li>
                     </ul>

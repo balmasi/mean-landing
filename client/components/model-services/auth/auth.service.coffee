@@ -29,7 +29,9 @@ angular.module 'taskyApp'
       deferred.reject err
       callback? err
 
-    deferred.promise
+    deferred.promise.then (user) ->
+      $rootScope.$broadcast 'loggedIn'
+      user
 
 
   ###
@@ -67,6 +69,9 @@ angular.module 'taskyApp'
         self.logout()
         $q.reject(mongoErr)
     .$promise
+    .then (user) ->
+      $rootScope.$broadcast 'loggedIn'
+      user
 
 
   ###
@@ -79,6 +84,7 @@ angular.module 'taskyApp'
   ###
   changePassword: (oldPassword, newPassword, callback) ->
     User.changePassword
+
       id: currentUser._id
     ,
       oldPassword: oldPassword
@@ -99,7 +105,7 @@ angular.module 'taskyApp'
   @return {Object} user
   ###
   getCurrentUser: (refresh) ->
-    return User.get() if refresh and $cookieStore.get('token')
+    return currentUser = User.get() if refresh and $cookieStore.get('token')
     currentUser
 
 

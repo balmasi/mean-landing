@@ -1,12 +1,12 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'SettingsCtrl', ($scope, User, Auth, $upload, $rootScope, toastr, $state) ->
+.controller 'SettingsCtrl', ($scope, User, Auth, $upload, $rootScope, toastr, myAccount) ->
   $scope.pageVariables.pageClass = 'page-settings'
   vm = this
   vm.uploading = false
 
-  $scope.me = Auth.getCurrentUser()
+  vm.me = angular.copy myAccount
 
   vm.password =
     oldPassword: null
@@ -15,11 +15,12 @@ angular.module 'taskyApp'
   vm.updateUser = (form) ->
     return if form.$invalid
     # protect a bit against hackers
-    userCopy = _.pick $scope.me, ['_id', 'firstName', 'lastName', 'phone', 'email', 'name', 'website', 'description', 'preferences']
+    userCopy = _.pick vm.me, ['_id', 'firstName', 'lastName', 'phone', 'email', 'name', 'website', 'description', 'preferences']
     User.update userCopy
     .$promise
     .then (data) ->
       toastr.success 'Updated User'
+      $rootScope.$broadcast 'userUpdated'
     .catch (err) ->
       err = err.data
       if err.name is 'ValidationError'
@@ -54,9 +55,9 @@ angular.module 'taskyApp'
       file: file
       fileFormDataName: 'profile'
     .success (data) ->
-      $scope.me.image = {} unless $scope.me.image?
-      $scope.me.image.url = data.url
-      $scope.me.image.thumb = data.thumbUrl
+      vm.me.image = {} unless vm.me.image?
+      vm.me.image.url = data.url
+      vm.me.image.thumb = data.thumbUrl
 
       $rootScope.$emit 'profilePicChanged',
         url: data.url

@@ -6,8 +6,8 @@ angular.module 'taskyApp'
   nav = this
 
   nav.isCollapsed = true # collapse = small
-  nav.signupActive = false # Signup dropdown active?
-  nav.avatarActive = false # Avatar dropdown active?
+  nav.signupMenuCollapsed = true # Signup dropdown collapsed?
+  $scope.accountMenuCollapsed = true # Avatar dropdown active?
 
   nav.isLoggedIn = Auth.isLoggedIn
   nav.isAdmin = Auth.isAdmin
@@ -15,15 +15,21 @@ angular.module 'taskyApp'
 
   collapseAll = ->
     nav.isCollapsed = true
-    nav.signupActive = nav.avatarActive = false
+    nav.signupMenuCollapsed = nav.accountMenuCollapsed = false
+
+  updateChangedUser = ->
+    Auth.getCurrentUser(true)
+    .$promise?.then (user) ->
+      nav.user = user
 
   $rootScope.$on 'profilePicChanged', (e, data) ->
     nav.user.image =
       url: data.url
       thumb: data.thumb
 
-  $rootScope.$on 'loggedIn', ->
-    nav.user = Auth.getCurrentUser()
+  $rootScope.$on 'loggedIn', updateChangedUser
+  $rootScope.$on 'userUpdated', updateChangedUser
+
 
   nav.dashboardUrl = ->
     if Auth.isPro() then '/pro' else '/tasks'
@@ -36,7 +42,7 @@ angular.module 'taskyApp'
 
   nav.logout = ->
     Auth.logout()
-    nav.avatarActive = false
+    nav.accountMenuCollapsed = false
     $location.path '/login'
 
   nav.isActive = $scope.isActive = (route) ->

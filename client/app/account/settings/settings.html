@@ -9,11 +9,11 @@
                      accept="image/jpeg,image/png">
                     <i class="fa fa-camera"></i>
                 </div>
-                <img class="profile-image" ng-src="{{me.getImageUrl() }}" alt="Profile Picture"/>
+                <img class="profile-image" ng-src="{{vm.me.getImageUrl() }}" alt="Profile Picture"/>
             </div>
 
-            <div class="public-profile" ng-if="me._accountType == 'Pro'">
-                <button ui-sref="profile({ proId: me._id })" class="btn btn-primary">
+            <div class="public-profile" ng-if="vm.me._accountType == 'Pro'">
+                <button ui-sref="profile({ proId: vm.me._id })" class="btn btn-primary">
                     View Public Profile
                 </button>
             </div>
@@ -24,26 +24,26 @@
                 <form class="form row" name="accountForm" ng-submit="vm.updateUser(accountForm)" novalidate>
                     <div class="form-group col-sm-6 col-xs-12">
                         <label>First Name</label>
-                        <input ng-model="me.firstName" required standard-form-errors
+                        <input ng-model="vm.me.firstName" required standard-form-errors
                                type="text" class="form-control" name="firstName"/>
                     </div>
                     <div class="form-group col-sm-6 col-xs-12">
                         <label>Last Name</label>
-                        <input ng-model="me.lastName" required standard-form-errors
+                        <input ng-model="vm.me.lastName" required standard-form-errors
                                name="lastName" type="text" class="form-control"/>
                     </div>
                     <div class="form-group col-sm-6 col-xs-12">
                         <label>Phone</label>
-                        <input ng-required="me._accountType == 'Pro' " pattern-validator="phone"
+                        <input ng-required="vm.me._accountType == 'Pro' " pattern-validator="phone"
                                standard-form-errors
-                               name="phone" ng-model="me.phone" type="text" class="form-control"/>
+                               name="phone" ng-model="vm.me.phone" type="text" class="form-control"/>
                         <div ng-if="accountForm.phone.$dirty && accountForm.phone.$error.pattern"
                              class="form-error" role="alert">Invalid phone number.</div>
                     </div>
                     <div class="form-group col-sm-6 col-xs-12">
                         <label>Email</label>
                         <input placeholder="Email" type="email" name="email" class="form-control"
-                               ng-model="me.email" standard-form-errors mongoose-error required/>
+                               ng-model="vm.me.email" standard-form-errors mongoose-error required/>
                         <span class="form-error" ng-show="accountForm.email.$error.mongoose">
                             This email seems to be taken.
                         </span>
@@ -57,14 +57,14 @@
                     </div>
                 </form>
             </section>
-            <section ng-if="me._accountType == 'Pro'">
+            <section ng-if="vm.me._accountType == 'Pro'">
                 <label class="section-label">Business</label>
 
                 <form name="businessForm" class="form row" ng-submit="vm.updateUser(businessForm)" novalidate>
                     <div class="form-group col-xs-12">
                         <label>Business Name</label>
                         <input type="text" name="name" class="form-control"
-                               ng-model="me.name" required
+                               ng-model="vm.me.name" required
                                standard-form-errors
                                name="name"
                                placeholder="i.e. City Movers Inc. or Rainbow Tutoring"
@@ -75,7 +75,7 @@
                         <input type="text" name="website" class="form-control"
                                name="website"
                                pattern-validator="website"
-                               ng-model="me.website">
+                               ng-model="vm.me.website">
                         <div class="form-error" role="error"
                              ng-if="businessForm.website.$dirty && businessForm.website.$error.pattern">
                             That does not look like a valid url</div>
@@ -86,7 +86,7 @@
                                   name="description"
                                   rows="8"
                                   placeholder="Let your customers know more about you! Tell them what makes you great. Tell them about your experience.Use this description to make your profile shine!"
-                                  ng-model="me.description"></textarea>
+                                  ng-model="vm.me.description"></textarea>
                     </div>
                     <div class="col-xs-12">
                         <button type="submit" ng-disabled="businessForm.$invalid || businessForm.$pristine"
@@ -125,30 +125,30 @@
 
                 <form name="notificationForm" class="form clearfix"
                       ng-submit="vm.updateUser(notificationForm)" novalidate>
-                    <div ng-if="me._accountType == 'Pro'">
+                    <div ng-if="vm.me._accountType == 'Pro'">
                         <div class="input-group">
                             <label for="leads">
-                                <input ng-model="me.preferences.leads" type="checkbox" id="leads"
+                                <input ng-model="vm.me.preferences.leads" type="checkbox" id="leads"
                                        name="leads"/>
                                 Email me when I receive a new customer request.
                             </label>
                         </div>
                         <div class="input-group">
                             <label for="hired">
-                                <input ng-model="me.preferences.hired" type="checkbox" id="hired" name="hired"/>
+                                <input ng-model="vm.me.preferences.hired" type="checkbox" id="hired" name="hired"/>
                                 Email me when I get hired.
                             </label>
                         </div>
                     </div>
                     <div class="input-group">
                         <label for="quote">
-                            <input ng-model="me.preferences.quote" type="checkbox" id="quote" name="quote"/>
+                            <input ng-model="vm.me.preferences.quote" type="checkbox" id="quote" name="quote"/>
                             Email me when a professional sends me a quote.
                         </label>
                     </div>
                     <div class="input-group form-group">
                         <label for="news">
-                            <input ng-model="me.preferences.news" type="checkbox" id="news" name="news"/>
+                            <input ng-model="vm.me.preferences.news" type="checkbox" id="news" name="news"/>
                             Keep me up to date with Tasky news and updates.
                         </label>
                     </div>
