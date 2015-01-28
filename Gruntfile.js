@@ -270,20 +270,21 @@ module.exports = function (grunt) {
     // Renames files for browser caching purposes
     rev: {
       dist: {
-        files: {
-          src: [
-            '<%= yeoman.dist %>/public/{,*/}*.js',
-            '<%= yeoman.dist %>/public/{,*/}*.css',
-            '<%= yeoman.dist %>/public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%= yeoman.dist %>/public/assets/fonts/*'
-          ]
-        }
+        files: [
+          {
+            src: '<%= yeoman.dist %>/public/**/*.js',
+            filter: 'isFile'
+          },
+          { src: '<%= yeoman.dist %>/public/{,*/}*.css' },
+          { src: '<%= yeoman.dist %>/public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}' },
+          { src: '<%= yeoman.dist %>/public/assets/fonts/*'}
+        ]
       }
     },
 
-    // Reads HTML for usemin blocks to enable smart builds that automatically
-    // concat, minify and revision files. Creates configurations in memory so
-    // additional tasks can operate on them
+// Reads HTML for usemin blocks to enable smart builds that automatically
+// concat, minify and revision files. Creates configurations in memory so
+// additional tasks can operate on them
     useminPrepare: {
       html: ['<%= yeoman.client %>/index.html'],
       options: {
@@ -291,11 +292,12 @@ module.exports = function (grunt) {
       }
     },
 
-    // Performs rewrites based on rev and the useminPrepare configuration
+// Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
       html: ['<%= yeoman.dist %>/public/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/public/{,*/}*.css'],
-      js: ['<%= yeoman.dist %>/public/{,*/}*.js', '!<%= yeoman.dist %>/public/bower_components/*.js'],
+      js: ['<%= yeoman.dist %>/public/{,*/}*.js',
+        '!<%= yeoman.dist %>/public/bower_components/*.js'],
       options: {
         assetsDirs: [
           '<%= yeoman.dist %>/public',
@@ -310,7 +312,7 @@ module.exports = function (grunt) {
       }
     },
 
-    // The following *-min tasks produce minified files in the dist folder
+// The following *-min tasks produce minified files in the dist folder
     imagemin: {
       dist: {
         files: [{
@@ -333,8 +335,8 @@ module.exports = function (grunt) {
       }
     },
 
-    // Allow the use of non-minsafe AngularJS files. Automatically makes it
-    // minsafe compatible so Uglify does not destroy the ng references
+// Allow the use of non-minsafe AngularJS files. Automatically makes it
+// minsafe compatible so Uglify does not destroy the ng references
     ngAnnotate: {
       dist: {
         files: [{
@@ -346,7 +348,7 @@ module.exports = function (grunt) {
       }
     },
 
-    // Package all the html partials into a single javascript payload
+// Package all the html partials into a single javascript payload
     ngtemplates: {
       options: {
         // This should be the name of your apps angular module
@@ -374,14 +376,14 @@ module.exports = function (grunt) {
       }
     },
 
-    // Replace Google CDN references
+// Replace Google CDN references
     cdnify: {
       dist: {
         html: ['<%= yeoman.dist %>/public/*.html']
       }
     },
 
-    // Copies remaining files to places other tasks can use
+// Copies remaining files to places other tasks can use
     copy: {
       dist: {
         files: [{
@@ -441,7 +443,7 @@ module.exports = function (grunt) {
       }
     },
 
-    // Run some tasks in parallel to speed up the build process
+// Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
         'coffee',
@@ -468,7 +470,7 @@ module.exports = function (grunt) {
       ]
     },
 
-    // Test settings
+// Test settings
     karma: {
       unit: {
         configFile: 'karma.conf.js',
@@ -506,7 +508,7 @@ module.exports = function (grunt) {
       all: localConfig
     },
 
-    // Compiles CoffeeScript to JavaScript
+// Compiles CoffeeScript to JavaScript
     coffee: {
       options: {
         sourceMap: true,
@@ -526,7 +528,7 @@ module.exports = function (grunt) {
       }
     },
 
-    // Compiles Sass to CSS
+// Compiles Sass to CSS
     sass: {
       server: {
         options: {
@@ -604,7 +606,7 @@ module.exports = function (grunt) {
     }
   });
 
-  // Used for delaying livereload until after server has restarted
+// Used for delaying livereload until after server has restarted
   grunt.registerTask('wait', function () {
     grunt.log.ok('Waiting for server reload...');
 
@@ -698,9 +700,9 @@ module.exports = function (grunt) {
     }
 
     else grunt.task.run([
-      'test:server',
-      'test:client'
-    ]);
+        'test:server',
+        'test:client'
+      ]);
   });
 
   grunt.registerTask('build', [
