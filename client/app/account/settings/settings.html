@@ -12,7 +12,7 @@
                 <img class="profile-image" ng-src="{{me.getImageUrl() }}" alt="Profile Picture"/>
             </div>
 
-            <div class="public-profile">
+            <div class="public-profile" ng-if="me._accountType == 'Pro'">
                 <button ui-sref="profile({ proId: me._id })" class="btn btn-primary">
                     View Public Profile
                 </button>
