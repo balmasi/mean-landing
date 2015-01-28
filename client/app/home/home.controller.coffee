@@ -15,6 +15,7 @@ angular.module 'taskyApp'
     'Painter'
   ]
 
+
   $scope.$on '$stateChangeStart', ->
     $scope.pageVariables.pageClass = ''
 

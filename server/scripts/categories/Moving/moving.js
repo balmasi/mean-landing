@@ -113,8 +113,8 @@ module.exports = function(parentId) {
         description:"Number of small and medium boxes or items to be moved",
         choices:[
           {
-            label:"No small/medium item",
-            value:"None"
+            label: "None",
+            value: "None"
           },
           {
             label:"1-10",
@@ -144,7 +144,7 @@ module.exports = function(parentId) {
         description:"Number of items or items that need to be moved",
         choices:[
           {
-            label:"No small/medium item",
+            label:"No large items",
             value:"0"
           },
           {

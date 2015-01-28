@@ -29,6 +29,17 @@ exports.index = function(req, res) {
   });
 };
 
+exports.getAllServices = function(req, res) {
+  Category.getAllServices()
+    .then(function(services) {
+      return res.status(200).send(services);
+    },
+    function(err) {
+      return handleError(res, err);
+    }
+  )
+};
+
 exports.root = function( req, res ) {
   Category.getRootCategories()
     .then(function (cats) {

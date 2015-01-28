@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'RequestCtrl', ($scope, $q, category, Request, Auth, toastr, Search, $state) ->
+.controller 'RequestCtrl', ($scope, $q, category, Request, Auth, toastr, Location, $state) ->
   $scope.pageVariables.pageClass = 'page-request'
 
   _categoryId = category._id
@@ -14,8 +14,8 @@ angular.module 'taskyApp'
   # Who travels to whom
   $scope.travel = {}
 
-  $scope.location = {}
-  $scope.locationNotSet = !Search.isRequestLocationSet()
+  $scope.locationNotSet = !Location.isRequestLocationSet()
+
 
   $scope.otherDetails =
     description: 'Extra details customer wants you to know'
@@ -34,7 +34,6 @@ angular.module 'taskyApp'
     $scope.questions.forEach (q) ->
       if q.field_type == 'checklist'
         transformedChoices = _.map q.choices, (choice) ->
-          answerVal = null
           if choice.can_describe
             return choice.answer if choice.answer? && choice.answer && choice.otherChecked
           else
@@ -80,13 +79,12 @@ angular.module 'taskyApp'
           remote: $scope.travel.remote
           distance: $scope.travel.distance
         location:
-          subLocality: Search.subLocality()
-          lngLat: Search.lngLat()
+          subLocality: Location.subLocality()
+          lngLat: Location.lngLat()
 
       request.$save()
         .then (res) ->
           toastr.success 'Successfully Created Request'
-          Search.clearLocation()
           $state.go 'tasks'
         .catch (err) ->
           toastr.error 'Something went wrong', 'Form Error'
@@ -110,7 +108,7 @@ angular.module 'taskyApp'
         createRequest()
 
   $scope.$on '$destroy', ->
-    Search.clearLocation()
+    Location.clearLocation()
 
   # For each mongo error returned, set the field's validity to false
   # and add a message to be displayed in DOM via $scope.errors

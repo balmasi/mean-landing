@@ -3,20 +3,19 @@
 angular.module 'taskyApp'
 .directive 'locationSearch', ->
   scope:
-    locationObj: '=model'
     loading: '=?'
   restrict: 'EA'
   controllerAs: 'vm'
   replace: true
   templateUrl: 'components/forms/new-request/location-search/location-search.html'
-  controller: ($scope, $q) ->
-    $scope.locationObj =
+  controller: ($scope, $q, Location) ->
+    $scope.loading = false
+
+    location =
       latLng:
         lat: undefined
         lng: undefined
       subLocality: undefined #e.g. North York
-
-    $scope.loading = false
 
     vm = this
     vm.getAddresses = (viewValue) ->
@@ -30,8 +29,8 @@ angular.module 'taskyApp'
       ,
       (results, status) ->
         if status is google.maps.GeocoderStatus.OK
-          # limit to 10
-          results = Array.prototype.slice.call results, 0, 5
+          # limit to 5
+          results = results[0..5]
           deferred.resolve results
         else
           deferred.reject results
@@ -39,12 +38,13 @@ angular.module 'taskyApp'
       deferred.promise
 
     vm.setLatLng = (i,m,l) ->
-      $scope.locationObj.latLng =
+      location.latLng =
         lat: i.geometry.location.lat(),
-        lng: i.geometry.location.lng(),
+        lng: i.geometry.location.lng()
+      Location.lngLat location.latLng
 
       subLoc = _.find i.address_components, (item) ->
         !!~item.types.indexOf 'sublocality_level_1'
 
-      $scope.locationObj.subLocality = (subLoc || i.address_components[0]).short_name
-
+      location.subLocality = (subLoc || i.address_components[0]).short_name
+      Location.subLocality location.subLocality

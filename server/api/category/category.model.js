@@ -74,6 +74,13 @@ CategorySchema.statics.getRootCategories = function() {
 };
 
 // @ returns Promise
+// Gets all the leaf categories aka services
+CategorySchema.statics.getAllServices = function() {
+  return this.model('Category').find({ parent: { $ne: null }},
+  '-credits_required -other_services -scheduling_type -travel_types -parent').exec();
+};
+
+// @ returns Promise
 CategorySchema.statics.getSubcategoriesOf = function(id) {
   return this.model('Category').find({
     parent: id

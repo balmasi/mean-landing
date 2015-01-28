@@ -1,32 +1,41 @@
 'use strict'
 
 angular.module 'taskyApp'
-.controller 'SearchCtrl', ($scope, Category, $q, $state, Search) ->
+.controller 'SearchCtrl', ($scope, Category, $q, $state, Location) ->
+  vm = this
+
   $scope.loading =
     category: false
     location: false
 
-  $scope.location =
-    latLng:
-      lat: undefined
-      lng: undefined
-    subLocality: undefined #e.g. North York
-
   categoryRoute = undefined
+  categorySearchIndex = lunr ->
+    @field 'name', boost: 40
+    @field 'action', boost: 30
+    @field 'actor', boost: 30
+    @field 'search_keywords', boost: 25
+    @ref 'name'
+    return
+  fetchedServices = null
+  chosenService = null
+
+  # Category Logic
+  Category.getAllServices().$promise.then (services) ->
+    fetchedServices = services
+    _.each services, (service) ->
+      categorySearchIndex.add service
+
 
   $scope.getCategories = (val) ->
-    Category.search
-      searchTerm: val
-    .$promise
+    d = $q.defer()
+    d.resolve categorySearchIndex.search val
+    d.promise
 
 
   $scope.setCategory = (item) ->
-    categoryRoute = item.route
+    chosenService = _.find fetchedServices, name: item.ref
+    categoryRoute = categorySearchIndex.search chosenService.route
 
   $scope.newRequest = ->
-    Search.subLocality $scope.location.subLocality
-    Search.lngLat
-      lng: $scope.location.latLng.lng
-      lat: $scope.location.latLng.lat
     $state.go 'request',
-      categoryRoute: categoryRoute,
+      categoryRoute: chosenService.route

@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'taskyApp'
-.factory 'Search', ($http) ->
+.factory 'Location',  ->
   location =
     lng: undefined
     lat: undefined
@@ -13,6 +13,7 @@ angular.module 'taskyApp'
     location.subLocality = name
     return
 
+  # getter/setter
   lngLat: (lngLat) ->
     return [location.lng, location.lat] unless lngLat?
     location.lng = lngLat.lng
@@ -20,7 +21,7 @@ angular.module 'taskyApp'
     return
 
   isRequestLocationSet: ->
-    location.lng && location.lat && location.subLocality
+    !!(location.lng && location.lat && location.subLocality)
 
   clearLocation: ->
     location = {}

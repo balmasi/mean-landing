@@ -14,6 +14,12 @@ angular.module 'taskyApp'
       isArray: true,
       cache: true
 
+    getAllServices:
+      method: 'GET',
+      isArray: true,
+      cache: true
+      url: '/api/categories/getAllServices'
+
     addToOtherServices:
       method: 'POST'
       params:

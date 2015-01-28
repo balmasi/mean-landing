@@ -1,6 +1,7 @@
 <div class="request-info">
     <div ng-transclude></div>
     <section class="schedule" ng-switch="request.schedule_type" >
+        <pre>{{request}}</pre>
         <strong>When should the {{request.category.name}} happen?</strong>
         <p ng-switch-when="flexible" >I'm flexible.</p>
         <p ng-switch-when="asap" >As soon as possible.</p>
