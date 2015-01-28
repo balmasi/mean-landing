@@ -7,7 +7,7 @@
             </div>
         </h2>
         <div class="row">
-            <div class="form-group col-sm-8">
+            <div class="col-xs-12 col-sm-9">
                 <label>What type of work do you do?</label>
                 <select required name="category" class="form-control"
                         ng-model="category"
@@ -17,12 +17,13 @@
                 </select>
 
             </div>
-            <br/>
-            <button class="btn btn-inverse btn-lg btn-blue btn-get-started"
-                    ng-click="next(category)"
-                    ng-class="{ disabled: form.category.$invalid }">
-                Get Started
-            </button>
+            <div class="col-xs-12 col-sm-3 btn-get-started">
+                <button class="btn btn-inverse btn-lg btn-blue "
+                        ng-click="next(category)"
+                        ng-class="{ disabled: form.category.$invalid }">
+                    Get Started
+                </button>
+            </div>
         </div>
     </div>
 </form>

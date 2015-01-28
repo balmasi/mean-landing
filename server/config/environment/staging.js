@@ -15,5 +15,6 @@ module.exports = {
   mongo: {
     uri:    process.env.MONGOHQ_URL || // Heroku
             'mongodb://localhost/tasky'
-  }
+  },
+  setUpCategories: true
 };

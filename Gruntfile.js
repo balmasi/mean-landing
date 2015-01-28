@@ -17,7 +17,8 @@ module.exports = function (grunt) {
     cdnify: 'grunt-google-cdn',
     protractor: 'grunt-protractor-runner',
     injector: 'grunt-asset-injector',
-    buildcontrol: 'grunt-build-control'
+    buildcontrol: 'grunt-build-control',
+    processhtml: 'grunt-processhtml'
   });
 
   // Time how long tasks take. Can help when optimizing build times
@@ -165,6 +166,28 @@ module.exports = function (grunt) {
       }
     },
 
+    // Preprocesses HTML files (for env-dependant presentation/replacement)
+    processhtml: {
+      options: {
+        commentMarker: 'process'
+      },
+      dev: {
+        files: [
+          { src: ['<%= yeoman.client %>/index.html'],   dest: '.tmp/index.html'},
+          {
+            expand: true,
+            cwd: '<%= yeoman.client %>',
+            src: ['{app,components}/**/*.html'], // Actual pattern(s) to match.
+            dest: '.tmp/'   // Destination path prefix.
+          }
+        ]
+      },
+      prod: {
+        src: ['<%= yeoman.dist %>/public/index.html'],
+        dest: '<%= yeoman.dist %>/public/index.html'
+      }
+    },
+
     // Empties folders to start fresh
     clean: {
       dist: {
@@ -272,7 +295,7 @@ module.exports = function (grunt) {
     usemin: {
       html: ['<%= yeoman.dist %>/public/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/public/{,*/}*.css'],
-      js: ['<%= yeoman.dist %>/public/{,*/}*.js'],
+      js: ['<%= yeoman.dist %>/public/{,*/}*.js', '!<%= yeoman.dist %>/public/bower_components/*.js'],
       options: {
         assetsDirs: [
           '<%= yeoman.dist %>/public',
@@ -610,6 +633,7 @@ module.exports = function (grunt) {
         'concurrent:server',
         'injector',
         'wiredep',
+        'processhtml:dev',
         'autoprefixer',
         'concurrent:debug'
       ]);
@@ -622,6 +646,7 @@ module.exports = function (grunt) {
       'concurrent:server',
       'injector',
       'wiredep',
+      'processhtml:dev',
       'autoprefixer',
       'express:dev',
       'wait',
@@ -690,6 +715,7 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
+    'processhtml:prod',
     'cdnify',
     'cssmin',
     'uglify',

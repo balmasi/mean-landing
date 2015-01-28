@@ -67,6 +67,11 @@
     width: 100%;
   }
 
+  .btn-get-started {
+    text-align: center;
+    .btn { margin-top: 22px; }
+  }
+
   #google-map {
     height: 30rem;
   }

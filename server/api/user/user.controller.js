@@ -76,6 +76,7 @@ exports.uploadProfilePic = function (req, res) {
     ss3.read(file.fd, function(err, s3Image) {
       gm(s3Image)
         .options({imageMagick: true})
+        .autoOrient()
         .filter('Lanczos')
         // TODO: Find out how to resize Center without creating a file.
         .thumb(100, 100, thumbTemp, 90,'center',

@@ -83,6 +83,7 @@ module.exports = function(parentId) {
       },
       {
         field_type:"select",
+        question: 'Will you provide the parts and materials yourself?',
         description: "Who provides materials and parts",
         choices:[
           {

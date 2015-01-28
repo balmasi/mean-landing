@@ -2,13 +2,9 @@
     <div class="panel panel-default col-centered">
         <div class="panel-body">
             <form class="form" name="form" ng-submit="login(form)" novalidate>
-                <div class="form-group btn-group">
-                    <a class="btn btn-success" ng-click="loginAs('pro',form)">Pro</a>
-                    <a class="btn btn-success" ng-click="loginAs('pro2',form)">Pro2</a>
-                    <a class="btn btn-warning" ng-click="loginAs('customer',form)">Customer</a>
-                    <a class="btn btn-danger" ng-click="loginAs('admin',form)">Admin</a>
-                </div>
-
+                <!-- Include quick login buttons defined in seed.js for development -->
+                <!-- process:include:dev ./dev-login.html -->
+                <!-- /process-->
                 <div class="row">
                     <div class="form-group col-sm-12">
                         <input server-validation-error="serverEmail"
