@@ -22,7 +22,7 @@
                 </div>
 
                 <!-- Renders a multi checkbox -->
-                <div ng-switch-when="checklist">
+                <div class="form-group" ng-switch-when="checklist">
                     <multicheck question="q" require-one="q.required"></multicheck>
                 </div>
 
@@ -46,19 +46,36 @@
 
             <!-- Asks who travels to whom? -->
             <travel-checkboxes travel="travel" category="category"></travel-checkboxes>
-            
+
             <!-- Catchall details -->
             <div class="form-group">
                 <label>Is there anything else you'd like the {{category.actor}} to know?</label>
                 <textarea type="text" class="form-control" rows="5"
+                          autocomplete="off"
                           placeholder="Describe any further details that can help the professional understand your project."
-                        ng-model="otherDetails.answer"></textarea>
+                          ng-model="otherDetails.answer"></textarea>
             </div>
 
             <div class="auth-fields row"
                  ng-if="!hasAccount()">
                 <h4 class="hr-text"><span>Create your Tasky Account</span></h4>
                 <p class="explanation">As soon as you sign up, based on your answer to the above questions, we will deliver quotes from interested professionals in your area directly to your inbox!</p>
+                <div class="col-xs-12 col-sm-6 form-group">
+                    <label>First Name</label>
+                    <input required
+                           standard-form-errors
+                           name="firstName"
+                           ng-model="user.firstName"
+                           class="form-control"/>
+                </div>
+                <div class="col-xs-12 col-sm-6 form-group">
+                    <label>Last Name</label>
+                    <input required
+                           name="lastName"
+                           standard-form-errors
+                           ng-model="user.lastName"
+                           class="form-control"/>
+                </div>
                 <div class="col-xs-12 col-sm-6">
                     <label>Email Address</label>
                     <input required

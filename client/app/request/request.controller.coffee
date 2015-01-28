@@ -92,9 +92,7 @@ angular.module 'taskyApp'
     if form.$valid
       # If user has no account create it, then create request
       if !$scope.hasAccount()
-        Auth.createUser 'Customer',
-          email: $scope.user.email
-          password: $scope.user.password
+        Auth.createUser 'Customer', $scope.user
         .catch (err) ->
           mongoErrorHandler err, form
           $q.reject 'Could not create User'
