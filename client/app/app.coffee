@@ -12,8 +12,7 @@ angular.module 'taskyApp', [
   'yaru22.angular-timeago',
   'btford.socket-io',
   'angularFileUpload',
-  'gilbox.sparkScroll',
-  'ngTouch'
+  'gilbox.sparkScroll'
 ]
 .config (
   $urlRouterProvider,
