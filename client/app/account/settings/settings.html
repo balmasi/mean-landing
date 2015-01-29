@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-xs-6 col-sm-3 profile-pic-wrapper">
             <div class="profile-pic" ng-class="{ 'uploading': vm.uploading }">
-                <img class="loader" src="assets/images/loader-dots-white.GIF" alt="Uploading..."/>
+                <img class="loader" src='assets/images/loaders/loader-dots-white.gif' alt="Uploading..."/>
                 <div class="change-photo"
                      ng-file-select ng-model="profilePic"
                      ng-file-change="uploadImage($files, $event)"
