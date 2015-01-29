@@ -22,5 +22,5 @@ module.exports = {
     bucket:  process.env.S3_BUCKET || 'tasky-prod'
   },
 
-  setUpCategories: true
+  setUpCategories: false
 };
