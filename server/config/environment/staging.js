@@ -13,8 +13,8 @@ module.exports = {
 
   // MongoDB connection options
   mongo: {
-    uri:    process.env.MONGOHQ_URL || // Heroku
-            'mongodb://localhost/tasky'
+    uri:    process.env.MONGOHQ_URL
   },
+
   setUpCategories: true
 };

@@ -76,7 +76,7 @@
                            ng-model="user.lastName"
                            class="form-control"/>
                 </div>
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12 col-sm-6 form-group">
                     <label>Email Address</label>
                     <input required
                            mongoose-error
@@ -91,7 +91,7 @@
                         <div ng-message="mongoose">{{errors.email}}</div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12 col-sm-6 form-group">
                     <label>Password</label>
                     <unmask name="password"
                             mongoose-error
