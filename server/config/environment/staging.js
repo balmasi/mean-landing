@@ -16,5 +16,5 @@ module.exports = {
     uri:    process.env.MONGOLAB_URI
   },
 
-  setUpCategories: true
+  setUpCategories: false
 };

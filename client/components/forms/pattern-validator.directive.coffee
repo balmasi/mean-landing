@@ -13,7 +13,7 @@ angular.module 'taskyApp'
     validator = undefined
     patternValidator = undefined
     pattern = attrs.patternValidator
-    required = true
+    required = false
 
     validate = (regexp, value) ->
       value is "" or not required or regexp.test(value)

@@ -86,6 +86,8 @@ angular.module 'taskyApp'
   $scope.hasNotQuoted = ->
     not myQuote?
 
+  console.log 'waaaa'
+
   $scope.shouldBuyMoreCredits = ->
     $scope.needMoreCredits() && $scope.hasNotQuoted()
 

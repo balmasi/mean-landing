@@ -54,7 +54,7 @@
                         <textarea name="message" class="form-control" rows="4"
                                   placeholder="{{messagePlaceholder}}"
                                   required
-                                  minlength="120"
+                                  minlength="{{ hasNotQuoted() ? 120 : 1 }}"
                                   standard-form-errors='{ "minlength" : "Message needs to be at least 120 characters" }'
                                   ng-model="newMessage.message"></textarea>
                     </div>

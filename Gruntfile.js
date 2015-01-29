@@ -64,6 +64,10 @@ module.exports = function (grunt) {
           '!<%= yeoman.client %>/app/app.js'],
         tasks: ['injector:appScripts']
       },
+      processhtml: {
+        files: ['<%= yeoman.client %>/{app,components}/**/*.html'],
+        tasks: ['processhtml:dev']
+      },
       injectCss: {
         files: [
           '<%= yeoman.client %>/{app,components}/**/*.css'
@@ -627,7 +631,14 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'env:all', 'env:prod', 'express:prod', 'wait', 'open', 'express-keepalive']);
+      return grunt.task.run([
+        'build',
+        'env:all',
+        'env:prod',
+        'express:prod',
+        'wait',
+        'open',
+        'express-keepalive']);
     }
 
     if (target === 'debug') {
