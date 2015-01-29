@@ -13,7 +13,7 @@ module.exports = {
 
   // MongoDB connection options
   mongo: {
-    uri:    process.env.MONGOHQ_URL
+    uri:    process.env.MONGOLAB_URI
   },
 
   setUpCategories: true
