@@ -16,5 +16,9 @@ module.exports = {
     uri:    process.env.MONGOLAB_URI
   },
 
+  s3: {
+    bucket: process.env.S3_BUCKET
+  },
+
   setUpCategories: false
 };
