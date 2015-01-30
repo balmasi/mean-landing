@@ -281,8 +281,8 @@ module.exports = function (grunt) {
           },
           { src: '<%= yeoman.dist %>/public/{,*/}*.css' },
           { src: [
-            '!<%= yeoman.dist %>/public/assets/images/profiles/*',
-            '<%= yeoman.dist %>/public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+            '<%= yeoman.dist %>/public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            '!<%= yeoman.dist %>/public/assets/images/profiles/*' //Excluded cause comes from db
           ]},
           { src: '<%= yeoman.dist %>/public/assets/fonts/*'}
         ]
